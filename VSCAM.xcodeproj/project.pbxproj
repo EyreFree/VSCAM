@@ -54,14 +54,78 @@
 		8488D43B1DAA46FD000E703C /* VSCAM */ = {
 			isa = PBXGroup;
 			children = (
+				8488D44F1DAA4994000E703C /* 3rdPart */,
+				8488D44E1DAA4986000E703C /* Res */,
+				8488D4501DAA499E000E703C /* Controls */,
+				8488D4511DAA49AA000E703C /* Extension */,
+				8488D4521DAA49B7000E703C /* Global */,
+				8488D4531DAA49C1000E703C /* Network */,
 				8488D43C1DAA46FD000E703C /* AppDelegate.swift */,
-				8488D43E1DAA46FD000E703C /* ViewController.swift */,
+				8488D4541DAA49CE000E703C /* MVC */,
+				8488D4551DAA49DD000E703C /* Supporting Files */,
+			);
+			path = VSCAM;
+			sourceTree = "<group>";
+		};
+		8488D44E1DAA4986000E703C /* Res */ = {
+			isa = PBXGroup;
+			children = (
 				8488D4401DAA46FD000E703C /* Main.storyboard */,
 				8488D4431DAA46FD000E703C /* Assets.xcassets */,
 				8488D4451DAA46FD000E703C /* LaunchScreen.storyboard */,
+			);
+			name = Res;
+			sourceTree = "<group>";
+		};
+		8488D44F1DAA4994000E703C /* 3rdPart */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = 3rdPart;
+			sourceTree = "<group>";
+		};
+		8488D4501DAA499E000E703C /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		8488D4511DAA49AA000E703C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		8488D4521DAA49B7000E703C /* Global */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		8488D4531DAA49C1000E703C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		8488D4541DAA49CE000E703C /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				8488D43E1DAA46FD000E703C /* ViewController.swift */,
+			);
+			name = MVC;
+			sourceTree = "<group>";
+		};
+		8488D4551DAA49DD000E703C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				8488D4481DAA46FD000E703C /* Info.plist */,
 			);
-			path = VSCAM;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -248,7 +312,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -302,6 +366,7 @@
 				8488D44D1DAA46FD000E703C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
