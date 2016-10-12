@@ -1,15 +1,36 @@
 PODS:
   - Alamofire (4.0.1)
+  - JGProgressHUD (1.3.6)
+  - MJRefresh (3.1.12)
+  - NJKWebViewProgress (0.2.3):
+    - NJKWebViewProgress/Core (= 0.2.3)
+    - NJKWebViewProgress/ProgressView (= 0.2.3)
+  - NJKWebViewProgress/Core (0.2.3)
+  - NJKWebViewProgress/ProgressView (0.2.3)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
   - SnapKit (3.0.1)
+  - UMengAnalytics-NO-IDFA (4.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
+  - JGProgressHUD (~> 1.3.2)
+  - MJRefresh (~> 3.1.0)
+  - NJKWebViewProgress (~> 0.2.3)
+  - SDWebImage (~> 3.7.6)
   - SnapKit (~> 3.0.1)
+  - UMengAnalytics-NO-IDFA (~> 4.1.1)
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  JGProgressHUD: cd599e041ab8363ac5ce83a21a6d95e21d359152
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
+  UMengAnalytics-NO-IDFA: 1064992c1b7aaa22823179c0b33a664813fd7a85
 
-PODFILE CHECKSUM: 0a23eea67004cff69649e22a740a753daed591ea
+PODFILE CHECKSUM: ba0c5ef623d109ab0d7bb66e54a545c23b95a192
 
 COCOAPODS: 1.0.1
