@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		122429CD1DB3D00A00C8EE29 /* NSURL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429CC1DB3D00A00C8EE29 /* NSURL+.swift */; };
+		122429CF1DB3D44800C8EE29 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429CE1DB3D44800C8EE29 /* UINavigationController+.swift */; };
+		122429D11DB3D46A00C8EE29 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429D01DB3D46A00C8EE29 /* UIImage+.swift */; };
+		122429D31DB3D49400C8EE29 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429D21DB3D49400C8EE29 /* UIColor+.swift */; };
+		122429D51DB3D79300C8EE29 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429D41DB3D79300C8EE29 /* CGSize+.swift */; };
+		122429D71DB3D8B000C8EE29 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429D61DB3D8B000C8EE29 /* CGFloat+.swift */; };
+		122429D91DB3D8FF00C8EE29 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429D81DB3D8FF00C8EE29 /* Int+.swift */; };
+		122429DB1DB3D95E00C8EE29 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429DA1DB3D95E00C8EE29 /* String+.swift */; };
+		122429DE1DB3DCF700C8EE29 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429DD1DB3DCF700C8EE29 /* UIViewController+.swift */; };
 		1298EDE81DAE983700F8B4BD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDE61DAE983700F8B4BD /* BaseViewController.swift */; };
 		1298EDE91DAE983700F8B4BD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDE71DAE983700F8B4BD /* WebViewController.swift */; };
 		1298EDEE1DAE984400F8B4BD /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEA1DAE984400F8B4BD /* Define.swift */; };
@@ -22,6 +31,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		122429CC1DB3D00A00C8EE29 /* NSURL+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+.swift"; sourceTree = "<group>"; };
+		122429CE1DB3D44800C8EE29 /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		122429D01DB3D46A00C8EE29 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		122429D21DB3D49400C8EE29 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		122429D41DB3D79300C8EE29 /* CGSize+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
+		122429D61DB3D8B000C8EE29 /* CGFloat+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		122429D81DB3D8FF00C8EE29 /* Int+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		122429DA1DB3D95E00C8EE29 /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		122429DC1DB3D99F00C8EE29 /* VSCAM-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VSCAM-Bridging-Header.h"; sourceTree = "<group>"; };
+		122429DD1DB3DCF700C8EE29 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		1298EDE61DAE983700F8B4BD /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1298EDE71DAE983700F8B4BD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		1298EDEA1DAE984400F8B4BD /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
@@ -123,6 +142,15 @@
 		8488D4511DAA49AA000E703C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				122429D81DB3D8FF00C8EE29 /* Int+.swift */,
+				122429DA1DB3D95E00C8EE29 /* String+.swift */,
+				122429CC1DB3D00A00C8EE29 /* NSURL+.swift */,
+				122429D41DB3D79300C8EE29 /* CGSize+.swift */,
+				122429D61DB3D8B000C8EE29 /* CGFloat+.swift */,
+				122429D21DB3D49400C8EE29 /* UIColor+.swift */,
+				122429D01DB3D46A00C8EE29 /* UIImage+.swift */,
+				122429DD1DB3DCF700C8EE29 /* UIViewController+.swift */,
+				122429CE1DB3D44800C8EE29 /* UINavigationController+.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -157,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				8488D4481DAA46FD000E703C /* Info.plist */,
+				122429DC1DB3D99F00C8EE29 /* VSCAM-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -295,12 +324,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				8488D43F1DAA46FD000E703C /* ViewController.swift in Sources */,
+				122429CF1DB3D44800C8EE29 /* UINavigationController+.swift in Sources */,
+				122429D91DB3D8FF00C8EE29 /* Int+.swift in Sources */,
 				8488D43D1DAA46FD000E703C /* AppDelegate.swift in Sources */,
 				1298EDE81DAE983700F8B4BD /* BaseViewController.swift in Sources */,
+				122429CD1DB3D00A00C8EE29 /* NSURL+.swift in Sources */,
+				122429DE1DB3DCF700C8EE29 /* UIViewController+.swift in Sources */,
+				122429D31DB3D49400C8EE29 /* UIColor+.swift in Sources */,
 				1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */,
 				1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */,
 				1298EDEE1DAE984400F8B4BD /* Define.swift in Sources */,
+				122429DB1DB3D95E00C8EE29 /* String+.swift in Sources */,
+				122429D51DB3D79300C8EE29 /* CGSize+.swift in Sources */,
+				122429D11DB3D46A00C8EE29 /* UIImage+.swift in Sources */,
 				1298EDE91DAE983700F8B4BD /* WebViewController.swift in Sources */,
+				122429D71DB3D8B000C8EE29 /* CGFloat+.swift in Sources */,
 				1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EyreFree.VSCAM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/VSCAM-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -444,6 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EyreFree.VSCAM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/VSCAM-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
