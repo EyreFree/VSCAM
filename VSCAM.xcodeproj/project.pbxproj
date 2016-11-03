@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1220F9E51DCB9EB6004379AD /* SecurityStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1220F9E41DCB9EB6004379AD /* SecurityStrategy.m */; };
 		1220F9E71DCB9F5F004379AD /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1220F9E61DCB9F5F004379AD /* Tag.swift */; };
+		1220F9E91DCBA1A6004379AD /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1220F9E81DCBA1A6004379AD /* MainNavigationController.swift */; };
 		122429CD1DB3D00A00C8EE29 /* NSURL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429CC1DB3D00A00C8EE29 /* NSURL+.swift */; };
 		122429CF1DB3D44800C8EE29 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429CE1DB3D44800C8EE29 /* UINavigationController+.swift */; };
 		122429D11DB3D46A00C8EE29 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429D01DB3D46A00C8EE29 /* UIImage+.swift */; };
@@ -35,6 +36,7 @@
 		1220F9E31DCB9EB6004379AD /* SecurityStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityStrategy.h; sourceTree = "<group>"; };
 		1220F9E41DCB9EB6004379AD /* SecurityStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityStrategy.m; sourceTree = "<group>"; };
 		1220F9E61DCB9F5F004379AD /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		1220F9E81DCBA1A6004379AD /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		122429CC1DB3D00A00C8EE29 /* NSURL+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+.swift"; sourceTree = "<group>"; };
 		122429CE1DB3D44800C8EE29 /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		122429D01DB3D46A00C8EE29 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				8488D4521DAA49B7000E703C /* Global */,
 				8488D4531DAA49C1000E703C /* Network */,
 				8488D43C1DAA46FD000E703C /* AppDelegate.swift */,
+				1220F9E81DCBA1A6004379AD /* MainNavigationController.swift */,
 				8488D4541DAA49CE000E703C /* MVC */,
 				8488D4551DAA49DD000E703C /* Supporting Files */,
 			);
@@ -417,6 +420,7 @@
 				1220F9E71DCB9F5F004379AD /* Tag.swift in Sources */,
 				122429DE1DB3DCF700C8EE29 /* UIViewController+.swift in Sources */,
 				1220F9E51DCB9EB6004379AD /* SecurityStrategy.m in Sources */,
+				1220F9E91DCBA1A6004379AD /* MainNavigationController.swift in Sources */,
 				122429D31DB3D49400C8EE29 /* UIColor+.swift in Sources */,
 				1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */,
 				1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */,

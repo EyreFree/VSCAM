@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        setGlobalStyle()
         showStatusBar()
+
         return true
     }
 
@@ -62,6 +65,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UIApplication.shared.isStatusBarHidden {
             UIApplication.shared.isStatusBarHidden = false
         }
+    }
+
+    //设置一些全局样式
+    func setGlobalStyle() {
+        let mainColor = UIColor(valueRGB: 0xf8f8f8)
+        let tintColor = UIColor.black
+        // 全局的各种颜色
+        if let targetWindow = self.window {
+            targetWindow.tintColor = mainColor
+        }
+        // 导航栏
+        let navigationBarProxy = UINavigationBar.appearance()
+        navigationBarProxy.backgroundColor = UIColor.clear
+        navigationBarProxy.barTintColor = mainColor     // 背景色
+        navigationBarProxy.tintColor = tintColor       // 按钮、图标等颜色
+        navigationBarProxy.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.black,
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)
+        ]
+        navigationBarProxy.barStyle = UIBarStyle.black
+        //去除导航栏底边白线
+        /*navigationBarProxy.setBackgroundImage(
+         UIImage(color: UIColor.clearColor(), size: CGSize(width: UIScreen.mainScreen().bounds.width, height: 20)),
+         forBarPosition: .Top, barMetrics: .Default
+         )
+         navigationBarProxy.shadowImage = UIImage()*/
+        //设置状态栏字体颜色
+        UIApplication.shared.setStatusBarStyle(
+            UIStatusBarStyle.default, animated: false
+        )
     }
 }
 

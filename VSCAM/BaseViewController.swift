@@ -10,6 +10,7 @@ class BaseViewController: UIViewController {
 
         //顶部自动间隔去掉，腊鸡
         automaticallyAdjustsScrollViewInsets = false
+
     }
 
     //将 Push 后的 VC 的导航栏返回按钮标题设为“”
