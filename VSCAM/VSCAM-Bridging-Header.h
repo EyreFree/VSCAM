@@ -6,6 +6,9 @@
 //MD5
 #import <CommonCrypto/CommonDigest.h>
 
+//Background Blur
+#import "SecurityStrategy.h"
+
 //UMeng
 #import "UMMobClick/MobClick.h"
 

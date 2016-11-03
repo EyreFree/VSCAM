@@ -22,13 +22,13 @@ extension UIColor {
     }
 
     //获取两个 UIColor 均值（只支持 RGB 空间颜色）
-    func avarageWith(color: UIColor) -> UIColor? {
+    func avarageWith(color: UIColor, alpha: CGFloat = 1.0) -> UIColor? {
         if let rgbArr1 = self.cgColor.components, let rgbArr2 = color.cgColor.components {
             return UIColor(
                 red: (rgbArr1[0] + rgbArr2[0]) / 2,
                 green: (rgbArr1[1] + rgbArr2[1]) / 2,
                 blue: (rgbArr1[2] + rgbArr2[2]) / 2,
-                alpha: 1.0
+                alpha: alpha
             )
         }
         return nil

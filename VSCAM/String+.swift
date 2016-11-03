@@ -76,13 +76,6 @@ extension String {
         return self.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
 
-    //URL Encode
-    func networkEncode() -> String {
-        let first = self.removingPercentEncoding ?? self
-        let second = first.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? first
-        return second
-    }
-
     //转为dictionary
     func toDictionary() -> Any? {
         if let tryData = self.data(using: String.Encoding.utf8) {

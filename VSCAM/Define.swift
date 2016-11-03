@@ -8,8 +8,7 @@ class Define {
     static let zeroHeight = CGFloat(0.00000000000000000001)
 
     //占位图
-    static let placeHolderImage = UIImage(named: "PlaceHolder")
-    static let placeHolderTransImage = UIImage(named: "PlaceHolderTrans")
+    static let placeHolderImage = UIImage(named: "placeholder_default")
 
     //占位字符
     static let placeHolderString = "..."

@@ -25,15 +25,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        //添加模糊效果，进入后台
+        let view = SecurityStrategy(frame: self.window?.frame ?? UIScreen.main.bounds)
+        view.tag = Tag.make(10086)
+        for window in UIApplication.shared.windows {
+            if window.windowLevel == UIWindowLevelNormal {
+                window.addSubview(view)
+            }
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        //移除模糊效果，进入前台
+        for window in UIApplication.shared.windows {
+            if window.windowLevel == UIWindowLevelNormal {
+                let view = window.viewWithTag(Tag.make(10086))
+                view?.removeFromSuperview()
+            }
+        }
+        //显示状态栏
         showStatusBar()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        //显示状态栏
         showStatusBar()
     }
 
