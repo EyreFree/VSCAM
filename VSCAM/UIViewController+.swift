@@ -35,7 +35,7 @@ extension UIViewController {
 
     func addNavigationButtonWithImageName(imageName: String, isRight: Bool = true) {
         let setButton = UIBarButtonItem(
-            image: UIImage(named: imageName) ?? Define.placeHolderImage, style: .plain, target: self,
+            image: UIImage(named: imageName) ?? UIImage.placeholder, style: .plain, target: self,
             action: isRight ? Selector("naviButtonClick:") : Selector("naviLeftButtonClick:")
         )
         setButton.isEnabled = true
@@ -58,7 +58,7 @@ extension UIViewController {
 
     func addTabBarNavigationButtonWithImageName(imageName: String, isRight: Bool = true) {
         let setButton = UIBarButtonItem(
-            image: UIImage(named: imageName) ?? Define.placeHolderImage, style: .plain, target: self,
+            image: UIImage(named: imageName) ?? UIImage.placeholder, style: .plain, target: self,
             action: isRight ? Selector("naviButtonClick:") : Selector("naviLeftButtonClick:")
         )
         setButton.isEnabled = true
