@@ -9,7 +9,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         //顶部自动间隔去掉，腊鸡
-        automaticallyAdjustsScrollViewInsets = false
+        self.automaticallyAdjustsScrollViewInsets = false
 
     }
 

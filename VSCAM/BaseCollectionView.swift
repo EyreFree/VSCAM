@@ -2,10 +2,10 @@
 
 import UIKit
 
-class CollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     weak var parentViewController: UIViewController?
-    var items = [CollectionViewItem]()
+    var items = [BaseCollectionViewItem]()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -24,28 +24,28 @@ class CollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
 
     func addReuseIdentifier() {
         for item in items {
-            item.registerClass(self)
+            item.registerClass(collectionView: self)
         }
     }
 
     //MARK:- tableview
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return items.count
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items[section].number(collectionView)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items[section].number(collectionView: collectionView)
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return items[indexPath.section].cell(collectionView, indexPath: indexPath)
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+        return items[indexPath.section].cell(collectionView: collectionView, indexPath: indexPath)
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         return items[indexPath.section].size(collectionView, indexPath: indexPath)
     }
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: false)
     }
 
@@ -57,7 +57,7 @@ class CollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         return CGSize(width: 0, height: items[section].heightFooter(collectionView))
     }
 
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath) -> UICollectionReusableView {
         var reusableview = UICollectionReusableView()
 
         switch kind {
@@ -97,12 +97,12 @@ class CollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
                     make.top.left.right.bottom.equalTo(0)
                 }
             }
-
+            
             break
         default:
             break
         }
-
+        
         return reusableview;
     }
 }
