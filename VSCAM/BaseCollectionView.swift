@@ -37,43 +37,43 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
         return items[section].number(collectionView: collectionView)
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return items[indexPath.section].cell(collectionView: collectionView, indexPath: indexPath)
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        return items[indexPath.section].size(collectionView, indexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return items[indexPath.section].size(collectionView: collectionView, indexPath: indexPath)
     }
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: false)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 0, height: items[section].heightHeader(collectionView))
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: items[section].heightHeader(collectionView: collectionView))
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: 0, height: items[section].heightFooter(collectionView))
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: items[section].heightFooter(collectionView: collectionView))
     }
 
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var reusableview = UICollectionReusableView()
 
         switch kind {
         case UICollectionElementKindSectionHeader:
-            reusableview = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Header", forIndexPath: indexPath
+            reusableview = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Header", for: indexPath
             )
 
-            if let _ = reusableview.viewWithTag(Tag.CollectionViewItemHeaderView) {
+            if let _ = reusableview.viewWithTag(Tag.make(0)) {
 
             } else {
-                let headerView = items[indexPath.section].header(collectionView)
-                headerView.tag = Tag.CollectionViewItemHeaderView
+                let headerView = items[indexPath.section].header(collectionView: collectionView)
+                headerView.tag = Tag.make(0)
                 reusableview.addSubview(headerView)
 
-                headerView.snp_makeConstraints {
+                headerView.snp.makeConstraints {
                     (make) -> Void in
                     make.top.left.right.bottom.equalTo(0)
                 }
@@ -81,18 +81,18 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
 
             break
         case UICollectionElementKindSectionFooter:
-            reusableview = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Footer", forIndexPath: indexPath
+            reusableview = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Footer", for: indexPath
             )
 
-            if let _ = reusableview.viewWithTag(Tag.CollectionViewItemFooterView) {
+            if let _ = reusableview.viewWithTag(Tag.make(1)) {
 
             } else {
-                let footerView = items[indexPath.section].footer(collectionView)
-                footerView.tag = Tag.CollectionViewItemFooterView
+                let footerView = items[indexPath.section].footer(collectionView: collectionView)
+                footerView.tag = Tag.make(1)
                 reusableview.addSubview(footerView)
 
-                footerView.snp_makeConstraints {
+                footerView.snp.makeConstraints {
                     (make) -> Void in
                     make.top.left.right.bottom.equalTo(0)
                 }

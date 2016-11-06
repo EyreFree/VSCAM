@@ -46,7 +46,7 @@ class BaseCollectionViewItem {
     }
 
     func heightHeader(collectionView: UICollectionView) -> CGFloat {
-        return Define.zeroHeight
+        return CGFloat.zeroHeight
     }
 
     //MARK:- Footer
@@ -55,7 +55,7 @@ class BaseCollectionViewItem {
     }
 
     func heightFooter(collectionView: UICollectionView) -> CGFloat {
-        return Define.zeroHeight
+        return CGFloat.zeroHeight
     }
 }
 
