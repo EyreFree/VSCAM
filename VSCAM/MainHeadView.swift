@@ -54,9 +54,9 @@ class MainHeadView: UIView {
             let view = UIView()
             view.backgroundColor = UIColor(valueRGB: 0xF8F8F8)
             view.layer.masksToBounds = false
-            view.layer.shadowColor = UIColor.black.cgColor
-            view.layer.shadowOffset = CGSize(width: 0, height: 2)
-            view.layer.shadowOpacity = 0.4
+            //view.layer.shadowColor = UIColor.black.cgColor
+            //view.layer.shadowOffset = CGSize(width: 0, height: 2)
+            //view.layer.shadowOpacity = 0.4
             view.tag = Tag.make(0)
             self.addSubview(view)
             view.snp.makeConstraints {

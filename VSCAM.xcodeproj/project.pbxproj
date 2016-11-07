@@ -30,6 +30,7 @@
 		1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEB1DAE984400F8B4BD /* Function.swift */; };
 		1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEC1DAE984400F8B4BD /* Regex.swift */; };
 		1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDED1DAE984400F8B4BD /* Variable.swift */; };
+		84741D981DD095EB006ECD6D /* MainCollectinViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741D971DD095EB006ECD6D /* MainCollectinViewItem.swift */; };
 		8488D43D1DAA46FD000E703C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488D43C1DAA46FD000E703C /* AppDelegate.swift */; };
 		8488D43F1DAA46FD000E703C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488D43E1DAA46FD000E703C /* MainController.swift */; };
 		8488D4421DAA46FD000E703C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8488D4401DAA46FD000E703C /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		1298EDEC1DAE984400F8B4BD /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		1298EDED1DAE984400F8B4BD /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
 		6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM.release.xcconfig"; sourceTree = "<group>"; };
+		84741D971DD095EB006ECD6D /* MainCollectinViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectinViewItem.swift; sourceTree = "<group>"; };
 		8488D4391DAA46FD000E703C /* VSCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8488D43C1DAA46FD000E703C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8488D43E1DAA46FD000E703C /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -144,8 +146,9 @@
 		1220F9DF1DCB9D45004379AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				121DE03B1DCCECA400479BF0 /* MainCollectinView.swift */,
 				123DD1171DCDCA690071C35B /* MainHeadView.swift */,
+				121DE03B1DCCECA400479BF0 /* MainCollectinView.swift */,
+				84741D971DD095EB006ECD6D /* MainCollectinViewItem.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				8488D43D1DAA46FD000E703C /* AppDelegate.swift in Sources */,
 				1298EDE81DAE983700F8B4BD /* BaseViewController.swift in Sources */,
 				123DD11C1DCF1FCD0071C35B /* BaseCollectionView.swift in Sources */,
+				84741D981DD095EB006ECD6D /* MainCollectinViewItem.swift in Sources */,
 				122429CD1DB3D00A00C8EE29 /* NSURL+.swift in Sources */,
 				1220F9E71DCB9F5F004379AD /* Tag.swift in Sources */,
 				123DD1181DCDCA690071C35B /* MainHeadView.swift in Sources */,

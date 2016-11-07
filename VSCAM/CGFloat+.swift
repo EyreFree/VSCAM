@@ -14,7 +14,7 @@ extension CGFloat {
         return UIApplication.shared.statusBarFrame.height
     }
     //导航栏高:44
-    static func navigationBar(controller: UIViewController?) -> CGFloat {
+    static func navigationBar(_ controller: UIViewController?) -> CGFloat {
         if let navi = controller?.navigationController {
             NSLog("navigationBar: \(navi.navigationBar.frame.height)")
             return navi.navigationBar.frame.height
@@ -23,7 +23,7 @@ extension CGFloat {
         return 0
     }
     //tabBar高:49
-    static func tabBar(controller: UIViewController?) -> CGFloat {
+    static func tabBar(_ controller: UIViewController?) -> CGFloat {
         if let tabBar = controller?.tabBarController {
             NSLog("tabBar: \(tabBar.tabBar.frame.height)")
             return tabBar.tabBar.frame.height
