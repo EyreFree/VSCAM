@@ -2,15 +2,15 @@
 
 import UIKit
 
-class MainCollectinView: BaseCollectionView {
+class MainCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         fatalError("init(coder:) has not been implemented")
     }
 
-    override init(parentViewController: UIViewController) {
-        super.init(parentViewController: parentViewController)
+    override init(_ parentViewController: UIViewController) {
+        super.init(parentViewController)
         onInit()
     }
 
@@ -20,11 +20,9 @@ class MainCollectinView: BaseCollectionView {
         self.delegate = self
         self.dataSource = self
 
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 3
-        flowLayout.minimumInteritemSpacing = 3
-        flowLayout.sectionInset = UIEdgeInsets(top: 3 , left: 0, bottom: 3, right: 0)
-        self.collectionViewLayout = flowLayout
+        let myWaterflowLayout = MyWaterflowLayout()
+        myWaterflowLayout.delegate = self
+        self.collectionViewLayout = myWaterflowLayout
 
         self.backgroundColor = UIColor.clear
         self.isScrollEnabled = true
@@ -43,6 +41,12 @@ class MainCollectinView: BaseCollectionView {
         collectionView.deselectItem(at: indexPath, animated: false)
 
         print(indexPath)
+    }
+
+    //MyWaterflowLayoutDelegate
+    func waterflowLayout(_ waterflowLayout: MyWaterflowLayout!, heightForWidth width: CGFloat, at indexPath: IndexPath!) -> CGFloat {
+        print(indexPath.item)
+        return [66, 70, 80, 99, 111][indexPath.item]
     }
 }
 

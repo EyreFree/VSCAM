@@ -12,7 +12,7 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(parentViewController: UIViewController) {
+    init(_ parentViewController: UIViewController) {
         super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
         self.parentViewController = parentViewController
     }

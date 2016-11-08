@@ -35,6 +35,18 @@ class MainController: UIViewController {
         }
 
         //addCollectionView
+        if let _ = self.view.viewWithTag(Tag.make(1)) as? MainCollectinView {
+
+        } else {
+            let view = MainCollectinView(self)
+            view.tag = Tag.make(1)
+            self.view.addSubview(view)
+            view.snp.makeConstraints {
+                (make) -> Void in
+                make.top.equalTo(69)
+                make.left.right.bottom.equalTo(0)
+            }
+        }
     }
 }
 

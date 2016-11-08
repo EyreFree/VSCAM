@@ -13,7 +13,7 @@
 
         UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([self getCurrentImage], 1.0)];
         //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-        UIImage *sImage =  [self blurryImage:image withBlurLevel:0.3];
+        UIImage *sImage =  [self blurryImage:image withBlurLevel:0.1];
         UIImageView *bgView = [[UIImageView alloc] initWithFrame:frame];
         bgView.image = sImage;
         [self addSubview:bgView];

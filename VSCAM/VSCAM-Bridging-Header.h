@@ -12,6 +12,9 @@
 //UMeng
 #import "UMMobClick/MobClick.h"
 
+//不规则瀑布流
+#import "MyWaterflowLayout.h"
+
 #endif /* VSCAM_Bridging_Header_h */
 
 

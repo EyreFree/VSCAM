@@ -9,7 +9,7 @@ class MainCollectinViewItem: BaseCollectionViewItem {
     }
 
     override func number(collectionView: UICollectionView) -> Int {
-        return 0
+        return 5
     }
 
     override func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
