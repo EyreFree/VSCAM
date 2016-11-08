@@ -5,7 +5,7 @@ import Alamofire
 
 //MARK:- 接口地址
 class APIUrl {
-
+    
 }
 
 //MARK:- 网络接口

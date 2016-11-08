@@ -30,6 +30,7 @@
 		1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEB1DAE984400F8B4BD /* Function.swift */; };
 		1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEC1DAE984400F8B4BD /* Regex.swift */; };
 		1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDED1DAE984400F8B4BD /* Variable.swift */; };
+		12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F229B81DD2228600C0F6D0 /* Double+.swift */; };
 		84741D981DD095EB006ECD6D /* MainCollectinViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741D971DD095EB006ECD6D /* MainCollectinViewItem.swift */; };
 		84741DD71DD1BECC006ECD6D /* MyWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84741DD61DD1BECC006ECD6D /* MyWaterflowLayout.m */; };
 		84741DDE1DD1CFA4006ECD6D /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DD81DD1CFA4006ECD6D /* NetworkAPI.swift */; };
@@ -72,6 +73,7 @@
 		1298EDEB1DAE984400F8B4BD /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		1298EDEC1DAE984400F8B4BD /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		1298EDED1DAE984400F8B4BD /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
+		12F229B81DD2228600C0F6D0 /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM.release.xcconfig"; sourceTree = "<group>"; };
 		84741D971DD095EB006ECD6D /* MainCollectinViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectinViewItem.swift; sourceTree = "<group>"; };
 		84741DD51DD1BECC006ECD6D /* MyWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWaterflowLayout.h; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		8488D4511DAA49AA000E703C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				12F229B81DD2228600C0F6D0 /* Double+.swift */,
 				122429D81DB3D8FF00C8EE29 /* Int+.swift */,
 				122429DA1DB3D95E00C8EE29 /* String+.swift */,
 				122429CC1DB3D00A00C8EE29 /* NSURL+.swift */,
@@ -487,6 +490,7 @@
 				84741DDF1DD1CFA4006ECD6D /* NetworkCache.swift in Sources */,
 				122429D31DB3D49400C8EE29 /* UIColor+.swift in Sources */,
 				1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */,
+				12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */,
 				1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */,
 				1298EDEE1DAE984400F8B4BD /* Define.swift in Sources */,
 				122429DB1DB3D95E00C8EE29 /* String+.swift in Sources */,
