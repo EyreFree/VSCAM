@@ -65,39 +65,31 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
             reusableview = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Header", for: indexPath
             )
-
-            if let _ = reusableview.viewWithTag(Tag.make(0)) {
-
-            } else {
-                let headerView = items[indexPath.section].header(collectionView: collectionView)
-                headerView.tag = Tag.make(0)
-                reusableview.addSubview(headerView)
-
-                headerView.snp.makeConstraints {
-                    (make) -> Void in
-                    make.top.left.right.bottom.equalTo(0)
-                }
+            if let view = reusableview.viewWithTag(Tag.make(0)) {
+                view.removeFromSuperview()
             }
-
+            let headerView = items[indexPath.section].header(collectionView: collectionView)
+            headerView.tag = Tag.make(0)
+            reusableview.addSubview(headerView)
+            headerView.snp.makeConstraints {
+                (make) -> Void in
+                make.top.left.right.bottom.equalTo(0)
+            }
             break
         case UICollectionElementKindSectionFooter:
             reusableview = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Footer", for: indexPath
             )
-
-            if let _ = reusableview.viewWithTag(Tag.make(1)) {
-
-            } else {
-                let footerView = items[indexPath.section].footer(collectionView: collectionView)
-                footerView.tag = Tag.make(1)
-                reusableview.addSubview(footerView)
-
-                footerView.snp.makeConstraints {
-                    (make) -> Void in
-                    make.top.left.right.bottom.equalTo(0)
-                }
+            if let view = reusableview.viewWithTag(Tag.make(1)) {
+                view.removeFromSuperview()
             }
-            
+            let footerView = items[indexPath.section].footer(collectionView: collectionView)
+            footerView.tag = Tag.make(1)
+            reusableview.addSubview(footerView)
+            footerView.snp.makeConstraints {
+                (make) -> Void in
+                make.top.left.right.bottom.equalTo(0)
+            }
             break
         default:
             break
