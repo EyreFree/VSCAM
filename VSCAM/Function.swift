@@ -5,7 +5,7 @@ import UIKit
 class Function: NSObject {
 
     //简单的模态消息弹窗
-    static func MessageBox(controller: UIViewController, title: String?, content: String?, buttonTitle: String = "确定",
+    static func MessageBox(_ controller: UIViewController, title: String?, content: String?, buttonTitle: String = "确定",
                            finish: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: finish))

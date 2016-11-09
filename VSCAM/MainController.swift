@@ -1,8 +1,12 @@
 
 
 import UIKit
+import MJRefresh
 
 class MainController: UIViewController {
+
+    var collectionView: MainCollectinView!
+    var model: MainModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -10,12 +14,14 @@ class MainController: UIViewController {
         self.view.backgroundColor = UIColor.white
         self.navigationController?.setNavigationBarHidden(true, animated: false)
 
+        addModel()
         addControls()
+
+        collectionView?.mj_header?.beginRefreshing()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func addModel() {
+        model = MainModel()
     }
 
     func addControls() {
@@ -46,6 +52,28 @@ class MainController: UIViewController {
                 make.top.equalTo(69)
                 make.left.right.bottom.equalTo(0)
             }
+            self.collectionView = view
+
+            view.mj_header = MJRefreshNormalHeader() {
+                [weak self] in
+                if let _ = self {
+                    NetworkAPI.sharedInstance.imageList() {
+                        [weak self] (imagelist, errorString) in
+                        if let trySelf = self {
+                            if let tryErrorString = errorString {
+                                Function.MessageBox(trySelf, title: "图片列表加载失败", content: tryErrorString)
+                            } else if let tryImageList = imagelist {
+                                trySelf.model?.imageList = tryImageList
+
+                                trySelf.collectionView.addReuseIdentifier()
+                                trySelf.collectionView.reloadData()
+                            }
+                            trySelf.collectionView.mj_header.endRefreshing()
+                        }
+                    }
+                }
+            }
+            view.mj_header.isAutomaticallyChangeAlpha = true
         }
     }
 }

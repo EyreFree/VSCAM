@@ -4,35 +4,19 @@ import Foundation
 
 class NetworkError {
 
-    var content: String!
+    var description: String!
     var error: String!
 
-    var isConfirm = false
-
     init?(dict: NSDictionary) {
-        if let error = dict["error"] as? String {
-            self.error = error
-            self.content = NetworkError.getContent(self.error)
-
-            //判断 confirm 标记
-            if let action = dict["action"] as? String {
-                switch action {
-                case "confirm":
-                    isConfirm = true
-                    break
-                case "maintain":
-                    Function.openMaintainView(error)
-                    break
-                default:
-                    break
-                }
-            }
+        if let tryError = dict["error"] as? String {
+            self.error = tryError
+            self.description = NetworkError.getContent(tryError)
         } else {
             return nil
         }
     }
 
-    static func getContent(error: String) -> String {
+    static func getContent(_ error: String) -> String {
         switch error {
         case "NO_LOGIN_PERMISSIONS":
             //这里做一下登出操作

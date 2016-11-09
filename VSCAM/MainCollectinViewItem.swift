@@ -9,7 +9,7 @@ class MainCollectinViewItem: BaseCollectionViewItem {
     }
 
     override func number(collectionView: UICollectionView) -> Int {
-        return 5
+        return ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.model?.imageList?.grids?.count ?? 0
     }
 
     override func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -17,51 +17,70 @@ class MainCollectinViewItem: BaseCollectionViewItem {
             withReuseIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
         )
 
-        let title = "测试标题"
-        let image = UIImage.placeholder
+        if let tryData = ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.model?.imageList {
 
-        //背景图片
-        if let imgView = cell.contentView.viewWithTag(Tag.make(0)) as? UIImageView {
-            imgView.image = image
-        } else {
-            let imgView = UIImageView()
-            imgView.tag = Tag.make(0)
-            imgView.image = image
-            imgView.contentMode = .scaleAspectFit
-            cell.contentView.addSubview(imgView)
+            let title = tryData.grids?[indexPath.row].owner?.name ?? "数据异常"
+            let image = UIImage.placeholder
+            var imageUrlString: String?
+            if let tryWbpid = tryData.grids?[indexPath.row].wbpid {
+                if tryWbpid.isEmpty == false {
+                    imageUrlString = NetworkURL.imageWBSmall + tryWbpid
+                } else if let tryOrigin = tryData.grids?[indexPath.row].origin {
+                    imageUrlString = NetworkURL.imageOriginSmall.replace(string: "{origin}", with: tryOrigin)
+                }
+            }
 
-            imgView.snp.makeConstraints {
-                (make) -> Void in
-                make.top.left.right.bottom.equalTo(cell.contentView)
+            //背景图片
+            var imgViewReal: UIImageView!
+            if let imgView = cell.contentView.viewWithTag(Tag.make(0)) as? UIImageView {
+                imgView.image = image
+                imgViewReal = imgView
+            } else {
+                let imgView = UIImageView()
+                imgView.tag = Tag.make(0)
+                imgView.image = image
+                imgView.contentMode = .scaleAspectFit
+                cell.contentView.addSubview(imgView)
+                imgView.snp.makeConstraints {
+                    (make) -> Void in
+                    make.top.left.right.equalTo(0)
+                    make.bottom.equalTo(-30)
+                }
+                imgViewReal = imgView
+            }
+            if let tryUrlString = imageUrlString {
+                imgViewReal.setImageWithURLString(UrlString: tryUrlString)
+            }
+
+            //标题
+            if let titleView = cell.contentView.viewWithTag(Tag.make(1)) as? UILabel {
+                titleView.text = title
+            } else {
+                let titleView = UILabel()
+                titleView.tag = Tag.make(1)
+                titleView.font = UIFont.boldSystemFont(ofSize: 10)
+                titleView.textColor = UIColor(valueRGB: 0x535353)
+                titleView.text = title
+                titleView.textAlignment = .center
+                cell.contentView.addSubview(titleView)
+
+                titleView.snp.makeConstraints {
+                    (make) -> Void in
+                    make.left.right.equalTo(0)
+                    make.bottom.equalTo(-10)
+                    make.height.equalTo(20)
+                }
             }
         }
-
-        //标题
-        if let titleView = cell.contentView.viewWithTag(Tag.make(1)) as? UILabel {
-            titleView.text = title
-        } else {
-            let titleView = UILabel()
-            titleView.tag = Tag.make(1)
-            titleView.font = UIFont.boldSystemFont(ofSize: 16)
-            titleView.backgroundColor = UIColor(black: 1, alpha: 0.6)
-            titleView.textColor = UIColor.white
-            titleView.text = title
-            titleView.textAlignment = .center
-            cell.contentView.addSubview(titleView)
-
-            titleView.snp.makeConstraints {
-                (make) -> Void in
-                make.top.left.right.bottom.equalTo(cell.contentView)
-            }
-        }
-
         return cell
     }
 
     override func size(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
-        //控制cell宽度，每行2个正方形
-        let cellWidth = CGFloat(UIScreen.main.bounds.size.width - 3) / CGFloat(2.0)
-        return CGSize(width: cellWidth, height: cellWidth)
+        let screenWidth = CGFloat(UIScreen.main.bounds.size.width - 30) / CGFloat(2.0)
+        if let tryScale = ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.model?.imageList?.grids?[indexPath.row].scale {
+            return CGSize(width: screenWidth, height: screenWidth * tryScale.f() + 30)
+        }
+        return CGSize(width: screenWidth, height: screenWidth)
     }
 }
 

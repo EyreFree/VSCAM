@@ -3,107 +3,93 @@
 import UIKit
 import Alamofire
 
-//MARK:- 接口地址
-class APIUrl {
-    
-}
-
 //MARK:- 网络接口
 class NetworkAPI {
 
     static let sharedInstance = NetworkAPI()
 
     // MARK:- 基地址
-    let baseUrl = Define.baseUrl
+    let baseUrl = NetworkURL.baseUrl
 
-    private var manager: Manager!
-    private var managerUnlimited: Manager!
+    private var manager: SessionManager!            //普通的
+    private var managerUnlimited: SessionManager!   //长时间的
     init() {
-        var customHeader = Manager.defaultHTTPHeaders
+        var customHeader = SessionManager.defaultHTTPHeaders
         customHeader.updateValue("1200", forKey: "TT-Type")
 
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPAdditionalHeaders = customHeader
-        configuration.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = customHeader
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.timeoutIntervalForRequest = 2 * 60    //2分钟
-        manager = Manager(configuration: configuration)
+        manager = SessionManager(configuration: configuration)
 
-        let configurationUnlimited = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configurationUnlimited.HTTPAdditionalHeaders = customHeader
-        configurationUnlimited.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        let configurationUnlimited = URLSessionConfiguration.default
+        configurationUnlimited.httpAdditionalHeaders = customHeader
+        configurationUnlimited.requestCachePolicy = .reloadIgnoringLocalCacheData
         configurationUnlimited.timeoutIntervalForRequest = 20 * 60 //20 分钟
-        managerUnlimited = Manager(configuration: configurationUnlimited)
+        managerUnlimited = SessionManager(configuration: configurationUnlimited)
     }
 
     //MARK:- 通用处理
     //检测是否错误
-    func checkError(response: NSHTTPURLResponse?, error: NSError?) -> String? {
-        if let errorCode = error?.code {
-            return "\(error?.localizedDescription ?? "")(\(errorCode))"
+    func checkError(_ response: HTTPURLResponse?, error: Error?) -> String? {
+        if let errorString = error?.localizedDescription {
+            return "\(errorString))"
         }
         if 200 != response?.statusCode {
-            return "服务器状态异常(\(response?.statusCode ?? 0))"
+            return "请求失败(\(response?.statusCode ?? 0))"
         }
         return nil
     }
 
     //分析返回结果
-    func resultAnalysis(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> (String?, NSDictionary?, NSArray?, Bool) {
+    func resultAnalysis(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> (String?, AnyObject?) {
         if let errorString = self.checkError(response, error: error) {
-            return(errorString, nil, nil, false)
+            return (errorString, nil)
         } else {
             if let array = NSData.data2Json(data) as? NSArray {
-                return (nil, nil, array, false)
+                return (nil, array)
             } else if let dict = NSData.data2Json(data) as? NSDictionary {
-                if let message = NetworkError(dict: dict) {
-                    if message.isConfirm {
-                        return (message.content, nil, nil, true)
-                    }
-                    return (message.content, nil, nil, false)
+                if let tryErrorMessage = NetworkError(dict: dict) {
+                    return (tryErrorMessage.description, nil)
                 } else {
-                    return (nil, dict, nil, false)
+                    return (nil, dict)
                 }
             }
         }
-        return("数据异常", nil, nil, false)
-    }
-
-    //confirm询问
-    func confirmAsk(content: String?, finish: () -> Void ) {
-        let alert = UIAlertController(title: content ?? "未知的确认信息", message: nil, preferredStyle: .Alert)
-        alert.addAction(
-            UIAlertAction(title: "取消", style: .Cancel) {
-                (action) -> Void in
-                LoadingView.sharedInstance.hide()
-            }
-        )
-        alert.addAction(
-            UIAlertAction(title: "确认", style: .Default) {
-                (action) -> Void in
-                finish()
-            }
-        )
-        MainTabBarController.sharedInstance.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    //拼 JSON 数组
-    func jsonArrayString(array: [AnyObject], brackets: Bool = true) -> String {
-        var result = ""
-        for (index, data) in array.enumerate() {
-            if 0 != index {
-                result += ","
-            }
-            result += "\(data)"
-        }
-        return brackets ? "[" + result + "]" : result
+        return ("数据异常", nil)
     }
 
     //打印 Data 内容
-    func printData(data: NSData?) {
+    func printData(_ data: Data?) {
         if let tryData = data {
-            print(String(NSString(data: tryData, encoding: NSUTF8StringEncoding)))
+            print(String(describing: NSString(data: tryData, encoding: String.Encoding.utf8.rawValue)))
         } else {
             print("PrintData: 空数据")
+        }
+    }
+
+    //MARK:- 接口
+    //图片列表 - 首页 or 用户页
+    //n:20          //数量 默认:30
+    //s:1300000000  //时间戳 默认:最新 筛选这个时间之前
+    //u:6           //用户id 默认:不存在 按照用户 id 筛选
+    func imageList(n: Int = 30, s: Int64? = nil, u: Int? = nil, finish: @escaping (ImageListObject?, String?) -> Void) {
+        var parameters: [String : Any] = ["n": n]
+        if let tryS = s {
+            parameters.updateValue(tryS, forKey: "s")
+        }
+        if let tryU = u {
+            parameters.updateValue(tryU, forKey: "u")
+        }
+        manager.request(baseUrl + NetworkURL.imageList, method: HTTPMethod.get, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            if let tryObject = ImageListObject(result.1) {
+                finish(tryObject, result.0)
+            } else {
+                finish(nil, "数据格式错误")
+            }
         }
     }
 }

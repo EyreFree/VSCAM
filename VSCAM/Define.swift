@@ -10,9 +10,6 @@ class Define {
     //分页数据量
     static let pageCount = 30
 
-    //基地址
-    static let baseUrl = "http://vscam.co/x/"
-
     //测试状态
     // always todo do not remove this mark
     static let isDebug = false

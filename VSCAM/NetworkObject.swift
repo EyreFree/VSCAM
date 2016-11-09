@@ -2,58 +2,6 @@
 
 import UIKit
 
-extension Double {
-
-    static func fromJson(_ dict: Any?) -> Double? {
-        if let tryDouble = dict as? Double {
-            return tryDouble
-        } else if let tryString = dict as? String {
-            if let tryDouble = Double(tryString) {
-                return tryDouble
-            }
-        }
-        return nil
-    }
-}
-
-extension Int {
-
-    static func fromJson(_ dict: Any?) -> Int? {
-        if let tryInt = dict as? Int {
-            return tryInt
-        } else if let tryString = dict as? String {
-            if let tryInt = Int(tryString) {
-                return tryInt
-            }
-        }
-        return nil
-    }
-}
-
-extension Int64 {
-
-    static func fromJson(_ dict: Any?) -> Int64? {
-        if let tryInt = dict as? Double {
-            return Int64(tryInt)
-        } else if let tryString = dict as? String {
-            if let tryInt = Int64(tryString) {
-                return tryInt
-            }
-        }
-        return nil
-    }
-}
-
-extension String {
-
-    static func fromJson(_ dict: Any?) -> String? {
-        if let tryString = dict as? String {
-            return tryString
-        }
-        return nil
-    }
-}
-
 class PhotoObject {
 
     var pid: Int?       //照片 id
@@ -63,6 +11,9 @@ class PhotoObject {
     var wbpid: String?  //微博图片 id
     var preset: String? //滤镜名称 字符串
     var unix: Int64?    //发布时间
+
+    //extern
+    var owner: UserObject?
 
     init?(_ dict: NSDictionary?) {
         if let tryDict = dict {
@@ -96,22 +47,13 @@ class UserObject {
     }
 }
 
-class HomePageObject {
+class ImageListObject {
 
     var grids: [PhotoObject]?   //照片们
     var users: [UserObject]?    //用户们
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
-            if let dataList = tryDict["grids"] as? NSArray {
-                var tempList = [PhotoObject]()
-                for data in dataList {
-                    if let tryObject = PhotoObject(data as? NSDictionary) {
-                        tempList.append(tryObject)
-                    }
-                }
-                grids = tempList
-            }
+    init?(_ dict: AnyObject?) {
+        if let tryDict = dict as? NSDictionary {
             if let dataList = tryDict["users"] as? NSArray {
                 var tempList = [UserObject]()
                 for data in dataList {
@@ -121,10 +63,32 @@ class HomePageObject {
                 }
                 users = tempList
             }
+            if let dataList = tryDict["grids"] as? NSArray {
+                var tempList = [PhotoObject]()
+                for data in dataList {
+                    if let tryObject = PhotoObject(data as? NSDictionary) {
+                        if let tryUID = tryObject.uid {
+                            tryObject.owner = getUserBy(UID: tryUID)
+                        }
+                        tempList.append(tryObject)
+                    }
+                }
+                grids = tempList
+            }
         } else {
             return nil
         }
+    }
 
+    func getUserBy(UID: Int) -> UserObject? {
+        if let tryUsers = users {
+            for user in tryUsers {
+                if user.uid == UID {
+                    return user
+                }
+            }
+        }
+        return nil
     }
 }
 

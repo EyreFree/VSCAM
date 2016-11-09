@@ -45,8 +45,7 @@ class MainCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
 
     //MyWaterflowLayoutDelegate
     func waterflowLayout(_ waterflowLayout: MyWaterflowLayout!, heightForWidth width: CGFloat, at indexPath: IndexPath!) -> CGFloat {
-        print(indexPath.item)
-        return [66, 70, 80, 99, 111][indexPath.item]
+        return items[indexPath.section].size(collectionView: self, indexPath: indexPath).height
     }
 }
 
