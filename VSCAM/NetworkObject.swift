@@ -351,3 +351,47 @@ class PhotoDetailObject {
     }
 }
 
+class PhotoUploadObject {
+
+    var uid: String?    //用户id
+    var scale: Double?  //比例
+    var origin: String? //原始图片地址
+    var unix: Int64?    //新建时间
+    var exif: String?
+    var pid: Int?       //图片 ID
+
+    init?(_ dict: NSDictionary?) {
+        if let tryDict = dict {
+            uid = String.fromJson(tryDict.value(forKey: "uid"))
+            scale = Double.fromJson(tryDict.value(forKey: "scale"))
+            origin = String.fromJson(tryDict.value(forKey: "origin"))
+            unix = Int64.fromJson(tryDict.value(forKey: "unix"))
+            exif = String.fromJson(tryDict.value(forKey: "exif"))
+            pid = Int.fromJson(tryDict.value(forKey: "pid"))
+        } else {
+            return nil
+        }
+    }
+}
+
+class UserInfoObject {
+
+    var uid: Int?       //用户 id
+    var name: String?   //用户名
+    var avatar: Int?    //用户头像 id
+    var des: String?    //简介
+    var url: String?    //网站
+
+    init?(_ dict: NSDictionary?) {
+        if let tryDict = dict {
+            uid = Int.fromJson(tryDict.value(forKey: "uid"))
+            name = String.fromJson(tryDict.value(forKey: "name"))
+            avatar = Int.fromJson(tryDict.value(forKey: "avatar"))
+            des = String.fromJson(tryDict.value(forKey: "des"))
+            url = String.fromJson(tryDict.value(forKey: "url"))
+        } else {
+            return nil
+        }
+    }
+}
+
