@@ -17,12 +17,12 @@ extension UIImageView {
                 }
             }
         }
-        self.image = placeholder ?? UIImage.placeholder
+        self.image = placeholder ?? UIImage.placeholderTransparent
         finish(self.image)
     }
 
     func setImageWithURL(Url: NSURL, placeholder: UIImage! = nil, animated: Bool = true, finish: @escaping (UIImage?) -> Void = { (image) in }) {
-        let holderImage = placeholder ?? UIImage.placeholder
+        let holderImage = placeholder ?? UIImage.placeholderTransparent
         //加载图片
         self.sd_setImage(with: Url as URL!, placeholderImage: holderImage, options: .retryFailed) {
             [weak self] (image, error, cacheType, imageUrl) in

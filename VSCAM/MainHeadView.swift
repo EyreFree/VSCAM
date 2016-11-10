@@ -44,7 +44,7 @@ class MainHeadView: UIView {
                 }
                 viewReal = view
             }
-            viewReal?.setImageWithURLString(UrlString: url)
+            viewReal?.setImageWithURLString(UrlString: url, placeholder: UIImage.placeholderUser)
         }
     }
 

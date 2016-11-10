@@ -4,19 +4,24 @@ import UIKit
 
 class PhotoObject {
 
-    var pid: Int?       //照片 id
-    var uid: Int?       //用户 id
-    var origin: String? //原始图片 id
-    var scale: Double?  //图像比例 宽/高
-    var wbpid: String?  //微博图片 id
-    var preset: String? //滤镜名称 字符串
-    var unix: Int64?    //发布时间
+    var pid: Int?           //照片 id
+    var uid: Int?           //用户 id
+    var origin: String?     //原始图片 id
+    var scale: Double?      //图像比例 宽/高
+    var wbpid: String?      //微博图片 id
+    var preset: String?     //滤镜名称 字符串
+    var unix: Int64?        //发布时间
+    var aperture: String?   //光圈值 16-11-10 新增
+    var ios: String?        //ISO 值 16-11-10 新增
+    var gps: String?        //GPS 值 16-11-10 新增
 
     //extern
-    var owner: UserObject?
+    var user: UserObject?
 
     init?(_ dict: NSDictionary?) {
         if let tryDict = dict {
+            print(tryDict)
+
             pid = Int.fromJson(tryDict.value(forKey: "pid"))
             uid = Int.fromJson(tryDict.value(forKey: "uid"))
             origin = String.fromJson(tryDict.value(forKey: "origin"))
@@ -24,6 +29,9 @@ class PhotoObject {
             wbpid = String.fromJson(tryDict.value(forKey: "wbpid"))
             preset = String.fromJson(tryDict.value(forKey: "preset"))
             unix = Int64.fromJson(tryDict.value(forKey: "unix"))
+            aperture = String.fromJson(tryDict.value(forKey: "aperture"))
+            ios = String.fromJson(tryDict.value(forKey: "ios"))
+            gps = String.fromJson(tryDict.value(forKey: "gps"))
         } else {
             return nil
         }
@@ -68,7 +76,7 @@ class ImageListObject {
                 for data in dataList {
                     if let tryObject = PhotoObject(data as? NSDictionary) {
                         if let tryUID = tryObject.uid {
-                            tryObject.owner = getUserBy(UID: tryUID)
+                            tryObject.user = getUserBy(UID: tryUID)
                         }
                         tempList.append(tryObject)
                     }

@@ -6,6 +6,7 @@ extension UIImage {
 
     static let placeholder = UIImage(named: "placeholder_default")
     static let placeholderUser = UIImage(named: "placeholder_user")
+    static let placeholderTransparent = UIImage(named: "placeholder_transparent")
 
     //绘制渐变图片
     static func gradient(colorBegin: UIColor, colorEnd: UIColor, size: CGSize, isTilt: Bool = false) -> UIImage? {

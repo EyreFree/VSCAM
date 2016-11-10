@@ -25,6 +25,7 @@
 		123DD11A1DCE4B3A0071C35B /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD1191DCE4B3A0071C35B /* UIImageView+.swift */; };
 		123DD11C1DCF1FCD0071C35B /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD11B1DCF1FCD0071C35B /* BaseCollectionView.swift */; };
 		123DD11E1DCF20130071C35B /* BaseCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD11D1DCF20130071C35B /* BaseCollectionViewItem.swift */; };
+		128FAA771DD4DC72005A914A /* NSDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FAA761DD4DC72005A914A /* NSDate+.swift */; };
 		1298EDE81DAE983700F8B4BD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDE61DAE983700F8B4BD /* BaseViewController.swift */; };
 		1298EDEE1DAE984400F8B4BD /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEA1DAE984400F8B4BD /* Define.swift */; };
 		1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEB1DAE984400F8B4BD /* Function.swift */; };
@@ -79,6 +80,7 @@
 		123DD1191DCE4B3A0071C35B /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		123DD11B1DCF1FCD0071C35B /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		123DD11D1DCF20130071C35B /* BaseCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewItem.swift; sourceTree = "<group>"; };
+		128FAA761DD4DC72005A914A /* NSDate+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+.swift"; sourceTree = "<group>"; };
 		1298EDE61DAE983700F8B4BD /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1298EDEA1DAE984400F8B4BD /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		1298EDEB1DAE984400F8B4BD /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				12F229B81DD2228600C0F6D0 /* Double+.swift */,
 				122429D81DB3D8FF00C8EE29 /* Int+.swift */,
 				122429DA1DB3D95E00C8EE29 /* String+.swift */,
+				128FAA761DD4DC72005A914A /* NSDate+.swift */,
 				122429CC1DB3D00A00C8EE29 /* NSURL+.swift */,
 				122429D41DB3D79300C8EE29 /* CGSize+.swift */,
 				122429D61DB3D8B000C8EE29 /* CGFloat+.swift */,
@@ -429,7 +432,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = EyreFree;
 				TargetAttributes = {
 					8488D4381DAA46FD000E703C = {
@@ -559,6 +562,7 @@
 				84741DE51DD2D727006ECD6D /* NetworkExtension.swift in Sources */,
 				1298EDEE1DAE984400F8B4BD /* Define.swift in Sources */,
 				122429DB1DB3D95E00C8EE29 /* String+.swift in Sources */,
+				128FAA771DD4DC72005A914A /* NSDate+.swift in Sources */,
 				122429D51DB3D79300C8EE29 /* CGSize+.swift in Sources */,
 				122429D11DB3D46A00C8EE29 /* UIImage+.swift in Sources */,
 				122429D71DB3D8B000C8EE29 /* CGFloat+.swift in Sources */,
@@ -611,6 +615,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -661,6 +666,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -690,6 +696,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9360017F96E4BDCEAB425B24 /* Pods-VSCAM.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = VSCAM/Info.plist;
@@ -705,6 +712,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = VSCAM/Info.plist;

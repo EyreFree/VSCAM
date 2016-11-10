@@ -18,7 +18,7 @@ class ImageDetailTableViewItemHead: BaseTableViewItem {
 
         if let tryModel = ((tableView as? ImageDetailTableView)?.parentViewController as? ImageDetailController)?.model {
 
-            let image = UIImage.placeholder
+            let image = UIImage.placeholderTransparent
             var imageUrlString: String?
             if let tryWbpid = (tryModel.imageBrief?.wbpid ?? tryModel.imageDetail?.wbpid) {
                 if tryWbpid.isEmpty == false {
@@ -36,6 +36,7 @@ class ImageDetailTableViewItemHead: BaseTableViewItem {
             } else {
                 let imgView = UIImageView()
                 imgView.tag = Tag.make(0)
+                imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.image = image
                 imgView.contentMode = .scaleAspectFit
                 cell.contentView.addSubview(imgView)

@@ -16,8 +16,8 @@ class ImageDetailTableView: BaseTableView {
     override func onInit() {
         //添加数据
         items.append(ImageDetailTableViewItemHead())
-        //items.append(MineTableViewItemOrder())
-        //items.append(MineTableViewItemJoin())
+        items.append(ImageDetailTableViewItemBody())
+        items.append(ImageDetailTableViewItemFoot())
 
         //UITableView设置
         self.delegate = self
