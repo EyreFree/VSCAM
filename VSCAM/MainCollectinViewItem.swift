@@ -83,6 +83,8 @@ class MainCollectinViewItem: BaseCollectionViewItem {
         return CGSize(width: screenWidth, height: screenWidth)
     }
 
+    //暂时没用
+    /*
     override func footer(collectionView: UICollectionView) -> UIView {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
@@ -119,6 +121,6 @@ class MainCollectinViewItem: BaseCollectionViewItem {
 
     override func heightFooter(collectionView: UICollectionView) -> CGFloat {
         return 136
-    }
+    }*/
 }
 

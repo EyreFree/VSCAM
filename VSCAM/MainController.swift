@@ -61,7 +61,7 @@ class MainController: UIViewController {
                         [weak self] (imagelist, errorString) in
                         if let trySelf = self {
                             if let tryErrorString = errorString {
-                                Function.MessageBox(trySelf, title: "图片列表加载失败", content: tryErrorString)
+                                Function.MessageBox(trySelf, title: "图片列表刷新失败", content: tryErrorString)
                             } else if let tryImageList = imagelist {
                                 trySelf.model?.imageList = tryImageList
 
@@ -74,6 +74,34 @@ class MainController: UIViewController {
                 }
             }
             view.mj_header.isAutomaticallyChangeAlpha = true
+
+            view.mj_footer = MJRefreshBackNormalFooter() {
+                [weak self] in
+                if let trySelf = self {
+                    if let tryDate = trySelf.model?.imageList?.grids?.last?.unix {
+                        NetworkAPI.sharedInstance.imageList(s: tryDate) {
+                            [weak self] (imagelist, errorString) in
+                            if let trySelf = self {
+                                if let tryErrorString = errorString {
+                                    Function.MessageBox(trySelf, title: "图片列表加载失败", content: tryErrorString)
+                                } else if let tryImageList = imagelist {
+                                    trySelf.model?.imageList?.append(newObject: tryImageList)
+
+                                    trySelf.collectionView.addReuseIdentifier()
+                                    trySelf.collectionView.reloadData()
+                                }
+                                if let tryCount = imagelist?.grids?.count {
+                                    if tryCount < 30 {
+                                        trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
+                                        return
+                                    }
+                                }
+                                trySelf.collectionView.mj_footer.endRefreshing()
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

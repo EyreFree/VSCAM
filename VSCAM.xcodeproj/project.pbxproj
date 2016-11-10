@@ -40,6 +40,7 @@
 		84741DE21DD1CFA4006ECD6D /* NetworkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DDC1DD1CFA4006ECD6D /* NetworkObject.swift */; };
 		84741DE31DD1CFA4006ECD6D /* NetworkURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DDD1DD1CFA4006ECD6D /* NetworkURL.swift */; };
 		84741DE51DD2D727006ECD6D /* NetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DE41DD2D727006ECD6D /* NetworkExtension.swift */; };
+		84741DE71DD41C99006ECD6D /* Operator+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DE61DD41C99006ECD6D /* Operator+.swift */; };
 		8488D43D1DAA46FD000E703C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488D43C1DAA46FD000E703C /* AppDelegate.swift */; };
 		8488D43F1DAA46FD000E703C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488D43E1DAA46FD000E703C /* MainController.swift */; };
 		8488D4421DAA46FD000E703C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8488D4401DAA46FD000E703C /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 		84741DDC1DD1CFA4006ECD6D /* NetworkObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObject.swift; sourceTree = "<group>"; };
 		84741DDD1DD1CFA4006ECD6D /* NetworkURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkURL.swift; sourceTree = "<group>"; };
 		84741DE41DD2D727006ECD6D /* NetworkExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkExtension.swift; sourceTree = "<group>"; };
+		84741DE61DD41C99006ECD6D /* Operator+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Operator+.swift"; sourceTree = "<group>"; };
 		8488D4391DAA46FD000E703C /* VSCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8488D43C1DAA46FD000E703C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8488D43E1DAA46FD000E703C /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		8488D4511DAA49AA000E703C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				84741DE61DD41C99006ECD6D /* Operator+.swift */,
 				12F229B81DD2228600C0F6D0 /* Double+.swift */,
 				122429D81DB3D8FF00C8EE29 /* Int+.swift */,
 				122429DA1DB3D95E00C8EE29 /* String+.swift */,
@@ -502,6 +505,7 @@
 				122429D11DB3D46A00C8EE29 /* UIImage+.swift in Sources */,
 				122429D71DB3D8B000C8EE29 /* CGFloat+.swift in Sources */,
 				1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */,
+				84741DE71DD41C99006ECD6D /* Operator+.swift in Sources */,
 				121DE03C1DCCECA400479BF0 /* MainCollectinView.swift in Sources */,
 				123DD11A1DCE4B3A0071C35B /* UIImageView+.swift in Sources */,
 			);

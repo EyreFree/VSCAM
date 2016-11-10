@@ -90,6 +90,42 @@ class ImageListObject {
         }
         return nil
     }
+
+    func append(newObject: ImageListObject) {
+        var finalNewImageList = [PhotoObject]()
+        if let tryNewImageList = newObject.grids, let tryOldImageList = grids {
+            for newImage in tryNewImageList {
+                var markHas = false
+                for oldImage in tryOldImageList {
+                    if oldImage.pid == newImage.pid {
+                        markHas = true
+                        break
+                    }
+                }
+                if markHas == false {
+                    finalNewImageList.append(newImage)
+                }
+            }
+            grids?.append(contentsOf: finalNewImageList)
+        }
+
+        var finalNewUserList = [UserObject]()
+        if let tryNewUserList = newObject.users, let tryOldUserList = users {
+            for newUser in tryNewUserList {
+                var markHas = false
+                for oldUser in tryOldUserList {
+                    if oldUser.uid == newUser.uid {
+                        markHas = true
+                        break
+                    }
+                }
+                if markHas == false {
+                    finalNewUserList.append(newUser)
+                }
+            }
+            users?.append(contentsOf: finalNewUserList)
+        }
+    }
 }
 
 class COMPUTEDObject {
