@@ -40,7 +40,7 @@ class MainCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
 
-        print(indexPath)
+        ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.clickImageAt(index: indexPath.row)
     }
 
     //MyWaterflowLayoutDelegate

@@ -47,6 +47,10 @@ class ImageDetailHeadView: UIView {
             view.contentMode = .center
             view.image = UIImage(named: "按钮_返回_白")
             view.tag = Tag.make(1)
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: parentViewController, action: Selector(("backClicked")))
+            )
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -63,6 +67,10 @@ class ImageDetailHeadView: UIView {
             view.contentMode = .center
             view.image = UIImage(named: "按钮_更多")
             view.tag = Tag.make(2)
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: parentViewController, action: Selector(("shareClicked")))
+            )
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in

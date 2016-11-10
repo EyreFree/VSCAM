@@ -8,12 +8,23 @@ class ImageDetailController: UIViewController {
     var tableView: ImageDetailTableView!
     var model: ImageDetailModel!
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    init(pid: Int, imageBrief: PhotoObject? = nil) {
+        super.init(nibName: nil, bundle: nil)
+
+        addModel()
+        model?.pid = pid
+        model?.imageBrief = imageBrief
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white
 
-        addModel()
         addControls()
     }
 
@@ -51,6 +62,14 @@ class ImageDetailController: UIViewController {
             self.view.sendSubview(toBack: view)
             self.tableView = view
         }
+    }
+
+    func backClicked() {
+        MainNavigationController.sharedInstance.popViewController(animated: true)
+    }
+
+    func shareClicked() {
+        
     }
 }
 

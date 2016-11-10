@@ -15,7 +15,7 @@ class ImageDetailTableView: BaseTableView {
 
     override func onInit() {
         //添加数据
-        //items.append(MineTableViewItemInfo())
+        items.append(ImageDetailTableViewItemHead())
         //items.append(MineTableViewItemOrder())
         //items.append(MineTableViewItemJoin())
 
@@ -30,7 +30,7 @@ class ImageDetailTableView: BaseTableView {
         self.backgroundColor = UIColor.white
         self.separatorColor = UIColor.clear
         self.tableFooterView = UIView(frame: CGRect.zero)
-        self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: CGFloat.tabBar(parentViewController), right: 0)
+        self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         addReuseIdentifier()

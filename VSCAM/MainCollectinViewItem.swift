@@ -72,6 +72,12 @@ class MainCollectinViewItem: BaseCollectionViewItem {
                 }
             }
         }
+
+        //选中高亮
+        //let selectedView = UIView(frame: cell.frame)
+        //selectedView.backgroundColor = UIColor(valueRGB: 0xcccccc)
+        //cell.selectedBackgroundView = selectedView
+
         return cell
     }
 

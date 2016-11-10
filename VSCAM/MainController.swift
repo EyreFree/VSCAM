@@ -116,5 +116,15 @@ class MainController: UIViewController {
             }
         }
     }
+
+    func clickImageAt(index: Int) {
+        if let tryImages = model?.imageList?.grids {
+            if let tryPID = tryImages[index].pid {
+                MainNavigationController.sharedInstance.pushViewController(
+                    ImageDetailController(pid: tryPID, imageBrief: tryImages[index]), animated: true
+                )
+            }
+        }
+    }
 }
 
