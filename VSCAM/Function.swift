@@ -17,6 +17,10 @@ class Function: NSObject {
         UIApplication.shared.keyWindow?.endEditing(true)
     }
 
+    static func setStatusBar(hidden: Bool) {
+        UIApplication.shared.isStatusBarHidden = hidden
+    }
+
     //打开WebView
     static func openWebView(url: String?, navi: UINavigationController?) {
         /*if let tryURL = url, let tryNavi = navi {

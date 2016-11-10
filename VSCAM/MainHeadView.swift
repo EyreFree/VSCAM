@@ -24,26 +24,28 @@ class MainHeadView: UIView {
     }
 
     func setAvatar(url: String) {
-        //头像
-        var viewReal: UIImageView?
-        if let view = self.viewWithTag(Tag.make(1)) as? UIImageView {
-            viewReal = view
-        } else {
-            let view = UIImageView()
-            view.layer.masksToBounds = true
-            view.layer.cornerRadius = 20
-            view.image = UIImage.placeholderUser
-            view.tag = Tag.make(1)
-            self.addSubview(view)
-            view.snp.makeConstraints {
-                (make) -> Void in
-                make.left.equalTo(8)
-                make.bottom.equalTo(-8)
-                make.width.height.equalTo(40)
+        if let tryAvatarBackView = self.viewWithTag(Tag.make(1)) {
+            //头像
+            var viewReal: UIImageView?
+            if let view = tryAvatarBackView.viewWithTag(Tag.make(2)) as? UIImageView {
+                viewReal = view
+            } else {
+                let view = UIImageView()
+                view.layer.masksToBounds = true
+                view.layer.cornerRadius = 20
+                view.image = UIImage.placeholderUser
+                view.tag = Tag.make(2)
+                tryAvatarBackView.addSubview(view)
+                view.snp.makeConstraints {
+                    (make) -> Void in
+                    make.left.equalTo(8)
+                    make.bottom.equalTo(-8)
+                    make.width.height.equalTo(40)
+                }
+                viewReal = view
             }
-            viewReal = view
+            viewReal?.setImageWithURLString(UrlString: url)
         }
-        viewReal?.setImageWithURLString(UrlString: url)
     }
 
     func addControls() {
@@ -65,32 +67,49 @@ class MainHeadView: UIView {
             }
         }
 
-        //头像
-        if let _ = self.viewWithTag(Tag.make(1)) as? UIImageView {
-
+        //头像背景
+        let avatarBackView: UIView!
+        if let view = self.viewWithTag(Tag.make(1)) {
+            avatarBackView = view
         } else {
-            let view = UIImageView()
-            view.layer.masksToBounds = true
-            view.layer.cornerRadius = 20
-            view.image = UIImage.placeholderUser
+            let view = UIView()
             view.tag = Tag.make(1)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.left.equalTo(8)
-                make.bottom.equalTo(-8)
-                make.width.height.equalTo(40)
+                make.left.bottom.equalTo(0)
+                make.width.height.equalTo(56)
+            }
+            avatarBackView = view
+        }
+
+        //头像
+        if let tryAvatarBackView = avatarBackView {
+            if let _ = tryAvatarBackView.viewWithTag(Tag.make(2)) as? UIImageView {
+
+            } else {
+                let view = UIImageView()
+                view.layer.masksToBounds = true
+                view.layer.cornerRadius = 20
+                view.image = UIImage.placeholderUser
+                view.tag = Tag.make(2)
+                tryAvatarBackView.addSubview(view)
+                view.snp.makeConstraints {
+                    (make) -> Void in
+                    make.center.equalTo(tryAvatarBackView)
+                    make.width.height.equalTo(40)
+                }
             }
         }
 
         //LOGO
-        if let _ = self.viewWithTag(Tag.make(2)) as? UIImageView {
+        if let _ = self.viewWithTag(Tag.make(3)) as? UIImageView {
 
         } else {
             let view = UIImageView()
             view.contentMode = .scaleAspectFit
             view.image = UIImage(named: "logo")
-            view.tag = Tag.make(2)
+            view.tag = Tag.make(3)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -102,19 +121,18 @@ class MainHeadView: UIView {
         }
 
         //新建按钮
-        if let _ = self.viewWithTag(Tag.make(3)) as? UIImageView {
+        if let _ = self.viewWithTag(Tag.make(4)) as? UIImageView {
 
         } else {
             let view = UIImageView()
-            view.contentMode = .scaleAspectFit
-            view.image = UIImage(named: "新建按钮")
-            view.tag = Tag.make(3)
+            view.contentMode = .center
+            view.image = UIImage(named: "按钮_新建")
+            view.tag = Tag.make(4)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.equalTo(35)
-                make.right.equalTo(-17)
-                make.width.height.equalTo(18)
+                make.bottom.right.equalTo(0)
+                make.width.height.equalTo(56)
             }
         }
     }

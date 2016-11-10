@@ -85,7 +85,9 @@ class NetworkAPI {
         manager.request(baseUrl + NetworkURL.imageList, method: HTTPMethod.get, parameters: parameters).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
-            if let tryObject = ImageListObject(result.1) {
+            if let tryErrorString = result.0 {
+                finish(nil, tryErrorString)
+            } else if let tryObject = ImageListObject(result.1) {
                 finish(tryObject, result.0)
             } else {
                 finish(nil, "数据格式错误")

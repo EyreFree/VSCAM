@@ -20,6 +20,18 @@ class MainController: UIViewController {
         collectionView?.mj_header?.beginRefreshing()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        Function.setStatusBar(hidden: false)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        Function.setStatusBar(hidden: true)
+    }
+
     func addModel() {
         model = MainModel()
     }

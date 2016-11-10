@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         setGlobalStyle()
-        showStatusBar()
 
         return true
     }
@@ -46,13 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 view?.removeFromSuperview()
             }
         }
-        //显示状态栏
-        showStatusBar()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        //显示状态栏
-        showStatusBar()
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -60,13 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     //自定义
-    //在plist中关闭状态栏然后进app后打开可以做到loading全屏无状态栏
-    func showStatusBar() {
-        if UIApplication.shared.isStatusBarHidden {
-            UIApplication.shared.isStatusBarHidden = false
-        }
-    }
-
     //设置一些全局样式
     func setGlobalStyle() {
         let mainColor = UIColor(valueRGB: 0xf8f8f8)
