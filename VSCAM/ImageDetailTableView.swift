@@ -37,7 +37,11 @@ class ImageDetailTableView: BaseTableView {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        (parentViewController as? ImageDetailController)?.refreshHeadImage(offset: scrollView.contentOffset.y)
+        let offsetHead = scrollView.contentOffset.y
+        (parentViewController as? ImageDetailController)?.refreshHeadImage(offset: offsetHead)
+
+        let offsetFoot = scrollView.contentSize.height - (CGSize.screen().height + scrollView.contentOffset.y)
+        (parentViewController as? ImageDetailController)?.refreshFootImage(offset: offsetFoot)
     }
 
     //MARK:- tableview

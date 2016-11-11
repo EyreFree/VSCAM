@@ -63,6 +63,9 @@ class ImageDetailController: UIViewController {
             self.tableView = view
         }
 
+        //底部图片
+        refreshFootImage(reloadImage: true)
+
         //顶部图片
         refreshHeadImage(reloadImage: true)
     }
@@ -119,6 +122,58 @@ class ImageDetailController: UIViewController {
                         imageUrlString = NetworkURL.imageWBBig + tryWbpid
                     } else if let tryOrigin = (tryModel.imageBrief?.origin ?? tryModel.imageDetail?.origin) {
                         imageUrlString = NetworkURL.imageOriginBig.replace(string: "{origin}", with: tryOrigin)
+                    }
+                }
+                if let tryUrlString = imageUrlString {
+                    imgViewReal.setImageWithURLString(UrlString: tryUrlString)
+                }
+            }
+        }
+    }
+
+    func refreshFootImage(offset: CGFloat = 0, reloadImage: Bool = false) {
+        if let tryModel = self.model {
+            //背景图片
+            var imgViewReal: UIImageView!
+            if let imgView = self.view.viewWithTag(Tag.make(-2)) as? UIImageView {
+                imgView.snp.removeConstraints()
+                imgViewReal = imgView
+            } else {
+                let imgView = UIImageView(frame: CGRect.zero)
+                imgView.layer.masksToBounds = true
+                imgView.tag = Tag.make(-2)
+                imgView.backgroundColor = UIColor(valueRGB: 0x222222)
+                imgView.contentMode = .scaleAspectFill
+                self.view.addSubview(imgView)
+                self.view.sendSubview(toBack: imgView)
+                imgViewReal = imgView
+            }
+
+            if offset > 210 {
+                imgViewReal.isHidden = true
+            } else if offset > 160 {
+                imgViewReal.isHidden = false
+                imgViewReal.snp.makeConstraints {
+                    (make) -> Void in
+                    make.left.right.equalTo(0)
+                    make.bottom.equalTo(offset - 160)
+                    make.height.equalTo(140)
+                }
+            } else {
+                imgViewReal.isHidden = false
+                imgViewReal.snp.makeConstraints {
+                    (make) -> Void in
+                    make.bottom.left.right.equalTo(0)
+                    make.height.equalTo(210 - offset)
+                }
+            }
+
+            if reloadImage {
+                imgViewReal.image = UIImage.placeholderTransparent
+                var imageUrlString: String?
+                if let tryGps = (tryModel.imageBrief?.gps ?? tryModel.imageDetail?.gps) {
+                    if tryGps.isEmpty == false {
+                        imageUrlString = NetworkURL.imageMap.replace(string: "{gps}", with: tryGps)
                     }
                 }
                 if let tryUrlString = imageUrlString {

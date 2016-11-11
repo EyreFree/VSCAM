@@ -241,10 +241,10 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
                 }
             }
         }
-        
+
         return cell
     }
-    
+
     override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
         return 333
     }
