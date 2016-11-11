@@ -27,13 +27,17 @@ class ImageDetailTableView: BaseTableView {
         self.bounces = true
         self.alwaysBounceVertical = true
         self.isScrollEnabled = true
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.clear
         self.separatorColor = UIColor.clear
         self.tableFooterView = UIView(frame: CGRect.zero)
         self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         addReuseIdentifier()
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        (parentViewController as? ImageDetailController)?.refreshHeadImage(offset: scrollView.contentOffset.y)
     }
 
     //MARK:- tableview

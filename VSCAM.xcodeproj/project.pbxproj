@@ -32,6 +32,8 @@
 		1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEC1DAE984400F8B4BD /* Regex.swift */; };
 		1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDED1DAE984400F8B4BD /* Variable.swift */; };
 		12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F229B81DD2228600C0F6D0 /* Double+.swift */; };
+		843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4041DD5AB0D001A2A32 /* UITableView+.swift */; };
+		843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4061DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift */; };
 		84741D981DD095EB006ECD6D /* MainCollectinViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741D971DD095EB006ECD6D /* MainCollectinViewItem.swift */; };
 		84741DD71DD1BECC006ECD6D /* MyWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84741DD61DD1BECC006ECD6D /* MyWaterflowLayout.m */; };
 		84741DDE1DD1CFA4006ECD6D /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DD81DD1CFA4006ECD6D /* NetworkAPI.swift */; };
@@ -45,7 +47,6 @@
 		84741DEC1DD42F4F006ECD6D /* ImageDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DEB1DD42F4F006ECD6D /* ImageDetailController.swift */; };
 		84741DEE1DD42F68006ECD6D /* ImageDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DED1DD42F68006ECD6D /* ImageDetailModel.swift */; };
 		84741DF01DD44923006ECD6D /* ImageDetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DEF1DD44923006ECD6D /* ImageDetailTableView.swift */; };
-		84741DF21DD4492D006ECD6D /* ImageDetailTableViewItemHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DF11DD4492D006ECD6D /* ImageDetailTableViewItemHead.swift */; };
 		84741DF41DD4499B006ECD6D /* ImageDetailTableViewItemBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DF31DD4499B006ECD6D /* ImageDetailTableViewItemBody.swift */; };
 		84741DF61DD449A4006ECD6D /* ImageDetailTableViewItemFoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DF51DD449A4006ECD6D /* ImageDetailTableViewItemFoot.swift */; };
 		84741DF81DD44BCA006ECD6D /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DF71DD44BCA006ECD6D /* BaseTableView.swift */; };
@@ -88,6 +89,8 @@
 		1298EDED1DAE984400F8B4BD /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
 		12F229B81DD2228600C0F6D0 /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM.release.xcconfig"; sourceTree = "<group>"; };
+		843DE4041DD5AB0D001A2A32 /* UITableView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		843DE4061DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailTableViewItemHead.swift; sourceTree = "<group>"; };
 		84741D971DD095EB006ECD6D /* MainCollectinViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectinViewItem.swift; sourceTree = "<group>"; };
 		84741DD51DD1BECC006ECD6D /* MyWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWaterflowLayout.h; sourceTree = "<group>"; };
 		84741DD61DD1BECC006ECD6D /* MyWaterflowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWaterflowLayout.m; sourceTree = "<group>"; };
@@ -102,7 +105,6 @@
 		84741DEB1DD42F4F006ECD6D /* ImageDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailController.swift; sourceTree = "<group>"; };
 		84741DED1DD42F68006ECD6D /* ImageDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailModel.swift; sourceTree = "<group>"; };
 		84741DEF1DD44923006ECD6D /* ImageDetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailTableView.swift; sourceTree = "<group>"; };
-		84741DF11DD4492D006ECD6D /* ImageDetailTableViewItemHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailTableViewItemHead.swift; sourceTree = "<group>"; };
 		84741DF31DD4499B006ECD6D /* ImageDetailTableViewItemBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailTableViewItemBody.swift; sourceTree = "<group>"; };
 		84741DF51DD449A4006ECD6D /* ImageDetailTableViewItemFoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailTableViewItemFoot.swift; sourceTree = "<group>"; };
 		84741DF71DD44BCA006ECD6D /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
@@ -253,7 +255,7 @@
 			children = (
 				84741DFB1DD45906006ECD6D /* ImageDetailHeadView.swift */,
 				84741DEF1DD44923006ECD6D /* ImageDetailTableView.swift */,
-				84741DF11DD4492D006ECD6D /* ImageDetailTableViewItemHead.swift */,
+				843DE4061DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift */,
 				84741DF31DD4499B006ECD6D /* ImageDetailTableViewItemBody.swift */,
 				84741DF51DD449A4006ECD6D /* ImageDetailTableViewItemFoot.swift */,
 			);
@@ -339,6 +341,7 @@
 				122429D21DB3D49400C8EE29 /* UIColor+.swift */,
 				122429D01DB3D46A00C8EE29 /* UIImage+.swift */,
 				123DD1191DCE4B3A0071C35B /* UIImageView+.swift */,
+				843DE4041DD5AB0D001A2A32 /* UITableView+.swift */,
 				122429DD1DB3DCF700C8EE29 /* UIViewController+.swift */,
 				122429CE1DB3D44800C8EE29 /* UINavigationController+.swift */,
 			);
@@ -528,6 +531,8 @@
 			files = (
 				8488D43F1DAA46FD000E703C /* MainController.swift in Sources */,
 				122429CF1DB3D44800C8EE29 /* UINavigationController+.swift in Sources */,
+				843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */,
+				843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */,
 				122429D91DB3D8FF00C8EE29 /* Int+.swift in Sources */,
 				84741DDE1DD1CFA4006ECD6D /* NetworkAPI.swift in Sources */,
 				84741DEE1DD42F68006ECD6D /* ImageDetailModel.swift in Sources */,
@@ -537,7 +542,6 @@
 				84741DE11DD1CFA4006ECD6D /* NetworkError.swift in Sources */,
 				1298EDE81DAE983700F8B4BD /* BaseViewController.swift in Sources */,
 				123DD11C1DCF1FCD0071C35B /* BaseCollectionView.swift in Sources */,
-				84741DF21DD4492D006ECD6D /* ImageDetailTableViewItemHead.swift in Sources */,
 				84741DE01DD1CFA4006ECD6D /* NetworkEnum.swift in Sources */,
 				84741DE31DD1CFA4006ECD6D /* NetworkURL.swift in Sources */,
 				84741D981DD095EB006ECD6D /* MainCollectinViewItem.swift in Sources */,

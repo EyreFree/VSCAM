@@ -25,13 +25,13 @@ class ImageDetailHeadView: UIView {
 
     func addControls() {
         //背景
-        if let _ = self.viewWithTag(Tag.make(0)) {
+        if let _ = self.viewWithTag(Tag.make(3)) {
 
         } else {
             let view = UIView()
             view.backgroundColor = UIColor.clear
             view.layer.masksToBounds = false
-            view.tag = Tag.make(0)
+            view.tag = Tag.make(3)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -40,13 +40,13 @@ class ImageDetailHeadView: UIView {
         }
 
         //左侧按钮
-        if let _ = self.viewWithTag(Tag.make(1)) as? UIImageView {
+        if let _ = self.viewWithTag(Tag.make(4)) as? UIImageView {
 
         } else {
             let view = UIImageView()
             view.contentMode = .center
             view.image = UIImage(named: "按钮_返回_白")
-            view.tag = Tag.make(1)
+            view.tag = Tag.make(4)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
                 UITapGestureRecognizer(target: parentViewController, action: Selector(("backClicked")))
@@ -60,13 +60,13 @@ class ImageDetailHeadView: UIView {
         }
 
         //右侧按钮
-        if let _ = self.viewWithTag(Tag.make(2)) as? UIImageView {
+        if let _ = self.viewWithTag(Tag.make(5)) as? UIImageView {
 
         } else {
             let view = UIImageView()
             view.contentMode = .center
             view.image = UIImage(named: "按钮_更多")
-            view.tag = Tag.make(2)
+            view.tag = Tag.make(5)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
                 UITapGestureRecognizer(target: parentViewController, action: Selector(("shareClicked")))

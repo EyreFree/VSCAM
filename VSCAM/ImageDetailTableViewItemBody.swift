@@ -19,11 +19,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
         if let tryModel = ((tableView as? ImageDetailTableView)?.parentViewController as? ImageDetailController)?.model {
 
             //线
-            if let _ = cell.contentView.viewWithTag(Tag.make(0)) {
+            if let _ = cell.contentView.viewWithTag(Tag.make(6)) {
 
             } else {
                 let imgView = UIView()
-                imgView.tag = Tag.make(0)
+                imgView.tag = Tag.make(6)
                 imgView.backgroundColor = UIColor(valueRGB: 0xdddddd)
                 cell.contentView.addSubview(imgView)
                 imgView.snp.makeConstraints {
@@ -40,11 +40,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
             if presetString.isEmpty == true {
                 presetString = "-"
             }
-            if let view = cell.contentView.viewWithTag(Tag.make(1)) as? UILabel {
+            if let view = cell.contentView.viewWithTag(Tag.make(7)) as? UILabel {
                 view.text = presetString
             } else {
                 let imgView = UILabel()
-                imgView.tag = Tag.make(1)
+                imgView.tag = Tag.make(7)
                 imgView.text = presetString
                 imgView.font = UIFont.boldSystemFont(ofSize: 32)
                 imgView.textColor = UIColor.white
@@ -61,11 +61,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
 
             //作者
             let userString = ((tryModel.imageBrief?.user?.name ?? tryModel.imageDetail?.user?.name) ?? "未知")
-            if let view = cell.contentView.viewWithTag(Tag.make(2)) as? UILabel {
+            if let view = cell.contentView.viewWithTag(Tag.make(8)) as? UILabel {
                 view.text = userString
             } else {
                 let imgView = UILabel()
-                imgView.tag = Tag.make(2)
+                imgView.tag = Tag.make(8)
                 imgView.text = userString
                 imgView.font = UIFont.systemFont(ofSize: 14)
                 imgView.textColor = UIColor.black
@@ -86,11 +86,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
                 let date = Date.fromValue(value: tryTime)
                 dateString = date.toString(format: date.getYear() != Date().getYear() ? "yyyy年MM月dd日" : "MM月dd日")
             }
-            if let view = cell.contentView.viewWithTag(Tag.make(3)) as? UILabel {
+            if let view = cell.contentView.viewWithTag(Tag.make(9)) as? UILabel {
                 view.text = dateString
             } else {
                 let imgView = UILabel()
-                imgView.tag = Tag.make(3)
+                imgView.tag = Tag.make(9)
                 imgView.text = dateString
                 imgView.font = UIFont.systemFont(ofSize: 12)
                 imgView.textColor = UIColor(valueRGB: 0x878787)
@@ -107,11 +107,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
 
             //标题
             let titleString = ((tryModel.imageBrief?.text ?? tryModel.imageDetail?.text) ?? "未知")
-            if let view = cell.contentView.viewWithTag(Tag.make(9)) as? UILabel {
+            if let view = cell.contentView.viewWithTag(Tag.make(10)) as? UILabel {
                 view.text = titleString
             } else {
                 let imgView = UILabel()
-                imgView.tag = Tag.make(9)
+                imgView.tag = Tag.make(10)
                 imgView.text = titleString
                 imgView.font = UIFont.systemFont(ofSize: 16)
                 imgView.textColor = UIColor.black
@@ -128,11 +128,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
 
             //光圈和ISO边框
             let infoBackView: UIView?
-            if let view = cell.contentView.viewWithTag(Tag.make(8)) {
+            if let view = cell.contentView.viewWithTag(Tag.make(11)) {
                 infoBackView = view
             } else {
                 let view = UIView()
-                view.tag = Tag.make(8)
+                view.tag = Tag.make(11)
                 cell.contentView.addSubview(view)
                 view.snp.makeConstraints {
                     (make) -> Void in
@@ -145,11 +145,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
 
             if let tryInfoBackView = infoBackView {
                 //光圈图标
-                if let view = tryInfoBackView.viewWithTag(Tag.make(4)) as? UIImageView {
+                if let view = tryInfoBackView.viewWithTag(Tag.make(12)) as? UIImageView {
                     view.removeFromSuperview()
                 }
                 let apertureIconView = UIImageView()
-                apertureIconView.tag = Tag.make(4)
+                apertureIconView.tag = Tag.make(12)
                 apertureIconView.image = UIImage(named: "图标_光圈")
                 apertureIconView.contentMode = .center
                 tryInfoBackView.addSubview(apertureIconView)
@@ -176,11 +176,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
                 } else {
                     apertureString = "f/" + apertureString
                 }
-                if let view = tryInfoBackView.viewWithTag(Tag.make(5)) as? UILabel {
+                if let view = tryInfoBackView.viewWithTag(Tag.make(13)) as? UILabel {
                     view.removeFromSuperview()
                 }
                 let apertureTextView = UILabel()
-                apertureTextView.tag = Tag.make(5)
+                apertureTextView.tag = Tag.make(13)
                 apertureTextView.text = apertureString
                 apertureTextView.font = UIFont.boldSystemFont(ofSize: 24)
                 apertureTextView.textColor = UIColor.black
@@ -196,11 +196,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
                 }
 
                 //ISO图标
-                if let view = tryInfoBackView.viewWithTag(Tag.make(6)) as? UIImageView {
+                if let view = tryInfoBackView.viewWithTag(Tag.make(14)) as? UIImageView {
                     view.removeFromSuperview()
                 }
                 let isoIconView = UIImageView()
-                isoIconView.tag = Tag.make(6)
+                isoIconView.tag = Tag.make(14)
                 isoIconView.image = UIImage(named: "图标_ISO")
                 isoIconView.contentMode = .center
                 tryInfoBackView.addSubview(isoIconView)
@@ -220,11 +220,11 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
                 if isoString.isEmpty == true {
                     isoString = "-"
                 }
-                if let view = tryInfoBackView.viewWithTag(Tag.make(7)) as? UILabel {
+                if let view = tryInfoBackView.viewWithTag(Tag.make(15)) as? UILabel {
                     view.removeFromSuperview()
                 }
                 let isoTextView = UILabel()
-                isoTextView.tag = Tag.make(7)
+                isoTextView.tag = Tag.make(15)
                 isoTextView.text = isoString
                 isoTextView.font = UIFont.boldSystemFont(ofSize: 24)
                 isoTextView.textColor = UIColor.black

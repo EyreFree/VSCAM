@@ -28,12 +28,12 @@ class ImageDetailTableViewItemFoot: BaseTableViewItem {
 
             //背景图片
             var imgViewReal: UIImageView!
-            if let imgView = cell.contentView.viewWithTag(Tag.make(0)) as? UIImageView {
+            if let imgView = cell.contentView.viewWithTag(Tag.make(16)) as? UIImageView {
                 imgView.image = image
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView()
-                imgView.tag = Tag.make(0)
+                imgView.tag = Tag.make(16)
                 imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.image = image
                 imgView.contentMode = .scaleAspectFit
