@@ -64,13 +64,13 @@ class ImageDetailController: UIViewController {
         }
 
         //底部图片
-        refreshFootImage(reloadImage: true)
+        refreshFootImage(offset: tableView.contentSize.height - CGSize.screen().height, reloadImage: true)
 
         //顶部图片
-        refreshHeadImage(reloadImage: true)
+        refreshHeadImage(offset: 0, reloadImage: true)
     }
 
-    func refreshHeadImage(offset: CGFloat = 0, reloadImage: Bool = false) {
+    func refreshHeadImage(offset: CGFloat, reloadImage: Bool = false) {
         if let tryModel = self.model {
             //背景图片
             var imgViewReal: UIImageView!
@@ -79,6 +79,7 @@ class ImageDetailController: UIViewController {
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView()
+                imgView.layer.masksToBounds = true
                 imgView.tag = Tag.make(2)
                 imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.contentMode = .scaleAspectFill
@@ -131,7 +132,7 @@ class ImageDetailController: UIViewController {
         }
     }
 
-    func refreshFootImage(offset: CGFloat = 0, reloadImage: Bool = false) {
+    func refreshFootImage(offset: CGFloat, reloadImage: Bool = false) {
         if let tryModel = self.model {
             //背景图片
             var imgViewReal: UIImageView!
@@ -151,12 +152,12 @@ class ImageDetailController: UIViewController {
 
             if offset > 210 {
                 imgViewReal.isHidden = true
-            } else if offset > 160 {
+            } else if offset > 70 {
                 imgViewReal.isHidden = false
                 imgViewReal.snp.makeConstraints {
                     (make) -> Void in
                     make.left.right.equalTo(0)
-                    make.bottom.equalTo(offset - 160)
+                    make.bottom.equalTo(offset - 70)
                     make.height.equalTo(140)
                 }
             } else {
@@ -178,6 +179,8 @@ class ImageDetailController: UIViewController {
                 }
                 if let tryUrlString = imageUrlString {
                     imgViewReal.setImageWithURLString(UrlString: tryUrlString)
+                } else {
+                    imgViewReal.backgroundColor = UIColor.white
                 }
             }
         }
