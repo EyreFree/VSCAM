@@ -36,14 +36,23 @@ class Function: NSObject {
     }
 
     //打开分享对话框
-    static func openShareView() {
-        /*if let tryUrl = NSURL(myString: NetworkURL.urlAppStore) {
-            let shareVC = UIActivityViewController(activityItems: ["魔法集市玛沙多拉", tryUrl], applicationActivities: nil)
-            MainTabBarController.sharedInstance.presentViewController(shareVC, animated: true) {
+    static func openShareView(controller: UIViewController, title: String, url: String) {
+        if let tryUrl = NSURL(myString: url) {
+            let shareVC = UIActivityViewController(activityItems: [title, tryUrl], applicationActivities: nil)
+
+            //阻止 iPad Crash
+            shareVC.popoverPresentationController?.sourceView = controller.view
+            shareVC.popoverPresentationController?.sourceRect = CGRect(
+                x: controller.view.bounds.size.width / 2.0,
+                y: controller.view.bounds.size.height / 2.0,
+                width: 1.0, height: 1.0
+            )
+
+            controller.present(shareVC, animated: true) {
                 //分享完成回调
-                print("分享完成")
+                print("分享完成[\(title)][\(url)]")
             }
-        }*/
+        }
     }
     
     //打开 AppStore

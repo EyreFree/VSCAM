@@ -69,7 +69,11 @@ class ImageDetailController: UIViewController {
     }
 
     func shareClicked() {
-        
+        if let tryPID = (model.imageBrief?.pid ?? model.imageDetail?.pid),
+            let tryTitle = (model.imageBrief?.text ?? model.imageDetail?.text) {
+            let webUrl = NetworkURL.webImageDetail.replace(string: "{pid}", with: "\(tryPID)")
+            Function.openShareView(controller: self, title: "[VSCAM]\(tryTitle)", url: webUrl)
+        }
     }
 }
 

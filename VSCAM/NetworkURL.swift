@@ -23,6 +23,8 @@ class NetworkURL {
     static let imageOriginBig = "http://vscam.co/img/m/{origin}.jpg"
     //地图图片
     static let imageMap = "http://vscam.co/x/maps/{gps}%7C11%7C800*300.png"
+    //Web详情页地址
+    static let webImageDetail = "http://vscam.co/#!g/{pid}"
 
     //MARK:- 其他
     //AppStore

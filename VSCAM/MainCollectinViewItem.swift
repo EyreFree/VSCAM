@@ -19,7 +19,7 @@ class MainCollectinViewItem: BaseCollectionViewItem {
 
         if let tryData = ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.model?.imageList {
 
-            let title = tryData.grids?[indexPath.row].user?.name ?? "数据异常"
+            let title = tryData.grids?[indexPath.row].user?.name ?? "未知"
             let image = UIImage.placeholderTransparent
             var imageUrlString: String?
             if let tryWbpid = tryData.grids?[indexPath.row].wbpid {

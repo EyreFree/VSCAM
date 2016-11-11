@@ -11,9 +11,10 @@ class PhotoObject {
     var wbpid: String?      //微博图片 id
     var preset: String?     //滤镜名称 字符串
     var unix: Int64?        //发布时间
-    var aperture: String?   //光圈值 16-11-10 新增
-    var ios: String?        //ISO 值 16-11-10 新增
+    var aperture: Double?   //光圈值 16-11-10 新增(最多1位小数)
+    var iso: Int?           //ISO 值 16-11-10 新增
     var gps: String?        //GPS 值 16-11-10 新增
+    var text: String?       //图片标题 16-11-10 新增
 
     //extern
     var user: UserObject?
@@ -29,9 +30,10 @@ class PhotoObject {
             wbpid = String.fromJson(tryDict.value(forKey: "wbpid"))
             preset = String.fromJson(tryDict.value(forKey: "preset"))
             unix = Int64.fromJson(tryDict.value(forKey: "unix"))
-            aperture = String.fromJson(tryDict.value(forKey: "aperture"))
-            ios = String.fromJson(tryDict.value(forKey: "ios"))
+            aperture = Double.fromJson(tryDict.value(forKey: "aperture"))
+            iso = Int.fromJson(tryDict.value(forKey: "iso"))
             gps = String.fromJson(tryDict.value(forKey: "gps"))
+            text = String.fromJson(tryDict.value(forKey: "text"))
         } else {
             return nil
         }
