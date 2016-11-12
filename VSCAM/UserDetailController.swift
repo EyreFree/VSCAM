@@ -84,7 +84,7 @@ class UserDetailController: BaseViewController {
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_设置")
+            view.image = UIImage(named: "按钮_设置_黑")
             view.tag = Tag.make(6)
             view.isUserInteractionEnabled = true
             view.isHidden = !isSelf
@@ -134,6 +134,7 @@ class UserDetailController: BaseViewController {
                 [weak self] in
                 if let trySelf = self {
                     if let tryUID = trySelf.model?.userData?.uid {
+                        trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
                         NetworkAPI.sharedInstance.imageList(u: tryUID) {
                             [weak self] (imagelist, errorString) in
                             if let trySelf = self {
@@ -146,8 +147,8 @@ class UserDetailController: BaseViewController {
                                     trySelf.collectionView.reloadData()
                                 }
                                 if let tryCount = imagelist?.grids?.count {
-                                    if tryCount < Define.pageCount {
-                                        trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
+                                    if tryCount >= Define.pageCount {
+                                        trySelf.collectionView.mj_footer.resetNoMoreData()
                                     }
                                 }
                                 trySelf.collectionView.mj_header.endRefreshing()
@@ -196,17 +197,30 @@ class UserDetailController: BaseViewController {
     }
 
     func refreshHeadView(offset: CGFloat) {
-        if let headView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
-            let marginHead = (model.hasAvatar ? 256 : 186).f()
-            let finalOffset = offset + marginHead
+        let marginHead = (model.hasAvatar ? 256 : 186).f()
+        let finalOffset = offset + marginHead
 
-            var alpha = (marginHead - finalOffset) / marginHead
-            if alpha < 0 {
-                alpha = 0
-            } else if alpha > 1 {
-                alpha = 1
-            }
+        var alpha = (marginHead - finalOffset) / marginHead
+        if alpha < 0 {
+            alpha = 0
+        } else if alpha > 1 {
+            alpha = 1
+        }
+
+        if let headView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
             headView.alpha = alpha
+        }
+
+        if let view = self.view.viewWithTag(Tag.make(4)) as? UIImageView {
+            view.image = UIImage(named: alpha <= 0 ? "按钮_返回_白" : "按钮_返回_黑")
+        }
+
+        if let view = self.view.viewWithTag(Tag.make(5)) as? UIImageView {
+            view.image = UIImage(named: alpha <= 0 ? "按钮_更多_白" : "按钮_更多_黑")
+        }
+
+        if let view = self.view.viewWithTag(Tag.make(6)) as? UIImageView {
+            view.image = UIImage(named: alpha <= 0 ? "按钮_设置_白" : "按钮_设置_黑")
         }
     }
 

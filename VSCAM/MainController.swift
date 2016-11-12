@@ -68,7 +68,8 @@ class MainController: BaseViewController {
 
             let customHeader = MJRefreshNormalHeader() {
                 [weak self] in
-                if let _ = self {
+                if let trySelf = self {
+                    trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
                     NetworkAPI.sharedInstance.imageList() {
                         [weak self] (imagelist, errorString) in
                         if let trySelf = self {
@@ -81,8 +82,8 @@ class MainController: BaseViewController {
                                 trySelf.collectionView.reloadData()
                             }
                             if let tryCount = imagelist?.grids?.count {
-                                if tryCount < Define.pageCount {
-                                    trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
+                                if tryCount >= Define.pageCount {
+                                    trySelf.collectionView.mj_footer.resetNoMoreData()
                                 }
                             }
                             trySelf.collectionView.mj_header.endRefreshing()

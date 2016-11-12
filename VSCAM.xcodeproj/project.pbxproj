@@ -36,6 +36,8 @@
 		12B3D4F31DD72FA900BD4388 /* UserDetailHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4F21DD72FA900BD4388 /* UserDetailHeadView.swift */; };
 		12B3D4F51DD72FB500BD4388 /* UserDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4F41DD72FB500BD4388 /* UserDetailCollectionView.swift */; };
 		12B3D4F71DD72FC100BD4388 /* UserDetailCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4F61DD72FC100BD4388 /* UserDetailCollectionViewItem.swift */; };
+		12B3D4FC1DD778D000BD4388 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4FB1DD778D000BD4388 /* LoginController.swift */; };
+		12B3D4FE1DD778D900BD4388 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4FD1DD778D900BD4388 /* LoginModel.swift */; };
 		12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F229B81DD2228600C0F6D0 /* Double+.swift */; };
 		843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4041DD5AB0D001A2A32 /* UITableView+.swift */; };
 		843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4061DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift */; };
@@ -96,6 +98,8 @@
 		12B3D4F21DD72FA900BD4388 /* UserDetailHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailHeadView.swift; sourceTree = "<group>"; };
 		12B3D4F41DD72FB500BD4388 /* UserDetailCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailCollectionView.swift; sourceTree = "<group>"; };
 		12B3D4F61DD72FC100BD4388 /* UserDetailCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailCollectionViewItem.swift; sourceTree = "<group>"; };
+		12B3D4FB1DD778D000BD4388 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		12B3D4FD1DD778D900BD4388 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		12F229B81DD2228600C0F6D0 /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM.release.xcconfig"; sourceTree = "<group>"; };
 		843DE4041DD5AB0D001A2A32 /* UITableView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
@@ -181,6 +185,9 @@
 		1220F9DC1DCB9D02004379AD /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				12B3D4FA1DD778BF00BD4388 /* Model */,
+				12B3D4F91DD778BC00BD4388 /* View */,
+				12B3D4F81DD778B700BD4388 /* Controller */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -258,6 +265,29 @@
 			isa = PBXGroup;
 			children = (
 				12B3D4F01DD72E7800BD4388 /* UserDetailModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		12B3D4F81DD778B700BD4388 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12B3D4FB1DD778D000BD4388 /* LoginController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		12B3D4F91DD778BC00BD4388 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		12B3D4FA1DD778BF00BD4388 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				12B3D4FD1DD778D900BD4388 /* LoginModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -566,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8488D43F1DAA46FD000E703C /* MainController.swift in Sources */,
+				12B3D4FE1DD778D900BD4388 /* LoginModel.swift in Sources */,
 				122429CF1DB3D44800C8EE29 /* UINavigationController+.swift in Sources */,
 				843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */,
 				843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */,
@@ -594,6 +625,7 @@
 				1220F9E51DCB9EB6004379AD /* SecurityStrategy.m in Sources */,
 				123DD11E1DCF20130071C35B /* BaseCollectionViewItem.swift in Sources */,
 				84741DD71DD1BECC006ECD6D /* MyWaterflowLayout.m in Sources */,
+				12B3D4FC1DD778D000BD4388 /* LoginController.swift in Sources */,
 				1220F9E91DCBA1A6004379AD /* MainNavigationController.swift in Sources */,
 				84741DDF1DD1CFA4006ECD6D /* NetworkCache.swift in Sources */,
 				122429D31DB3D49400C8EE29 /* UIColor+.swift in Sources */,
