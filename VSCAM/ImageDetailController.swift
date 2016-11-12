@@ -34,17 +34,42 @@ class ImageDetailController: UIViewController {
 
     func addControls() {
         //addHeadView
-        if let _ = self.view.viewWithTag(Tag.make(0)) as? ImageDetailHeadView {
+        if let _ = self.view.viewWithTag(Tag.make(4)) as? UIImageView {
 
         } else {
-            let view = ImageDetailHeadView(self)
-            view.layer.masksToBounds = false
-            view.tag = Tag.make(0)
+            let view = UIImageView()
+            view.contentMode = .center
+            view.image = UIImage(named: "按钮_返回_白")
+            view.tag = Tag.make(4)
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: self, action: #selector(ImageDetailController.backClicked))
+            )
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.left.right.equalTo(0)
-                make.height.equalTo(55)
+                make.top.left.equalTo(0)
+                make.width.height.equalTo(55)
+            }
+        }
+
+        //右侧按钮
+        if let _ = self.view.viewWithTag(Tag.make(5)) as? UIImageView {
+
+        } else {
+            let view = UIImageView()
+            view.contentMode = .center
+            view.image = UIImage(named: "按钮_更多")
+            view.tag = Tag.make(5)
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: self, action: #selector(ImageDetailController.shareClicked))
+            )
+            self.view.addSubview(view)
+            view.snp.makeConstraints {
+                (make) -> Void in
+                make.top.right.equalTo(0)
+                make.width.height.equalTo(55)
             }
         }
 
@@ -136,13 +161,13 @@ class ImageDetailController: UIViewController {
         if let tryModel = self.model {
             //背景图片
             var imgViewReal: UIImageView!
-            if let imgView = self.view.viewWithTag(Tag.make(-2)) as? UIImageView {
+            if let imgView = self.view.viewWithTag(Tag.make(0)) as? UIImageView {
                 imgView.snp.removeConstraints()
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView(frame: CGRect.zero)
                 imgView.layer.masksToBounds = true
-                imgView.tag = Tag.make(-2)
+                imgView.tag = Tag.make(0)
                 imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.contentMode = .scaleAspectFill
                 self.view.addSubview(imgView)
