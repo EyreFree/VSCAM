@@ -12,7 +12,7 @@ class MainController: BaseViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.navigationBar.isHidden = true
 
         addModel()
         addControls()

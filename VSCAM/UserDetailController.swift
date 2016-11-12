@@ -24,7 +24,6 @@ class UserDetailController: BaseViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
 
         addControls()
 
