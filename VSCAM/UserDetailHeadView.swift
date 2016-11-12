@@ -20,6 +20,8 @@ class UserDetailHeadView: UIView {
     }
 
     func onInit() {
+        self.backgroundColor = UIColor.white
+
         addControls(reloadImage: true)
     }
 
@@ -32,69 +34,6 @@ class UserDetailHeadView: UIView {
 
             //是否有头像
             let hasAvatar = tryModel.hasAvatar
-            let isSelf = false
-
-            //返回
-            if let _ = self.viewWithTag(Tag.make(4)) as? UIImageView {
-
-            } else {
-                let view = UIImageView()
-                view.contentMode = .center
-                view.image = UIImage(named: "按钮_返回_黑")
-                view.tag = Tag.make(4)
-                view.isUserInteractionEnabled = true
-                view.addGestureRecognizer(
-                    UITapGestureRecognizer(target: parentViewController, action: Selector(("backClicked")))
-                )
-                self.addSubview(view)
-                view.snp.makeConstraints {
-                    (make) -> Void in
-                    make.top.left.equalTo(0)
-                    make.width.height.equalTo(55)
-                }
-            }
-
-            //分享
-            if let view = self.viewWithTag(Tag.make(5)) as? UIImageView {
-                view.isHidden = isSelf
-            } else {
-                let view = UIImageView()
-                view.contentMode = .center
-                view.image = UIImage(named: "按钮_更多_黑")
-                view.tag = Tag.make(5)
-                view.isUserInteractionEnabled = true
-                view.isHidden = isSelf
-                view.addGestureRecognizer(
-                    UITapGestureRecognizer(target: parentViewController, action: Selector(("shareClicked")))
-                )
-                self.addSubview(view)
-                view.snp.makeConstraints {
-                    (make) -> Void in
-                    make.top.right.equalTo(0)
-                    make.width.height.equalTo(55)
-                }
-            }
-
-            //设置
-            if let view = self.viewWithTag(Tag.make(6)) as? UIImageView {
-                view.isHidden = !isSelf
-            } else {
-                let view = UIImageView()
-                view.contentMode = .center
-                view.image = UIImage(named: "按钮_设置")
-                view.tag = Tag.make(6)
-                view.isUserInteractionEnabled = true
-                view.isHidden = !isSelf
-                view.addGestureRecognizer(
-                    UITapGestureRecognizer(target: parentViewController, action: Selector(("settingClicked")))
-                )
-                self.addSubview(view)
-                view.snp.makeConstraints {
-                    (make) -> Void in
-                    make.top.right.equalTo(0)
-                    make.width.height.equalTo(55)
-                }
-            }
 
             //头像
             var avatarViewReal: UIImageView!

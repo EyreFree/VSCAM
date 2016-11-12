@@ -29,9 +29,7 @@ class MainCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
         self.showsVerticalScrollIndicator = false
         self.bounces = true
         self.alwaysBounceVertical = true
-        self.contentInset = UIEdgeInsets(
-            top: 0, left: 0, bottom: CGFloat.tabBar(parentViewController), right: 0
-        )
+        self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         addReuseIdentifier()
@@ -40,7 +38,7 @@ class MainCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
 
-        ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.clickImageAt(index: indexPath.row)
+        (parentViewController as? MainController)?.clickImageAt(index: indexPath.row)
     }
 
     //MyWaterflowLayoutDelegate

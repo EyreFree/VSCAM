@@ -32,7 +32,7 @@ class ImageDetailController: BaseViewController {
     }
 
     func addControls() {
-        //addHeadView
+        //buttons
         if let _ = self.view.viewWithTag(Tag.make(4)) as? UIImageView {
 
         } else {

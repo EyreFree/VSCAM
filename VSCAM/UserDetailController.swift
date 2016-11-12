@@ -37,14 +37,78 @@ class UserDetailController: BaseViewController {
     }
 
     func addControls() {
+        //buttons
+        let isSelf = model?.isSelf ?? false
+
+        if let _ = self.view.viewWithTag(Tag.make(4)) as? UIImageView {
+
+        } else {
+            let view = UIImageView()
+            view.contentMode = .center
+            view.image = UIImage(named: "按钮_返回_黑")
+            view.tag = Tag.make(4)
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: self, action: #selector(UserDetailController.backClicked))
+            )
+            self.view.addSubview(view)
+            view.snp.makeConstraints {
+                (make) -> Void in
+                make.top.left.equalTo(0)
+                make.width.height.equalTo(55)
+            }
+        }
+
+        if let view = self.view.viewWithTag(Tag.make(5)) as? UIImageView {
+            view.isHidden = isSelf
+        } else {
+            let view = UIImageView()
+            view.contentMode = .center
+            view.image = UIImage(named: "按钮_更多_黑")
+            view.tag = Tag.make(5)
+            view.isUserInteractionEnabled = true
+            view.isHidden = isSelf
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: self, action: #selector(UserDetailController.shareClicked))
+            )
+            self.view.addSubview(view)
+            view.snp.makeConstraints {
+                (make) -> Void in
+                make.top.right.equalTo(0)
+                make.width.height.equalTo(55)
+            }
+        }
+
+        if let view = self.view.viewWithTag(Tag.make(6)) as? UIImageView {
+            view.isHidden = !isSelf
+        } else {
+            let view = UIImageView()
+            view.contentMode = .center
+            view.image = UIImage(named: "按钮_设置")
+            view.tag = Tag.make(6)
+            view.isUserInteractionEnabled = true
+            view.isHidden = !isSelf
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: self, action: #selector(UserDetailController.settingClicked))
+            )
+            self.view.addSubview(view)
+            view.snp.makeConstraints {
+                (make) -> Void in
+                make.top.right.equalTo(0)
+                make.width.height.equalTo(55)
+            }
+        }
+
         //addHeadView
         if let _ = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
 
         } else {
             let view = UserDetailHeadView(self)
             view.layer.masksToBounds = false
+            view.isUserInteractionEnabled = false
             view.tag = Tag.make(0)
             self.view.addSubview(view)
+            self.view.sendSubview(toBack: view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.equalTo(0)
@@ -59,10 +123,10 @@ class UserDetailController: BaseViewController {
             let view = UserDetailCollectinView(self)
             view.tag = Tag.make(1)
             self.view.addSubview(view)
+            self.view.sendSubview(toBack: view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.equalTo(model.hasAvatar ? 256 : 186)
-                make.left.right.bottom.equalTo(0)
+                make.top.left.right.bottom.equalTo(0)
             }
             self.collectionView = view
 
@@ -128,6 +192,21 @@ class UserDetailController: BaseViewController {
             }
             customFooter?.stateLabel.isHidden = true
             view.mj_footer = customFooter
+        }
+    }
+
+    func refreshHeadView(offset: CGFloat) {
+        if let headView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
+            let marginHead = (model.hasAvatar ? 256 : 186).f()
+            let finalOffset = offset + marginHead
+
+            var alpha = (marginHead - finalOffset) / marginHead
+            if alpha < 0 {
+                alpha = 0
+            } else if alpha > 1 {
+                alpha = 1
+            }
+            headView.alpha = alpha
         }
     }
 

@@ -10,6 +10,7 @@ class UserDetailModel {
     var imageList: ImageListObject?
 
     var hasAvatar = false
+    var isSelf = false
 
     func refreshModel() {
         hasAvatar = false
@@ -18,5 +19,7 @@ class UserDetailModel {
                 hasAvatar = true
             }
         }
+
+        isSelf = false
     }
 }

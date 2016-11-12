@@ -29,18 +29,22 @@ class UserDetailCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
         self.showsVerticalScrollIndicator = false
         self.bounces = true
         self.alwaysBounceVertical = true
-        self.contentInset = UIEdgeInsets(
-            top: 0, left: 0, bottom: CGFloat.tabBar(parentViewController), right: 0
-        )
+        let hasAvatar = (parentViewController as? UserDetailController)?.model?.hasAvatar ?? false
+        self.contentInset = UIEdgeInsets(top: hasAvatar ? 256 : 186, left: 0, bottom: 0, right: 0)
         self.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         addReuseIdentifier()
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetHead = scrollView.contentOffset.y
+        (parentViewController as? UserDetailController)?.refreshHeadView(offset: offsetHead)
+    }
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
 
-        ((collectionView as? UserDetailCollectinView)?.parentViewController as? UserDetailController)?.clickImageAt(index: indexPath.row)
+        (parentViewController as? UserDetailController)?.clickImageAt(index: indexPath.row)
     }
 
     //MyWaterflowLayoutDelegate
