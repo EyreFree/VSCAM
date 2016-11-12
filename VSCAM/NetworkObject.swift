@@ -19,8 +19,8 @@ class PhotoObject {
     //extern
     var user: UserObject?
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             print(tryDict)
 
             pid = Int.fromJson(tryDict.value(forKey: "pid"))
@@ -46,8 +46,9 @@ class UserObject {
     var name: String?   //用户名
     var avatar: Int?    //用户头像 id
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
+            print(tryDict)
             uid = Int.fromJson(tryDict.value(forKey: "uid"))
             name = String.fromJson(tryDict.value(forKey: "name"))
             avatar = Int.fromJson(tryDict.value(forKey: "avatar"))
@@ -62,7 +63,7 @@ class ImageListObject {
     var grids: [PhotoObject]?   //照片们
     var users: [UserObject]?    //用户们
 
-    init?(_ dict: AnyObject?) {
+    init?(_ dict: Any?) {
         if let tryDict = dict as? NSDictionary {
             if let dataList = tryDict["users"] as? NSArray {
                 var tempList = [UserObject]()
@@ -149,8 +150,8 @@ class COMPUTEDObject {
     var Thumbnail_FileType: Int?
     var Thumbnail_MimeType: String?
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             html = String.fromJson(tryDict.value(forKey: "html"))
             Height = Int.fromJson(tryDict.value(forKey: "Height"))
             Width = Int.fromJson(tryDict.value(forKey: "Width"))
@@ -184,8 +185,8 @@ class IFD0Object {
     var Exif_IFD_Pointer: Int?
     var GPS_IFD_Pointer: Int?
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             ImageWidth = Int.fromJson(tryDict.value(forKey: "ImageWidth"))
             ImageLength = Int.fromJson(tryDict.value(forKey: "ImageLength"))
             if let dataList = tryDict["BitsPerSample"] as? NSArray {
@@ -250,8 +251,8 @@ class EXIFObject {
     var UndefinedTag_0xA433: String?
     var UndefinedTag_0xA434: String?
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             ExposureTime = String.fromJson(tryDict.value(forKey: "ExposureTime"))
             FNumber = String.fromJson(tryDict.value(forKey: "FNumber"))
             ExposureProgram = Int.fromJson(tryDict.value(forKey: "ExposureProgram"))
@@ -311,8 +312,8 @@ class ExifInfoObject {
     var IFD0: IFD0Object?
     var EXIF: EXIFObject?
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             COMPUTED = COMPUTEDObject(tryDict.value(forKey: "COMPUTED") as? NSDictionary)
             IFD0 = IFD0Object(tryDict.value(forKey: "IFD0") as? NSDictionary)
             EXIF = EXIFObject(tryDict.value(forKey: "EXIF") as? NSDictionary)
@@ -339,8 +340,8 @@ class PhotoDetailObject {
     var exif: ExifInfoObject?   //详细的 EXIF 信息 光圈 ISO 等信息都在这里
     var user: UserObject?       //用户信息
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             pid = Int.fromJson(tryDict.value(forKey: "pid"))
             uid = Int.fromJson(tryDict.value(forKey: "uid"))
             wbpid = String.fromJson(tryDict.value(forKey: "wbpid"))
@@ -370,8 +371,8 @@ class PhotoUploadObject {
     var exif: String?
     var pid: Int?       //图片 ID
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             uid = String.fromJson(tryDict.value(forKey: "uid"))
             scale = Double.fromJson(tryDict.value(forKey: "scale"))
             origin = String.fromJson(tryDict.value(forKey: "origin"))
@@ -392,8 +393,8 @@ class UserInfoObject {
     var des: String?    //简介
     var url: String?    //网站
 
-    init?(_ dict: NSDictionary?) {
-        if let tryDict = dict {
+    init?(_ dict: Any?) {
+        if let tryDict = dict as? NSDictionary {
             uid = Int.fromJson(tryDict.value(forKey: "uid"))
             name = String.fromJson(tryDict.value(forKey: "name"))
             avatar = Int.fromJson(tryDict.value(forKey: "avatar"))

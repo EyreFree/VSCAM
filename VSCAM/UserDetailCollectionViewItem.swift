@@ -2,14 +2,14 @@
 
 import UIKit
 
-class MainCollectinViewItem: BaseCollectionViewItem {
+class UserDetailCollectinViewItem: BaseCollectionViewItem {
 
     override func reuseIdentifier() -> String {
-        return "MainCollectinViewItem"
+        return "UserDetailCollectinViewItem"
     }
 
     override func number(collectionView: UICollectionView) -> Int {
-        return ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.model?.imageList?.grids?.count ?? 0
+        return ((collectionView as? UserDetailCollectinView)?.parentViewController as? UserDetailController)?.model?.imageList?.grids?.count ?? 0
     }
 
     override func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -17,7 +17,7 @@ class MainCollectinViewItem: BaseCollectionViewItem {
             withReuseIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
         )
 
-        if let tryData = ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.model?.imageList {
+        if let tryData = ((collectionView as? UserDetailCollectinView)?.parentViewController as? UserDetailController)?.model?.imageList {
 
             let title = tryData.grids?[indexPath.row].user?.name ?? Define.placeHolderString
             let image = UIImage.placeholderTransparent
@@ -32,12 +32,12 @@ class MainCollectinViewItem: BaseCollectionViewItem {
 
             //背景图片
             var imgViewReal: UIImageView!
-            if let imgView = cell.contentView.viewWithTag(Tag.make(7)) as? UIImageView {
+            if let imgView = cell.contentView.viewWithTag(Tag.make(2)) as? UIImageView {
                 imgView.image = image
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView()
-                imgView.tag = Tag.make(7)
+                imgView.tag = Tag.make(2)
                 imgView.image = image
                 imgView.contentMode = .scaleAspectFit
                 cell.contentView.addSubview(imgView)
@@ -53,11 +53,11 @@ class MainCollectinViewItem: BaseCollectionViewItem {
             }
 
             //标题
-            if let titleView = cell.contentView.viewWithTag(Tag.make(8)) as? UILabel {
+            if let titleView = cell.contentView.viewWithTag(Tag.make(3)) as? UILabel {
                 titleView.text = title
             } else {
                 let titleView = UILabel()
-                titleView.tag = Tag.make(8)
+                titleView.tag = Tag.make(3)
                 titleView.font = UIFont.boldSystemFont(ofSize: 10)
                 titleView.textColor = UIColor(valueRGB: 0x535353)
                 titleView.text = title
@@ -72,61 +72,15 @@ class MainCollectinViewItem: BaseCollectionViewItem {
                 }
             }
         }
-
-        //选中高亮
-        //let selectedView = UIView(frame: cell.frame)
-        //selectedView.backgroundColor = UIColor(valueRGB: 0xcccccc)
-        //cell.selectedBackgroundView = selectedView
-
         return cell
     }
 
     override func size(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
         let screenWidth = CGFloat(UIScreen.main.bounds.size.width - 30) / CGFloat(2.0)
-        if let tryScale = ((collectionView as? MainCollectinView)?.parentViewController as? MainController)?.model?.imageList?.grids?[indexPath.row].scale {
+        if let tryScale = ((collectionView as? UserDetailCollectinView)?.parentViewController as? UserDetailController)?.model?.imageList?.grids?[indexPath.row].scale {
             return CGSize(width: screenWidth, height: screenWidth * tryScale.f() + 30)
         }
         return CGSize(width: screenWidth, height: screenWidth)
     }
-
-    //暂时没用
-    /*
-    override func footer(collectionView: UICollectionView) -> UIView {
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.white
-
-        let textView = UILabel()
-        textView.text = "用力拉加载更多"
-        textView.textColor = UIColor.black
-        textView.font = UIFont.systemFont(ofSize: 14)
-        textView.textAlignment = .center
-        textView.sizeToFit()
-        backgroundView.addSubview(textView)
-        textView.snp.makeConstraints {
-            (make) in
-            make.height.equalTo(20)
-            make.width.equalTo(textView.frame.width)
-            make.centerX.equalTo(backgroundView)
-            make.bottom.equalTo(-68)
-        }
-
-        let greyBackView = UIView()
-        greyBackView.backgroundColor = UIColor(valueRGB: 0xF8F8F8)
-        backgroundView.addSubview(greyBackView)
-        greyBackView.snp.makeConstraints {
-            (make) in
-            make.height.equalTo(40)
-            make.width.equalTo(textView.frame.width + 67)
-            make.centerX.equalTo(backgroundView)
-            make.bottom.equalTo(-58)
-        }
-
-        backgroundView.sendSubview(toBack: greyBackView)
-        return backgroundView
-    }
-
-    override func heightFooter(collectionView: UICollectionView) -> CGFloat {
-        return 136
-    }*/
 }
 

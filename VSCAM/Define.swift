@@ -5,7 +5,7 @@ import UIKit
 class Define {
 
     //占位字符
-    static let placeHolderString = "..."
+    static let placeHolderString = "-"
 
     //分页数据量
     static let pageCount = 30

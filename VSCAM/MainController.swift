@@ -3,7 +3,7 @@
 import UIKit
 import MJRefresh
 
-class MainController: UIViewController {
+class MainController: BaseViewController {
 
     var collectionView: MainCollectinView!
     var model: MainModel!
@@ -66,7 +66,7 @@ class MainController: UIViewController {
             }
             self.collectionView = view
 
-            view.mj_header = MJRefreshNormalHeader() {
+            let customHeader = MJRefreshNormalHeader() {
                 [weak self] in
                 if let _ = self {
                     NetworkAPI.sharedInstance.imageList() {
@@ -80,14 +80,22 @@ class MainController: UIViewController {
                                 trySelf.collectionView.addReuseIdentifier()
                                 trySelf.collectionView.reloadData()
                             }
+                            if let tryCount = imagelist?.grids?.count {
+                                if tryCount < Define.pageCount {
+                                    trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
+                                }
+                            }
                             trySelf.collectionView.mj_header.endRefreshing()
                         }
                     }
                 }
             }
-            view.mj_header.isAutomaticallyChangeAlpha = true
+            customHeader?.lastUpdatedTimeLabel.isHidden = true
+            customHeader?.stateLabel.isHidden = true
+            customHeader?.isAutomaticallyChangeAlpha = true
+            view.mj_header = customHeader
 
-            view.mj_footer = MJRefreshBackNormalFooter() {
+            let customFooter = MJRefreshBackNormalFooter() {
                 [weak self] in
                 if let trySelf = self {
                     if let tryDate = trySelf.model?.imageList?.grids?.last?.unix {
@@ -103,7 +111,7 @@ class MainController: UIViewController {
                                     trySelf.collectionView.reloadData()
                                 }
                                 if let tryCount = imagelist?.grids?.count {
-                                    if tryCount < 30 {
+                                    if tryCount < Define.pageCount {
                                         trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
                                         return
                                     }
@@ -114,16 +122,19 @@ class MainController: UIViewController {
                     }
                 }
             }
+            //customFooter?.setTitle("Click or drag up to refresh", for: MJRefreshState.idle)
+            //customFooter?.setTitle("Loading more ...", for: MJRefreshState.refreshing)
+            //customFooter?.setTitle("No more data", for: MJRefreshState.noMoreData)
+            customFooter?.stateLabel.isHidden = true
+            view.mj_footer = customFooter
         }
     }
 
     func clickImageAt(index: Int) {
         if let tryImages = model?.imageList?.grids {
-            if let tryPID = tryImages[index].pid {
-                MainNavigationController.sharedInstance.pushViewController(
-                    ImageDetailController(pid: tryPID, imageBrief: tryImages[index]), animated: true
-                )
-            }
+            MainNavigationController.sharedInstance.pushViewController(
+                ImageDetailController(imageBrief: tryImages[index]), animated: true
+            )
         }
     }
 }

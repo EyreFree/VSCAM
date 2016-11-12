@@ -24,17 +24,17 @@ class MainHeadView: UIView {
     }
 
     func setAvatar(url: String) {
-        if let tryAvatarBackView = self.viewWithTag(Tag.make(1)) {
+        if let tryAvatarBackView = self.viewWithTag(Tag.make(3)) {
             //头像
             var viewReal: UIImageView?
-            if let view = tryAvatarBackView.viewWithTag(Tag.make(2)) as? UIImageView {
+            if let view = tryAvatarBackView.viewWithTag(Tag.make(4)) as? UIImageView {
                 viewReal = view
             } else {
                 let view = UIImageView()
                 view.layer.masksToBounds = true
                 view.layer.cornerRadius = 20
                 view.image = UIImage.placeholderUser
-                view.tag = Tag.make(2)
+                view.tag = Tag.make(4)
                 tryAvatarBackView.addSubview(view)
                 view.snp.makeConstraints {
                     (make) -> Void in
@@ -50,7 +50,7 @@ class MainHeadView: UIView {
 
     func addControls() {
         //背景
-        if let _ = self.viewWithTag(Tag.make(0)) {
+        if let _ = self.viewWithTag(Tag.make(2)) {
 
         } else {
             let view = UIView()
@@ -59,7 +59,7 @@ class MainHeadView: UIView {
             //view.layer.shadowColor = UIColor.black.cgColor
             //view.layer.shadowOffset = CGSize(width: 0, height: 2)
             //view.layer.shadowOpacity = 0.4
-            view.tag = Tag.make(0)
+            view.tag = Tag.make(2)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -69,11 +69,11 @@ class MainHeadView: UIView {
 
         //头像背景
         let avatarBackView: UIView!
-        if let view = self.viewWithTag(Tag.make(1)) {
+        if let view = self.viewWithTag(Tag.make(3)) {
             avatarBackView = view
         } else {
             let view = UIView()
-            view.tag = Tag.make(1)
+            view.tag = Tag.make(3)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -85,14 +85,14 @@ class MainHeadView: UIView {
 
         //头像
         if let tryAvatarBackView = avatarBackView {
-            if let _ = tryAvatarBackView.viewWithTag(Tag.make(2)) as? UIImageView {
+            if let _ = tryAvatarBackView.viewWithTag(Tag.make(4)) as? UIImageView {
 
             } else {
                 let view = UIImageView()
                 view.layer.masksToBounds = true
                 view.layer.cornerRadius = 20
                 view.image = UIImage.placeholderUser
-                view.tag = Tag.make(2)
+                view.tag = Tag.make(4)
                 tryAvatarBackView.addSubview(view)
                 view.snp.makeConstraints {
                     (make) -> Void in
@@ -103,13 +103,13 @@ class MainHeadView: UIView {
         }
 
         //LOGO
-        if let _ = self.viewWithTag(Tag.make(3)) as? UIImageView {
+        if let _ = self.viewWithTag(Tag.make(5)) as? UIImageView {
 
         } else {
             let view = UIImageView()
             view.contentMode = .scaleAspectFit
             view.image = UIImage(named: "logo")
-            view.tag = Tag.make(3)
+            view.tag = Tag.make(5)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -121,13 +121,13 @@ class MainHeadView: UIView {
         }
 
         //新建按钮
-        if let _ = self.viewWithTag(Tag.make(4)) as? UIImageView {
+        if let _ = self.viewWithTag(Tag.make(6)) as? UIImageView {
 
         } else {
             let view = UIImageView()
             view.contentMode = .center
             view.image = UIImage(named: "按钮_新建")
-            view.tag = Tag.make(4)
+            view.tag = Tag.make(6)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in

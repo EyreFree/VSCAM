@@ -31,6 +31,11 @@
 		1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEB1DAE984400F8B4BD /* Function.swift */; };
 		1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDEC1DAE984400F8B4BD /* Regex.swift */; };
 		1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298EDED1DAE984400F8B4BD /* Variable.swift */; };
+		12B3D4EF1DD72E0700BD4388 /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4EE1DD72E0700BD4388 /* UserDetailController.swift */; };
+		12B3D4F11DD72E7800BD4388 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4F01DD72E7800BD4388 /* UserDetailModel.swift */; };
+		12B3D4F31DD72FA900BD4388 /* UserDetailHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4F21DD72FA900BD4388 /* UserDetailHeadView.swift */; };
+		12B3D4F51DD72FB500BD4388 /* UserDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4F41DD72FB500BD4388 /* UserDetailCollectionView.swift */; };
+		12B3D4F71DD72FC100BD4388 /* UserDetailCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4F61DD72FC100BD4388 /* UserDetailCollectionViewItem.swift */; };
 		12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F229B81DD2228600C0F6D0 /* Double+.swift */; };
 		843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4041DD5AB0D001A2A32 /* UITableView+.swift */; };
 		843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4061DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift */; };
@@ -86,6 +91,11 @@
 		1298EDEB1DAE984400F8B4BD /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		1298EDEC1DAE984400F8B4BD /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		1298EDED1DAE984400F8B4BD /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
+		12B3D4EE1DD72E0700BD4388 /* UserDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
+		12B3D4F01DD72E7800BD4388 /* UserDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
+		12B3D4F21DD72FA900BD4388 /* UserDetailHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailHeadView.swift; sourceTree = "<group>"; };
+		12B3D4F41DD72FB500BD4388 /* UserDetailCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailCollectionView.swift; sourceTree = "<group>"; };
+		12B3D4F61DD72FC100BD4388 /* UserDetailCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailCollectionViewItem.swift; sourceTree = "<group>"; };
 		12F229B81DD2228600C0F6D0 /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM.release.xcconfig"; sourceTree = "<group>"; };
 		843DE4041DD5AB0D001A2A32 /* UITableView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
@@ -144,6 +154,9 @@
 		1220F9D91DCB9CA5004379AD /* UserDetail */ = {
 			isa = PBXGroup;
 			children = (
+				12B3D4ED1DD72DF900BD4388 /* Model */,
+				12B3D4EC1DD72DF500BD4388 /* View */,
+				12B3D4EB1DD72DEF00BD4388 /* Controller */,
 			);
 			name = UserDetail;
 			sourceTree = "<group>";
@@ -221,6 +234,32 @@
 				1220F9E41DCB9EB6004379AD /* SecurityStrategy.m */,
 			);
 			path = SecurityStrategy;
+			sourceTree = "<group>";
+		};
+		12B3D4EB1DD72DEF00BD4388 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12B3D4EE1DD72E0700BD4388 /* UserDetailController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		12B3D4EC1DD72DF500BD4388 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12B3D4F21DD72FA900BD4388 /* UserDetailHeadView.swift */,
+				12B3D4F41DD72FB500BD4388 /* UserDetailCollectionView.swift */,
+				12B3D4F61DD72FC100BD4388 /* UserDetailCollectionViewItem.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		12B3D4ED1DD72DF900BD4388 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				12B3D4F01DD72E7800BD4388 /* UserDetailModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		1E72319BE1B6AF20258DBE13 /* Frameworks */ = {
@@ -538,12 +577,15 @@
 				84741DF41DD4499B006ECD6D /* ImageDetailTableViewItemBody.swift in Sources */,
 				84741DE11DD1CFA4006ECD6D /* NetworkError.swift in Sources */,
 				1298EDE81DAE983700F8B4BD /* BaseViewController.swift in Sources */,
+				12B3D4F51DD72FB500BD4388 /* UserDetailCollectionView.swift in Sources */,
 				123DD11C1DCF1FCD0071C35B /* BaseCollectionView.swift in Sources */,
 				84741DE01DD1CFA4006ECD6D /* NetworkEnum.swift in Sources */,
 				84741DE31DD1CFA4006ECD6D /* NetworkURL.swift in Sources */,
+				12B3D4EF1DD72E0700BD4388 /* UserDetailController.swift in Sources */,
 				84741D981DD095EB006ECD6D /* MainCollectinViewItem.swift in Sources */,
 				122429CD1DB3D00A00C8EE29 /* NSURL+.swift in Sources */,
 				84741DEC1DD42F4F006ECD6D /* ImageDetailController.swift in Sources */,
+				12B3D4F11DD72E7800BD4388 /* UserDetailModel.swift in Sources */,
 				1220F9E71DCB9F5F004379AD /* Tag.swift in Sources */,
 				123DD1181DCDCA690071C35B /* MainHeadView.swift in Sources */,
 				122429DE1DB3DCF700C8EE29 /* UIViewController+.swift in Sources */,
@@ -558,6 +600,7 @@
 				1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */,
 				12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */,
 				1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */,
+				12B3D4F31DD72FA900BD4388 /* UserDetailHeadView.swift in Sources */,
 				84741DF01DD44923006ECD6D /* ImageDetailTableView.swift in Sources */,
 				84741DE51DD2D727006ECD6D /* NetworkExtension.swift in Sources */,
 				1298EDEE1DAE984400F8B4BD /* Define.swift in Sources */,
@@ -565,6 +608,7 @@
 				128FAA771DD4DC72005A914A /* Date+.swift in Sources */,
 				122429D51DB3D79300C8EE29 /* CGSize+.swift in Sources */,
 				122429D11DB3D46A00C8EE29 /* UIImage+.swift in Sources */,
+				12B3D4F71DD72FC100BD4388 /* UserDetailCollectionViewItem.swift in Sources */,
 				122429D71DB3D8B000C8EE29 /* CGFloat+.swift in Sources */,
 				1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */,
 				84741DE71DD41C99006ECD6D /* Operator+.swift in Sources */,

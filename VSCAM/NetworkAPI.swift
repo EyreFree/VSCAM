@@ -60,6 +60,18 @@ class NetworkAPI {
         return ("数据异常", nil)
     }
 
+    //拼 JSON 数组
+    func arrayToString(array: [AnyObject], brackets: Bool = true) -> String {
+        var result = ""
+        for (index, data) in array.enumerated() {
+            if 0 != index {
+                result += ","
+            }
+            result += "\(data)"
+        }
+        return brackets ? "[" + result + "]" : result
+    }
+
     //打印 Data 内容
     func printData(_ data: Data?) {
         if let tryData = data {
@@ -74,7 +86,7 @@ class NetworkAPI {
     //n:20          //数量 默认:30
     //s:1300000000  //时间戳 默认:最新 筛选这个时间之前
     //u:6           //用户id 默认:不存在 按照用户 id 筛选
-    func imageList(n: Int = 30, s: Int64? = nil, u: Int? = nil, finish: @escaping (ImageListObject?, String?) -> Void) {
+    func imageList(n: Int = Define.pageCount, s: Int64? = nil, u: Int? = nil, finish: @escaping (ImageListObject?, String?) -> Void) {
         var parameters: [String : Any] = ["n": n]
         if let tryS = s {
             parameters.updateValue(tryS, forKey: "s")
@@ -88,7 +100,30 @@ class NetworkAPI {
             if let tryErrorString = result.0 {
                 finish(nil, tryErrorString)
             } else if let tryObject = ImageListObject(result.1) {
-                finish(tryObject, result.0)
+                finish(tryObject, nil)
+            } else {
+                finish(nil, "数据格式错误")
+            }
+        }
+    }
+
+    //获取个人信息
+    //根据 uid 获取用户信息
+    func userInfoList(uids: [Int], finish: @escaping ([UserInfoObject]?, String?) -> Void) {
+        let uidsString = arrayToString(array: uids as [AnyObject], brackets: false)
+        manager.request(baseUrl + NetworkURL.userInfoList + uidsString, method: HTTPMethod.get).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            if let tryErrorString = result.0 {
+                finish(nil, tryErrorString)
+            } else if let tryList = result.1 as? NSArray {
+                var objectList = [UserInfoObject]()
+                for userData in tryList {
+                    if let tryObject = UserInfoObject(userData) {
+                        objectList.append(tryObject)
+                    }
+                }
+                finish(objectList, nil)
             } else {
                 finish(nil, "数据格式错误")
             }

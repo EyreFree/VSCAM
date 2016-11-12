@@ -13,6 +13,9 @@ class NetworkURL {
     static let imageList = "?a=h"
     //图片详细页
     static let imageDetail = "?a=p"
+    //获取个人信息
+    static let userInfoList = "?a=u&uid="
+
     //预览图微博基地址
     static let imageWBSmall = "http://ww2.sinaimg.cn/bmiddle/"
     //完整图微博基地址
@@ -24,7 +27,12 @@ class NetworkURL {
     //地图图片
     static let imageMap = "http://vscam.co/x/maps/{gps}%7C11%7C800*300.png"
     //Web详情页地址
-    static let webImageDetail = "http://vscam.co/#!g/{pid}"
+    static let imageDetailPage = "http://vscam.co/#!g/{pid}"
+    //头像
+    static let avatarSmall = "http://vscam.co/avatar/s/{avatar}.jpg"
+    static let avatarBig = "http://vscam.co/avatar/b/{avatar}.jpg"
+    //个人页面地址
+    static let userDetailPage = "http://vscam.co/#!u/{name}"
 
     //MARK:- 其他
     //AppStore

@@ -3,7 +3,7 @@
 import UIKit
 import MJRefresh
 
-class ImageDetailController: UIViewController {
+class ImageDetailController: BaseViewController {
 
     var tableView: ImageDetailTableView!
     var model: ImageDetailModel!
@@ -12,11 +12,10 @@ class ImageDetailController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(pid: Int, imageBrief: PhotoObject? = nil) {
+    init(imageBrief: PhotoObject? = nil) {
         super.init(nibName: nil, bundle: nil)
 
         addModel()
-        model?.pid = pid
         model?.imageBrief = imageBrief
     }
 
@@ -53,13 +52,12 @@ class ImageDetailController: UIViewController {
             }
         }
 
-        //右侧按钮
         if let _ = self.view.viewWithTag(Tag.make(5)) as? UIImageView {
 
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_更多")
+            view.image = UIImage(named: "按钮_更多_白")
             view.tag = Tag.make(5)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
@@ -218,8 +216,16 @@ class ImageDetailController: UIViewController {
     func shareClicked() {
         if let tryPID = (model.imageBrief?.pid ?? model.imageDetail?.pid),
             let tryTitle = (model.imageBrief?.text ?? model.imageDetail?.text) {
-            let webUrl = NetworkURL.webImageDetail.replace(string: "{pid}", with: "\(tryPID)")
+            let webUrl = NetworkURL.imageDetailPage.replace(string: "{pid}", with: "\(tryPID)")
             Function.openShareView(controller: self, title: "[VSCAM]\(tryTitle)", url: webUrl)
+        }
+    }
+
+    func userClicked() {
+        if let tryUser = model?.imageBrief?.user ?? model?.imageDetail?.user {
+            MainNavigationController.sharedInstance.pushViewController(
+                UserDetailController(userData: tryUser), animated: true
+            )
         }
     }
 }
