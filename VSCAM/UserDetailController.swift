@@ -208,6 +208,20 @@ class UserDetailController: BaseViewController {
 
         if let headView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
             headView.alpha = alpha
+
+            var topMargin = -finalOffset
+            if topMargin > 0 {
+                topMargin = 0
+            } else if topMargin < -marginHead {
+                topMargin = -marginHead
+            }
+            headView.snp.removeConstraints()
+            headView.snp.makeConstraints {
+                (make) -> Void in
+                make.top.equalTo(topMargin)
+                make.left.right.equalTo(0)
+                make.height.equalTo(marginHead)
+            }
         }
 
         if let view = self.view.viewWithTag(Tag.make(4)) as? UIImageView {
