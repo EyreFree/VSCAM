@@ -71,7 +71,7 @@ class ImageDetailController: BaseViewController {
             }
         }
 
-        //addCollectionView
+        //addTableView
         if let _ = self.view.viewWithTag(Tag.make(1)) as? ImageDetailTableView {
 
         } else {

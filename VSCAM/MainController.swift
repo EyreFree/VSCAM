@@ -138,5 +138,9 @@ class MainController: BaseViewController {
             )
         }
     }
+
+    func avatarClicked() {
+        MainNavigationController.sharedInstance.pushViewController(LoginRegisteController(), animated: true)
+    }
 }
 

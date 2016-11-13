@@ -2,7 +2,7 @@
 
 import Foundation
 
-class LoginModel {
+class LoginRegisteModel {
 
     
 }

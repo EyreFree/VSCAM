@@ -74,6 +74,10 @@ class MainHeadView: UIView {
         } else {
             let view = UIView()
             view.tag = Tag.make(3)
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(
+                UITapGestureRecognizer(target: parentViewController, action: Selector(("avatarClicked")))
+            )
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -93,6 +97,7 @@ class MainHeadView: UIView {
                 view.layer.cornerRadius = 20
                 view.contentMode = .scaleAspectFit
                 view.image = UIImage.placeholderUser
+                view.isUserInteractionEnabled = false
                 view.tag = Tag.make(4)
                 tryAvatarBackView.addSubview(view)
                 view.snp.makeConstraints {

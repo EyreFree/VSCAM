@@ -72,9 +72,15 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>此 App 需要您的同意才能打开摄像头</string>
+	<string>VSCAM 需要您的同意才能打开摄像头</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>此 App 需要您的同意才能读取媒体资料库</string>
+	<string>VSCAM 需要您的同意才能打开相册</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>VSCAM 需要您的同意才能打开麦克风</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>VSCAM 需要您的同意才能使用语音识别</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>VSCAM 需要您的同意才能读取媒体资料库</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
