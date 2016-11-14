@@ -96,12 +96,36 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     func switchClicked(title: String) {
         switch title {
         case "加入":
+            tableViewRegiste.alpha = 0
             tableViewRegiste.isHidden = false
-            tableViewLogin.isHidden = true
+            UIView.animate(withDuration: 0.38, animations: {
+                [weak self] in
+                if let trySelf = self {
+                    trySelf.tableViewRegiste.alpha = 1
+                    trySelf.tableViewLogin.alpha = 0
+                }
+            }) {
+                [weak self] (_) in
+                if let trySelf = self {
+                    trySelf.tableViewLogin.isHidden = true
+                }
+            }
             break
         case "登录":
+            tableViewLogin.alpha = 0
             tableViewLogin.isHidden = false
-            tableViewRegiste.isHidden = true
+            UIView.animate(withDuration: 0.38, animations: {
+                [weak self] in
+                if let trySelf = self {
+                    trySelf.tableViewLogin.alpha = 1
+                    trySelf.tableViewRegiste.alpha = 0
+                }
+            }) {
+                [weak self] (_) in
+                if let trySelf = self {
+                    trySelf.tableViewRegiste.isHidden = true
+                }
+            }
             break
         default:
             break
@@ -116,9 +140,17 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //键盘关闭
-        print("键盘关闭")
-        textField.resignFirstResponder()
+        //键盘提交
+        print("键盘提交")
+        if textField.tag == Tag.make(5) {
+            (textField.superview?.superview?.viewWithTag(Tag.make(7)) as? UITextField)?.becomeFirstResponder()
+        } else if textField.tag == Tag.make(15) {
+            (textField.superview?.superview?.viewWithTag(Tag.make(17)) as? UITextField)?.becomeFirstResponder()
+        } else if textField.tag == Tag.make(17) {
+            (textField.superview?.superview?.viewWithTag(Tag.make(19)) as? UITextField)?.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
         return true
     }
 

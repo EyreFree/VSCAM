@@ -61,6 +61,7 @@
 		84741DF61DD449A4006ECD6D /* ImageDetailTableViewItemFoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DF51DD449A4006ECD6D /* ImageDetailTableViewItemFoot.swift */; };
 		84741DF81DD44BCA006ECD6D /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DF71DD44BCA006ECD6D /* BaseTableView.swift */; };
 		84741DFA1DD44BD8006ECD6D /* BaseTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DF91DD44BD8006ECD6D /* BaseTableViewItem.swift */; };
+		848286E71DD9934100337721 /* RegisteTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848286E61DD9934100337721 /* RegisteTableViewItem.swift */; };
 		8488D43D1DAA46FD000E703C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488D43C1DAA46FD000E703C /* AppDelegate.swift */; };
 		8488D43F1DAA46FD000E703C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488D43E1DAA46FD000E703C /* MainController.swift */; };
 		8488D4421DAA46FD000E703C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8488D4401DAA46FD000E703C /* Main.storyboard */; };
@@ -128,6 +129,7 @@
 		84741DF51DD449A4006ECD6D /* ImageDetailTableViewItemFoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailTableViewItemFoot.swift; sourceTree = "<group>"; };
 		84741DF71DD44BCA006ECD6D /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		84741DF91DD44BD8006ECD6D /* BaseTableViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewItem.swift; sourceTree = "<group>"; };
+		848286E61DD9934100337721 /* RegisteTableViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteTableViewItem.swift; sourceTree = "<group>"; };
 		8488D4391DAA46FD000E703C /* VSCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8488D43C1DAA46FD000E703C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8488D43E1DAA46FD000E703C /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				12B3D4FF1DD8974000BD4388 /* LoginTableView.swift */,
 				12B3D5031DD8A44400BD4388 /* LoginTableViewItem.swift */,
 				12B3D5011DD89D0A00BD4388 /* RegisteTableView.swift */,
+				848286E61DD9934100337721 /* RegisteTableViewItem.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				84741DF01DD44923006ECD6D /* ImageDetailTableView.swift in Sources */,
 				84741DE51DD2D727006ECD6D /* NetworkExtension.swift in Sources */,
 				1298EDEE1DAE984400F8B4BD /* Define.swift in Sources */,
+				848286E71DD9934100337721 /* RegisteTableViewItem.swift in Sources */,
 				122429DB1DB3D95E00C8EE29 /* String+.swift in Sources */,
 				128FAA771DD4DC72005A914A /* Date+.swift in Sources */,
 				122429D51DB3D79300C8EE29 /* CGSize+.swift in Sources */,
