@@ -15,6 +15,28 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
         addModel()
         addControls()
+
+        //
+        addKeyboardObserver()
+    }
+
+    deinit {
+        //移除观察者
+        removeKeyboardObserver()
+    }
+
+    func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(LoginRegisteController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(LoginRegisteController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil
+        )
+    }
+
+    func removeKeyboardObserver() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     func addModel() {
@@ -74,6 +96,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     }
 
     func backClicked() {
+        Function.HideKeyboard()
         MainNavigationController.sharedInstance.popViewController(animated: true)
     }
 
@@ -94,6 +117,8 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     }
 
     func switchClicked(title: String) {
+        Function.HideKeyboard()
+
         switch title {
         case "加入":
             tableViewRegiste.alpha = 0
@@ -132,10 +157,73 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
     }
 
+    func editFrameClicked(recognizer: UIGestureRecognizer) {
+        print("editFrameClicked")
+
+        if let tryTag = recognizer.view?.tag {
+            switch tryTag {
+            case Tag.make(4), Tag.make(6):
+                (recognizer.view?.viewWithTag(tryTag + 1) as? UITextField)?.becomeFirstResponder()
+                break
+            case Tag.make(14), Tag.make(16), Tag.make(18):
+                (recognizer.view?.viewWithTag(tryTag + 1) as? UITextField)?.becomeFirstResponder()
+                break
+            default:
+                break
+            }
+        }
+    }
+
+    //键盘出现
+    @objc func keyboardWillShow(notification: NSNotification) {
+        print("keyboardWillShow")
+
+        if let userInfo = notification.userInfo {
+            if let tryHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+                self.tableViewLogin.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
+                self.tableViewRegiste.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
+
+                //找到当前焦点编辑框并且滚到那里去
+                let cellLogin = self.tableViewLogin.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
+                let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
+
+                print("tryHeight: \(tryHeight)")
+
+                let visibleHeight = CGSize.screen().height - tryHeight
+
+                print("visibleHeight: \(visibleHeight)")
+
+                if (cellLogin?.viewWithTag(Tag.make(5)) as? UITextField)?.isFirstResponder == true {
+                    self.tableViewLogin.setContentOffset(CGPoint(x: 0, y: max(216 - (visibleHeight - 39) / 2, 0)))
+                } else if (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.isFirstResponder == true {
+                    self.tableViewLogin.setContentOffset(CGPoint(x: 0, y: max(269 - (visibleHeight - 39) / 2, 0)))
+                } else if (cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField)?.isFirstResponder == true {
+                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(194 - (visibleHeight - 39) / 2, 0)))
+                } else if (cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField)?.isFirstResponder == true {
+                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(247 - (visibleHeight - 39) / 2, 0)))
+                } else if (cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField)?.isFirstResponder == true {
+                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(300 - (visibleHeight - 39) / 2, 0)))
+                }
+            }
+        }
+    }
+
+    //键盘消失
+    @objc func keyboardWillHide(notification: NSNotification) {
+        print("keyboardWillHide")
+
+        self.tableViewLogin.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.tableViewRegiste.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
     //MARK:- UITextFieldDelegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         //获得焦点
         print("获得焦点")
+
+        textField.superview?.layer.borderWidth = 1
+        textField.superview?.layer.borderColor = UIColor(valueRGB: 0xA6A547).cgColor
+
         return true
     }
 
@@ -153,10 +241,14 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
         return true
     }
-
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         //失去焦点
         print("失去焦点")
+        
+        textField.superview?.layer.borderWidth = 0
+        textField.superview?.layer.borderColor = UIColor.clear.cgColor
+        
         return true
     }
 }

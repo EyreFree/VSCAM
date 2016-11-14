@@ -44,6 +44,9 @@ class RegisteTableViewItem: BaseTableViewItem {
             let imgView = UIView()
             imgView.tag = Tag.make(14)
             imgView.backgroundColor = UIColor(valueRGB: 0xEEEEEE)
+            imgView.addGestureRecognizer(
+                UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.editFrameClicked(recognizer:)))
+            )
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
@@ -96,6 +99,9 @@ class RegisteTableViewItem: BaseTableViewItem {
             let imgView = UIView()
             imgView.tag = Tag.make(16)
             imgView.backgroundColor = UIColor(valueRGB: 0xEEEEEE)
+            imgView.addGestureRecognizer(
+                UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.editFrameClicked(recognizer:)))
+            )
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
@@ -148,6 +154,9 @@ class RegisteTableViewItem: BaseTableViewItem {
             let imgView = UIView()
             imgView.tag = Tag.make(18)
             imgView.backgroundColor = UIColor(valueRGB: 0xEEEEEE)
+            imgView.addGestureRecognizer(
+                UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.editFrameClicked(recognizer:)))
+            )
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
