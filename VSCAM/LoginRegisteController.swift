@@ -158,8 +158,6 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     }
 
     func editFrameClicked(recognizer: UIGestureRecognizer) {
-        print("editFrameClicked")
-
         if let tryTag = recognizer.view?.tag {
             switch tryTag {
             case Tag.make(4), Tag.make(6):
@@ -176,8 +174,6 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     //键盘出现
     @objc func keyboardWillShow(notification: NSNotification) {
-        print("keyboardWillShow")
-
         if let userInfo = notification.userInfo {
             if let tryHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
                 self.tableViewLogin.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
@@ -187,12 +183,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 let cellLogin = self.tableViewLogin.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
                 let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
 
-                print("tryHeight: \(tryHeight)")
-
                 let visibleHeight = CGSize.screen().height - tryHeight
-
-                print("visibleHeight: \(visibleHeight)")
-
                 if (cellLogin?.viewWithTag(Tag.make(5)) as? UITextField)?.isFirstResponder == true {
                     self.tableViewLogin.setContentOffset(CGPoint(x: 0, y: max(216 - (visibleHeight - 39) / 2, 0)))
                 } else if (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.isFirstResponder == true {
@@ -210,8 +201,6 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     //键盘消失
     @objc func keyboardWillHide(notification: NSNotification) {
-        print("keyboardWillHide")
-
         self.tableViewLogin.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.tableViewRegiste.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
@@ -219,17 +208,13 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     //MARK:- UITextFieldDelegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         //获得焦点
-        print("获得焦点")
-
         textField.superview?.layer.borderWidth = 1
         textField.superview?.layer.borderColor = UIColor(valueRGB: 0xA6A547).cgColor
-
         return true
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //键盘提交
-        print("键盘提交")
         if textField.tag == Tag.make(5) {
             (textField.superview?.superview?.viewWithTag(Tag.make(7)) as? UITextField)?.becomeFirstResponder()
         } else if textField.tag == Tag.make(15) {
@@ -241,14 +226,11 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
         return true
     }
-    
+
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         //失去焦点
-        print("失去焦点")
-        
         textField.superview?.layer.borderWidth = 0
         textField.superview?.layer.borderColor = UIColor.clear.cgColor
-        
         return true
     }
 }
