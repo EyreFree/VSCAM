@@ -8,5 +8,5 @@ class Variable {
     static var versionLocal: String? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 
     //登录信息
-    //static var localUser:
+    static var user: UserInfoObject?
 }

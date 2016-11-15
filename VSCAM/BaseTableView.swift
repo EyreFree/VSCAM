@@ -64,5 +64,10 @@ class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return items[section].footer(tableView: tableView)
     }
+
+    //Extern
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        Function.HideKeyboard()
+    }
 }
 
