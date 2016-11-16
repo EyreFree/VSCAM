@@ -66,11 +66,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>VSCAM 需要您的同意才能打开摄像头</string>
 	<key>NSPhotoLibraryUsageDescription</key>

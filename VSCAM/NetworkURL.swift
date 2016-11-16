@@ -6,7 +6,7 @@ import UIKit
 class NetworkURL {
 
     //MARK:- 基地址
-    static let baseUrl = "http://vscam.co/x/"
+    static let baseUrl = "https://vscam.co/x/"
 
     //MARK:- 接口地址
     //图片列表 - 首页 or 用户页
@@ -17,22 +17,22 @@ class NetworkURL {
     static let userInfoList = "?a=u&uid="
 
     //预览图微博基地址
-    static let imageWBSmall = "http://ww2.sinaimg.cn/bmiddle/"
+    static let imageWBSmall = "https://ws2.sinaimg.cn/bmiddle/"
     //完整图微博基地址
-    static let imageWBBig = "http://ww2.sinaimg.cn/large/"
+    static let imageWBBig = "https://ws2.sinaimg.cn/large/"
     //备份预览图
-    static let imageOriginSmall = "http://vscam.co/img/s/{origin}.jpg"
+    static let imageOriginSmall = "https://vscam.co/img/s/{origin}.jpg"
     //备份完整图
-    static let imageOriginBig = "http://vscam.co/img/m/{origin}.jpg"
+    static let imageOriginBig = "https://vscam.co/img/m/{origin}.jpg"
     //地图图片
-    static let imageMap = "http://vscam.co/x/maps/{gps}%7C11%7C800*300.png"
+    static let imageMap = "https://vscam.co/x/maps/{gps}%7C11%7C800*300.png"
     //Web详情页地址
-    static let imageDetailPage = "http://vscam.co/#!g/{pid}"
+    static let imageDetailPage = "https://vscam.co/#!g/{pid}"
     //头像
-    static let avatarSmall = "http://vscam.co/avatar/s/{avatar}.jpg"
-    static let avatarBig = "http://vscam.co/avatar/b/{avatar}.jpg"
+    static let avatarSmall = "https://vscam.co/avatar/s/{avatar}.jpg"
+    static let avatarBig = "https://vscam.co/avatar/b/{avatar}.jpg"
     //个人页面地址
-    static let userDetailPage = "http://vscam.co/#!u/{name}"
+    static let userDetailPage = "https://vscam.co/#!u/{name}"
 
     //MARK:- 其他
     //AppStore
