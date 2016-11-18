@@ -393,6 +393,18 @@ class UserInfoObject {
     var des: String?    //简介
     var url: String?    //网站
 
+    init?(uid: Int?, name: String?, avatar: Int?, des: String?, url: String?) {
+        if let tryUid = uid, let tryName = name, let tryAvatar = avatar, let tryDes = des, let tryUrl = url {
+            self.uid = tryUid
+            self.name = tryName
+            self.avatar = tryAvatar
+            self.des = tryDes
+            self.url = tryUrl
+        } else {
+            return nil
+        }
+    }
+
     init?(_ dict: Any?) {
         if let tryDict = dict as? NSDictionary {
             uid = Int.fromJson(tryDict.value(forKey: "uid"))

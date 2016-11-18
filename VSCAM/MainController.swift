@@ -23,6 +23,13 @@ class MainController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        //如果需要，刷新登录用户信息
+        if Variable.loginNeedRefreshMain == true {
+            Variable.loginNeedRefreshMain = false
+
+            refreshUserInfo()
+        }
+
         Function.setStatusBar(hidden: false)
     }
 
@@ -128,6 +135,34 @@ class MainController: BaseViewController {
             //customFooter?.setTitle("No more data", for: MJRefreshState.noMoreData)
             customFooter?.stateLabel.isHidden = true
             view.mj_footer = customFooter
+        }
+    }
+
+    func refreshUserInfo() {
+        NetworkAPI.sharedInstance.userInfoList() {
+            [weak self] (userInfoList, errorString) in
+            if let trySelf = self {
+                if let tryErrorString = errorString {
+                    print("用户信息加载失败: \(tryErrorString)")
+                    if "尚未登录" == tryErrorString {
+                        Variable.loginUserInfo = nil
+                    }
+                } else if let tryUserInfoList = userInfoList {
+                    if tryUserInfoList.count > 0 {
+                        Variable.loginUserInfo = tryUserInfoList[0]
+
+                        if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
+                            var avatarUrlString: String?
+                            if let tryAvatar = Variable.loginUserInfo?.uid {
+                                avatarUrlString = NetworkURL.avatarSmall.replace(string: "{avatar}", with: "\(tryAvatar)")
+                            }
+                            if let tryUrlString = avatarUrlString {
+                                headView.setAvatar(url: tryUrlString)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

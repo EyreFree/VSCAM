@@ -33,6 +33,10 @@ class NetworkURL {
     static let avatarBig = "https://vscam.co/avatar/b/{avatar}.jpg"
     //个人页面地址
     static let userDetailPage = "https://vscam.co/#!u/{name}"
+    //登录 POST id:qwe@vscam.co password:wsph123
+    static let login = "http://vscam.co/x/?a=u"
+    //注册 POST name:qwe mail:qwe@vscam.co password:wsph123
+    static let registe = "http://vscam.co/x/?a=u"
 
     //MARK:- 其他
     //AppStore

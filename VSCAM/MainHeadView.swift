@@ -105,6 +105,13 @@ class MainHeadView: UIView {
                     make.center.equalTo(tryAvatarBackView)
                     make.width.height.equalTo(40)
                 }
+                var avatarUrlString: String?
+                if let tryAvatar = Variable.loginUserInfo?.uid {
+                    avatarUrlString = NetworkURL.avatarSmall.replace(string: "{avatar}", with: "\(tryAvatar)")
+                }
+                if let tryUrlString = avatarUrlString {
+                    view.setImageWithURLString(UrlString: tryUrlString, placeholder: UIImage.placeholderUser)
+                }
             }
         }
 

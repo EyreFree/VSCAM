@@ -109,9 +109,13 @@ class NetworkAPI {
 
     //获取个人信息
     //根据 uid 获取用户信息
-    func userInfoList(uids: [Int], finish: @escaping ([UserInfoObject]?, String?) -> Void) {
+    func userInfoList(uids: [Int] = [Int](), finish: @escaping ([UserInfoObject]?, String?) -> Void) {
         let uidsString = arrayToString(array: uids as [AnyObject], brackets: false)
-        manager.request(baseUrl + NetworkURL.userInfoList + uidsString, method: HTTPMethod.get).response {
+        var url = baseUrl + NetworkURL.userInfoList + uidsString
+        if uidsString.isEmpty == true {
+            url = url.replace(string: "&uid=", with: "")
+        }
+        manager.request(url, method: HTTPMethod.get).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             if let tryErrorString = result.0 {
@@ -127,6 +131,27 @@ class NetworkAPI {
             } else {
                 finish(nil, "数据格式错误")
             }
+        }
+    }
+
+    //登录 POST id:qwe@vscam.co password:wsph123
+    func login(id: String, password: String, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["id": id, "password": password]
+        manager.request(baseUrl + NetworkURL.login, method: HTTPMethod.post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
+
+    //注册 POST name:qwe mail:qwe@vscam.co password:wsph123
+    static let registe = "http://vscam.co/x/?a=u"
+    func registe(name: String, mail: String, password: String, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["name": name, "mail": mail, "password": password]
+        manager.request(baseUrl + NetworkURL.registe, method: HTTPMethod.post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
         }
     }
 }
