@@ -67,33 +67,30 @@ class SettingTableViewItem: BaseTableViewItem {
         }
         var avatarUrlString: String?
         if let tryAvatar = Variable.loginUserInfo?.uid {
-            avatarUrlString = NetworkURL.avatarSmall.replace(string: "{avatar}", with: "\(tryAvatar)")
+            avatarUrlString = NetworkURL.avatarBig.replace(string: "{avatar}", with: "\(tryAvatar)")
         }
         if let tryUrlString = avatarUrlString {
             avatarView?.setImageWithURLString(UrlString: tryUrlString, placeholder: UIImage.placeholderUser)
         }
 
         //换头像
-        if let tryAvatarView = avatarView {
-            if let _ = tryAvatarView.viewWithTag(Tag.make(14)) as? UILabel {
+        if let _ = cell.contentView.viewWithTag(Tag.make(14)) as? UIButton {
 
-            } else {
-                let titleView = UILabel()
-                titleView.tag = Tag.make(14)
-                titleView.font = UIFont.boldSystemFont(ofSize: 16)
-                titleView.textColor = UIColor.white
-                titleView.text = "更换"
-                titleView.isUserInteractionEnabled = true
-                titleView.textAlignment = .center
-                tryAvatarView.addSubview(titleView)
-
-                titleView.snp.makeConstraints {
-                    (make) -> Void in
-                    make.left.equalTo(20)
-                    make.right.equalTo(-20)
-                    make.centerY.equalTo(tryAvatarView)
-                    make.height.equalTo(22)
-                }
+        } else {
+            let titleView = UIButton()
+            titleView.tag = Tag.make(14)
+            titleView.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+            titleView.setTitleColor(UIColor.white, for: .normal)
+            titleView.addTarget(
+                tryController, action: #selector(SettingController.changeAvatarClicked), for: .touchUpInside
+            )
+            titleView.setTitle("更换", for: .normal)
+            cell.contentView.addSubview(titleView)
+            titleView.snp.makeConstraints {
+                (make) -> Void in
+                make.width.height.equalTo(100)
+                make.top.equalTo(72)
+                make.centerX.equalTo(cell.contentView)
             }
         }
 
@@ -104,7 +101,7 @@ class SettingTableViewItem: BaseTableViewItem {
         } else {
             let titleView = UILabel()
             titleView.tag = Tag.make(13)
-            titleView.font = UIFont.boldSystemFont(ofSize: 24)
+            titleView.font = UIFont.systemFont(ofSize: 24)
             titleView.textColor = UIColor.black
             titleView.text = name
             titleView.textAlignment = .center
@@ -155,11 +152,11 @@ class SettingTableViewItem: BaseTableViewItem {
                 searchField.bounces = false
                 searchField.backgroundColor = UIColor.clear
                 searchField.showsHorizontalScrollIndicator = false
-                searchField.font = UIFont.systemFont(ofSize: 14)
+                searchField.font = UIFont.systemFont(ofSize: 12)
                 searchField.textColor = UIColor.black
                 searchField.contentInset = UIEdgeInsets.init(top: -6, left: -3, bottom: 6, right: 3)
                 searchField.placeholder = "关于我的一句话自我介绍"
-                searchField.placeholderFont = UIFont.systemFont(ofSize: 14)
+                searchField.placeholderFont = UIFont.systemFont(ofSize: 12)
                 searchField.placeholderColor = UIColor(valueRGB: 0x878787)
                 searchField.delegate = tryController
                 tryEditUserFrameView.addSubview(searchField)
@@ -201,7 +198,7 @@ class SettingTableViewItem: BaseTableViewItem {
 
             } else {
                 let searchField = UITextField(frame: CGRect.zero)
-                searchField.font = UIFont.systemFont(ofSize: 14)
+                searchField.font = UIFont.systemFont(ofSize: 12)
                 searchField.textColor = UIColor.black
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
@@ -214,7 +211,7 @@ class SettingTableViewItem: BaseTableViewItem {
                     string: "个人博客 or 个人网站", attributes: [
                         NSParagraphStyleAttributeName: centeredParagraphStyle,
                         NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
-                        NSFontAttributeName : UIFont.systemFont(ofSize: 14)
+                        NSFontAttributeName : UIFont.systemFont(ofSize: 12)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -295,7 +292,7 @@ class SettingTableViewItem: BaseTableViewItem {
                     view.tag = Tag.make(11)
                     view.setTitle("删除头像", for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
-                    view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+                    view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("deleteAvatarClicked")), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
@@ -313,7 +310,7 @@ class SettingTableViewItem: BaseTableViewItem {
                     view.tag = Tag.make(12)
                     view.setTitle("退出登录", for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0xD0021B), for: .normal)
-                    view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+                    view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("logoutClicked")), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
@@ -324,10 +321,10 @@ class SettingTableViewItem: BaseTableViewItem {
                 }
             }
         }
-        
+
         return cell
     }
-    
+
     override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
         return CGSize.screen().height
     }

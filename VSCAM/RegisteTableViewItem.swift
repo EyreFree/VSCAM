@@ -271,7 +271,7 @@ class RegisteTableViewItem: BaseTableViewItem {
                     let imgView = UILabel()
                     imgView.tag = Tag.make(23)
                     imgView.text = "　已有账号？"
-                    imgView.font = UIFont.boldSystemFont(ofSize: 13)
+                    imgView.font = UIFont.systemFont(ofSize: 13)
                     imgView.textAlignment = .center
                     imgView.textColor = UIColor(valueRGB: 0x878787)
                     tryBottomFrameInView.addSubview(imgView)

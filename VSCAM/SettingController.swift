@@ -113,6 +113,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     }
 
     func changeAvatarClicked() {
+        Function.HideKeyboard()
         print("修改头像")
     }
 
@@ -147,10 +148,12 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     }
 
     func deleteAvatarClicked() {
+        Function.HideKeyboard()
         print("删除头像")
     }
 
     func logoutClicked() {
+        Function.HideKeyboard()
         print("退出登录")
     }
 

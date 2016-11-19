@@ -60,7 +60,7 @@ class UserDetailHeadView: UIView {
                 avatarViewReal.image = UIImage.placeholderTransparent
                 var avatarUrlString: String?
                 if let tryAvatar = tryModel.userData?.uid {
-                        avatarUrlString = NetworkURL.avatarSmall.replace(string: "{avatar}", with: "\(tryAvatar)")
+                        avatarUrlString = NetworkURL.avatarBig.replace(string: "{avatar}", with: "\(tryAvatar)")
                 }
                 if let tryUrlString = avatarUrlString {
                     avatarViewReal.setImageWithURLString(UrlString: tryUrlString)
