@@ -103,18 +103,26 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     func loginClicked() {
         Function.HideKeyboard()
         let cellLogin = self.tableViewLogin.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryID = (cellLogin?.viewWithTag(Tag.make(5)) as? UITextField)?.text,
-            let tryPWD = (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.text {
+        if let tryID = (cellLogin?.viewWithTag(Tag.make(5)) as? UITextField)?.text?.clean(),
+            let tryPWD = (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
 
-            if false == tryID.conform(regex: "/(^\\w+((-\\w+)|(\\.\\w+))*\\@[\\w]+((\\.|-)[\\w]+)*\\.[\\w]+$|^[\\x{0800}-\\x{9fa5}\\w_]{2,12}$)/iu") {
+            if tryID.isEmpty == true {
+                Function.MessageBox(self, title: "提示", content: "用户名不能为空")
+                return
+            }
+            if tryPWD.isEmpty == true {
+                Function.MessageBox(self, title: "提示", content: "密码不能为空")
+                return
+            }
+            /*if false == tryID.conform(regex: "/(^\\w+((-\\w+)|(\\.\\w+))*\\@[\\w]+((\\.|-)[\\w]+)*\\.[\\w]+$|^[\\x{0800}-\\x{9fa5}\\w_]{2,12}$)/iu") {
                 Function.MessageBox(self, title: "提示", content: "用户名格式错误")
                 return
-            }
-            if false == tryPWD.conform(regex: "/^.{5,}$/") {
+            }*/
+            /*if false == tryPWD.conform(regex: "/^.{5,}$/") {
                 Function.MessageBox(self, title: "提示", content: "密码格式错误")
                 return
-            }
-
+            }*/
+            Variable.lastLoginUser = tryID
             NetworkAPI.sharedInstance.login(id: tryID, password: tryPWD) {
                 [weak self] (errorString) in
                 if let trySelf = self {
@@ -122,7 +130,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                         Function.MessageBox(trySelf, title: "登录失败", content: tryErrorString)
                     } else {
                         Variable.loginNeedRefreshMain = true
-                        trySelf.navigationController?.popViewController(animated: true)
+                        MainNavigationController.sharedInstance.popViewController(animated: true)
                     }
                 }
             }
@@ -132,22 +140,34 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     func registeClicked() {
         Function.HideKeyboard()
         let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryName = (cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField)?.text,
-            let tryEmail = (cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField)?.text,
-            let tryPWD = (cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField)?.text {
+        if let tryName = (cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField)?.text?.clean(),
+            let tryEmail = (cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField)?.text?.clean(),
+            let tryPWD = (cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField)?.text?.clean() {
 
-            if false == tryName.conform(regex: "/^[\\x{0800}-\\x{9fa5}\\w_]{2,20}$/iu") {
-                Function.MessageBox(self, title: "提示", content: "昵称格式错误")
+            if tryName.isEmpty == true {
+                Function.MessageBox(self, title: "提示", content: "昵称不能为空")
                 return
             }
+            if tryEmail.isEmpty == true {
+                Function.MessageBox(self, title: "提示", content: "邮箱不能为空")
+                return
+            }
+            if tryPWD.isEmpty == true {
+                Function.MessageBox(self, title: "提示", content: "密码不能为空")
+                return
+            }
+            /*if false == tryName.conform(regex: "/^[\\x{0800}-\\x{9fa5}\\w_]{2,20}$/iu") {
+                Function.MessageBox(self, title: "提示", content: "昵称格式错误")
+                return
+            }*/
             if false == tryEmail.conform(regex: "/^[\\w-_\\.]+@([0-9a-z-]+\\.)+[a-z]{2,}$/i") {
                 Function.MessageBox(self, title: "提示", content: "邮箱格式错误")
                 return
             }
-            if false == tryPWD.conform(regex: "/^.{5,}$/") {
+            /*if false == tryPWD.conform(regex: "/^.{5,}$/") {
                 Function.MessageBox(self, title: "提示", content: "密码格式错误")
                 return
-            }
+            }*/
 
             NetworkAPI.sharedInstance.registe(name: tryName, mail: tryEmail, password: tryPWD) {
                 [weak self] (errorString) in
@@ -156,7 +176,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                         Function.MessageBox(trySelf, title: "注册失败", content: tryErrorString)
                     } else {
                         Variable.loginNeedRefreshMain = true
-                        trySelf.navigationController?.popViewController(animated: true)
+                        MainNavigationController.sharedInstance.popViewController(animated: true)
                     }
                 }
             }

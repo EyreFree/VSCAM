@@ -23,7 +23,7 @@ class MainHeadView: UIView {
         addControls()
     }
 
-    func setAvatar(url: String) {
+    func setAvatar(url: String?) {
         if let tryAvatarBackView = self.viewWithTag(Tag.make(3)) {
             //头像
             var viewReal: UIImageView?
@@ -44,7 +44,11 @@ class MainHeadView: UIView {
                 }
                 viewReal = view
             }
-            viewReal?.setImageWithURLString(UrlString: url, placeholder: UIImage.placeholderUser)
+            if let tryUrl = url {
+                viewReal?.setImageWithURLString(UrlString: url, placeholder: UIImage.placeholderUser)
+            } else {
+                viewReal?.image = UIImage.placeholderUser
+            }
         }
     }
 

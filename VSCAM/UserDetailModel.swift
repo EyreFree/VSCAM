@@ -21,5 +21,8 @@ class UserDetailModel {
         }
 
         isSelf = false
+        if let tryUID = userData?.uid ?? userDetailData?.uid {
+            isSelf = Variable.loginUserInfo?.uid == tryUID
+        }
     }
 }

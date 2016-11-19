@@ -15,6 +15,10 @@ class NetworkURL {
     static let imageDetail = "?a=p"
     //获取个人信息
     static let userInfoList = "?a=u&uid="
+    //登录
+    static let login = "?a=u"
+    //注册
+    static let registe = "?a=u"
 
     //预览图微博基地址
     static let imageWBSmall = "https://ws2.sinaimg.cn/bmiddle/"
@@ -33,10 +37,6 @@ class NetworkURL {
     static let avatarBig = "https://vscam.co/avatar/b/{avatar}.jpg"
     //个人页面地址
     static let userDetailPage = "https://vscam.co/#!u/{name}"
-    //登录 POST id:qwe@vscam.co password:wsph123
-    static let login = "http://vscam.co/x/?a=u"
-    //注册 POST name:qwe mail:qwe@vscam.co password:wsph123
-    static let registe = "http://vscam.co/x/?a=u"
 
     //MARK:- 其他
     //AppStore

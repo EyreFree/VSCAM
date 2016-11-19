@@ -11,22 +11,29 @@ class NetworkAPI {
     // MARK:- 基地址
     let baseUrl = NetworkURL.baseUrl
 
-    private var manager: SessionManager!            //普通的
+    var manager: SessionManager!            //普通的
     private var managerUnlimited: SessionManager!   //长时间的
     init() {
-        var customHeader = SessionManager.defaultHTTPHeaders
-        customHeader.updateValue("1200", forKey: "TT-Type")
-
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = customHeader
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.timeoutIntervalForRequest = 2 * 60    //2分钟
+        if let tryCookies = NetworkCache.cookies {
+            for cookie in tryCookies {
+                configuration.httpCookieStorage?.setCookie(cookie)
+            }
+        }
         manager = SessionManager(configuration: configuration)
 
         let configurationUnlimited = URLSessionConfiguration.default
-        configurationUnlimited.httpAdditionalHeaders = customHeader
+        configurationUnlimited.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         configurationUnlimited.requestCachePolicy = .reloadIgnoringLocalCacheData
         configurationUnlimited.timeoutIntervalForRequest = 20 * 60 //20 分钟
+        if let tryCookies = NetworkCache.cookies {
+            for cookie in tryCookies {
+                configurationUnlimited.httpCookieStorage?.setCookie(cookie)
+            }
+        }
         managerUnlimited = SessionManager(configuration: configurationUnlimited)
     }
 
@@ -44,6 +51,7 @@ class NetworkAPI {
 
     //分析返回结果
     func resultAnalysis(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> (String?, AnyObject?) {
+        NetworkCache.saveCookies()
         if let errorString = self.checkError(response, error: error) {
             return (errorString, nil)
         } else {
@@ -109,14 +117,11 @@ class NetworkAPI {
 
     //获取个人信息
     //根据 uid 获取用户信息
-    func userInfoList(uids: [Int] = [Int](), finish: @escaping ([UserInfoObject]?, String?) -> Void) {
+    func userInfoList(uids: [Int], finish: @escaping ([UserInfoObject]?, String?) -> Void) {
         let uidsString = arrayToString(array: uids as [AnyObject], brackets: false)
-        var url = baseUrl + NetworkURL.userInfoList + uidsString
-        if uidsString.isEmpty == true {
-            url = url.replace(string: "&uid=", with: "")
-        }
-        manager.request(url, method: HTTPMethod.get).response {
+        manager.request(baseUrl + NetworkURL.userInfoList + uidsString, method: HTTPMethod.get).response {
             (response) in
+            self.printData(response.data)
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             if let tryErrorString = result.0 {
                 finish(nil, tryErrorString)
@@ -134,7 +139,22 @@ class NetworkAPI {
         }
     }
 
-    //登录 POST id:qwe@vscam.co password:wsph123
+    //获取登录者信息
+    func userSelfInfo(finish: @escaping (UserSelfInfoObject?, String?) -> Void) {
+        manager.request((baseUrl + NetworkURL.userInfoList).replace(string: "&uid=", with: ""), method: HTTPMethod.get).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            if let tryErrorString = result.0 {
+                finish(nil, tryErrorString)
+            } else if let tryObject = UserSelfInfoObject(result.1) {
+                finish(tryObject, nil)
+            } else {
+                finish(nil, "数据格式错误")
+            }
+        }
+    }
+
+    //登录
     func login(id: String, password: String, finish: @escaping (String?) -> Void) {
         let parameters: [String : Any] = ["id": id, "password": password]
         manager.request(baseUrl + NetworkURL.login, method: HTTPMethod.post, parameters: parameters).response {
@@ -144,8 +164,7 @@ class NetworkAPI {
         }
     }
 
-    //注册 POST name:qwe mail:qwe@vscam.co password:wsph123
-    static let registe = "http://vscam.co/x/?a=u"
+    //注册
     func registe(name: String, mail: String, password: String, finish: @escaping (String?) -> Void) {
         let parameters: [String : Any] = ["name": name, "mail": mail, "password": password]
         manager.request(baseUrl + NetworkURL.registe, method: HTTPMethod.post, parameters: parameters).response {

@@ -69,6 +69,7 @@ class LoginTableViewItem: BaseTableViewItem {
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.next
                 searchField.clipsToBounds = true
+                searchField.text = Variable.lastLoginUser
                 searchField.textAlignment = .center
                 let centeredParagraphStyle = NSMutableParagraphStyle()
                 centeredParagraphStyle.alignment = .center
@@ -125,6 +126,7 @@ class LoginTableViewItem: BaseTableViewItem {
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.done
                 searchField.clipsToBounds = true
+                searchField.isSecureTextEntry = true
                 searchField.textAlignment = .center
                 let centeredParagraphStyle = NSMutableParagraphStyle()
                 centeredParagraphStyle.alignment = .center

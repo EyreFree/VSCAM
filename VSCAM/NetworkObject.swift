@@ -21,8 +21,6 @@ class PhotoObject {
 
     init?(_ dict: Any?) {
         if let tryDict = dict as? NSDictionary {
-            print(tryDict)
-
             pid = Int.fromJson(tryDict.value(forKey: "pid"))
             uid = Int.fromJson(tryDict.value(forKey: "uid"))
             origin = String.fromJson(tryDict.value(forKey: "origin"))
@@ -46,9 +44,18 @@ class UserObject {
     var name: String?   //用户名
     var avatar: Int?    //用户头像 id
 
+    init?(uid: Int?, name: String?, avatar: Int?) {
+        if let tryUid = uid, let tryName = name, let tryAvatar = avatar {
+            self.uid = tryUid
+            self.name = tryName
+            self.avatar = tryAvatar
+        } else {
+            return nil
+        }
+    }
+
     init?(_ dict: Any?) {
         if let tryDict = dict as? NSDictionary {
-            print(tryDict)
             uid = Int.fromJson(tryDict.value(forKey: "uid"))
             name = String.fromJson(tryDict.value(forKey: "name"))
             avatar = Int.fromJson(tryDict.value(forKey: "avatar"))
@@ -385,19 +392,15 @@ class PhotoUploadObject {
     }
 }
 
-class UserInfoObject {
+class UserInfoObject: UserObject {
 
-    var uid: Int?       //用户 id
-    var name: String?   //用户名
-    var avatar: Int?    //用户头像 id
     var des: String?    //简介
     var url: String?    //网站
 
     init?(uid: Int?, name: String?, avatar: Int?, des: String?, url: String?) {
-        if let tryUid = uid, let tryName = name, let tryAvatar = avatar, let tryDes = des, let tryUrl = url {
-            self.uid = tryUid
-            self.name = tryName
-            self.avatar = tryAvatar
+        super.init(uid: uid, name: name, avatar: avatar)
+
+        if let tryDes = des, let tryUrl = url {
             self.des = tryDes
             self.url = tryUrl
         } else {
@@ -405,13 +408,43 @@ class UserInfoObject {
         }
     }
 
-    init?(_ dict: Any?) {
+    override init?(_ dict: Any?) {
+        super.init(dict)
+
         if let tryDict = dict as? NSDictionary {
-            uid = Int.fromJson(tryDict.value(forKey: "uid"))
-            name = String.fromJson(tryDict.value(forKey: "name"))
-            avatar = Int.fromJson(tryDict.value(forKey: "avatar"))
             des = String.fromJson(tryDict.value(forKey: "des"))
             url = String.fromJson(tryDict.value(forKey: "url"))
+        } else {
+            return nil
+        }
+    }
+}
+
+class UserSelfInfoObject: UserInfoObject {
+
+    var group: Int?
+    var look: Int?
+    var like: Int?
+
+    init?(uid: Int?, name: String?, avatar: Int?, des: String?, url: String?, group: Int?, look: Int?, like: Int?) {
+        super.init(uid: uid, name: name, avatar: avatar, des: des, url: url)
+
+        if let tryGroup = group, let tryLook = look, let tryLike = like {
+            self.group = tryGroup
+            self.look = tryLook
+            self.like = tryLike
+        } else {
+            return nil
+        }
+    }
+
+    override init?(_ dict: Any?) {
+        super.init(dict)
+
+        if let tryDict = dict as? NSDictionary {
+            group = Int.fromJson(tryDict.value(forKey: "group"))
+            look = Int.fromJson(tryDict.value(forKey: "look"))
+            like = Int.fromJson(tryDict.value(forKey: "like"))
         } else {
             return nil
         }

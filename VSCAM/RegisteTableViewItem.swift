@@ -179,6 +179,7 @@ class RegisteTableViewItem: BaseTableViewItem {
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.done
                 searchField.clipsToBounds = true
+                searchField.isSecureTextEntry = true
                 searchField.textAlignment = .center
                 let centeredParagraphStyle = NSMutableParagraphStyle()
                 centeredParagraphStyle.alignment = .center
