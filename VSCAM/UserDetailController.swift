@@ -278,7 +278,7 @@ class UserDetailController: BaseViewController {
     }
     
     func settingClicked() {
-        
+        MainNavigationController.sharedInstance.pushViewController(SettingController(), animated: true)
     }
 }
 

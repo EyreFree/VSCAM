@@ -41,6 +41,10 @@
 		12B3D5001DD8974000BD4388 /* LoginTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D4FF1DD8974000BD4388 /* LoginTableView.swift */; };
 		12B3D5021DD89D0A00BD4388 /* RegisteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D5011DD89D0A00BD4388 /* RegisteTableView.swift */; };
 		12B3D5041DD8A44400BD4388 /* LoginTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3D5031DD8A44400BD4388 /* LoginTableViewItem.swift */; };
+		12E61F041DE08C4F0087BDC3 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F031DE08C4F0087BDC3 /* SettingModel.swift */; };
+		12E61F061DE08C5C0087BDC3 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F051DE08C5C0087BDC3 /* SettingController.swift */; };
+		12E61F081DE08D6E0087BDC3 /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F071DE08D6E0087BDC3 /* SettingTableView.swift */; };
+		12E61F0A1DE08D7B0087BDC3 /* SettingTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F091DE08D7B0087BDC3 /* SettingTableViewItem.swift */; };
 		12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F229B81DD2228600C0F6D0 /* Double+.swift */; };
 		843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4041DD5AB0D001A2A32 /* UITableView+.swift */; };
 		843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4061DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift */; };
@@ -107,6 +111,10 @@
 		12B3D4FF1DD8974000BD4388 /* LoginTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableView.swift; sourceTree = "<group>"; };
 		12B3D5011DD89D0A00BD4388 /* RegisteTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteTableView.swift; sourceTree = "<group>"; };
 		12B3D5031DD8A44400BD4388 /* LoginTableViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewItem.swift; sourceTree = "<group>"; };
+		12E61F031DE08C4F0087BDC3 /* SettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		12E61F051DE08C5C0087BDC3 /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		12E61F071DE08D6E0087BDC3 /* SettingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
+		12E61F091DE08D7B0087BDC3 /* SettingTableViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewItem.swift; sourceTree = "<group>"; };
 		12F229B81DD2228600C0F6D0 /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM.release.xcconfig"; sourceTree = "<group>"; };
 		843DE4041DD5AB0D001A2A32 /* UITableView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
@@ -186,6 +194,9 @@
 		1220F9DB1DCB9CF5004379AD /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				12E61F021DE08BD20087BDC3 /* Model */,
+				12E61F011DE08BCE0087BDC3 /* View */,
+				12E61F001DE08BC90087BDC3 /* Controller */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -293,6 +304,31 @@
 			isa = PBXGroup;
 			children = (
 				12B3D4FD1DD778D900BD4388 /* LoginRegisteModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		12E61F001DE08BC90087BDC3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12E61F051DE08C5C0087BDC3 /* SettingController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		12E61F011DE08BCE0087BDC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12E61F071DE08D6E0087BDC3 /* SettingTableView.swift */,
+				12E61F091DE08D7B0087BDC3 /* SettingTableViewItem.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		12E61F021DE08BD20087BDC3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				12E61F031DE08C4F0087BDC3 /* SettingModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -599,6 +635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12E61F0A1DE08D7B0087BDC3 /* SettingTableViewItem.swift in Sources */,
 				8488D43F1DAA46FD000E703C /* MainController.swift in Sources */,
 				12B3D4FE1DD778D900BD4388 /* LoginRegisteModel.swift in Sources */,
 				12B3D5021DD89D0A00BD4388 /* RegisteTableView.swift in Sources */,
@@ -606,6 +643,7 @@
 				843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */,
 				843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */,
 				122429D91DB3D8FF00C8EE29 /* Int+.swift in Sources */,
+				12E61F061DE08C5C0087BDC3 /* SettingController.swift in Sources */,
 				84741DDE1DD1CFA4006ECD6D /* NetworkAPI.swift in Sources */,
 				84741DEE1DD42F68006ECD6D /* ImageDetailModel.swift in Sources */,
 				84741DF81DD44BCA006ECD6D /* BaseTableView.swift in Sources */,
@@ -637,6 +675,7 @@
 				1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */,
 				12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */,
 				1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */,
+				12E61F041DE08C4F0087BDC3 /* SettingModel.swift in Sources */,
 				12B3D4F31DD72FA900BD4388 /* UserDetailHeadView.swift in Sources */,
 				84741DF01DD44923006ECD6D /* ImageDetailTableView.swift in Sources */,
 				84741DE51DD2D727006ECD6D /* NetworkExtension.swift in Sources */,
@@ -647,6 +686,7 @@
 				122429D51DB3D79300C8EE29 /* CGSize+.swift in Sources */,
 				122429D11DB3D46A00C8EE29 /* UIImage+.swift in Sources */,
 				12B3D4F71DD72FC100BD4388 /* UserDetailCollectionViewItem.swift in Sources */,
+				12E61F081DE08D6E0087BDC3 /* SettingTableView.swift in Sources */,
 				122429D71DB3D8B000C8EE29 /* CGFloat+.swift in Sources */,
 				1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */,
 				84741DE71DD41C99006ECD6D /* Operator+.swift in Sources */,

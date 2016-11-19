@@ -11,6 +11,7 @@ target 'VSCAM' do
     pod 'MJRefresh', '~> 3.1.0'                 # 上拉/下拉刷新
     pod 'NJKWebViewProgress', '~> 0.2.3'        # WebView 进度条
     pod 'UMengAnalytics-NO-IDFA', '~> 4.1.1'    # UMeng 统计分析
+    pod 'KMPlaceholderTextView', '~> 1.3.0'     # 带占位文字的多行编辑框
 end
 
 post_install do |installer|
