@@ -51,6 +51,7 @@ class NetworkAPI {
 
     //分析返回结果
     func resultAnalysis(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> (String?, AnyObject?) {
+        printData(data)
         NetworkCache.saveCookies()
         if let errorString = self.checkError(response, error: error) {
             return (errorString, nil)
@@ -106,6 +107,10 @@ class NetworkAPI {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             if let tryErrorString = result.0 {
+                if tryErrorString == "数据异常" {
+                    finish(ImageListObject(), nil)
+                    return
+                }
                 finish(nil, tryErrorString)
             } else if let tryObject = ImageListObject(result.1) {
                 finish(tryObject, nil)

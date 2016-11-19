@@ -50,7 +50,7 @@ class Function: NSObject {
 
             controller.present(shareVC, animated: true) {
                 //分享完成回调
-                print("分享完成[\(title)][\(url)]")
+                print("分享内容[\(title)][\(url)]")
             }
         }
     }

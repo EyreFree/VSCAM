@@ -70,6 +70,11 @@ class ImageListObject {
     var grids: [PhotoObject]?   //照片们
     var users: [UserObject]?    //用户们
 
+    init() {
+        grids = [PhotoObject]()
+        users = [UserObject]()
+    }
+
     init?(_ dict: Any?) {
         if let tryDict = dict as? NSDictionary {
             if let dataList = tryDict["users"] as? NSArray {
