@@ -16,7 +16,7 @@ class Function: NSObject {
         let layout = MessageView.Layout.CardView
         let theme = Theme.error
         let view = MessageView.viewFromNib(layout: layout)
-        view.configureContent(title: title, body: content, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "关闭") {
+        view.configureContent(title: title, body: content, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: buttonTitle) {
             (button) in
             SwiftMessages.hide()
         }
