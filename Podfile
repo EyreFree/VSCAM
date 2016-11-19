@@ -12,6 +12,7 @@ target 'VSCAM' do
     pod 'NJKWebViewProgress', '~> 0.2.3'        # WebView 进度条
     pod 'UMengAnalytics-NO-IDFA', '~> 4.1.1'    # UMeng 统计分析
     pod 'KMPlaceholderTextView', '~> 1.3.0'     # 带占位文字的多行编辑框
+    pod 'SwiftMessages', '~> 3.0.3'             # 消息框
 end
 
 post_install do |installer|

@@ -21,3 +21,22 @@ extension NSURL {
     }
 }
 
+extension URL {
+
+    init?(myString: String?) {
+        if let tryString = myString {
+            if nil != URL(string: tryString) {
+                self.init(string: tryString)
+            } else {
+                if let encodeString = tryString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
+                    self.init(string: encodeString)
+                } else {
+                    return nil
+                }
+            }
+        } else {
+            return nil
+        }
+    }
+}
+
