@@ -47,9 +47,10 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
                     let imgView = UILabel()
                     imgView.tag = Tag.make(7)
                     imgView.text = presetString
-                    imgView.font = UIFont.boldSystemFont(ofSize: 32)
                     imgView.textColor = UIColor.white
                     imgView.textAlignment = .center
+                    imgView.adjustsFontSizeToFitWidth = true
+                    imgView.font = UIFont.boldSystemFont(ofSize: 32)
                     imgView.backgroundColor = UIColor(valueRGB: 0xAA0044)
                     cell.contentView.addSubview(imgView)
                     imgView.snp.makeConstraints {
