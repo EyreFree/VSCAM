@@ -160,10 +160,10 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 Function.MessageBox(self, title: "提示", content: "昵称格式错误")
                 return
             }*/
-            if false == tryEmail.conform(regex: "/^[\\w-_\\.]+@([0-9a-z-]+\\.)+[a-z]{2,}$/i") {
+            /*if false == tryEmail.conform(regex: "/^[\\w-_\\.]+@([0-9a-z-]+\\.)+[a-z]{2,}$/i") {
                 Function.MessageBox(self, title: "提示", content: "邮箱格式错误")
                 return
-            }
+            }*/
             /*if false == tryPWD.conform(regex: "/^.{5,}$/") {
                 Function.MessageBox(self, title: "提示", content: "密码格式错误")
                 return
@@ -292,10 +292,14 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         //键盘提交
         if textField.tag == Tag.make(5) {
             (textField.superview?.superview?.viewWithTag(Tag.make(7)) as? UITextField)?.becomeFirstResponder()
+        } else if textField.tag == Tag.make(7) {
+            loginClicked()
         } else if textField.tag == Tag.make(15) {
             (textField.superview?.superview?.viewWithTag(Tag.make(17)) as? UITextField)?.becomeFirstResponder()
         } else if textField.tag == Tag.make(17) {
             (textField.superview?.superview?.viewWithTag(Tag.make(19)) as? UITextField)?.becomeFirstResponder()
+        } else if textField.tag == Tag.make(19) {
+            registeClicked()
         } else {
             textField.resignFirstResponder()
         }

@@ -235,6 +235,8 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         //键盘提交
         if textField.tag == Tag.make(5) {
             (textField.superview?.superview?.viewWithTag(Tag.make(7)) as? UITextField)?.becomeFirstResponder()
+        } else if textField.tag == Tag.make(7) {
+            changeClicked()
         } else {
             textField.resignFirstResponder()
         }
@@ -261,6 +263,8 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         if text == "\n" {
             if textView.tag == Tag.make(5) {
                 (textView.superview?.superview?.viewWithTag(Tag.make(7)) as? UITextField)?.becomeFirstResponder()
+            } else if textView.tag == Tag.make(7) {
+                changeClicked()
             } else {
                 textView.resignFirstResponder()
             }

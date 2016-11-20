@@ -34,6 +34,9 @@ class UserDetailController: BaseViewController {
         super.viewWillAppear(animated)
 
         if model.isSelf == true {
+            //编辑（可能）后刷新数据
+            model.userDetailData = Variable.loginUserInfo
+
             if let tryHeadView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
                 tryHeadView.refreshData(reloadImage: true)
             }
