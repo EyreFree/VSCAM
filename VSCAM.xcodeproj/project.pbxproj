@@ -45,6 +45,7 @@
 		12E61F061DE08C5C0087BDC3 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F051DE08C5C0087BDC3 /* SettingController.swift */; };
 		12E61F081DE08D6E0087BDC3 /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F071DE08D6E0087BDC3 /* SettingTableView.swift */; };
 		12E61F0A1DE08D7B0087BDC3 /* SettingTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F091DE08D7B0087BDC3 /* SettingTableViewItem.swift */; };
+		12E61F0C1DE1B4AC0087BDC3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E61F0B1DE1B4AC0087BDC3 /* LoadingView.swift */; };
 		12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F229B81DD2228600C0F6D0 /* Double+.swift */; };
 		843DE4051DD5AB0D001A2A32 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4041DD5AB0D001A2A32 /* UITableView+.swift */; };
 		843DE4071DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DE4061DD5B99D001A2A32 /* ImageDetailTableViewItemHead.swift */; };
@@ -115,6 +116,7 @@
 		12E61F051DE08C5C0087BDC3 /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		12E61F071DE08D6E0087BDC3 /* SettingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		12E61F091DE08D7B0087BDC3 /* SettingTableViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewItem.swift; sourceTree = "<group>"; };
+		12E61F0B1DE1B4AC0087BDC3 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		12F229B81DD2228600C0F6D0 /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM.release.xcconfig"; sourceTree = "<group>"; };
 		843DE4041DD5AB0D001A2A32 /* UITableView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 		8488D4501DAA499E000E703C /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				12E61F0B1DE1B4AC0087BDC3 /* LoadingView.swift */,
 				1298EDE61DAE983700F8B4BD /* BaseViewController.swift */,
 				123DD11B1DCF1FCD0071C35B /* BaseCollectionView.swift */,
 				123DD11D1DCF20130071C35B /* BaseCollectionViewItem.swift */,
@@ -664,6 +667,7 @@
 				123DD1181DCDCA690071C35B /* MainHeadView.swift in Sources */,
 				122429DE1DB3DCF700C8EE29 /* UIViewController+.swift in Sources */,
 				121DE03A1DCCB11900479BF0 /* MainModel.swift in Sources */,
+				12E61F0C1DE1B4AC0087BDC3 /* LoadingView.swift in Sources */,
 				84741DE21DD1CFA4006ECD6D /* NetworkObject.swift in Sources */,
 				1220F9E51DCB9EB6004379AD /* SecurityStrategy.m in Sources */,
 				123DD11E1DCF20130071C35B /* BaseCollectionViewItem.swift in Sources */,

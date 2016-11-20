@@ -27,7 +27,7 @@ class Function: NSObject {
         var config = SwiftMessages.Config()
         config.presentationStyle = .bottom
         config.presentationContext = .window(windowLevel: UIWindowLevelNormal)
-        config.duration = .seconds(seconds: 5)
+        config.duration = .seconds(seconds: 3)
         config.shouldAutorotate = true
         config.interactiveHide = true
 

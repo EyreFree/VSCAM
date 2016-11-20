@@ -25,6 +25,8 @@ class NetworkURL {
     static let change = "?a=u"
     //删除头像
     static let avatarDelete = "?a=avatar.del"
+    //设置头像
+    static let avatarSet = "?a=avatar"
 
     //预览图微博基地址
     static let imageWBSmall = "https://ws2.sinaimg.cn/bmiddle/"
@@ -39,6 +41,7 @@ class NetworkURL {
     //Web详情页地址
     static let imageDetailPage = "https://vscam.co/#!g/{pid}"
     //头像
+    static let avatarIgnore = "https://vscam.co/avatar/"
     static let avatarSmall = "https://vscam.co/avatar/s/{avatar}.jpg"
     static let avatarBig = "https://vscam.co/avatar/b/{avatar}.jpg"
     //个人页面地址

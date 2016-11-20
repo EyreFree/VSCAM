@@ -67,7 +67,7 @@ class UserObject {
     func avatarUrl(isBig: Bool = true) -> String? {
         if let tryAvatar = avatar {
             if tryAvatar != 0 {
-                if let tryAvatar = Variable.loginUserInfo?.uid {
+                if let tryAvatar = uid {
                     let emptyUrl = (isBig ? NetworkURL.avatarBig : NetworkURL.avatarSmall)
                     return emptyUrl.replace(string: "{avatar}", with: "\(tryAvatar)")
                 }

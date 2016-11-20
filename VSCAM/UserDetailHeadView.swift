@@ -25,8 +25,8 @@ class UserDetailHeadView: UIView {
         addControls(reloadImage: true)
     }
 
-    func refreshData() {
-        addControls()
+    func refreshData(reloadImage: Bool) {
+        addControls(reloadImage: reloadImage)
     }
 
     func addControls(reloadImage: Bool = false) {
@@ -57,7 +57,7 @@ class UserDetailHeadView: UIView {
             }
             avatarViewReal.isHidden = !hasAvatar
             if reloadImage && hasAvatar {
-                if let tryUrl = Variable.loginUserInfo?.avatarUrl() {
+                if let tryUrl = tryModel.userData?.avatarUrl() ?? tryModel.userDetailData?.avatarUrl() {
                     avatarViewReal.setImageWithURLString(UrlString: tryUrl, placeholder: UIImage.placeholderUser)
                 } else {
                     avatarViewReal.image = UIImage.placeholderUser

@@ -23,8 +23,17 @@ extension UIImageView {
 
     func setImageWithURL(Url: NSURL, placeholder: UIImage! = nil, animated: Bool = true, finish: @escaping (UIImage?) -> Void = { (image) in }) {
         let holderImage = placeholder ?? UIImage.placeholderTransparent
+
+        //如果是头像则强制刷新
+        var options = SDWebImageOptions.retryFailed
+        /*if let tryUrl = Url.absoluteString {
+            if true == tryUrl.hasSubString(string: NetworkURL.avatarIgnore) {
+                options = [.retryFailed, .cacheMemoryOnly]
+            }
+        }*/
+
         //加载图片
-        self.sd_setImage(with: Url as URL!, placeholderImage: holderImage, options: .retryFailed) {
+        self.sd_setImage(with: Url as URL!, placeholderImage: holderImage, options: options) {
             [weak self] (image, error, cacheType, imageUrl) in
             if let strongSelf = self {
                 if nil != image && cacheType == .none && animated {

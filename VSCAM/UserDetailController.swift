@@ -27,8 +27,17 @@ class UserDetailController: BaseViewController {
 
         addControls()
 
-        refreshUserData()
         collectionView?.mj_header?.beginRefreshing()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if model.isSelf == true {
+            if let tryHeadView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
+                tryHeadView.refreshData(reloadImage: true)
+            }
+        }
     }
 
     func addModel() {
@@ -132,6 +141,10 @@ class UserDetailController: BaseViewController {
             let customHeader = MJRefreshNormalHeader() {
                 [weak self] in
                 if let trySelf = self {
+                    //刷新用户信息
+                    trySelf.refreshUserData()
+
+                    //刷新列表
                     if let tryUID = trySelf.model?.userData?.uid {
                         trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
                         NetworkAPI.sharedInstance.imageList(u: tryUID) {
@@ -249,7 +262,7 @@ class UserDetailController: BaseViewController {
                             trySelf.model?.userDetailData = tryUserInfoList[0]
 
                             if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
-                                headView.refreshData()
+                                headView.refreshData(reloadImage: true)
                             }
                         }
                     }

@@ -103,7 +103,7 @@ class NetworkAPI {
         if let tryU = u {
             parameters.updateValue(tryU, forKey: "u")
         }
-        manager.request(baseUrl + NetworkURL.imageList, method: HTTPMethod.get, parameters: parameters).response {
+        manager.request(baseUrl + NetworkURL.imageList, method: .get, parameters: parameters).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             if let tryErrorString = result.0 {
@@ -124,7 +124,7 @@ class NetworkAPI {
     //根据 uid 获取用户信息
     func userInfoList(uids: [Int], finish: @escaping ([UserInfoObject]?, String?) -> Void) {
         let uidsString = arrayToString(array: uids as [AnyObject], brackets: false)
-        manager.request(baseUrl + NetworkURL.userInfoList + uidsString, method: HTTPMethod.get).response {
+        manager.request(baseUrl + NetworkURL.userInfoList + uidsString, method: .get).response {
             (response) in
             self.printData(response.data)
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
@@ -146,7 +146,7 @@ class NetworkAPI {
 
     //获取登录者信息
     func userSelfInfo(finish: @escaping (UserSelfInfoObject?, String?) -> Void) {
-        manager.request((baseUrl + NetworkURL.userInfoList).replace(string: "&uid=", with: ""), method: HTTPMethod.get).response {
+        manager.request((baseUrl + NetworkURL.userInfoList).replace(string: "&uid=", with: ""), method: .get).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             if let tryErrorString = result.0 {
@@ -162,36 +162,7 @@ class NetworkAPI {
     //登录
     func login(id: String, password: String, finish: @escaping (String?) -> Void) {
         let parameters: [String : Any] = ["id": id, "password": password]
-        manager.request(baseUrl + NetworkURL.login, method: HTTPMethod.post, parameters: parameters).response {
-            (response) in
-            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
-            finish(result.0)
-        }
-    }
-
-    //注册
-    func registe(name: String, mail: String, password: String, finish: @escaping (String?) -> Void) {
-        let parameters: [String : Any] = ["name": name, "mail": mail, "password": password]
-        manager.request(baseUrl + NetworkURL.registe, method: HTTPMethod.post, parameters: parameters).response {
-            (response) in
-            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
-            finish(result.0)
-        }
-    }
-
-    //修改个人信息
-    func change(des: String, url: String, finish: @escaping (String?) -> Void) {
-        let parameters: [String : Any] = ["des": des, "url": url]
-        manager.request(baseUrl + NetworkURL.change, method: HTTPMethod.post, parameters: parameters).response {
-            (response) in
-            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
-            finish(result.0)
-        }
-    }
-
-    //删除头像
-    func avatarDelete(finish: @escaping (String?) -> Void) {
-        manager.request(baseUrl + NetworkURL.avatarDelete, method: HTTPMethod.get).response {
+        manager.request(baseUrl + NetworkURL.login, method: .post, parameters: parameters).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             finish(result.0)
@@ -201,10 +172,65 @@ class NetworkAPI {
     //登出
     func logout(finish: @escaping (String?) -> Void) {
         let rand = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-        manager.request(baseUrl + NetworkURL.logout + "\(rand)", method: HTTPMethod.get).response {
+        manager.request(baseUrl + NetworkURL.logout + "\(rand)", method: .get).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             finish(result.0)
+        }
+    }
+
+    //注册
+    func registe(name: String, mail: String, password: String, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["name": name, "mail": mail, "password": password]
+        manager.request(baseUrl + NetworkURL.registe, method: .post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
+
+    //修改个人信息
+    func change(des: String, url: String, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["des": des, "url": url]
+        manager.request(baseUrl + NetworkURL.change, method: .post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
+
+    //删除头像
+    func avatarDelete(finish: @escaping (String?) -> Void) {
+        manager.request(baseUrl + NetworkURL.avatarDelete, method: .get).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
+
+    //修改头像
+    func avatarSet(avatar: UIImage, finish: @escaping (String?) -> Void) {
+        if let tryAvatarData = UIImagePNGRepresentation(avatar) {
+            manager.upload(multipartFormData: {
+                (multipartFormData) in
+                multipartFormData.append(tryAvatarData, withName: "avatar", fileName: "avatar.png", mimeType: "image/png")
+            }, to: baseUrl + NetworkURL.avatarSet, encodingCompletion: {
+                (encodingResult) in
+                switch encodingResult {
+                case .success(request: let uploadRequest, streamingFromDisk: _, streamFileURL: _):
+                    uploadRequest.response(completionHandler: {
+                        (response) in
+                        let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+                        finish(result.0)
+                    })
+                    break
+                case .failure(let encodingError):
+                    finish(encodingError.localizedDescription)
+                    break
+                }
+            })
+        } else {
+            finish("图片编码失败")
         }
     }
 }

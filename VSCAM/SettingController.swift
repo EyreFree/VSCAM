@@ -2,11 +2,14 @@
 
 import UIKit
 import KMPlaceholderTextView
+import SDWebImage
 
-class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDelegate {
+class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var tableView: SettingTableView!
     var model: SettingModel!
+
+    var imagePicker: UIImagePickerController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +117,15 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
     func changeAvatarClicked() {
         Function.HideKeyboard()
-        print("修改头像")
+
+        if nil == imagePicker {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = false
+            imagePicker = picker
+        }
+        self.present(imagePicker, animated: true, completion: nil)
     }
 
     func changeClicked() {
@@ -150,8 +161,9 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                     Function.MessageBox(trySelf, title: "删除头像失败", content: tryErrorString)
                 } else {
                     Variable.loginUserInfoSetAvatar(newValue: 0)
-                    
+
                     Variable.loginNeedRefreshMain = true
+                    trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
                     Function.MessageBox(trySelf, title: "提示", content: "删除头像成功", theme: .success)
                 }
             }
@@ -262,6 +274,45 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         textView.superview?.layer.borderWidth = 0
         textView.superview?.layer.borderColor = UIColor.clear.cgColor
         return true
+    }
+
+    //MARK:- UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+
+    private var pickerImage: UIImage!
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let selectImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            pickerImage = selectImage.copy() as? UIImage
+
+            LoadingView.sharedInstance.show(controller: self)
+            NetworkAPI.sharedInstance.avatarSet(avatar: pickerImage) {
+                [weak self] (errorString) in
+                if let trySelf = self {
+                    if let tryErrorString = errorString {
+                        Function.MessageBox(trySelf, title: "更改头像失败", content: tryErrorString)
+                    } else {
+                        Variable.loginUserInfoSetAvatar(newValue: 1)
+
+                        Variable.loginNeedRefreshMain = true
+
+                        if let tryUrlBig = Variable.loginUserInfo?.avatarUrl(),
+                            let tryUrlSmall = Variable.loginUserInfo?.avatarUrl(isBig: false) {
+                            SDWebImageManager.shared().saveImage(toCache: trySelf.pickerImage, for: URL(myString: tryUrlBig))
+                            SDWebImageManager.shared().saveImage(toCache: trySelf.pickerImage, for: URL(myString: tryUrlSmall))
+                        }
+                        trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
+
+                        Function.MessageBox(trySelf, title: "提示", content: "更改头像成功", theme: .success)
+                    }
+                    LoadingView.sharedInstance.hide()
+                }
+            }
+        } else {
+            Function.MessageBox(self, title: "更换头像失败", content: "所选图片无效")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
     }
 }
 
