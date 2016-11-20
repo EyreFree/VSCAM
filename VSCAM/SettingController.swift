@@ -120,41 +120,65 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     func changeClicked() {
         Function.HideKeyboard()
         let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryID = (cell?.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean(),
-            let tryPWD = (cell?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
+        if let tryDesc = (cell?.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean(),
+            let tryUrl = (cell?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
 
-            print(tryID)
-            print(tryPWD)
-            /*if false == tryID.conform(regex: "/^(|.+)$/") {
-             Function.MessageBox(self, title: "提示", content: "自我介绍格式错误")
-             return
-             }*/
-            /*if false == tryPWD.conform(regex: "/^(|@[\\x{0800}-\\x{9fa5}\\w_-]+|(http|https)\\:\\/\\/[\\w\\/.#&!?%:;=\\-_]+)$/iu") {
-             Function.MessageBox(self, title: "提示", content: "URL 格式错误")
-             return
-             }*/
-            //            NetworkAPI.sharedInstance.login(id: tryID, password: tryPWD) {
-            //                [weak self] (errorString) in
-            //                if let trySelf = self {
-            //                    if let tryErrorString = errorString {
-            //                        Function.MessageBox(trySelf, title: "登录失败", content: tryErrorString)
-            //                    } else {
-            //                        Variable.loginNeedRefreshMain = true
-            //                        MainNavigationController.sharedInstance.popViewController(animated: true)
-            //                    }
-            //                }
-            //            }
+            NetworkAPI.sharedInstance.change(des: tryDesc, url: tryUrl) {
+                [weak self] (errorString) in
+                if let trySelf = self {
+                    if let tryErrorString = errorString {
+                        Function.MessageBox(trySelf, title: "更改失败", content: tryErrorString)
+                    } else {
+                        Variable.loginUserInfoSetDes(newValue: tryDesc)
+                        Variable.loginUserInfoSetUrl(newValue: tryUrl)
+
+                        Variable.loginNeedRefreshMain = true
+                        Function.MessageBox(trySelf, title: "提示", content: "更改个人信息成功", theme: .success)
+                    }
+                }
+            }
         }
     }
 
     func deleteAvatarClicked() {
         Function.HideKeyboard()
-        print("删除头像")
+
+        NetworkAPI.sharedInstance.avatarDelete() {
+            [weak self] (errorString) in
+            if let trySelf = self {
+                if let tryErrorString = errorString {
+                    Function.MessageBox(trySelf, title: "删除头像失败", content: tryErrorString)
+                } else {
+                    Variable.loginUserInfoSetAvatar(newValue: 0)
+                    
+                    Variable.loginNeedRefreshMain = true
+                    Function.MessageBox(trySelf, title: "提示", content: "删除头像成功", theme: .success)
+                }
+            }
+        }
     }
 
     func logoutClicked() {
         Function.HideKeyboard()
-        print("退出登录")
+
+        NetworkAPI.sharedInstance.logout() {
+            [weak self] (errorString) in
+            if let trySelf = self {
+                if let tryErrorString = errorString {
+                    Function.MessageBox(trySelf, title: "退出登录失败", content: tryErrorString)
+                } else {
+                    Variable.loginUserInfo = nil
+                    Variable.loginNeedRefreshMain = true
+
+                    for controller in MainNavigationController.sharedInstance.viewControllers {
+                        if let tryController = controller as? MainController {
+                            MainNavigationController.sharedInstance.popToViewController(tryController, animated: true)
+                            break
+                        }
+                    }
+                }
+            }
+        }
     }
 
     func editFrameClicked(recognizer: UIGestureRecognizer) {

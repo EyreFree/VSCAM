@@ -148,20 +148,14 @@ class MainController: BaseViewController {
                         Variable.loginUserInfo = nil
 
                         if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
-                            headView.setAvatar(url: nil)
+                            headView.refreshAvatar()
                         }
                     }
                 } else if let tryUserInfo = userInfo {
                     Variable.loginUserInfo = tryUserInfo
 
                     if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
-                        var avatarUrlString: String?
-                        if let tryAvatar = Variable.loginUserInfo?.uid {
-                            avatarUrlString = NetworkURL.avatarSmall.replace(string: "{avatar}", with: "\(tryAvatar)")
-                        }
-                        if let tryUrlString = avatarUrlString {
-                            headView.setAvatar(url: tryUrlString)
-                        }
+                        headView.refreshAvatar()
                     }
                 }
             }

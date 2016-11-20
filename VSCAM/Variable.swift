@@ -44,5 +44,14 @@ class Variable {
             UserDefaults.standard.set(newValue?.like, forKey: "loginUserInfo_like")
         }
     }
+    static func loginUserInfoSetDes(newValue: String) {
+        UserDefaults.standard.set(newValue, forKey: "loginUserInfo_des")
+    }
+    static func loginUserInfoSetUrl(newValue: String) {
+        UserDefaults.standard.set(newValue, forKey: "loginUserInfo_url")
+    }
+    static func loginUserInfoSetAvatar(newValue: Int) {
+        UserDefaults.standard.set(newValue, forKey: "loginUserInfo_avatar")
+    }
     static var loginNeedRefreshMain = true
 }

@@ -23,7 +23,7 @@ class MainHeadView: UIView {
         addControls()
     }
 
-    func setAvatar(url: String?) {
+    func refreshAvatar() {
         if let tryAvatarBackView = self.viewWithTag(Tag.make(3)) {
             //头像
             var viewReal: UIImageView?
@@ -44,8 +44,8 @@ class MainHeadView: UIView {
                 }
                 viewReal = view
             }
-            if let tryUrl = url {
-                viewReal?.setImageWithURLString(UrlString: url, placeholder: UIImage.placeholderUser)
+            if let tryUrl = Variable.loginUserInfo?.avatarUrl(isBig: false) {
+                viewReal?.setImageWithURLString(UrlString: tryUrl, placeholder: UIImage.placeholderUser)
             } else {
                 viewReal?.image = UIImage.placeholderUser
             }
@@ -109,12 +109,8 @@ class MainHeadView: UIView {
                     make.center.equalTo(tryAvatarBackView)
                     make.width.height.equalTo(40)
                 }
-                var avatarUrlString: String?
-                if let tryAvatar = Variable.loginUserInfo?.uid {
-                    avatarUrlString = NetworkURL.avatarSmall.replace(string: "{avatar}", with: "\(tryAvatar)")
-                }
-                if let tryUrlString = avatarUrlString {
-                    view.setImageWithURLString(UrlString: tryUrlString, placeholder: UIImage.placeholderUser)
+                if let tryUrl = Variable.loginUserInfo?.avatarUrl(isBig: false) {
+                    view.setImageWithURLString(UrlString: tryUrl, placeholder: UIImage.placeholderUser)
                 }
             }
         }

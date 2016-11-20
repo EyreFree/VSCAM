@@ -7,14 +7,14 @@ class Function: NSObject {
 
     //简单的模态消息弹窗
     static func MessageBox(_ controller: UIViewController, title: String?, content: String?, buttonTitle: String = "确定",
-                           finish: ((UIAlertAction) -> Void)? = nil) {
+                           theme: Theme = .error, finish: ((UIAlertAction) -> Void)? = nil) {
         /*let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
          alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: finish))
          controller.present(alert, animated: true, completion: nil)*/
 
         // View setup
         let layout = MessageView.Layout.CardView
-        let theme = Theme.error
+        let theme = theme
         let view = MessageView.viewFromNib(layout: layout)
         view.configureContent(title: title, body: content, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: buttonTitle) {
             (button) in

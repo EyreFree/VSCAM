@@ -17,8 +17,14 @@ class NetworkURL {
     static let userInfoList = "?a=u&uid="
     //登录
     static let login = "?a=u"
+    //登出
+    static let logout = "?a=logout&_r="
     //注册
     static let registe = "?a=u"
+    //修改个人信息
+    static let change = "?a=u"
+    //删除头像
+    static let avatarDelete = "?a=avatar.del"
 
     //预览图微博基地址
     static let imageWBSmall = "https://ws2.sinaimg.cn/bmiddle/"

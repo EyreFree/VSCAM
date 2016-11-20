@@ -20,11 +20,11 @@ class SettingTableViewItem: BaseTableViewItem {
         let tryController = (tableView as? SettingTableView)?.parentViewController as? SettingController
 
         //图标背景
-        if let _ = cell.contentView.viewWithTag(Tag.make(3)) {
+        if let _ = cell.contentView.viewWithTag(Tag.make(15)) {
 
         } else {
             let view = UIView()
-            view.tag = Tag.make(3)
+            view.tag = Tag.make(15)
             view.layer.cornerRadius = 50
             view.layer.masksToBounds = true
             view.backgroundColor = UIColor(valueRGB: 0x222222)
@@ -65,12 +65,10 @@ class SettingTableViewItem: BaseTableViewItem {
             }
             avatarView = view
         }
-        var avatarUrlString: String?
-        if let tryAvatar = Variable.loginUserInfo?.uid {
-            avatarUrlString = NetworkURL.avatarBig.replace(string: "{avatar}", with: "\(tryAvatar)")
-        }
-        if let tryUrlString = avatarUrlString {
-            avatarView?.setImageWithURLString(UrlString: tryUrlString, placeholder: UIImage.placeholderUser)
+        if let tryUrl = Variable.loginUserInfo?.avatarUrl() {
+            avatarView?.setImageWithURLString(UrlString: tryUrl, placeholder: UIImage.placeholderUser)
+        } else {
+            avatarView?.image = UIImage.placeholderUser
         }
 
         //换头像
@@ -141,8 +139,8 @@ class SettingTableViewItem: BaseTableViewItem {
         }
 
         if let tryEditUserFrameView = editUserFrameView {
-            if let _ = tryEditUserFrameView.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView {
-
+            if let view = tryEditUserFrameView.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView {
+                view.text = Variable.loginUserInfo?.des
             } else {
                 let searchField = KMPlaceholderTextView()
                 searchField.tag = Tag.make(5)
@@ -154,6 +152,8 @@ class SettingTableViewItem: BaseTableViewItem {
                 searchField.showsHorizontalScrollIndicator = false
                 searchField.font = UIFont.systemFont(ofSize: 12)
                 searchField.textColor = UIColor.black
+                searchField.text = Variable.loginUserInfo?.des
+                searchField.textAlignment = .left
                 searchField.contentInset = UIEdgeInsets.init(top: -6, left: -3, bottom: 6, right: 3)
                 searchField.placeholder = "关于我的一句话自我介绍"
                 searchField.placeholderFont = UIFont.systemFont(ofSize: 12)
@@ -194,12 +194,13 @@ class SettingTableViewItem: BaseTableViewItem {
         }
 
         if let tryEditPasswordFrameView = editPasswordFrameView {
-            if let _ = tryEditPasswordFrameView.viewWithTag(Tag.make(7)) as? UITextField {
-
+            if let view = tryEditPasswordFrameView.viewWithTag(Tag.make(7)) as? UITextField {
+                view.text = Variable.loginUserInfo?.url
             } else {
                 let searchField = UITextField(frame: CGRect.zero)
                 searchField.font = UIFont.systemFont(ofSize: 12)
                 searchField.textColor = UIColor.black
+                searchField.text = Variable.loginUserInfo?.url
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.done

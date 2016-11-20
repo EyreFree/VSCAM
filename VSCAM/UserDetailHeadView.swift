@@ -57,13 +57,10 @@ class UserDetailHeadView: UIView {
             }
             avatarViewReal.isHidden = !hasAvatar
             if reloadImage && hasAvatar {
-                avatarViewReal.image = UIImage.placeholderTransparent
-                var avatarUrlString: String?
-                if let tryAvatar = tryModel.userData?.uid {
-                        avatarUrlString = NetworkURL.avatarBig.replace(string: "{avatar}", with: "\(tryAvatar)")
-                }
-                if let tryUrlString = avatarUrlString {
-                    avatarViewReal.setImageWithURLString(UrlString: tryUrlString)
+                if let tryUrl = Variable.loginUserInfo?.avatarUrl() {
+                    avatarViewReal.setImageWithURLString(UrlString: tryUrl, placeholder: UIImage.placeholderUser)
+                } else {
+                    avatarViewReal.image = UIImage.placeholderUser
                 }
             }
 

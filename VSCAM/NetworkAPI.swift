@@ -178,5 +178,34 @@ class NetworkAPI {
             finish(result.0)
         }
     }
+
+    //修改个人信息
+    func change(des: String, url: String, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["des": des, "url": url]
+        manager.request(baseUrl + NetworkURL.change, method: HTTPMethod.post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
+
+    //删除头像
+    func avatarDelete(finish: @escaping (String?) -> Void) {
+        manager.request(baseUrl + NetworkURL.avatarDelete, method: HTTPMethod.get).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
+
+    //登出
+    func logout(finish: @escaping (String?) -> Void) {
+        let rand = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        manager.request(baseUrl + NetworkURL.logout + "\(rand)", method: HTTPMethod.get).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
 }
 
