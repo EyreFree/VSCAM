@@ -33,7 +33,9 @@ class MainHeadView: UIView {
                 let view = UIImageView()
                 view.layer.masksToBounds = true
                 view.layer.cornerRadius = 20
+                view.contentMode = .scaleAspectFill
                 view.image = UIImage.placeholderUser
+                view.isUserInteractionEnabled = false
                 view.tag = Tag.make(4)
                 tryAvatarBackView.addSubview(view)
                 view.snp.makeConstraints {
@@ -99,7 +101,7 @@ class MainHeadView: UIView {
                 let view = UIImageView()
                 view.layer.masksToBounds = true
                 view.layer.cornerRadius = 20
-                view.contentMode = .scaleAspectFit
+                view.contentMode = .scaleAspectFill
                 view.image = UIImage.placeholderUser
                 view.isUserInteractionEnabled = false
                 view.tag = Tag.make(4)

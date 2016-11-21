@@ -48,6 +48,7 @@ class SettingTableViewItem: BaseTableViewItem {
             view.layer.masksToBounds = true
             view.alpha = 0.75
             view.isUserInteractionEnabled = true
+            view.contentMode = .scaleAspectFill
             view.backgroundColor = UIColor(valueRGB: 0x222222)
             view.image = UIImage.placeholderTransparent
             view.addGestureRecognizer(
@@ -55,7 +56,6 @@ class SettingTableViewItem: BaseTableViewItem {
                     target: tryController, action: #selector(SettingController.changeAvatarClicked)
                 )
             )
-            view.contentMode = .scaleAspectFit
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
