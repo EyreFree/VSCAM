@@ -34,11 +34,29 @@ class UserDetailController: BaseViewController {
         super.viewWillAppear(animated)
 
         if model.isSelf == true {
+            var needReplace = false
+            if (model.userData ?? model.userDetailData)?.avatar != Variable.loginUserInfo?.avatar {
+                needReplace = true
+            }
+
             //编辑（可能）后刷新数据
+            model.userData = Variable.loginUserInfo
             model.userDetailData = Variable.loginUserInfo
+            model.refreshModel()
 
             if let tryHeadView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
-                tryHeadView.refreshData(reloadImage: true)
+                if needReplace {
+                    tryHeadView.snp.removeConstraints()
+                    tryHeadView.snp.makeConstraints {
+                        (make) -> Void in
+                        make.top.left.right.equalTo(0)
+                        make.height.equalTo(model.hasAvatar ? 256 : 186)
+                    }
+                    collectionView.contentInset = UIEdgeInsets(
+                        top: model.hasAvatar ? 256 : 186, left: 0, bottom: 0, right: 0
+                    )
+                }
+                tryHeadView.refreshData(reloadImage: true, replace: needReplace)
             }
         }
     }

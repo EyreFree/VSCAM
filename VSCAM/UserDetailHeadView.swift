@@ -22,14 +22,14 @@ class UserDetailHeadView: UIView {
     func onInit() {
         self.backgroundColor = UIColor.white
 
-        addControls(reloadImage: true)
+        addControls(reloadImage: true, replace: true)
     }
 
-    func refreshData(reloadImage: Bool) {
-        addControls(reloadImage: reloadImage)
+    func refreshData(reloadImage: Bool, replace: Bool = false) {
+        addControls(reloadImage: reloadImage, replace: replace)
     }
 
-    func addControls(reloadImage: Bool = false) {
+    func addControls(reloadImage: Bool = false, replace: Bool = false) {
         if let tryModel = (parentViewController as? UserDetailController)?.model {
 
             //是否有头像
@@ -68,6 +68,22 @@ class UserDetailHeadView: UIView {
             let userString = tryModel.userData?.name ?? Define.placeHolderString
             if let view = self.viewWithTag(Tag.make(8)) as? UILabel {
                 view.text = userString
+                if replace {
+                    view.snp.removeConstraints()
+                    view.snp.makeConstraints {
+                        (make) -> Void in
+                        if hasAvatar {
+                            make.top.equalTo(183)
+                            make.height.equalTo(24)
+                        } else {
+                            make.top.equalTo(110)
+                            make.height.equalTo(36)
+                        }
+                        make.left.equalTo(25)
+                        make.right.equalTo(-25)
+                    }
+                    view.font = UIFont.systemFont(ofSize: hasAvatar ? 24 : 36)
+                }
             } else {
                 let imgView = UILabel()
                 imgView.tag = Tag.make(8)
@@ -94,6 +110,20 @@ class UserDetailHeadView: UIView {
             let desString = tryModel.userDetailData?.des ?? ""
             if let view = self.viewWithTag(Tag.make(9)) as? UILabel {
                 view.text = desString
+                if replace {
+                    view.snp.removeConstraints()
+                    view.snp.makeConstraints {
+                        (make) -> Void in
+                        if hasAvatar {
+                            make.top.equalTo(218)
+                        } else {
+                            make.top.equalTo(148)
+                        }
+                        make.height.equalTo(15)
+                        make.left.equalTo(25)
+                        make.right.equalTo(-25)
+                    }
+                }
             } else {
                 let imgView = UILabel()
                 imgView.tag = Tag.make(9)

@@ -2,11 +2,14 @@
 
 import UIKit
 import MJRefresh
+import Photos
 
-class MainController: BaseViewController {
+class MainController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var collectionView: MainCollectinView!
     var model: MainModel!
+
+    var imagePicker: UIImagePickerController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +52,7 @@ class MainController: BaseViewController {
 
         } else {
             let view = MainHeadView(self)
+            view.isUserInteractionEnabled = true
             view.layer.masksToBounds = false
             view.tag = Tag.make(0)
             self.view.addSubview(view)
@@ -180,6 +184,42 @@ class MainController: BaseViewController {
                 LoginRegisteController(), animated: true
             )
         }
+    }
+
+    func publishClicked() {
+        if nil == imagePicker {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = false
+            imagePicker = picker
+        }
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+
+    //MARK:- UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+
+    private var pickerImage: UIImage!
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let selectImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            pickerImage = selectImage.copy() as? UIImage
+
+            let url = info[UIImagePickerControllerReferenceURL]
+            let fetchResult = PHAsset.fetchAssets(withALAssetURLs: [url as! URL], options: nil)
+            let asset = fetchResult.firstObject
+
+            PHImageManager.default().requestImageData(for: asset!, options: nil, resultHandler: {
+                (imageData, dataUTI, orientation, info) in
+                let ciImage = CIImage(data: imageData!)
+                print(ciImage?.properties)
+            })
+        } else {
+            Function.MessageBox(self, title: "获取图片失败", content: "所选图片无效")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
     }
 }
 

@@ -11,9 +11,9 @@ PODS:
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
-  - SnapKit (3.0.1)
+  - SnapKit (3.0.2)
   - SwiftMessages (3.0.3)
-  - UMengAnalytics-NO-IDFA (4.1.1)
+  - UMengAnalytics-NO-IDFA (4.1.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
@@ -33,9 +33,9 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
-  UMengAnalytics-NO-IDFA: 1064992c1b7aaa22823179c0b33a664813fd7a85
+  UMengAnalytics-NO-IDFA: f1b08b540eba6ebad044a574cae6d988cf40cfda
 
 PODFILE CHECKSUM: 05ca81fd366ac06f93a7e4334f460905db58667e
 

@@ -1,7 +1,6 @@
 
 
 import UIKit
-import ImageIO
 
 extension UIImage {
 
@@ -110,20 +109,6 @@ extension UIImage {
             return self.resizableImage(withCapInsets: tryFinalInsets, resizingMode: .stretch)
         }
         return self
-    }
-
-    //exif
-    func exifInfo() {
-        let imageNSData = UIImagePNGRepresentation(self)
-        let imgSource = CGImageSourceCreateWithData(imageNSData as! CFData, nil)
-        let imageProperties = CGImageSourceCopyPropertiesAtIndex(imgSource!, 0, nil)! as NSDictionary
-
-        let exifDict = imageProperties.value(forKey: "{Exif}") as! NSDictionary
-        let dateTimeOriginal = exifDict.value(forKey: "DateTimeOriginal") as! NSString
-        print("DateTimeOriginal: \(dateTimeOriginal)")
-
-        let lensMake = exifDict.value(forKey: "LensMake")
-        print("LensMake: \(lensMake)")
     }
 }
 

@@ -134,13 +134,14 @@ class MainHeadView: UIView {
         }
 
         //新建按钮
-        if let _ = self.viewWithTag(Tag.make(6)) as? UIImageView {
+        if let _ = self.viewWithTag(Tag.make(6)) as? UIButton {
 
         } else {
-            let view = UIImageView()
-            view.contentMode = .center
-            view.image = UIImage(named: "按钮_新建")
+            let view = UIButton()
+            view.setImage(UIImage(named: "按钮_新建"), for: .normal)
             view.tag = Tag.make(6)
+            view.isUserInteractionEnabled = true
+            view.addTarget(parentViewController, action: #selector(MainController.publishClicked), for: .touchUpInside)
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
