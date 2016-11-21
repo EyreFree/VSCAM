@@ -123,12 +123,15 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 return
             }*/
             Variable.lastLoginUser = tryID
+            Variable.lastLoginPWD = ""
             NetworkAPI.sharedInstance.login(id: tryID, password: tryPWD) {
                 [weak self] (errorString) in
                 if let trySelf = self {
                     if let tryErrorString = errorString {
                         Function.MessageBox(trySelf, title: "登录失败", content: tryErrorString)
                     } else {
+                        Variable.lastLoginPWD = tryPWD
+
                         Variable.loginNeedRefreshMain = true
                         MainNavigationController.sharedInstance.popViewController(animated: true)
                     }

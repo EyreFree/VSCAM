@@ -110,5 +110,10 @@ extension UIImage {
         }
         return self
     }
+
+    //宽高比
+    func aspectRatio() -> CGFloat {
+        return self.size.height / self.size.width
+    }
 }
 

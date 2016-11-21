@@ -45,7 +45,10 @@ class LoginTableViewItem: BaseTableViewItem {
             imgView.tag = Tag.make(4)
             imgView.backgroundColor = UIColor(valueRGB: 0xEEEEEE)
             imgView.addGestureRecognizer(
-                UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.editFrameClicked(recognizer:)))
+                UITapGestureRecognizer(
+                    target: tryController,
+                    action: #selector(LoginRegisteController.editFrameClicked(recognizer:))
+                )
             )
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
@@ -126,6 +129,7 @@ class LoginTableViewItem: BaseTableViewItem {
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.done
                 searchField.clipsToBounds = true
+                searchField.text = Variable.lastLoginPWD
                 searchField.isSecureTextEntry = true
                 searchField.textAlignment = .center
                 let centeredParagraphStyle = NSMutableParagraphStyle()

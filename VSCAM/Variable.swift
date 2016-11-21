@@ -17,6 +17,15 @@ class Variable {
         }
     }
 
+    static var lastLoginPWD: String? {
+        get {
+            return UserDefaults.standard.string(forKey: "loginUserInfo_lastLoginPWD")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "loginUserInfo_lastLoginPWD")
+        }
+    }
+
     //登录信息
     static var loginUserInfo: UserSelfInfoObject? {
         get {

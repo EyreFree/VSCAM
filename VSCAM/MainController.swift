@@ -141,7 +141,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             view.mj_footer = customFooter
         }
     }
-    
+
     func refreshUserInfo() {
         NetworkAPI.sharedInstance.userSelfInfo() {
             [weak self] (userInfo, errorString) in
@@ -205,16 +205,28 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
     private var pickerImage: UIImage!
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let selectImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            pickerImage = selectImage.copy() as? UIImage
+            pickerImage = selectImage
 
             let url = info[UIImagePickerControllerReferenceURL]
             let fetchResult = PHAsset.fetchAssets(withALAssetURLs: [url as! URL], options: nil)
             let asset = fetchResult.firstObject
 
             PHImageManager.default().requestImageData(for: asset!, options: nil, resultHandler: {
-                (imageData, dataUTI, orientation, info) in
-                let ciImage = CIImage(data: imageData!)
-                print(ciImage?.properties)
+                [weak self] (imageData, dataUTI, orientation, info) in
+                if let trySelf = self {
+                    let ciImage = CIImage(data: imageData!)
+
+                    if true == ((ciImage?.properties["{Exif}"] as? NSDictionary)?["UserComment"] as? String)?.hasSubString(string: "VSCO")
+                        || true == ((ciImage?.properties["{TIFF}"] as? NSDictionary)?["ImageDescription"] as? String)?.hasSubString(string: "VSCO") {
+                        //Function.MessageBox(trySelf, title: "提示", content: "合格图片", theme: .success)
+                        trySelf.present(PublishController(image: trySelf.pickerImage), animated: true) {
+                            [weak self] () in
+
+                        }
+                    } else {
+                        Function.MessageBox(trySelf, title: "提示", content: "该图片未使用 VSCO 进行处理", theme: .warning)
+                    }
+                }
             })
         } else {
             Function.MessageBox(self, title: "获取图片失败", content: "所选图片无效")

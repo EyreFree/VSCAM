@@ -206,16 +206,14 @@ class SettingTableViewItem: BaseTableViewItem {
                 searchField.returnKeyType = UIReturnKeyType.done
                 searchField.clipsToBounds = true
                 searchField.textAlignment = .left
-                let centeredParagraphStyle = NSMutableParagraphStyle()
-                centeredParagraphStyle.alignment = .left
                 let attributedPlaceholder = NSAttributedString(
                     string: "个人博客 or 个人网站", attributes: [
-                        NSParagraphStyleAttributeName: centeredParagraphStyle,
                         NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
                         NSFontAttributeName : UIFont.systemFont(ofSize: 12)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
+                searchField.clearButtonMode = UITextFieldViewMode.whileEditing
                 searchField.delegate = tryController
                 searchField.tag = Tag.make(7)
                 tryEditPasswordFrameView.addSubview(searchField)
