@@ -216,16 +216,42 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                 if let trySelf = self {
                     let ciImage = CIImage(data: imageData!)
 
-                    if true == ((ciImage?.properties["{Exif}"] as? NSDictionary)?["UserComment"] as? String)?.hasSubString(string: "VSCO")
-                        || true == ((ciImage?.properties["{TIFF}"] as? NSDictionary)?["ImageDescription"] as? String)?.hasSubString(string: "VSCO") {
-                        //Function.MessageBox(trySelf, title: "提示", content: "合格图片", theme: .success)
-                        trySelf.present(PublishController(image: trySelf.pickerImage), animated: true) {
-                            [weak self] () in
-
+                    //Processed with VSCO with c1 preset
+                    var preset: String?
+                    if let tryExifString = (ciImage?.properties["{Exif}"] as? NSDictionary)?["UserComment"] as? String {
+                        if true == tryExifString.hasSubString(string: "VSCO") {
+                            preset = "-"
+                            let stringArray = tryExifString.components(separatedBy: "with")
+                            for subString in stringArray {
+                                if subString.hasSubString(string: "preset") {
+                                    let stringInArray = subString.components(separatedBy: "preset")
+                                    preset = stringInArray.first ?? "-"
+                                    break
+                                }
+                            }
                         }
-                    } else {
-                        Function.MessageBox(trySelf, title: "提示", content: "该图片未使用 VSCO 进行处理", theme: .warning)
                     }
+                    if let tryTIFFString = (ciImage?.properties["{TIFF}"] as? NSDictionary)?["ImageDescription"] as? String {
+                        if true == tryTIFFString.hasSubString(string: "VSCO") {
+                            preset = "-"
+                            let stringArray = tryTIFFString.components(separatedBy: "with")
+                            for subString in stringArray {
+                                if subString.hasSubString(string: "preset") {
+                                    let stringInArray = subString.components(separatedBy: "preset")
+                                    preset = stringInArray.first ?? "-"
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    if let tryPreset = preset {
+                        trySelf.present(
+                            PublishController(image: trySelf.pickerImage, preset: tryPreset.clean().uppercased()),
+                            animated: true
+                        )
+                        return
+                    }
+                    Function.MessageBox(trySelf, title: "提示", content: "该图片未使用 VSCO 进行处理", theme: .warning)
                 }
             })
         } else {

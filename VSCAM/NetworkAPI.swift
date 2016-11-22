@@ -37,6 +37,14 @@ class NetworkAPI {
         managerUnlimited = SessionManager(configuration: configurationUnlimited)
     }
 
+    func refreshManagerUnlimitedCookies() {
+        if let tryCookies = NetworkCache.cookies {
+            for cookie in tryCookies {
+                managerUnlimited.session.configuration.httpCookieStorage?.setCookie(cookie)
+            }
+        }
+    }
+
     //MARK:- 通用处理
     //检测是否错误
     func checkError(_ response: HTTPURLResponse?, error: Error?) -> String? {
@@ -210,10 +218,11 @@ class NetworkAPI {
 
     //修改头像
     func avatarSet(avatar: UIImage, finish: @escaping (String?) -> Void) {
-        if let tryAvatarData = UIImagePNGRepresentation(avatar) {
-            manager.upload(multipartFormData: {
+        if let tryAvatarData = UIImageJPEGRepresentation(avatar, 1) {
+            refreshManagerUnlimitedCookies()
+            managerUnlimited.upload(multipartFormData: {
                 (multipartFormData) in
-                multipartFormData.append(tryAvatarData, withName: "avatar", fileName: "avatar.png", mimeType: "image/png")
+                multipartFormData.append(tryAvatarData, withName: "avatar", fileName: "avatar.jpg", mimeType: "image/jpeg")
             }, to: baseUrl + NetworkURL.avatarSet, encodingCompletion: {
                 (encodingResult) in
                 switch encodingResult {
@@ -231,6 +240,35 @@ class NetworkAPI {
             })
         } else {
             finish("图片编码失败")
+        }
+    }
+
+    //上传图片
+    func upload(pp: UIImage, progress: @escaping (Double) -> Void, finish: @escaping (PhotoUploadObject?, String?) -> Void) {
+        if let tryAvatarData = UIImageJPEGRepresentation(pp, 1) {
+            refreshManagerUnlimitedCookies()
+            managerUnlimited.upload(multipartFormData: {
+                (multipartFormData) in
+                multipartFormData.append(tryAvatarData, withName: "pp", fileName: "pp.jpg", mimeType: "image/jpeg")
+            }, to: baseUrl + NetworkURL.upload, encodingCompletion: {
+                (encodingResult) in
+                switch encodingResult {
+                case .success(request: let uploadRequest, streamingFromDisk: _, streamFileURL: _):
+                    uploadRequest.uploadProgress(closure: { (value) in
+                        progress(value.fractionCompleted)
+                    }).response(completionHandler: {
+                        (response) in
+                        let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+                        finish(PhotoUploadObject(result.1), result.0)
+                    })
+                    break
+                case .failure(let encodingError):
+                    finish(nil, encodingError.localizedDescription)
+                    break
+                }
+            })
+        } else {
+            finish(nil, "图片编码失败")
         }
     }
 }

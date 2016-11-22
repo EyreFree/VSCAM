@@ -68,6 +68,7 @@ class RegisteTableViewItem: BaseTableViewItem {
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.next
+                searchField.enablesReturnKeyAutomatically = true
                 searchField.clipsToBounds = true
                 searchField.textAlignment = .center
                 let centeredParagraphStyle = NSMutableParagraphStyle()
@@ -123,6 +124,7 @@ class RegisteTableViewItem: BaseTableViewItem {
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.next
+                searchField.enablesReturnKeyAutomatically = true
                 searchField.clipsToBounds = true
                 searchField.textAlignment = .center
                 let centeredParagraphStyle = NSMutableParagraphStyle()
@@ -178,6 +180,7 @@ class RegisteTableViewItem: BaseTableViewItem {
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.done
+                searchField.enablesReturnKeyAutomatically = true
                 searchField.clipsToBounds = true
                 searchField.isSecureTextEntry = true
                 searchField.textAlignment = .center

@@ -12,10 +12,11 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(image: UIImage) {
+    init(image: UIImage, preset: String) {
         super.init(nibName: nil, bundle: nil)
 
         addModel()
+        model?.preset = preset
         model?.image = image
     }
 
@@ -28,6 +29,15 @@ class PublishController: BaseViewController, UITextFieldDelegate {
 
         //
         addKeyboardObserver()
+
+        //上传图片
+        NetworkAPI.sharedInstance.upload(pp: model.image, progress: {
+            [weak self] (progress) in
+            print("upload progress: \(progress)")
+        }) {
+            [weak self] (photoData, errorString) in
+            print("upload complete: \(errorString)")
+        }
     }
 
     deinit {
@@ -97,6 +107,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             footView = view
         } else {
             let view = UIView()
+            view.backgroundColor = UIColor.white
             view.tag = Tag.make(2)
             self.view.addSubview(view)
             view.snp.makeConstraints {
@@ -129,7 +140,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             footGreyView = view
         }
 
-        if let _ = footGreyView.viewWithTag(Tag.make(4)) as? UILabel {
+        if let _ = footGreyView.viewWithTag(Tag.make(4)) as? UITextField {
 
         } else {
             let searchField = UITextField()
@@ -137,9 +148,9 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             searchField.textColor = UIColor.black
             searchField.backgroundColor = UIColor.clear
             searchField.keyboardType = .default
-            searchField.returnKeyType = UIReturnKeyType.next
+            searchField.returnKeyType = UIReturnKeyType.send
+            searchField.enablesReturnKeyAutomatically = true
             searchField.clipsToBounds = true
-            searchField.text = Variable.lastLoginUser
             searchField.textAlignment = .left
             let attributedPlaceholder = NSAttributedString(
                 string: "输入一句话照片简介", attributes: [
@@ -148,32 +159,56 @@ class PublishController: BaseViewController, UITextFieldDelegate {
                 ]
             )
             searchField.attributedPlaceholder = attributedPlaceholder
-            searchField.clearButtonMode = UITextFieldViewMode.whileEditing
             searchField.delegate = self
             searchField.tag = Tag.make(4)
             footGreyView.addSubview(searchField)
             searchField.snp.makeConstraints {
                 (make) -> Void in
-                make.left.top.equalTo(4)
-                make.right.bottom.equalTo(-4)
+                make.top.equalTo(8)
+                make.bottom.equalTo(-8)
+                make.left.equalTo(10)
+                make.right.equalTo(-10)
+            }
+
+            //获得焦点
+            searchField.becomeFirstResponder()
+        }
+
+        //滤镜
+        if let _ = self.view.viewWithTag(Tag.make(5)) as? UILabel {
+
+        } else {
+            let searchField = UILabel()
+            searchField.alpha = 0.5
+            searchField.text = model.preset
+            searchField.font = UIFont.systemFont(ofSize: 68)
+            searchField.textColor = UIColor.white
+            searchField.backgroundColor = UIColor.clear
+            searchField.textAlignment = .center
+            searchField.tag = Tag.make(5)
+            self.view.addSubview(searchField)
+            searchField.snp.makeConstraints {
+                (make) -> Void in
+                make.top.left.right.equalTo(0)
+                make.bottom.equalTo(footView.snp.top)
             }
         }
 
         //顶部图片
-        refreshHeadImage(offset: 0, reloadImage: true)
+        refreshHeadImage(offsetHead: 0, offsetFoot: 0, reloadImage: true)
     }
 
-    func refreshHeadImage(offset: CGFloat, reloadImage: Bool = false) {
+    func refreshHeadImage(offsetHead: CGFloat, offsetFoot: CGFloat, reloadImage: Bool = false) {
         if let tryModel = self.model {
             //背景图片
             var imgViewReal: UIImageView!
-            if let imgView = self.view.viewWithTag(Tag.make(5)) as? UIImageView {
+            if let imgView = self.view.viewWithTag(Tag.make(6)) as? UIImageView {
                 imgView.snp.removeConstraints()
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView()
                 imgView.layer.masksToBounds = true
-                imgView.tag = Tag.make(5)
+                imgView.tag = Tag.make(6)
                 imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.contentMode = .scaleAspectFill
                 self.view.addSubview(imgView)
@@ -182,30 +217,11 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             }
             imgViewReal.snp.makeConstraints {
                 (make) -> Void in
-                make.top.left.right.equalTo(0)
-                make.height.equalTo(max(0, tryModel.headImageHeight() - offset))
-            }
-
-            //半透明黑色遮罩
-            var imgMaskViewReal: UIView!
-            if let imgMaskView = imgViewReal.viewWithTag(Tag.make(6)) {
-                imgMaskViewReal = imgMaskView
-            } else {
-                let imgMaskView = UIView()
-                imgMaskView.tag = Tag.make(6)
-                imgMaskView.backgroundColor = UIColor.black
-                imgViewReal.addSubview(imgMaskView)
-                imgMaskView.snp.makeConstraints {
-                    (make) -> Void in
-                    make.top.left.right.bottom.equalTo(0)
-                }
-                imgMaskViewReal = imgMaskView
-            }
-            if offset > 0 {
-                imgMaskViewReal.isHidden = false
-                imgMaskViewReal.alpha = offset / tryModel.headImageHeight()
-            } else {
-                imgMaskViewReal.isHidden = true
+                make.left.right.equalTo(0)
+                make.top.equalTo(min(0, -offsetHead))
+                make.height.equalTo(tryModel.headImageHeight()
+                    + max(0, -offsetHead) + max(0, -tableView.contentInset.bottom - offsetFoot)
+                )
             }
 
             if reloadImage {
@@ -215,20 +231,20 @@ class PublishController: BaseViewController, UITextFieldDelegate {
     }
 
     func closeClicked() {
+        //键盘收起
+        returnMark = true
+        Function.HideKeyboard()
+
         self.dismiss(animated: true) {
             [weak self] () in
-
-
+            
         }
     }
 
     func editFrameClicked(recognizer: UIGestureRecognizer) {
         if let tryTag = recognizer.view?.tag {
             switch tryTag {
-            case Tag.make(4), Tag.make(6):
-                (recognizer.view?.viewWithTag(tryTag + 1) as? UITextField)?.becomeFirstResponder()
-                break
-            case Tag.make(14), Tag.make(16), Tag.make(18):
+            case Tag.make(3):
                 (recognizer.view?.viewWithTag(tryTag + 1) as? UITextField)?.becomeFirstResponder()
                 break
             default:
@@ -243,7 +259,16 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             if let tryHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
 
-                //todo
+                //底部视图
+                if let view = self.view.viewWithTag(Tag.make(2)) {
+                    view.snp.removeConstraints()
+                    view.snp.makeConstraints() {
+                        (make) in
+                        make.bottom.equalTo(-tryHeight)
+                        make.left.right.equalTo(0)
+                        make.height.equalTo(89)
+                    }
+                }
             }
         }
     }
@@ -271,11 +296,14 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         return true
     }
 
+    var returnMark = false
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         //失去焦点
-        textField.superview?.layer.borderWidth = 0
-        textField.superview?.layer.borderColor = UIColor.clear.cgColor
-        return true
+        if returnMark {
+            textField.superview?.layer.borderWidth = 0
+            textField.superview?.layer.borderColor = UIColor.clear.cgColor
+        }
+        return returnMark
     }
 }
 

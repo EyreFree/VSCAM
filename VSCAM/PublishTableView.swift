@@ -37,7 +37,11 @@ class PublishTableView: BaseTableView {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetHead = scrollView.contentOffset.y
-        (parentViewController as? PublishController)?.refreshHeadImage(offset: offsetHead)
+        (parentViewController as? PublishController)?.refreshHeadImage(
+            offsetHead: offsetHead,
+            offsetFoot: scrollView.contentSize.height - (CGSize.screen().height + scrollView.contentOffset.y),
+            reloadImage: true
+        )
     }
 
     //MARK:- tableview

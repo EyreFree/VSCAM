@@ -71,6 +71,7 @@ class LoginTableViewItem: BaseTableViewItem {
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.next
+                searchField.enablesReturnKeyAutomatically = true
                 searchField.clipsToBounds = true
                 searchField.text = Variable.lastLoginUser
                 searchField.textAlignment = .center
@@ -128,6 +129,7 @@ class LoginTableViewItem: BaseTableViewItem {
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.done
+                searchField.enablesReturnKeyAutomatically = true
                 searchField.clipsToBounds = true
                 searchField.text = Variable.lastLoginPWD
                 searchField.isSecureTextEntry = true

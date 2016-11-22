@@ -26,7 +26,7 @@ class PublishTableViewItemHead: BaseTableViewItem {
         let screenWidth = UIScreen.main.bounds.size.width
         if let tryModel = ((tableView as? PublishTableView)?.parentViewController as? PublishController)?.model {
             if let tryScale = tryModel.image?.aspectRatio() {
-                return screenWidth / tryScale
+                return screenWidth * tryScale
             }
         }
         return screenWidth

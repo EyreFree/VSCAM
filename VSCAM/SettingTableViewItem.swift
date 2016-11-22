@@ -204,6 +204,7 @@ class SettingTableViewItem: BaseTableViewItem {
                 searchField.backgroundColor = UIColor.clear
                 searchField.keyboardType = .default
                 searchField.returnKeyType = UIReturnKeyType.done
+                searchField.enablesReturnKeyAutomatically = true
                 searchField.clipsToBounds = true
                 searchField.textAlignment = .left
                 let attributedPlaceholder = NSAttributedString(

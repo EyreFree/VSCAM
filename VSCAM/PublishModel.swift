@@ -4,7 +4,8 @@ import Foundation
 
 class PublishModel {
 
-    var image: UIImage?
+    var preset: String!
+    var image: UIImage!
 
     func headImageHeight() -> CGFloat {
         var scale = 1.f()
