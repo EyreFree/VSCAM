@@ -31,6 +31,8 @@ class NetworkURL {
     static let upload = "?a=upload"
     //删除图片post  remove pid=1
     static let delete = "?a=remove"
+    //发布图片
+    static let release = "?a=release"
 
     //预览图微博基地址
     static let imageWBSmall = "https://ws2.sinaimg.cn/bmiddle/"

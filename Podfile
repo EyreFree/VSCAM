@@ -14,6 +14,10 @@ target 'VSCAM' do
     pod 'KMPlaceholderTextView', '~> 1.3.0'     # 带占位文字的多行编辑框
     pod 'SwiftMessages', '~> 3.0.3'             # 消息框
     pod 'LFRoundProgressView', '~> 1.0.0'       # 进度条
+
+    # 图片浏览依赖
+    pod 'YLGIFImage', '= 0.11'
+    pod 'SVProgressHUD', '~> 2.0.4'
 end
 
 post_install do |installer|

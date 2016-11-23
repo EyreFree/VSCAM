@@ -15,6 +15,9 @@
 //不规则瀑布流
 #import "MyWaterflowLayout.h"
 
+//图片浏览器
+#import "MJPhotoBrowser.h"
+
 #endif /* VSCAM_Bridging_Header_h */
 
 

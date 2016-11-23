@@ -149,7 +149,13 @@ class ImageDetailController: BaseViewController {
                     }
                 }
                 if let tryUrlString = imageUrlString {
-                    imgViewReal.setImageWithURLString(UrlString: tryUrlString)
+                    imgViewReal.setImageWithURLString(UrlString: tryUrlString) {
+                        [weak self] (image) in
+                        //保存获取的图片
+                        if let trySelf = self {
+                            trySelf.model?.image = image
+                        }
+                    }
                 }
             }
         }
@@ -276,7 +282,7 @@ class ImageDetailController: BaseViewController {
                         LoadingView.sharedInstance.hide()
                     } else {
                         //主页刷新
-                        Variable.deleteNeedRefreshMain = true
+                        Variable.listNeedRefreshMain = true
                         //用户页刷新
                         for controller in MainNavigationController.sharedInstance.viewControllers {
                             if let tryController = controller as? UserDetailController {
@@ -296,6 +302,18 @@ class ImageDetailController: BaseViewController {
             MainNavigationController.sharedInstance.pushViewController(
                 UserDetailController(userData: tryUser), animated: true
             )
+        }
+    }
+
+    func imageClicked() {
+        if let tryImage = self.model?.image {
+            let photoObject = MJPhoto()
+            photoObject.image = tryImage
+
+            let imageBroeser = MJPhotoBrowser()
+            imageBroeser.photos = [photoObject]
+            imageBroeser.currentPhotoIndex = 0
+            imageBroeser.show()
         }
     }
 }

@@ -13,8 +13,10 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SnapKit (3.0.2)
+  - SVProgressHUD (2.0.4)
   - SwiftMessages (3.0.3)
   - UMengAnalytics-NO-IDFA (4.1.5)
+  - YLGIFImage (0.11)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
@@ -25,8 +27,10 @@ DEPENDENCIES:
   - NJKWebViewProgress (~> 0.2.3)
   - SDWebImage (~> 3.7.6)
   - SnapKit (~> 3.0.1)
+  - SVProgressHUD (~> 2.0.4)
   - SwiftMessages (~> 3.0.3)
   - UMengAnalytics-NO-IDFA (~> 4.1.1)
+  - YLGIFImage (= 0.11)
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -37,9 +41,11 @@ SPEC CHECKSUMS:
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
   UMengAnalytics-NO-IDFA: f1b08b540eba6ebad044a574cae6d988cf40cfda
+  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 08a567eba7f3084e30572597ff08c15d5f04d3a6
+PODFILE CHECKSUM: 8f0407dbc0fa6c6c988dea22cd531b2ae853e860
 
 COCOAPODS: 1.0.1

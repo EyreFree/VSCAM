@@ -142,15 +142,15 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         if let view = self.view.viewWithTag(Tag.make(2)) {
             footView = view
         } else {
-            let view = UIView()
+            let view = UIView(
+                frame: CGRect(
+                    x: 0, y: CGSize.screen().height - 89,
+                    width: CGSize.screen().width, height: 89
+                )
+            )
             view.backgroundColor = UIColor.white
             view.tag = Tag.make(2)
             self.view.addSubview(view)
-            view.snp.makeConstraints {
-                (make) -> Void in
-                make.left.right.bottom.equalTo(0)
-                make.height.equalTo(89)
-            }
             footView = view
         }
 
@@ -231,7 +231,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         }
 
         //顶部图片
-        refreshHeadImage(offsetHead: 0, offsetFoot: 0, reloadImage: true)
+        tableView.scrollViewDidScroll(tableView)
     }
 
     func refreshHeadImage(offsetHead: CGFloat, offsetFoot: CGFloat, reloadImage: Bool = false) {
@@ -291,13 +291,31 @@ class PublishController: BaseViewController, UITextFieldDelegate {
 
     func submitClicked(textField: UITextField) {
         if let tryErrorString = self.model.uploadError {
-            Function.MessageBox(self, title: "上传失败", content: tryErrorString)
-        } else if self.model.uploadFinished == true {
+            Function.MessageBox(self, title: "发布失败", content: tryErrorString)
+        } else if self.model.uploadFinished == false {
             Function.MessageBox(self, title: "提示", content: "图片正在上传", theme: .warning)
         } else if textField.text?.clean().isEmpty != false {
             Function.MessageBox(self, title: "提示", content: "图片描述不能为空", theme: .warning)
         } else {
-            print("此处应该提交")
+            if let tryPID = model.uploadResult?.uid, let tryText = textField.text?.clean(), let tryPreset = model.preset, let tryExif = model.uploadResult?.exif {
+                LoadingView.sharedInstance.show(controller: self)
+                NetworkAPI.sharedInstance.release(pid: tryPID, text: tryText, preset: tryPreset, exif: tryExif) {
+                    [weak self] (errorString) in
+                    if let trySelf = self {
+                        if let tryErrorString = errorString {
+                            Function.MessageBox(trySelf, title: "发布失败", content: tryErrorString)
+                            LoadingView.sharedInstance.hide()
+                        } else {
+                            //主页刷新
+                            Variable.listNeedRefreshMain = true
+
+                            LoadingView.sharedInstance.hide()
+                            Function.MessageBox(trySelf, title: "提示", content: "发布完成", theme: .success)
+                            MainNavigationController.sharedInstance.popViewController(animated: true)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -306,15 +324,16 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         if let userInfo = notification.userInfo {
             if let tryHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
-
                 //底部视图
-                if let view = self.view.viewWithTag(Tag.make(2)) {
-                    view.snp.removeConstraints()
-                    view.snp.makeConstraints() {
-                        (make) in
-                        make.bottom.equalTo(-tryHeight)
-                        make.left.right.equalTo(0)
-                        make.height.equalTo(89)
+                UIView.animate(withDuration: 0.28) {
+                    [weak self] () in
+                    if let trySelf = self {
+                        if let view = trySelf.view.viewWithTag(Tag.make(2)) {
+                            view.frame = CGRect(
+                                x: 0, y: CGSize.screen().height - 89 - tryHeight,
+                                width: CGSize.screen().width, height: 89
+                            )
+                        }
                     }
                 }
                 //
@@ -327,13 +346,15 @@ class PublishController: BaseViewController, UITextFieldDelegate {
     @objc func keyboardWillHide(notification: NSNotification) {
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         //底部视图
-        if let view = self.view.viewWithTag(Tag.make(2)) {
-            view.snp.removeConstraints()
-            view.snp.makeConstraints() {
-                (make) in
-                make.bottom.equalTo(0)
-                make.left.right.equalTo(0)
-                make.height.equalTo(89)
+        UIView.animate(withDuration: 0.28) {
+            [weak self] () in
+            if let trySelf = self {
+                if let view = trySelf.view.viewWithTag(Tag.make(2)) {
+                    view.frame = CGRect(
+                        x: 0, y: CGSize.screen().height - 89,
+                        width: CGSize.screen().width, height: 89
+                    )
+                }
             }
         }
         //

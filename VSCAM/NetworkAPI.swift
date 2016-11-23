@@ -281,5 +281,15 @@ class NetworkAPI {
             finish(result.0)
         }
     }
+
+    //发布图片
+    func release(pid: Int, text: String, preset: String, exif: String, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["pid": pid, "text": text, "preset": preset, "state": 1, "exif": exif]
+        manager.request(baseUrl + NetworkURL.release, method: .post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
 }
 

@@ -33,8 +33,8 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             refreshUserInfo()
         }
         //如果需要，刷新图片列表
-        if Variable.deleteNeedRefreshMain == true {
-            Variable.deleteNeedRefreshMain = false
+        if Variable.listNeedRefreshMain == true {
+            Variable.listNeedRefreshMain = false
 
             collectionView.mj_header.beginRefreshing()
         }
@@ -232,6 +232,9 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                 if let trySelf = self {
                     let ciImage = CIImage(data: imageData!)
 
+                    //test
+                    print("\(ciImage?.properties)")
+
                     //Processed with VSCO with c1 preset
                     var preset: String?
                     if let tryExifString = (ciImage?.properties["{Exif}"] as? NSDictionary)?["UserComment"] as? String {
@@ -267,7 +270,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                         )
                         return
                     }
-                    Function.MessageBox(trySelf, title: "提示", content: "该图片未使用 VSCO 进行处理", theme: .warning)
+                    Function.MessageBox(trySelf, title: "提示", content: "请选择使用 iPhone 拍摄或经过 VSCO 处理的图片", theme: .warning)
                 }
             })
         } else {

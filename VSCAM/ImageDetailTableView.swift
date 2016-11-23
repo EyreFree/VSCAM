@@ -52,6 +52,7 @@ class ImageDetailTableView: BaseTableView {
         case 0:
             switch indexPath.row {
             case 0:
+                (parentViewController as? ImageDetailController)?.imageClicked()
                 break
             default:
                 break

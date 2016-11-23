@@ -388,7 +388,7 @@ class PhotoDetailObject {
 
 class PhotoUploadObject {
 
-    var uid: String?    //用户id
+    var uid: Int?    //用户id
     var scale: Double?  //比例
     var origin: String? //原始图片地址
     var unix: Int64?    //新建时间
@@ -397,7 +397,7 @@ class PhotoUploadObject {
 
     init?(_ dict: Any?) {
         if let tryDict = dict as? NSDictionary {
-            uid = String.fromJson(tryDict.value(forKey: "uid"))
+            uid = Int.fromJson(tryDict.value(forKey: "uid"))
             scale = Double.fromJson(tryDict.value(forKey: "scale"))
             origin = String.fromJson(tryDict.value(forKey: "origin"))
             unix = Int64.fromJson(tryDict.value(forKey: "unix"))

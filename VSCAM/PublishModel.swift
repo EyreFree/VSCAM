@@ -9,6 +9,7 @@ class PublishModel {
 
     var uploadFinished = false
     var uploadError: String?
+    var uploadResult: PhotoUploadObject?
 
     func headImageHeight() -> CGFloat {
         var scale = 1.f()
