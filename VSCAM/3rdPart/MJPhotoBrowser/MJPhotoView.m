@@ -36,28 +36,28 @@
 {
     if ((self = [super initWithFrame:frame])) {
         self.clipsToBounds = YES;
-		// 图片
-		_imageView = [[YLImageView alloc] init];
+        // 图片
+        _imageView = [[YLImageView alloc] init];
         _imageView.backgroundColor = [UIColor blackColor];
-		_imageView.contentMode = UIViewContentModeScaleAspectFit;
-		[self addSubview:_imageView];
-        
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:_imageView];
+
         // 进度条
         _photoLoadingView = [[MJPhotoLoadingView alloc] init];
-		
-		// 属性
-		self.delegate = self;
-//		self.showsHorizontalScrollIndicator = NO;
-//		self.showsVerticalScrollIndicator = NO;
-		self.decelerationRate = UIScrollViewDecelerationRateFast;
-		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
+
+        // 属性
+        self.delegate = self;
+        //		self.showsHorizontalScrollIndicator = NO;
+        //		self.showsVerticalScrollIndicator = NO;
+        self.decelerationRate = UIScrollViewDecelerationRateFast;
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
         // 监听点击
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
         singleTap.delaysTouchesBegan = YES;
         singleTap.numberOfTapsRequired = 1;
         [self addGestureRecognizer:singleTap];
-        
+
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
         doubleTap.numberOfTapsRequired = 2;
         [self addGestureRecognizer:doubleTap];
@@ -65,7 +65,7 @@
         UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongTap:)];
         longTap.minimumPressDuration = 1;
         [self addGestureRecognizer:longTap];
-        
+
         [singleTap requireGestureRecognizerToFail:doubleTap];
     }
     return self;
@@ -80,7 +80,7 @@
 #pragma mark - photoSetter
 - (void)setPhoto:(MJPhoto *)photo {
     _photo = photo;
-    
+
     [self showImage];
 }
 
@@ -105,11 +105,11 @@
         // 直接显示进度条
         [_photoLoadingView showLoading];
         [self addSubview:_photoLoadingView];
-        
+
         ESWeakSelf;
         ESWeak_(_photoLoadingView);
         ESWeak_(_imageView);
-        
+
         [SDWebImageManager.sharedManager downloadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             ESStrong_(_photoLoadingView);
             if (receivedSize > kMinProgress) {
@@ -131,7 +131,7 @@
         self.scrollEnabled = YES;
         _photo.image = image;
         [_photoLoadingView removeFromSuperview];
-        
+
         if ([self.photoViewDelegate respondsToSelector:@selector(photoViewImageFinishLoad:)]) {
             [self.photoViewDelegate photoViewImageFinishLoad:self];
         }
@@ -139,35 +139,35 @@
         [self addSubview:_photoLoadingView];
         [_photoLoadingView showFailure];
     }
-    
+
     // 设置缩放比例
     [self adjustFrame];
 }
 #pragma mark 调整frame
 - (void)adjustFrame
 {
-	if (_imageView.image == nil) return;
-    
+    if (_imageView.image == nil) return;
+
     // 基本尺寸参数
     CGFloat boundsWidth = self.bounds.size.width;
     CGFloat boundsHeight = self.bounds.size.height;
     CGFloat imageWidth = _imageView.image.size.width;
     CGFloat imageHeight = _imageView.image.size.height;
-	
-	// 设置伸缩比例
+
+    // 设置伸缩比例
     CGFloat imageScale = boundsWidth / imageWidth;
     CGFloat minScale = MIN(1.0, imageScale);
-    
-	CGFloat maxScale = 2.0; 
-	if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
-		maxScale = maxScale / [[UIScreen mainScreen] scale];
-	}
-	self.maximumZoomScale = maxScale;
-	self.minimumZoomScale = minScale;
-	self.zoomScale = minScale;
-    
+
+    CGFloat maxScale = 2.0;
+    if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
+        maxScale = maxScale / [[UIScreen mainScreen] scale];
+    }
+    self.maximumZoomScale = maxScale;
+    self.minimumZoomScale = minScale;
+    self.zoomScale = minScale;
+
     CGRect imageFrame = CGRectMake(0, MAX(0, (boundsHeight- imageHeight*imageScale)/2), boundsWidth, imageHeight *imageScale);
-    
+
     self.contentSize = CGSizeMake(CGRectGetWidth(imageFrame), CGRectGetHeight(imageFrame));
     _imageView.frame = imageFrame;
 }
@@ -183,7 +183,7 @@
             _imageView.frame = imageViewFrame;
         }
     }
-	return _imageView;
+    return _imageView;
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
@@ -204,7 +204,7 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
     // 移除进度条
     [_photoLoadingView removeFromSuperview];
-    
+
     // 通知代理
     if ([self.photoViewDelegate respondsToSelector:@selector(photoViewSingleTap:)]) {
         [self.photoViewDelegate photoViewSingleTap:self];
@@ -224,7 +224,10 @@
     }
 }
 //长按菜单
-- (void)handleLongTap:(UILongPressGestureRecognizer *)tap {
+
+- (void)handleLongTap:(UILongPressGestureRecognizer *)tap
+{
+    [tap setEnabled:FALSE];
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle: nil
                                                                    message: nil
@@ -232,28 +235,41 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction *action) {
-                                                             // do something here
+                                                             [tap setEnabled:TRUE];
                                                          }];
     [alert addAction: cancelAction];
     UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存到相册"
-                                             style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction *action) {
-                                               // do destructive stuff here
-                                           }];
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                           [self saveImage];
+                                                           [tap setEnabled:TRUE];
+                                                       }];
     [alert addAction: saveAction];
 
-/*
     //阻止 iPad Crash
-    actionSheetController.popoverPresentationController?.sourceView = self.view
-    actionSheetController.popoverPresentationController?.sourceRect = CGRectMake(
-                                                                                 self.view.bounds.size.width / 2.0,
-                                                                                 self.view.bounds.size.height / 2.0,
-                                                                                 1.0, 1.0
-                                                                                 )
-    
-    self.presentViewController(actionSheetController, animated: true, completion: nil)
+    alert.popoverPresentationController.sourceView = self;
+    alert.popoverPresentationController.sourceRect = CGRectMake(self.bounds.size.width / 2.0,
+                                                                self.bounds.size.height / 2.0,
+                                                                1.0, 1.0);
 
-    NSLog(@"此处应有菜单");*/
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:true completion:nil];
+}
+
+- (void)saveImage
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImageWriteToSavedPhotosAlbum(_photo.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    });
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:@"保存失败"];
+    } else {
+        _photo.save = YES;
+        [SVProgressHUD showSuccessWithStatus:@"成功保存到相册"];
+    }
 }
 
 - (void)dealloc

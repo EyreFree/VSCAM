@@ -311,6 +311,7 @@ class ImageDetailController: BaseViewController {
             photoObject.image = tryImage
 
             let imageBroeser = MJPhotoBrowser()
+            imageBroeser.showSaveBtn = 0;
             imageBroeser.photos = [photoObject]
             imageBroeser.currentPhotoIndex = 0
             imageBroeser.show()

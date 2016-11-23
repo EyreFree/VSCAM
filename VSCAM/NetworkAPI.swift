@@ -60,7 +60,6 @@ class NetworkAPI {
     //分析返回结果
     func resultAnalysis(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> (String?, AnyObject?) {
         printData(data)
-        NetworkCache.saveCookies()
         if let errorString = self.checkError(response, error: error) {
             return (errorString, nil)
         } else {
@@ -172,6 +171,7 @@ class NetworkAPI {
         let parameters: [String : Any] = ["id": id, "password": password]
         manager.request(baseUrl + NetworkURL.login, method: .post, parameters: parameters).response {
             (response) in
+            NetworkCache.saveCookies()
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             finish(result.0)
         }
@@ -182,6 +182,7 @@ class NetworkAPI {
         let rand = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
         manager.request(baseUrl + NetworkURL.logout + "\(rand)", method: .get).response {
             (response) in
+            NetworkCache.saveCookies()
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             finish(result.0)
         }
