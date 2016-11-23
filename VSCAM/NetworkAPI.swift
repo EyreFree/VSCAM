@@ -271,5 +271,15 @@ class NetworkAPI {
             finish(nil, "图片编码失败")
         }
     }
+
+    //登录
+    func delete(pid: Int, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["pid": pid]
+        manager.request(baseUrl + NetworkURL.delete, method: .post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
 }
 

@@ -2,6 +2,7 @@
 
 import UIKit
 import MJRefresh
+import LFRoundProgressView
 
 class PublishController: BaseViewController, UITextFieldDelegate {
 
@@ -33,10 +34,24 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         //上传图片
         NetworkAPI.sharedInstance.upload(pp: model.image, progress: {
             [weak self] (progress) in
-            print("upload progress: \(progress)")
+            if let trySelf = self {
+                if let view = trySelf.view.viewWithTag(Tag.make(-1)) as? LFRoundProgressView {
+                    view.progress = Float(progress)
+                }
+            }
         }) {
             [weak self] (photoData, errorString) in
-            print("upload complete: \(errorString)")
+            if let trySelf = self {
+                if let tryErrorString = errorString {
+                    trySelf.model.uploadError = tryErrorString
+                    Function.MessageBox(trySelf, title: "上传失败", content: tryErrorString)
+                } else {
+                    trySelf.model.uploadFinished = true
+                    if let view = trySelf.view.viewWithTag(Tag.make(-1)) as? LFRoundProgressView {
+                        view.progress = 1
+                    }
+                }
+            }
         }
     }
 
@@ -66,6 +81,27 @@ class PublishController: BaseViewController, UITextFieldDelegate {
     }
 
     func addControls() {
+        //进度条
+        if let _ = self.view.viewWithTag(Tag.make(-1)) as? LFRoundProgressView {
+
+        } else {
+            let view = LFRoundProgressView(
+                frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 39, height: 39))
+            )
+            view.annularLineCapStyle = CGLineCap.round
+            view.annularLineWith = 4
+            view.percentLabelFont = UIFont.boldSystemFont(ofSize: 10)
+            view.percentLabelTextColor = UIColor.white
+            view.tag = Tag.make(-1)
+            view.isUserInteractionEnabled = false
+            self.view.addSubview(view)
+            view.snp.makeConstraints {
+                (make) -> Void in
+                make.top.left.equalTo(8)
+                make.width.height.equalTo(39)
+            }
+        }
+
         //按钮
         if let _ = self.view.viewWithTag(Tag.make(0)) as? UIImageView {
 
@@ -237,7 +273,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
 
         self.dismiss(animated: true) {
             [weak self] () in
-            
+
         }
     }
 
@@ -250,6 +286,18 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             default:
                 break
             }
+        }
+    }
+
+    func submitClicked(textField: UITextField) {
+        if let tryErrorString = self.model.uploadError {
+            Function.MessageBox(self, title: "上传失败", content: tryErrorString)
+        } else if self.model.uploadFinished == true {
+            Function.MessageBox(self, title: "提示", content: "图片正在上传", theme: .warning)
+        } else if textField.text?.clean().isEmpty != false {
+            Function.MessageBox(self, title: "提示", content: "图片描述不能为空", theme: .warning)
+        } else {
+            print("此处应该提交")
         }
     }
 
@@ -269,6 +317,8 @@ class PublishController: BaseViewController, UITextFieldDelegate {
                         make.height.equalTo(89)
                     }
                 }
+                //
+                tableView.scrollViewDidScroll(tableView)
             }
         }
     }
@@ -276,6 +326,18 @@ class PublishController: BaseViewController, UITextFieldDelegate {
     //键盘消失
     @objc func keyboardWillHide(notification: NSNotification) {
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        //底部视图
+        if let view = self.view.viewWithTag(Tag.make(2)) {
+            view.snp.removeConstraints()
+            view.snp.makeConstraints() {
+                (make) in
+                make.bottom.equalTo(0)
+                make.left.right.equalTo(0)
+                make.height.equalTo(89)
+            }
+        }
+        //
+        tableView.scrollViewDidScroll(tableView)
     }
 
     //MARK:- UITextFieldDelegate
@@ -289,7 +351,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //键盘提交
         if textField.tag == Tag.make(4) {
-            print("此处应该提交")
+            submitClicked(textField: textField)
         } else {
             textField.resignFirstResponder()
         }

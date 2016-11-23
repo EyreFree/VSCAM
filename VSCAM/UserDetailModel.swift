@@ -12,6 +12,8 @@ class UserDetailModel {
     var hasAvatar = false
     var isSelf = false
 
+    var needRefreshList = false
+
     func refreshModel() {
         hasAvatar = false
         if let tryAvatar = userData?.avatar ?? userDetailData?.avatar {

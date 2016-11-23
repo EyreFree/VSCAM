@@ -63,4 +63,5 @@ class Variable {
         UserDefaults.standard.set(newValue, forKey: "loginUserInfo_avatar")
     }
     static var loginNeedRefreshMain = true
+    static var deleteNeedRefreshMain = false
 }

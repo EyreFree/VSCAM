@@ -214,6 +214,50 @@ class ImageDetailController: BaseViewController {
     }
 
     func shareClicked() {
+        if let tryLocalUID = Variable.loginUserInfo?.uid {
+            if (model.imageBrief?.uid ?? model.imageDetail?.uid) == tryLocalUID {
+                let actionSheetController = UIAlertController(
+                    title: nil, message: nil, preferredStyle: .actionSheet
+                )
+
+                let cancelActionButton = UIAlertAction(title: "取消", style: .cancel) {
+                    action -> Void in
+                }
+                actionSheetController.addAction(cancelActionButton)
+
+                let actionButton1 = UIAlertAction(title: "分享", style: .default) {
+                    [weak self] action -> Void in
+                    if let strongSelf = self {
+                        strongSelf.shareAction()
+                    }
+                }
+                actionSheetController.addAction(actionButton1)
+
+                let actionButton2 = UIAlertAction(title: "删除", style: .destructive) {
+                    [weak self] action -> Void in
+                    if let strongSelf = self {
+                        strongSelf.deleteAction()
+                    }
+                }
+                actionSheetController.addAction(actionButton2)
+
+                //阻止 iPad Crash
+                actionSheetController.popoverPresentationController?.sourceView = self.view
+                actionSheetController.popoverPresentationController?.sourceRect = CGRect(
+                    x: self.view.bounds.size.width / 2.0,
+                    y: self.view.bounds.size.height / 2.0,
+                    width: 1.0, height: 1.0
+                )
+
+                self.present(actionSheetController, animated: true, completion: nil)
+                return
+            }
+        }
+
+        shareAction()
+    }
+
+    func shareAction() {
         if let tryPID = (model.imageBrief?.pid ?? model.imageDetail?.pid),
             let tryTitle = (model.imageBrief?.text ?? model.imageDetail?.text) {
             let webUrl = NetworkURL.imageDetailPage.replace(string: "{pid}", with: "\(tryPID)")
@@ -221,6 +265,32 @@ class ImageDetailController: BaseViewController {
         }
     }
 
+    func deleteAction() {
+        if let tryPID = model.imageBrief?.pid ?? model.imageDetail?.pid {
+            LoadingView.sharedInstance.show(controller: self)
+            NetworkAPI.sharedInstance.delete(pid: tryPID) {
+                [weak self] (errorString) in
+                if let trySelf = self {
+                    if let tryErrorString = errorString {
+                        Function.MessageBox(trySelf, title: "图片删除失败", content: tryErrorString)
+                        LoadingView.sharedInstance.hide()
+                    } else {
+                        //主页刷新
+                        Variable.deleteNeedRefreshMain = true
+                        //用户页刷新
+                        for controller in MainNavigationController.sharedInstance.viewControllers {
+                            if let tryController = controller as? UserDetailController {
+                                tryController.model.needRefreshList = true
+                            }
+                        }
+                        LoadingView.sharedInstance.hide()
+                        MainNavigationController.sharedInstance.popViewController(animated: true)
+                    }
+                }
+            }
+        }
+    }
+    
     func userClicked() {
         if let tryUser = model?.imageBrief?.user ?? model?.imageDetail?.user {
             MainNavigationController.sharedInstance.pushViewController(

@@ -20,7 +20,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         addModel()
         addControls()
 
-        collectionView?.mj_header?.beginRefreshing()
+        collectionView.mj_header.beginRefreshing()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +31,12 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             Variable.loginNeedRefreshMain = false
 
             refreshUserInfo()
+        }
+        //如果需要，刷新图片列表
+        if Variable.deleteNeedRefreshMain == true {
+            Variable.deleteNeedRefreshMain = false
+
+            collectionView.mj_header.beginRefreshing()
         }
 
         Function.setStatusBar(hidden: false)
@@ -80,26 +86,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             let customHeader = MJRefreshNormalHeader() {
                 [weak self] in
                 if let trySelf = self {
-                    trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
-                    NetworkAPI.sharedInstance.imageList() {
-                        [weak self] (imagelist, errorString) in
-                        if let trySelf = self {
-                            if let tryErrorString = errorString {
-                                Function.MessageBox(trySelf, title: "图片列表刷新失败", content: tryErrorString)
-                            } else if let tryImageList = imagelist {
-                                trySelf.model?.imageList = tryImageList
-
-                                trySelf.collectionView.addReuseIdentifier()
-                                trySelf.collectionView.reloadData()
-                            }
-                            if let tryCount = imagelist?.grids?.count {
-                                if tryCount >= Define.pageCount {
-                                    trySelf.collectionView.mj_footer.resetNoMoreData()
-                                }
-                            }
-                            trySelf.collectionView.mj_header.endRefreshing()
-                        }
-                    }
+                    trySelf.refreshImageList()
                 }
             }
             customHeader?.lastUpdatedTimeLabel.isHidden = true
@@ -161,6 +148,35 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                     if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
                         headView.refreshAvatar()
                     }
+                }
+            }
+        }
+    }
+
+    private var refreshImageListMark = true
+    func refreshImageList() {
+        if refreshImageListMark {
+            refreshImageListMark = false
+
+            self.collectionView.mj_footer.endRefreshingWithNoMoreData()
+            NetworkAPI.sharedInstance.imageList() {
+                [weak self] (imagelist, errorString) in
+                if let trySelf = self {
+                    if let tryErrorString = errorString {
+                        Function.MessageBox(trySelf, title: "图片列表刷新失败", content: tryErrorString)
+                    } else if let tryImageList = imagelist {
+                        trySelf.model?.imageList = tryImageList
+
+                        trySelf.collectionView.addReuseIdentifier()
+                        trySelf.collectionView.reloadData()
+                    }
+                    if let tryCount = imagelist?.grids?.count {
+                        if tryCount >= Define.pageCount {
+                            trySelf.collectionView.mj_footer.resetNoMoreData()
+                        }
+                    }
+                    trySelf.collectionView.mj_header.endRefreshing()
+                    trySelf.refreshImageListMark = true
                 }
             }
         }

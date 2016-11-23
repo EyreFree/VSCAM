@@ -33,6 +33,10 @@ class UserDetailController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        if model.needRefreshList == true {
+            collectionView?.mj_header?.beginRefreshing()
+        }
+
         if model.isSelf == true {
             var needReplace = false
             if (model.userData ?? model.userDetailData)?.avatar != Variable.loginUserInfo?.avatar {
@@ -166,28 +170,7 @@ class UserDetailController: BaseViewController {
                     trySelf.refreshUserData()
 
                     //刷新列表
-                    if let tryUID = trySelf.model?.userData?.uid {
-                        trySelf.collectionView.mj_footer.endRefreshingWithNoMoreData()
-                        NetworkAPI.sharedInstance.imageList(u: tryUID) {
-                            [weak self] (imagelist, errorString) in
-                            if let trySelf = self {
-                                if let tryErrorString = errorString {
-                                    Function.MessageBox(trySelf, title: "图片列表刷新失败", content: tryErrorString)
-                                } else if let tryImageList = imagelist {
-                                    trySelf.model?.imageList = tryImageList
-
-                                    trySelf.collectionView.addReuseIdentifier()
-                                    trySelf.collectionView.reloadData()
-                                }
-                                if let tryCount = imagelist?.grids?.count {
-                                    if tryCount >= Define.pageCount {
-                                        trySelf.collectionView.mj_footer.resetNoMoreData()
-                                    }
-                                }
-                                trySelf.collectionView.mj_header.endRefreshing()
-                            }
-                        }
-                    }
+                    trySelf.refreshImageList()
                 }
             }
             customHeader?.lastUpdatedTimeLabel.isHidden = true
@@ -292,6 +275,37 @@ class UserDetailController: BaseViewController {
         }
     }
 
+    private var refreshImageListMark = true
+    func refreshImageList() {
+        if refreshImageListMark {
+            refreshImageListMark = false
+            //刷新列表
+            if let tryUID = self.model?.userData?.uid {
+                self.collectionView.mj_footer.endRefreshingWithNoMoreData()
+                NetworkAPI.sharedInstance.imageList(u: tryUID) {
+                    [weak self] (imagelist, errorString) in
+                    if let trySelf = self {
+                        if let tryErrorString = errorString {
+                            Function.MessageBox(trySelf, title: "图片列表刷新失败", content: tryErrorString)
+                        } else if let tryImageList = imagelist {
+                            trySelf.model?.imageList = tryImageList
+
+                            trySelf.collectionView.addReuseIdentifier()
+                            trySelf.collectionView.reloadData()
+                        }
+                        if let tryCount = imagelist?.grids?.count {
+                            if tryCount >= Define.pageCount {
+                                trySelf.collectionView.mj_footer.resetNoMoreData()
+                            }
+                        }
+                        trySelf.collectionView.mj_header.endRefreshing()
+                        trySelf.refreshImageListMark = true
+                    }
+                }
+            }
+        }
+    }
+
     func clickImageAt(index: Int) {
         if let tryImages = model?.imageList?.grids {
             MainNavigationController.sharedInstance.pushViewController(
@@ -303,14 +317,14 @@ class UserDetailController: BaseViewController {
     func backClicked() {
         MainNavigationController.sharedInstance.popViewController(animated: true)
     }
-    
+
     func shareClicked() {
         if let tryName = (model.userData?.name ?? model.userDetailData?.name) {
             let webUrl = NetworkURL.userDetailPage.replace(string: "{name}", with: tryName)
             Function.openShareView(controller: self, title: "[VSCAM]\(tryName)", url: webUrl)
         }
     }
-    
+
     func settingClicked() {
         MainNavigationController.sharedInstance.pushViewController(SettingController(), animated: true)
     }
