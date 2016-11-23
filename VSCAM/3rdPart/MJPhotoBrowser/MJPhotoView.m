@@ -61,6 +61,10 @@
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
         doubleTap.numberOfTapsRequired = 2;
         [self addGestureRecognizer:doubleTap];
+
+        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongTap:)];
+        longTap.minimumPressDuration = 1;
+        [self addGestureRecognizer:longTap];
         
         [singleTap requireGestureRecognizerToFail:doubleTap];
     }
@@ -210,14 +214,46 @@
 - (void)handleDoubleTap:(UITapGestureRecognizer *)tap {
     _zoomByDoubleTap = YES;
 
-	if (self.zoomScale == self.maximumZoomScale) {
-		[self setZoomScale:self.minimumZoomScale animated:YES];
-	} else {
+    if (self.zoomScale == self.maximumZoomScale) {
+        [self setZoomScale:self.minimumZoomScale animated:YES];
+    } else {
         CGPoint touchPoint = [tap locationInView:self];
         CGFloat scale = self.maximumZoomScale/ self.zoomScale;
         CGRect rectTozoom=CGRectMake(touchPoint.x * scale, touchPoint.y * scale, 1, 1);
         [self zoomToRect:rectTozoom animated:YES];
-	}
+    }
+}
+//长按菜单
+- (void)handleLongTap:(UILongPressGestureRecognizer *)tap {
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle: nil
+                                                                   message: nil
+                                                            preferredStyle: UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {
+                                                             // do something here
+                                                         }];
+    [alert addAction: cancelAction];
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存到相册"
+                                             style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               // do destructive stuff here
+                                           }];
+    [alert addAction: saveAction];
+
+/*
+    //阻止 iPad Crash
+    actionSheetController.popoverPresentationController?.sourceView = self.view
+    actionSheetController.popoverPresentationController?.sourceRect = CGRectMake(
+                                                                                 self.view.bounds.size.width / 2.0,
+                                                                                 self.view.bounds.size.height / 2.0,
+                                                                                 1.0, 1.0
+                                                                                 )
+    
+    self.presentViewController(actionSheetController, animated: true, completion: nil)
+
+    NSLog(@"此处应有菜单");*/
 }
 
 - (void)dealloc

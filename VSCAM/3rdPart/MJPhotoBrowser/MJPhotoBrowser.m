@@ -85,14 +85,14 @@
             _reusablePhotoViews = [NSMutableSet set];
         }
         self.toolbar.photos = self.photos;
-        
-        
+
+
         CGRect frame = self.view.bounds;
         frame.origin.x -= kPadding;
         frame.size.width += (2 * kPadding);
         self.photoScrollView.contentSize = CGSizeMake(frame.size.width * self.photos.count, 0);
         self.photoScrollView.contentOffset = CGPointMake(self.currentPhotoIndex * frame.size.width, 0);
-        
+
         [self.view addSubview:self.photoScrollView];
         [self.view addSubview:self.toolbar];
         [self updateTollbarState];
@@ -124,10 +124,10 @@
 - (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex
 {
     _currentPhotoIndex = currentPhotoIndex;
-    
+
     if (_photoScrollView) {
         _photoScrollView.contentOffset = CGPointMake(_currentPhotoIndex * _photoScrollView.frame.size.width, 0);
-        
+
         // 显示所有的相片
         [self showPhotos];
     }
@@ -143,7 +143,7 @@
     if (firstIndex >= _photos.count) firstIndex = (int)_photos.count - 1;
     if (lastIndex < 0) lastIndex = 0;
     if (lastIndex >= _photos.count) lastIndex = (int)_photos.count - 1;
-    
+
     // 回收不再显示的ImageView
     NSInteger photoViewIndex;
     for (MJPhotoView *photoView in _visiblePhotoViews) {
@@ -153,18 +153,18 @@
             [photoView removeFromSuperview];
         }
     }
-    
+
     [_visiblePhotoViews minusSet:_reusablePhotoViews];
     while (_reusablePhotoViews.count > 2) {
         [_reusablePhotoViews removeObject:[_reusablePhotoViews anyObject]];
     }
-    
+
     for (NSUInteger index = firstIndex; index <= lastIndex; index++) {
         if (![self isShowingPhotoViewAtIndex:index]) {
             [self showPhotoViewAtIndex:(int)index];
         }
     }
-    
+
 }
 
 //  显示一个图片view
@@ -175,21 +175,21 @@
         photoView = [[MJPhotoView alloc] init];
         photoView.photoViewDelegate = self;
     }
-    
+
     // 调整当前页的frame
     CGRect bounds = _photoScrollView.bounds;
     CGRect photoViewFrame = bounds;
     photoViewFrame.size.width -= (2 * kPadding);
     photoViewFrame.origin.x = (bounds.size.width * index) + kPadding;
     photoView.tag = kPhotoViewTagOffset + index;
-    
+
     MJPhoto *photo = _photos[index];
     photoView.frame = photoViewFrame;
     photoView.photo = photo;
-    
+
     [_visiblePhotoViews addObject:photoView];
     [_photoScrollView addSubview:photoView];
-    
+
     [self loadImageNearIndex:index];
 }
 
@@ -202,7 +202,7 @@
             //do nothing
         }];
     }
-    
+
     if (index < _photos.count - 1) {
         MJPhoto *photo = _photos[index + 1];
         [[SDWebImageManager sharedManager] downloadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -245,7 +245,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     // 移除工具条
     [self.toolbar removeFromSuperview];
-    
+
     [UIView animateWithDuration:0.3 animations:^{
         self.view.alpha = 0;
     } completion:^(BOOL finished) {
@@ -260,7 +260,7 @@
 
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	[self showPhotos];
+    [self showPhotos];
     [self updateTollbarState];
 }
 
