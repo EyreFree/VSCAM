@@ -22,7 +22,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0.0</string>
+	<string>1.0.0.1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>alipay</string>
@@ -66,16 +66,16 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>VSCAM 需要您的同意才能打开摄像头</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>VSCAM 需要您的同意才能打开相册</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>VSCAM 需要您的同意才能打开麦克风</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>VSCAM 需要您的同意才能使用语音识别</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>VSCAM 需要您的同意才能读取媒体资料库</string>
+	<key>NSCameraUsageDescription</key>
+	<string>VSCAM 需要您的同意才能打开摄像头</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>VSCAM 需要您的同意才能打开麦克风</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>VSCAM 需要您的同意才能打开相册</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>VSCAM 需要您的同意才能使用语音识别</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
