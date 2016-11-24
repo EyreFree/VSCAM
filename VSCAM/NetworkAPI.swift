@@ -14,8 +14,11 @@ class NetworkAPI {
     var manager: SessionManager!            //普通的
     private var managerUnlimited: SessionManager!   //长时间的
     init() {
+        var customHeader = SessionManager.defaultHTTPHeaders
+        customHeader.updateValue("http://vscam.co/", forKey: "referer")
+
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        configuration.httpAdditionalHeaders = customHeader
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.timeoutIntervalForRequest = 2 * 60    //2分钟
         if let tryCookies = NetworkCache.cookies {
@@ -26,7 +29,7 @@ class NetworkAPI {
         manager = SessionManager(configuration: configuration)
 
         let configurationUnlimited = URLSessionConfiguration.default
-        configurationUnlimited.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        configurationUnlimited.httpAdditionalHeaders = customHeader
         configurationUnlimited.requestCachePolicy = .reloadIgnoringLocalCacheData
         configurationUnlimited.timeoutIntervalForRequest = 20 * 60 //20 分钟
         if let tryCookies = NetworkCache.cookies {
@@ -59,7 +62,7 @@ class NetworkAPI {
 
     //分析返回结果
     func resultAnalysis(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> (String?, AnyObject?) {
-        printData(data)
+        //printData(data)
         if let errorString = self.checkError(response, error: error) {
             return (errorString, nil)
         } else {
@@ -133,7 +136,6 @@ class NetworkAPI {
         let uidsString = arrayToString(array: uids as [AnyObject], brackets: false)
         manager.request(baseUrl + NetworkURL.userInfoList + uidsString, method: .get).response {
             (response) in
-            self.printData(response.data)
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             if let tryErrorString = result.0 {
                 finish(nil, tryErrorString)
@@ -245,32 +247,28 @@ class NetworkAPI {
     }
 
     //上传图片
-    func upload(pp: UIImage, progress: @escaping (Double) -> Void, finish: @escaping (PhotoUploadObject?, String?) -> Void) {
-        if let tryAvatarData = UIImageJPEGRepresentation(pp, 1) {
-            refreshManagerUnlimitedCookies()
-            managerUnlimited.upload(multipartFormData: {
-                (multipartFormData) in
-                multipartFormData.append(tryAvatarData, withName: "pp", fileName: "pp.jpg", mimeType: "image/jpeg")
-            }, to: baseUrl + NetworkURL.upload, encodingCompletion: {
-                (encodingResult) in
-                switch encodingResult {
-                case .success(request: let uploadRequest, streamingFromDisk: _, streamFileURL: _):
-                    uploadRequest.uploadProgress(closure: { (value) in
-                        progress(value.fractionCompleted)
-                    }).response(completionHandler: {
-                        (response) in
-                        let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
-                        finish(PhotoUploadObject(result.1), result.0)
-                    })
-                    break
-                case .failure(let encodingError):
-                    finish(nil, encodingError.localizedDescription)
-                    break
-                }
-            })
-        } else {
-            finish(nil, "图片编码失败")
-        }
+    func upload(pp: Data, progress: @escaping (Double) -> Void, finish: @escaping (PhotoUploadObject?, String?) -> Void) {
+        refreshManagerUnlimitedCookies()
+        managerUnlimited.upload(multipartFormData: {
+            (multipartFormData) in
+            multipartFormData.append(pp, withName: "pp", fileName: "pp.jpg", mimeType: "image/jpeg")
+        }, to: baseUrl + NetworkURL.upload, encodingCompletion: {
+            (encodingResult) in
+            switch encodingResult {
+            case .success(request: let uploadRequest, streamingFromDisk: _, streamFileURL: _):
+                uploadRequest.uploadProgress(closure: { (value) in
+                    progress(value.fractionCompleted)
+                }).response(completionHandler: {
+                    (response) in
+                    let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+                    finish(PhotoUploadObject(result.1), result.0)
+                })
+                break
+            case .failure(let encodingError):
+                finish(nil, encodingError.localizedDescription)
+                break
+            }
+        })
     }
 
     //登录
@@ -284,8 +282,8 @@ class NetworkAPI {
     }
 
     //发布图片
-    func release(pid: Int, text: String, preset: String, exif: String, finish: @escaping (String?) -> Void) {
-        let parameters: [String : Any] = ["pid": pid, "text": text, "preset": preset, "state": 1, "exif": exif]
+    func release(pid: Int, text: String, preset: String, exif: String, gps: String, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["pid": pid, "text": text, "preset": preset, "state": 1, "exif": exif, "gps": gps]
         manager.request(baseUrl + NetworkURL.release, method: .post, parameters: parameters).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)

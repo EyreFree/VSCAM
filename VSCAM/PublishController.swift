@@ -13,12 +13,13 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(image: UIImage, preset: String) {
+    init(imageData: Data, preset: String) {
         super.init(nibName: nil, bundle: nil)
 
         addModel()
         model?.preset = preset
-        model?.image = image
+        model?.imageData = imageData
+        model?.image = UIImage(data: model.imageData)
     }
 
     override func viewDidLoad() {
@@ -32,11 +33,11 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         addKeyboardObserver()
 
         //上传图片
-        NetworkAPI.sharedInstance.upload(pp: model.image, progress: {
+        NetworkAPI.sharedInstance.upload(pp: model.imageData, progress: {
             [weak self] (progress) in
             if let trySelf = self {
                 if let view = trySelf.view.viewWithTag(Tag.make(-1)) as? LFRoundProgressView {
-                    view.progress = Float(progress)
+                    view.progress = min(Float(progress), 0.99)
                 }
             }
         }) {
@@ -46,9 +47,11 @@ class PublishController: BaseViewController, UITextFieldDelegate {
                     trySelf.model.uploadError = tryErrorString
                     Function.MessageBox(trySelf, title: "上传失败", content: tryErrorString)
                 } else {
+                    trySelf.model.uploadResult = photoData
                     trySelf.model.uploadFinished = true
                     if let view = trySelf.view.viewWithTag(Tag.make(-1)) as? LFRoundProgressView {
                         view.progress = 1
+                        view.isHidden = true
                     }
                 }
             }
@@ -216,7 +219,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         } else {
             let searchField = UILabel()
             searchField.alpha = 0.5
-            searchField.text = model.preset
+            searchField.text = model.preset?.isEmpty == true ? "-" : model.preset
             searchField.font = UIFont.systemFont(ofSize: 68)
             searchField.textColor = UIColor.white
             searchField.backgroundColor = UIColor.clear
@@ -297,9 +300,9 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         } else if textField.text?.clean().isEmpty != false {
             Function.MessageBox(self, title: "提示", content: "图片描述不能为空", theme: .warning)
         } else {
-            if let tryPID = model.uploadResult?.uid, let tryText = textField.text?.clean(), let tryPreset = model.preset, let tryExif = model.uploadResult?.exif {
+            if let tryPID = model.uploadResult?.pid, let tryText = textField.text?.clean(), let tryPreset = model.preset, let tryGPS = model.uploadResult?.gps, let tryExif = model.uploadResult?.exif {
                 LoadingView.sharedInstance.show(controller: self)
-                NetworkAPI.sharedInstance.release(pid: tryPID, text: tryText, preset: tryPreset, exif: tryExif) {
+                NetworkAPI.sharedInstance.release(pid: tryPID, text: tryText, preset: tryPreset, exif: tryExif, gps: tryGPS) {
                     [weak self] (errorString) in
                     if let trySelf = self {
                         if let tryErrorString = errorString {
@@ -310,8 +313,9 @@ class PublishController: BaseViewController, UITextFieldDelegate {
                             Variable.listNeedRefreshMain = true
 
                             LoadingView.sharedInstance.hide()
-                            Function.MessageBox(trySelf, title: "提示", content: "发布完成", theme: .success)
-                            MainNavigationController.sharedInstance.popViewController(animated: true)
+
+                            //关闭当前页
+                            trySelf.closeClicked()
                         }
                     }
                 }
@@ -378,7 +382,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         }
         return true
     }
-
+    
     var returnMark = false
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         //失去焦点

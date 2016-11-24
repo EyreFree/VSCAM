@@ -26,17 +26,19 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //如果需要，刷新登录用户信息
-        if Variable.loginNeedRefreshMain == true {
+        if Variable.listNeedRefreshMain == true {
+            //如果需要，刷新图片列表和登录用户信息
+
+            Variable.listNeedRefreshMain = false
+            Variable.loginNeedRefreshMain = false
+
+            collectionView.mj_header.beginRefreshing()
+        } else if Variable.loginNeedRefreshMain == true {
+            //如果需要，刷新登录用户信息
+
             Variable.loginNeedRefreshMain = false
 
             refreshUserInfo()
-        }
-        //如果需要，刷新图片列表
-        if Variable.listNeedRefreshMain == true {
-            Variable.listNeedRefreshMain = false
-
-            collectionView.mj_header.beginRefreshing()
         }
 
         Function.setStatusBar(hidden: false)
@@ -86,6 +88,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             let customHeader = MJRefreshNormalHeader() {
                 [weak self] in
                 if let trySelf = self {
+                    trySelf.refreshUserInfo()
                     trySelf.refreshImageList()
                 }
             }
@@ -129,25 +132,55 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         }
     }
 
+    private var refreshUserInfoMark = true
     func refreshUserInfo() {
-        NetworkAPI.sharedInstance.userSelfInfo() {
-            [weak self] (userInfo, errorString) in
-            if let trySelf = self {
-                if let tryErrorString = errorString {
-                    print("用户信息加载失败: \(tryErrorString)")
-                    if "尚未登录" == tryErrorString {
-                        Variable.loginUserInfo = nil
+        if refreshUserInfoMark {
+            refreshUserInfoMark = false
+
+            NetworkAPI.sharedInstance.userSelfInfo() {
+                [weak self] (userInfo, errorString) in
+                if let trySelf = self {
+                    if let tryErrorString = errorString {
+                        print("用户信息加载失败: \(tryErrorString)")
+                        if "尚未登录" == tryErrorString {
+                            if let tryID = Variable.lastLoginUser, let tryPWD = Variable.lastLoginPWD {
+                                //尝试重新登录
+                                NetworkAPI.sharedInstance.login(id: tryID, password: tryPWD) {
+                                    [weak self] (errorString) in
+                                    if let trySelf = self {
+                                        if let tryErrorString = errorString {
+                                            print("重新登录失败: \(tryErrorString)")
+
+                                            //清除旧的登录信息
+                                            Variable.loginUserInfo = nil
+                                            NetworkCache.cookies = nil
+
+                                            if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
+                                                headView.refreshAvatar()
+                                            }
+                                        } else {
+                                            trySelf.refreshUserInfo()
+                                        }
+                                    }
+                                }
+                            } else {
+                                //清除旧的登录信息
+                                Variable.loginUserInfo = nil
+                                NetworkCache.cookies = nil
+
+                                if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
+                                    headView.refreshAvatar()
+                                }
+                            }
+                        }
+                    } else if let tryUserInfo = userInfo {
+                        Variable.loginUserInfo = tryUserInfo
 
                         if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
                             headView.refreshAvatar()
                         }
                     }
-                } else if let tryUserInfo = userInfo {
-                    Variable.loginUserInfo = tryUserInfo
-
-                    if let headView = trySelf.view.viewWithTag(Tag.make(0)) as? MainHeadView {
-                        headView.refreshAvatar()
-                    }
+                    trySelf.refreshUserInfoMark = true
                 }
             }
         }
@@ -203,14 +236,18 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
     }
 
     func publishClicked() {
-        if nil == imagePicker {
-            let picker = UIImagePickerController()
-            picker.sourceType = .photoLibrary
-            picker.delegate = self
-            picker.allowsEditing = false
-            imagePicker = picker
+        if Variable.loginUserInfo == nil {
+            Function.MessageBox(self, title: "提示", content: "请先登录", theme: .info)
+        } else {
+            if nil == imagePicker {
+                let picker = UIImagePickerController()
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = false
+                imagePicker = picker
+            }
+            self.present(imagePicker, animated: true, completion: nil)
         }
-        self.present(imagePicker, animated: true, completion: nil)
     }
 
     //MARK:- UIImagePickerControllerDelegate
@@ -218,64 +255,71 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         imagePicker.dismiss(animated: true, completion: nil)
     }
 
-    private var pickerImage: UIImage!
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let selectImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            pickerImage = selectImage
-
-            let url = info[UIImagePickerControllerReferenceURL]
-            let fetchResult = PHAsset.fetchAssets(withALAssetURLs: [url as! URL], options: nil)
-            let asset = fetchResult.firstObject
-
-            PHImageManager.default().requestImageData(for: asset!, options: nil, resultHandler: {
-                [weak self] (imageData, dataUTI, orientation, info) in
-                if let trySelf = self {
-                    let ciImage = CIImage(data: imageData!)
-
-                    //test
-                    print("\(ciImage?.properties)")
-
-                    //Processed with VSCO with c1 preset
-                    var preset: String?
-                    if let tryExifString = (ciImage?.properties["{Exif}"] as? NSDictionary)?["UserComment"] as? String {
-                        if true == tryExifString.hasSubString(string: "VSCO") {
-                            preset = "-"
-                            let stringArray = tryExifString.components(separatedBy: "with")
-                            for subString in stringArray {
-                                if subString.hasSubString(string: "preset") {
-                                    let stringInArray = subString.components(separatedBy: "preset")
-                                    preset = stringInArray.first ?? "-"
-                                    break
+        if let tryUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+            if let tryFetchResult = PHAsset.fetchAssets(withALAssetURLs: [tryUrl], options: nil).firstObject {
+                PHImageManager.default().requestImageData(for: tryFetchResult, options: nil, resultHandler: {
+                    [weak self] (imageData, dataUTI, orientation, info) in
+                    if let trySelf = self {
+                        if let tryImageData = imageData {
+                            if let tryCIImage = CIImage(data: tryImageData) {
+                                //检测 VSCO 编辑
+                                var preset: String?
+                                let targetExifList = [
+                                    (tryCIImage.properties["{Exif}"] as? NSDictionary)?["UserComment"] ,
+                                    (tryCIImage.properties["{TIFF}"] as? NSDictionary)?["ImageDescription"]
+                                ]
+                                for subExifString in targetExifList {
+                                    if let trySubExifString = subExifString as? String {
+                                        if true == trySubExifString.hasSubString(string: "VSCO") {
+                                            preset = ""
+                                            let stringArray = trySubExifString.components(separatedBy: "with")
+                                            for subString in stringArray {
+                                                if subString.hasSubString(string: "preset") {
+                                                    let stringInArray = subString.components(separatedBy: "preset")
+                                                    preset = stringInArray.first ?? ""
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if preset?.isEmpty == false {
+                                        break
+                                    }
                                 }
+                                //检测 Apple 拍摄
+                                if preset == nil {
+                                    for value in tryCIImage.properties {
+                                        if let tryDict = value.value as? NSDictionary {
+                                            for valueIn in tryDict {
+                                                if let tryString = valueIn.value as? String {
+                                                    if tryString.hasSubString(string: "Apple") {
+                                                        preset = ""
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if let tryPreset = preset {
+                                    trySelf.present(
+                                        PublishController(imageData: tryImageData, preset: tryPreset.clean().uppercased()),
+                                        animated: true
+                                    )
+                                    return
+                                }
+                                Function.MessageBox(trySelf, title: "提示", content: "请选择使用 iPhone 拍摄的照片或其它经过处理的图片", theme: .warning)
+                                return
                             }
                         }
+                        Function.MessageBox(trySelf, title: "获取图片失败", content: "所选图片无效")
                     }
-                    if let tryTIFFString = (ciImage?.properties["{TIFF}"] as? NSDictionary)?["ImageDescription"] as? String {
-                        if true == tryTIFFString.hasSubString(string: "VSCO") {
-                            preset = "-"
-                            let stringArray = tryTIFFString.components(separatedBy: "with")
-                            for subString in stringArray {
-                                if subString.hasSubString(string: "preset") {
-                                    let stringInArray = subString.components(separatedBy: "preset")
-                                    preset = stringInArray.first ?? "-"
-                                    break
-                                }
-                            }
-                        }
-                    }
-                    if let tryPreset = preset {
-                        trySelf.present(
-                            PublishController(image: trySelf.pickerImage, preset: tryPreset.clean().uppercased()),
-                            animated: true
-                        )
-                        return
-                    }
-                    Function.MessageBox(trySelf, title: "提示", content: "请选择使用 iPhone 拍摄或经过 VSCO 处理的图片", theme: .warning)
-                }
-            })
-        } else {
-            Function.MessageBox(self, title: "获取图片失败", content: "所选图片无效")
+                })
+                imagePicker.dismiss(animated: true, completion: nil)
+                return
+            }
         }
+        Function.MessageBox(self, title: "获取图片失败", content: "所选图片无效")
         imagePicker.dismiss(animated: true, completion: nil)
     }
 }

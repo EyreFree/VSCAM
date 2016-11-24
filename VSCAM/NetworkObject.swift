@@ -391,6 +391,9 @@ class PhotoUploadObject {
     var uid: Int?    //用户id
     var scale: Double?  //比例
     var origin: String? //原始图片地址
+    var aperture: Int?
+    var iso: Int?
+    var gps: String?
     var unix: Int64?    //新建时间
     var exif: String?
     var pid: Int?       //图片 ID
@@ -400,6 +403,9 @@ class PhotoUploadObject {
             uid = Int.fromJson(tryDict.value(forKey: "uid"))
             scale = Double.fromJson(tryDict.value(forKey: "scale"))
             origin = String.fromJson(tryDict.value(forKey: "origin"))
+            aperture = Int.fromJson(tryDict.value(forKey: "aperture"))
+            iso = Int.fromJson(tryDict.value(forKey: "iso"))
+            gps = String.fromJson(tryDict.value(forKey: "gps"))
             unix = Int64.fromJson(tryDict.value(forKey: "unix"))
             exif = String.fromJson(tryDict.value(forKey: "exif"))
             pid = Int.fromJson(tryDict.value(forKey: "pid"))

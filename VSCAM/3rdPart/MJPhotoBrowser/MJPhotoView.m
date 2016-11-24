@@ -47,8 +47,8 @@
 
         // 属性
         self.delegate = self;
-        //		self.showsHorizontalScrollIndicator = NO;
-        //		self.showsVerticalScrollIndicator = NO;
+        self.showsHorizontalScrollIndicator = NO;
+        self.showsVerticalScrollIndicator = NO;
         self.decelerationRate = UIScrollViewDecelerationRateFast;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 

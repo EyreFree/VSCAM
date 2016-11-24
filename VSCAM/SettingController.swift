@@ -180,6 +180,8 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                     Function.MessageBox(trySelf, title: "退出登录失败", content: tryErrorString)
                 } else {
                     Variable.loginUserInfo = nil
+                    NetworkCache.cookies = nil
+                    Variable.lastLoginPWD = nil
                     Variable.loginNeedRefreshMain = true
 
                     for controller in MainNavigationController.sharedInstance.viewControllers {

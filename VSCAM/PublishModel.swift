@@ -5,7 +5,8 @@ import Foundation
 class PublishModel {
 
     var preset: String!
-    var image: UIImage!
+    var imageData: Data!
+    var image: UIImage?
 
     var uploadFinished = false
     var uploadError: String?

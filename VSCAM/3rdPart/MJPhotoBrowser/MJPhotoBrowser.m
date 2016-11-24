@@ -104,7 +104,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.view.alpha = 1.0;
     } completion:^(BOOL finished) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+        //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     }];
 }
 
@@ -242,7 +242,7 @@
 #pragma mark - MJPhotoViewDelegate
 - (void)photoViewSingleTap:(MJPhotoView *)photoView
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     // 移除工具条
     [self.toolbar removeFromSuperview];
 

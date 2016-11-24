@@ -15,7 +15,7 @@ class NetworkCache {
             if let tryNewValue = newValue {
                 UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: tryNewValue), forKey: "VSCAM_cookies")
             } else {
-                UserDefaults.standard.set(nil, forKey: "VSCAM_cookies")
+                UserDefaults.standard.removeObject(forKey: "VSCAM_cookies")
             }
         }
     }
