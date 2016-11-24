@@ -2,6 +2,7 @@
 
 import UIKit
 import SwiftMessages
+import SVProgressHUD
 
 class Function: NSObject {
 
@@ -13,7 +14,7 @@ class Function: NSObject {
          controller.present(alert, animated: true, completion: nil)*/
 
         // View setup
-        let layout = MessageView.Layout.CardView
+        /*let layout = MessageView.Layout.CardView
         let theme = theme
         let view = MessageView.viewFromNib(layout: layout)
         view.configureContent(title: title, body: content, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: buttonTitle) {
@@ -38,7 +39,13 @@ class Function: NSObject {
             }
         }
 
-        SwiftMessages.show(config: config, view: view)
+        SwiftMessages.show(config: config, view: view)*/
+
+        if theme == .success {
+            SVProgressHUD.showSuccess(withStatus: content)
+        } else {
+            SVProgressHUD.showError(withStatus: content)
+        }
     }
 
     //收起键盘
