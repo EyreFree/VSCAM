@@ -10,7 +10,7 @@ target 'VSCAM' do
     pod 'JGProgressHUD', '~> 1.3.2'             # Loading
     pod 'MJRefresh', '~> 3.1.0'                 # 上拉/下拉刷新
     pod 'NJKWebViewProgress', '~> 0.2.3'        # WebView 进度条
-    pod 'UMengAnalytics-NO-IDFA', '~> 4.1.1'    # UMeng 统计分析
+    pod 'UMengAnalytics-NO-IDFA', '~> 4.1.5'    # UMeng 统计分析
     pod 'KMPlaceholderTextView', '~> 1.3.0'     # 带占位文字的多行编辑框
     pod 'SwiftMessages', '~> 3.0.3'             # 消息框
     pod 'LFRoundProgressView', '~> 1.0.0'       # 进度条

@@ -29,7 +29,7 @@ DEPENDENCIES:
   - SnapKit (~> 3.0.1)
   - SVProgressHUD (~> 2.0.4)
   - SwiftMessages (~> 3.0.3)
-  - UMengAnalytics-NO-IDFA (~> 4.1.1)
+  - UMengAnalytics-NO-IDFA (~> 4.1.5)
   - YLGIFImage (= 0.11)
 
 SPEC CHECKSUMS:
@@ -46,6 +46,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: f1b08b540eba6ebad044a574cae6d988cf40cfda
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 8f0407dbc0fa6c6c988dea22cd531b2ae853e860
+PODFILE CHECKSUM: 85dbcd99fa2f47564fc16a1948dd9144a4df80a8
 
 COCOAPODS: 1.0.1

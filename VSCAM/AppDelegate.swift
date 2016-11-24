@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        setUMengParam()
         setGlobalStyle()
 
         return true
@@ -56,6 +57,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     //自定义
+    //配置 UMeng 参数
+    func setUMengParam() {
+        let config = UMAnalyticsConfig()
+        config.appKey = "57fe536267e58ee0e6003e6c"
+        config.bCrashReportEnabled = true
+        config.channelId = "App Store"
+        config.ePolicy = BATCH
+        MobClick.start(withConfigure: config)
+    }
+
     //设置一些全局样式
     func setGlobalStyle() {
         // 全局的各种颜色
