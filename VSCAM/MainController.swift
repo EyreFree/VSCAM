@@ -237,7 +237,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
 
     func publishClicked() {
         if Variable.loginUserInfo == nil {
-            Function.MessageBox(self, title: "提示", content: "请先登录", theme: .info)
+            Function.MessageBox(self, title: "提示", content: "请先登录", type: .info)
         } else {
             if nil == imagePicker {
                 let picker = UIImagePickerController()
@@ -308,7 +308,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                                     )
                                     return
                                 }
-                                Function.MessageBox(trySelf, title: "提示", content: "请选择使用 iPhone 拍摄的照片或其它经过处理的图片", theme: .warning)
+                                Function.MessageBox(trySelf, title: "提示", content: "请选择使用 iPhone 拍摄的照片或其它经过处理的图片", type: .info)
                                 return
                             }
                         }

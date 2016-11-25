@@ -144,7 +144,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                         Variable.loginUserInfoSetUrl(newValue: tryUrl)
 
                         Variable.loginNeedRefreshMain = true
-                        Function.MessageBox(trySelf, title: "提示", content: "更改个人信息成功", theme: .success)
+                        Function.MessageBox(trySelf, title: "提示", content: "更改个人信息成功", type: .success)
                     }
                 }
             }
@@ -164,7 +164,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
                     Variable.loginNeedRefreshMain = true
                     trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
-                    Function.MessageBox(trySelf, title: "提示", content: "删除头像成功", theme: .success)
+                    Function.MessageBox(trySelf, title: "提示", content: "删除头像成功", type: .success)
                 }
             }
         }
@@ -310,7 +310,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                         }
                         trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
 
-                        Function.MessageBox(trySelf, title: "提示", content: "更改头像成功", theme: .success)
+                        Function.MessageBox(trySelf, title: "提示", content: "更改头像成功", type: .success)
                     }
                     LoadingView.sharedInstance.hide()
                 }

@@ -296,9 +296,9 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         if let tryErrorString = self.model.uploadError {
             Function.MessageBox(self, title: "发布失败", content: tryErrorString)
         } else if self.model.uploadFinished == false {
-            Function.MessageBox(self, title: "提示", content: "图片正在上传", theme: .warning)
+            Function.MessageBox(self, title: "提示", content: "图片正在上传", type: .info)
         } else if textField.text?.clean().isEmpty != false {
-            Function.MessageBox(self, title: "提示", content: "图片描述不能为空", theme: .warning)
+            Function.MessageBox(self, title: "提示", content: "图片描述不能为空", type: .info)
         } else {
             if let tryPID = model.uploadResult?.pid, let tryText = textField.text?.clean(), let tryPreset = model.preset, let tryGPS = model.uploadResult?.gps, let tryExif = model.uploadResult?.exif {
                 LoadingView.sharedInstance.show(controller: self)

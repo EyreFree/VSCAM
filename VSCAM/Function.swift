@@ -4,47 +4,32 @@ import UIKit
 import SwiftMessages
 import SVProgressHUD
 
+enum MessageBoxType {
+    case error
+    case info
+    case success
+}
+
 class Function: NSObject {
 
     //简单的模态消息弹窗
     static func MessageBox(_ controller: UIViewController, title: String?, content: String?, buttonTitle: String = "确定",
-                           theme: Theme = .error, finish: ((UIAlertAction) -> Void)? = nil) {
+                           type: MessageBoxType = .error, finish: ((UIAlertAction) -> Void)? = nil) {
         /*let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
          alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: finish))
          controller.present(alert, animated: true, completion: nil)*/
 
-        // View setup
-        /*let layout = MessageView.Layout.CardView
-        let theme = theme
-        let view = MessageView.viewFromNib(layout: layout)
-        view.configureContent(title: title, body: content, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: buttonTitle) {
-            (button) in
-            SwiftMessages.hide()
-        }
-        view.configureTheme(theme, iconStyle: IconStyle.default)
-        view.configureDropShadow()
 
-        // Config setup
-        var config = SwiftMessages.Config()
-        config.presentationStyle = .top
-        config.presentationContext = .window(windowLevel: UIWindowLevelNormal)
-        config.duration = .seconds(seconds: 3)
-        config.shouldAutorotate = true
-        config.interactiveHide = true
-
-        // Set status bar style unless using card view (since it doesn't go behind the status bar).
-        if case .top = config.presentationStyle, layout != .CardView {
-            if theme != .info {
-                config.preferredStatusBarStyle = .lightContent
-            }
-        }
-
-        SwiftMessages.show(config: config, view: view)*/
-
-        if theme == .success {
-            SVProgressHUD.showSuccess(withStatus: content)
-        } else {
+        switch type {
+        case .error:
             SVProgressHUD.showError(withStatus: content)
+            break
+        case .info:
+            SVProgressHUD.showInfo(withStatus: content)
+            break
+        case .success:
+            SVProgressHUD.showSuccess(withStatus: content)
+            break
         }
     }
 
