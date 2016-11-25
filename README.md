@@ -22,8 +22,6 @@ VSCAM 是一款使用 Swift 编写的 iOS 图片分享应用，更多信息见�
 
 ### 预览
 
-![](assets/screenshot1.png)
-![](assets/screenshot2.png)
+![](assets/screenshot1.png) ![](assets/screenshot2.png)
 
-![](assets/screenshot3.png)
-![](assets/screenshot4.png)
+![](assets/screenshot3.png) ![](assets/screenshot4.png)
