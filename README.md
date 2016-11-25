@@ -23,10 +23,10 @@ VSCAM 是一款使用 Swift 编写的 iOS 图片分享应用，更多信息见�
 ### 预览
 
 <figure class="half">
-    <a href="{{ site.url }}/assets/screenshot1.png"><img src="{{ site.url }}/assets/screenshot1.png"></a>
-    <a href="{{ site.url }}/assets/screenshot2.png"><img src="{{ site.url }}/assets/screenshot2.png"></a>
+    <a href="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot1.png"><img src="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot1.png"></a>
+    <a href="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot2.png"><img src="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot2.png"></a>
 </figure>
 <figure class="half">
-    <a href="{{ site.url }}/assets/screenshot3.png"><img src="{{ site.url }}/assets/screenshot3.png"></a>
-    <a href="{{ site.url }}/assets/screenshot4.png"><img src="{{ site.url }}/assets/screenshot4.png"></a>
+    <a href="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot3.png"><img src="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot3.png"></a>
+    <a href="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot4.png"><img src="https://github.com/EyreFree/VSCAM/blob/master/assets/screenshot4.png"></a>
 </figure>
