@@ -308,7 +308,9 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                                     )
                                     return
                                 }
-                                Function.MessageBox(trySelf, title: "提示", content: "请选择使用 iPhone 拍摄的照片或其它经过处理的图片", type: .info)
+                                Function.MessageBox(
+                                    trySelf, title: "提示", content: "请选择使用 iPhone 拍摄的照片或其它经过处理的图片", type: .info
+                                )
                                 return
                             }
                         }
@@ -319,7 +321,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                 return
             }
         }
-        Function.MessageBox(self, title: "获取图片失败", content: "所选图片无效")
+        Function.MessageBox(self, title: "获取图片失败", content: "图片获取无效")
         imagePicker.dismiss(animated: true, completion: nil)
     }
 }

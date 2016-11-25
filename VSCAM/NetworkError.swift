@@ -22,7 +22,7 @@ class NetworkError {
             //这里做一下登出操作
             //LoginRegisterViewController.model.hasLoginMark = false
             //弹出登陆对话框
-            Function.openLoginRegisterView()
+            //Function.openLoginRegisterView()
             //return "Ajax请求缺少登录权限"
             return "请先登录"
             //用于需要登录操作的请求验证。	跳转到contextPath/login.htm?returnUrl=encodeURIComponent后的本页面URL地址 。

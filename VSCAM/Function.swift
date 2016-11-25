@@ -15,21 +15,22 @@ class Function: NSObject {
     //简单的模态消息弹窗
     static func MessageBox(_ controller: UIViewController, title: String?, content: String?, buttonTitle: String = "确定",
                            type: MessageBoxType = .error, finish: ((UIAlertAction) -> Void)? = nil) {
-        /*let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
-         alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: finish))
-         controller.present(alert, animated: true, completion: nil)*/
-
-
-        switch type {
-        case .error:
-            SVProgressHUD.showError(withStatus: content)
-            break
-        case .info:
-            SVProgressHUD.showInfo(withStatus: content)
-            break
-        case .success:
-            SVProgressHUD.showSuccess(withStatus: content)
-            break
+        if nil != finish {
+            let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: finish))
+            controller.present(alert, animated: true, completion: nil)
+        } else {
+            switch type {
+            case .error:
+                SVProgressHUD.showError(withStatus: content)
+                break
+            case .info:
+                SVProgressHUD.showInfo(withStatus: content)
+                break
+            case .success:
+                SVProgressHUD.showSuccess(withStatus: content)
+                break
+            }
         }
     }
 
@@ -40,20 +41,6 @@ class Function: NSObject {
 
     static func setStatusBar(hidden: Bool) {
         UIApplication.shared.isStatusBarHidden = hidden
-    }
-
-    //打开WebView
-    static func openWebView(url: String?, navi: UINavigationController?) {
-        /*if let tryURL = url, let tryNavi = navi {
-         tryNavi.pushViewController(
-         WebViewController(urlString: tryURL), animated: true
-         )
-         }*/
-    }
-
-    //登陆框
-    static func openLoginRegisterView() {
-        //LoginRegisterViewController.show(MainTabBarController.sharedInstance, toMe: true)
     }
 
     //打开分享对话框

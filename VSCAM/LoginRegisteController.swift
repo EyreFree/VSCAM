@@ -107,11 +107,11 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
             let tryPWD = (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
 
             if tryID.isEmpty == true {
-                Function.MessageBox(self, title: "提示", content: "用户名不能为空")
+                Function.MessageBox(self, title: "提示", content: "用户名不能为空", type: .info)
                 return
             }
             if tryPWD.isEmpty == true {
-                Function.MessageBox(self, title: "提示", content: "密码不能为空")
+                Function.MessageBox(self, title: "提示", content: "密码不能为空", type: .info)
                 return
             }
             /*if false == tryID.conform(regex: "/(^\\w+((-\\w+)|(\\.\\w+))*\\@[\\w]+((\\.|-)[\\w]+)*\\.[\\w]+$|^[\\x{0800}-\\x{9fa5}\\w_]{2,12}$)/iu") {
@@ -148,25 +148,25 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
             let tryPWD = (cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField)?.text?.clean() {
 
             if tryName.isEmpty == true {
-                Function.MessageBox(self, title: "提示", content: "昵称不能为空")
-                return
-            }
-            if tryEmail.isEmpty == true {
-                Function.MessageBox(self, title: "提示", content: "邮箱不能为空")
-                return
-            }
-            if tryPWD.isEmpty == true {
-                Function.MessageBox(self, title: "提示", content: "密码不能为空")
+                Function.MessageBox(self, title: "提示", content: "昵称不能为空", type: .info)
                 return
             }
             /*if false == tryName.conform(regex: "/^[\\x{0800}-\\x{9fa5}\\w_]{2,20}$/iu") {
                 Function.MessageBox(self, title: "提示", content: "昵称格式错误")
                 return
             }*/
-            /*if false == tryEmail.conform(regex: "/^[\\w-_\\.]+@([0-9a-z-]+\\.)+[a-z]{2,}$/i") {
-                Function.MessageBox(self, title: "提示", content: "邮箱格式错误")
+            if tryEmail.isEmpty == true {
+                Function.MessageBox(self, title: "提示", content: "邮箱不能为空", type: .info)
                 return
-            }*/
+            }
+            if false == tryEmail.conform(regex: Regex.Email) {
+                Function.MessageBox(self, title: "提示", content: "邮箱格式错误", type: .info)
+                return
+            }
+            if tryPWD.isEmpty == true {
+                Function.MessageBox(self, title: "提示", content: "密码不能为空", type: .info)
+                return
+            }
             /*if false == tryPWD.conform(regex: "/^.{5,}$/") {
                 Function.MessageBox(self, title: "提示", content: "密码格式错误")
                 return

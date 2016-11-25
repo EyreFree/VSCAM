@@ -45,7 +45,12 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             if let trySelf = self {
                 if let tryErrorString = errorString {
                     trySelf.model.uploadError = tryErrorString
-                    Function.MessageBox(trySelf, title: "上传失败", content: tryErrorString)
+                    Function.MessageBox(trySelf, title: "上传失败", content: tryErrorString) {
+                        [weak self] (action) in
+                        if let trySelf = self {
+                            trySelf.closeClicked()
+                        }
+                    }
                 } else {
                     trySelf.model.uploadResult = photoData
                     trySelf.model.uploadFinished = true
@@ -274,10 +279,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         returnMark = true
         Function.HideKeyboard()
 
-        self.dismiss(animated: true) {
-            [weak self] () in
-
-        }
+        self.dismiss(animated: true)
     }
 
     func editFrameClicked(recognizer: UIGestureRecognizer) {
@@ -294,7 +296,12 @@ class PublishController: BaseViewController, UITextFieldDelegate {
 
     func submitClicked(textField: UITextField) {
         if let tryErrorString = self.model.uploadError {
-            Function.MessageBox(self, title: "发布失败", content: tryErrorString)
+            Function.MessageBox(self, title: "上传失败", content: tryErrorString) {
+                [weak self] (action) in
+                if let trySelf = self {
+                    trySelf.closeClicked()
+                }
+            }
         } else if self.model.uploadFinished == false {
             Function.MessageBox(self, title: "提示", content: "图片正在上传", type: .info)
         } else if textField.text?.clean().isEmpty != false {
