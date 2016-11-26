@@ -6,7 +6,7 @@ VSCAM 是一款使用 Swift 编写的 iOS 图片分享应用，更多信息见�
 发布页使用 Alamofire 实现了图片后台上传并且实时显示上传进度；  
 图片详情页使用 UITableView 实现了类似 QQ 个人信息页面的背景图片拉伸效果，同时利用 MJPhotoBrowser 实现图片浏览功能；  
 登录与注册页使用 UITableView 实现了焦点所在编辑框自动滚动到屏幕中心的效果。  
-集成 UMeng 统计分析SDK，可作为新手参考。
+集成 UMeng 统计分析 SDK，可作为新手参考。
 
 ### 开发环境
 
