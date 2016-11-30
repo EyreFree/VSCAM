@@ -179,14 +179,14 @@ class ImageDetailController: BaseViewController {
                 imgViewReal = imgView
             }
 
-            if offset > 210 {
+            if offset > 140 {
                 imgViewReal.isHidden = true
-            } else if offset > 70 {
+            } else if offset > 0 {
                 imgViewReal.isHidden = false
                 imgViewReal.snp.makeConstraints {
                     (make) -> Void in
                     make.left.right.equalTo(0)
-                    make.bottom.equalTo(offset - 70)
+                    make.bottom.equalTo(offset)
                     make.height.equalTo(140)
                 }
             } else {
@@ -194,7 +194,7 @@ class ImageDetailController: BaseViewController {
                 imgViewReal.snp.makeConstraints {
                     (make) -> Void in
                     make.bottom.left.right.equalTo(0)
-                    make.height.equalTo(210 - offset)
+                    make.height.equalTo(140 - offset)
                 }
             }
 

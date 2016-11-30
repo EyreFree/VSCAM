@@ -23,7 +23,7 @@ class ImageDetailTableViewItemFoot: BaseTableViewItem {
     }
 
     override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
-        return 210
+        return 140
     }
 
     override func number(tableView: UITableView) -> Int {
