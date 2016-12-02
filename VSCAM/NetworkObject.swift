@@ -422,7 +422,7 @@ class UserInfoObject: UserObject {
 
     init?(uid: Int?, name: String?, avatar: Int?, des: String?, url: String?) {
         super.init(uid: uid, name: name, avatar: avatar)
-
+        
         if let tryDes = des, let tryUrl = url {
             self.des = tryDes
             self.url = tryUrl

@@ -29,18 +29,22 @@ class Variable {
     //登录信息
     static var loginUserInfo: UserSelfInfoObject? {
         get {
-            let uid = UserDefaults.standard.integer(forKey: "loginUserInfo_uid")
-            let name = UserDefaults.standard.string(forKey: "loginUserInfo_name")
-            let avatar = UserDefaults.standard.integer(forKey: "loginUserInfo_avatar")
-            let des = UserDefaults.standard.string(forKey: "loginUserInfo_des")
-            let url = UserDefaults.standard.string(forKey: "loginUserInfo_url")
-            let group = UserDefaults.standard.integer(forKey: "loginUserInfo_group")
-            let look = UserDefaults.standard.integer(forKey: "loginUserInfo_look")
-            let like = UserDefaults.standard.integer(forKey: "loginUserInfo_like")
-            return UserSelfInfoObject(
-                uid: uid, name: name, avatar: avatar, des: des,
-                url: url, group: group, look: look, like: like
-            )
+            if let name = UserDefaults.standard.string(forKey: "loginUserInfo_name"),
+                let des = UserDefaults.standard.string(forKey: "loginUserInfo_des"),
+                let url = UserDefaults.standard.string(forKey: "loginUserInfo_url") {
+
+                let uid = UserDefaults.standard.integer(forKey: "loginUserInfo_uid")
+                let avatar = UserDefaults.standard.integer(forKey: "loginUserInfo_avatar")
+                let group = UserDefaults.standard.integer(forKey: "loginUserInfo_group")
+                let look = UserDefaults.standard.integer(forKey: "loginUserInfo_look")
+                let like = UserDefaults.standard.integer(forKey: "loginUserInfo_like")
+
+                return UserSelfInfoObject(
+                    uid: uid, name: name, avatar: avatar, des: des,
+                    url: url, group: group, look: look, like: like
+                )
+            }
+            return nil
         }
         set {
             UserDefaults.standard.set(newValue?.uid, forKey: "loginUserInfo_uid")

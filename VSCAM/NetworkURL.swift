@@ -33,6 +33,8 @@ class NetworkURL {
     static let delete = "?a=remove"
     //发布图片
     static let release = "?a=release"
+    //举报图片
+    static let report = "?a=filter"
 
     //预览图微博基地址
     static let imageWBSmall = "https://ws2.sinaimg.cn/bmiddle/"

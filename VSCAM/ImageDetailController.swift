@@ -220,47 +220,50 @@ class ImageDetailController: BaseViewController {
     }
 
     func shareClicked() {
-        if let tryLocalUID = Variable.loginUserInfo?.uid {
-            if (model.imageBrief?.uid ?? model.imageDetail?.uid) == tryLocalUID {
-                let actionSheetController = UIAlertController(
-                    title: nil, message: nil, preferredStyle: .actionSheet
-                )
+        let actionSheetController = UIAlertController(
+            title: nil, message: nil, preferredStyle: .actionSheet
+        )
 
-                let cancelActionButton = UIAlertAction(title: "取消", style: .cancel) {
-                    action -> Void in
-                }
-                actionSheetController.addAction(cancelActionButton)
+        let cancelActionButton = UIAlertAction(title: "取消", style: .cancel) {
+            action -> Void in
+        }
+        actionSheetController.addAction(cancelActionButton)
 
-                let actionButton1 = UIAlertAction(title: "分享", style: .default) {
-                    [weak self] action -> Void in
-                    if let strongSelf = self {
-                        strongSelf.shareAction()
-                    }
-                }
-                actionSheetController.addAction(actionButton1)
-
-                let actionButton2 = UIAlertAction(title: "删除", style: .destructive) {
-                    [weak self] action -> Void in
-                    if let strongSelf = self {
-                        strongSelf.deleteAction()
-                    }
-                }
-                actionSheetController.addAction(actionButton2)
-
-                //阻止 iPad Crash
-                actionSheetController.popoverPresentationController?.sourceView = self.view
-                actionSheetController.popoverPresentationController?.sourceRect = CGRect(
-                    x: self.view.bounds.size.width / 2.0,
-                    y: self.view.bounds.size.height / 2.0,
-                    width: 1.0, height: 1.0
-                )
-
-                self.present(actionSheetController, animated: true, completion: nil)
-                return
+        let actionButton1 = UIAlertAction(title: "分享", style: .default) {
+            [weak self] action -> Void in
+            if let strongSelf = self {
+                strongSelf.shareAction()
             }
         }
+        actionSheetController.addAction(actionButton1)
 
-        shareAction()
+        if (model.imageBrief?.uid ?? model.imageDetail?.uid) == Variable.loginUserInfo?.uid && Variable.loginUserInfo?.uid != nil {
+            let actionButton2 = UIAlertAction(title: "删除", style: .destructive) {
+                [weak self] action -> Void in
+                if let strongSelf = self {
+                    strongSelf.deleteAction()
+                }
+            }
+            actionSheetController.addAction(actionButton2)
+        } else {
+            let actionButton2 = UIAlertAction(title: "举报", style: .destructive) {
+                [weak self] action -> Void in
+                if let strongSelf = self {
+                    strongSelf.reportAction()
+                }
+            }
+            actionSheetController.addAction(actionButton2)
+        }
+
+        //阻止 iPad Crash
+        actionSheetController.popoverPresentationController?.sourceView = self.view
+        actionSheetController.popoverPresentationController?.sourceRect = CGRect(
+            x: self.view.bounds.size.width / 2.0,
+            y: self.view.bounds.size.height / 2.0,
+            width: 1.0, height: 1.0
+        )
+
+        self.present(actionSheetController, animated: true, completion: nil)
     }
 
     func shareAction() {
@@ -269,6 +272,66 @@ class ImageDetailController: BaseViewController {
             let webUrl = NetworkURL.imageDetailPage.replace(string: "{pid}", with: "\(tryPID)")
             Function.openShareView(controller: self, title: "[VSCAM]\(tryTitle)", url: webUrl)
         }
+    }
+
+    func reportAction() {
+        if Variable.loginUserInfo == nil {
+            Function.MessageBox(self, title: "提示", content: "请先登录", type: .info)
+            return
+        }
+
+        let alert = UIAlertController(title: "举报", message: "请填写您的举报描述信息以方便我们的查证与处理", preferredStyle: .alert)
+        alert.addTextField() {
+            (textField) -> Void in
+            textField.placeholder = "描述信息"
+            textField.keyboardType = .default
+        }
+        alert.addAction(
+            UIAlertAction(title: "取消", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "确认", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    let text = alert.textFields?[0].text
+
+                    if let tryPID = strongSelf.model.imageBrief?.pid ?? strongSelf.model.imageDetail?.pid {
+                        LoadingView.sharedInstance.show(controller: strongSelf)
+                        NetworkAPI.sharedInstance.report(pid: tryPID, text: text) {
+                            [weak self] (errorString) in
+                            if let trySelf = self {
+                                if let tryErrorString = errorString {
+                                    Function.MessageBox(trySelf, title: "图片举报失败", content: tryErrorString)
+                                    LoadingView.sharedInstance.hide()
+                                } else {
+                                    //主页刷新
+                                    Variable.listNeedRefreshMain = true
+                                    //用户页刷新
+                                    for controller in MainNavigationController.sharedInstance.viewControllers {
+                                        if let tryController = controller as? UserDetailController {
+                                            tryController.model.needRefreshList = true
+                                        }
+                                    }
+                                    LoadingView.sharedInstance.hide()
+                                    Function.MessageBox(
+                                        trySelf, title: "提示",
+                                        content: "图片举报成功，感谢您的反馈！您将不会在列表中再次看到该图片，我们将会尽快对您的举报信息进行核实与处理，您将在 24 小时内收到我们的反馈邮件。"
+                                    ) {
+                                        [weak self] (action) in
+                                        if let _ = self {
+                                            MainNavigationController.sharedInstance.popViewController(animated: true)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+        )
+        self.present(alert, animated: true, completion: nil)
     }
 
     func deleteAction() {
@@ -296,7 +359,7 @@ class ImageDetailController: BaseViewController {
             }
         }
     }
-    
+
     func userClicked() {
         if let tryUser = model?.imageBrief?.user ?? model?.imageDetail?.user {
             MainNavigationController.sharedInstance.pushViewController(

@@ -62,7 +62,7 @@ class NetworkAPI {
 
     //分析返回结果
     func resultAnalysis(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> (String?, AnyObject?) {
-        //printData(data)
+        printData(data)
         if let errorString = self.checkError(response, error: error) {
             return (errorString, nil)
         } else {
@@ -73,6 +73,15 @@ class NetworkAPI {
                     return (tryErrorMessage.description, nil)
                 } else {
                     return (nil, dict)
+                }
+            }
+        }
+        if let tryData = data {
+            if let resultString = NSString(data: tryData, encoding: String.Encoding.utf8.rawValue) as? String {
+                if resultString == "true" {
+                    return (nil, nil)
+                } else if resultString == "false" {
+                    return ("操作失败", nil)
                 }
             }
         }
@@ -285,6 +294,16 @@ class NetworkAPI {
     func release(pid: Int, text: String, preset: String, exif: String, gps: String, finish: @escaping (String?) -> Void) {
         let parameters: [String : Any] = ["pid": pid, "text": text, "preset": preset, "state": 1, "exif": exif, "gps": gps]
         manager.request(baseUrl + NetworkURL.release, method: .post, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            finish(result.0)
+        }
+    }
+
+    //举报图片
+    func report(pid: Int, text: String?, finish: @escaping (String?) -> Void) {
+        let parameters: [String : Any] = ["pid": pid, "text": text ?? ""]
+        manager.request(baseUrl + NetworkURL.report, method: .post, parameters: parameters).response {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             finish(result.0)
