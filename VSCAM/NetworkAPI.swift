@@ -62,7 +62,7 @@ class NetworkAPI {
 
     //分析返回结果
     func resultAnalysis(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> (String?, AnyObject?) {
-        printData(data)
+        //printData(data)
         if let errorString = self.checkError(response, error: error) {
             return (errorString, nil)
         } else {
