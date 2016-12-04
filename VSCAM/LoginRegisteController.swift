@@ -140,6 +140,19 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
     }
 
+    //同意／不同意
+    func agreeClicked() {
+        model.agree = model.agree == false
+        tableViewRegiste.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
+    }
+
+    //查看用户协议
+    func agreementClicked() {
+        if let tryUrl = URL(myString: NetworkURL.privacy) {
+            UIApplication.shared.openURL(tryUrl)
+        }
+    }
+
     func registeClicked() {
         Function.HideKeyboard()
         let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
@@ -171,6 +184,10 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 Function.MessageBox(self, title: "提示", content: "密码格式错误")
                 return
             }*/
+            if model.agree != true {
+                Function.MessageBox(self, title: "提示", content: "请查看并同意用户协议", type: .info)
+                return
+            }
 
             NetworkAPI.sharedInstance.registe(name: tryName, mail: tryEmail, password: tryPWD) {
                 [weak self] (errorString) in
@@ -267,11 +284,11 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 } else if (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.isFirstResponder == true {
                     self.tableViewLogin.setContentOffset(CGPoint(x: 0, y: max(269 - (visibleHeight - 39) / 2, 0)))
                 } else if (cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField)?.isFirstResponder == true {
-                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(194 - (visibleHeight - 39) / 2, 0)))
+                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(184 - (visibleHeight - 39) / 2, 0)))
                 } else if (cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField)?.isFirstResponder == true {
-                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(247 - (visibleHeight - 39) / 2, 0)))
+                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(237 - (visibleHeight - 39) / 2, 0)))
                 } else if (cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField)?.isFirstResponder == true {
-                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(300 - (visibleHeight - 39) / 2, 0)))
+                    self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(290 - (visibleHeight - 39) / 2, 0)))
                 }
             }
         }

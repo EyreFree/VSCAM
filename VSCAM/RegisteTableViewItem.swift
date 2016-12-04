@@ -31,7 +31,7 @@ class RegisteTableViewItem: BaseTableViewItem {
                 (make) -> Void in
                 make.width.equalTo(19)
                 make.height.equalTo(41)
-                make.top.equalTo(103)
+                make.top.equalTo(113)
                 make.centerX.equalTo(cell.contentView)
             }
         }
@@ -50,7 +50,7 @@ class RegisteTableViewItem: BaseTableViewItem {
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
-                make.top.equalTo(194)
+                make.top.equalTo(184)
                 make.height.equalTo(39)
                 make.left.equalTo(51)
                 make.right.equalTo(-51)
@@ -106,7 +106,7 @@ class RegisteTableViewItem: BaseTableViewItem {
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
-                make.top.equalTo(247)
+                make.top.equalTo(237)
                 make.height.equalTo(39)
                 make.left.equalTo(51)
                 make.right.equalTo(-51)
@@ -162,7 +162,7 @@ class RegisteTableViewItem: BaseTableViewItem {
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
-                make.top.equalTo(300)
+                make.top.equalTo(290)
                 make.height.equalTo(39)
                 make.left.equalTo(51)
                 make.right.equalTo(-51)
@@ -223,7 +223,7 @@ class RegisteTableViewItem: BaseTableViewItem {
                 (make) -> Void in
                 make.width.equalTo(100)
                 make.height.equalTo(40)
-                make.top.equalTo(379)
+                make.top.equalTo(400)
                 make.centerX.equalTo(cell.contentView)
             }
         }
@@ -238,7 +238,7 @@ class RegisteTableViewItem: BaseTableViewItem {
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
-                make.top.equalTo(430)
+                make.top.equalTo(450)
                 make.left.right.bottom.equalTo(0)
             }
             bottomFrameView = imgView
@@ -305,9 +305,95 @@ class RegisteTableViewItem: BaseTableViewItem {
             }
         }
 
+        //用户协议外框
+        var agreementFrameView: UIView?
+        if let view = cell.contentView.viewWithTag(Tag.make(25)) {
+            agreementFrameView = view
+        } else {
+            let imgView = UIView()
+            imgView.tag = Tag.make(25)
+            cell.contentView.addSubview(imgView)
+            imgView.snp.makeConstraints {
+                (make) -> Void in
+                make.width.equalTo(107)
+                make.height.equalTo(16)
+                make.centerX.equalTo(cell)
+                make.top.equalTo(358)
+            }
+            agreementFrameView = imgView
+        }
+
+        if let tryAgreementFrameView = agreementFrameView {
+
+            //是否同意协议
+            let agree = tryController?.model.agree == true
+
+            //选择圆圈
+            if let view = tryAgreementFrameView.viewWithTag(Tag.make(26)) as? UIImageView {
+                view.image = UIImage(named: agree ? "图标_选择_是" : "图标_选择_否")
+            } else {
+                let view = UIImageView()
+                view.tag = Tag.make(26)
+                view.image = UIImage(named: agree ? "图标_选择_是" : "图标_选择_否")
+                view.contentMode = .scaleAspectFit
+                tryAgreementFrameView.addSubview(view)
+                view.snp.makeConstraints {
+                    (make) -> Void in
+                    make.width.height.equalTo(16)
+                    make.left.equalTo(0)
+                    make.centerY.equalTo(tryAgreementFrameView)
+                }
+            }
+            
+            //文字
+            if let _ = tryAgreementFrameView.viewWithTag(Tag.make(27)) as? UILabel {
+
+            } else {
+                let imgView = UILabel()
+                imgView.tag = Tag.make(27)
+                imgView.text = "      同意"
+                imgView.font = UIFont.systemFont(ofSize: 13)
+                imgView.textAlignment = .left
+                imgView.textColor = UIColor(valueRGB: 0x878787)
+                imgView.isUserInteractionEnabled = true
+                imgView.addGestureRecognizer(
+                    UITapGestureRecognizer(target: tryController, action: Selector(("agreeClicked")))
+                )
+                imgView.sizeToFit()
+                tryAgreementFrameView.addSubview(imgView)
+                imgView.snp.makeConstraints {
+                    (make) -> Void in
+                    make.top.left.bottom.right.equalTo(0)
+                }
+            }
+
+            //用户协议
+            if let _ = tryAgreementFrameView.viewWithTag(Tag.make(28)) as? UILabel {
+
+            } else {
+                let imgView = UILabel()
+                imgView.tag = Tag.make(28)
+                imgView.text = "用户协议"
+                imgView.font = UIFont.systemFont(ofSize: 13)
+                imgView.textAlignment = .center
+                imgView.textColor = UIColor(valueRGB: 0xA6A547)
+                imgView.isUserInteractionEnabled = true
+                imgView.addGestureRecognizer(
+                    UITapGestureRecognizer(target: tryController, action: Selector(("agreementClicked")))
+                )
+                imgView.sizeToFit()
+                tryAgreementFrameView.addSubview(imgView)
+                imgView.snp.makeConstraints {
+                    (make) -> Void in
+                    make.top.bottom.right.equalTo(0)
+                    make.width.equalTo(imgView.frame.width)
+                }
+            }
+        }
+
         return cell
     }
-
+    
     override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
         return CGSize.screen().height
     }
