@@ -195,6 +195,31 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
+    func clearCacheClicked() {
+        let cacheSize = Int(SDImageCache.shared().getSize()).f() / 1024.f() / 1024.f()
+        let cacheString = String(format: "%0.2fMB", cacheSize)
+
+        let alert = UIAlertController(title: "提示", message: "缓存大小为\(cacheString)，确定要清理缓存咩？", preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(title: "取消", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "确定", style: .default) {
+                [weak self] (action) -> Void in
+                if let _ = self {
+                    SDImageCache.shared().clearDisk()
+                }
+            }
+        )
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func aboutClicked() {
+        print("about")
+    }
+
     func editFrameClicked(recognizer: UIGestureRecognizer) {
         if let tryTag = recognizer.view?.tag {
             (recognizer.view?.viewWithTag(tryTag + 1) as? UITextField)?.becomeFirstResponder()

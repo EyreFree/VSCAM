@@ -16,6 +16,7 @@ class SettingTableView: BaseTableView {
     override func onInit() {
         //添加数据
         items.append(SettingTableViewItem())
+        items.append(SettingTableViewItemExt())
 
         //UITableView设置
         self.delegate = self
