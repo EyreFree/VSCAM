@@ -199,7 +199,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         let cacheSize = Int(SDImageCache.shared().getSize()).f() / 1024.f() / 1024.f()
         let cacheString = String(format: "%0.2fMB", cacheSize)
 
-        let alert = UIAlertController(title: "提示", message: "缓存大小为\(cacheString)，确定要清理缓存咩？", preferredStyle: .alert)
+        let alert = UIAlertController(title: "提示", message: "缓存大小为\(cacheString)，确定要清理缓存么？", preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(title: "取消", style: .cancel, handler: {
                 (action) -> Void in
@@ -217,7 +217,9 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     }
 
     func aboutClicked() {
-        print("about")
+        MainNavigationController.sharedInstance.pushViewController(
+            AboutController(), animated: true
+        )
     }
 
     func editFrameClicked(recognizer: UIGestureRecognizer) {
@@ -299,7 +301,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
         return true
     }
-    
+
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         //失去焦点
         textView.superview?.layer.borderWidth = 0

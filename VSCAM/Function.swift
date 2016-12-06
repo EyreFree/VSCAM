@@ -62,11 +62,4 @@ class Function: NSObject {
             }
         }
     }
-
-    //打开 AppStore
-    static func openAppStore() {
-        if let tryUrl = URL(myString: NetworkURL.appStore) {
-            UIApplication.shared.openURL(tryUrl)
-        }
-    }
 }

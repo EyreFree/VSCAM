@@ -1,0 +1,9 @@
+
+
+import Foundation
+
+class AboutModel {
+
+    
+}
+

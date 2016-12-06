@@ -60,5 +60,7 @@ class NetworkURL {
     static let appStore = "https://itunes.apple.com/cn/app/VSCAM/id1163589746?mt=8"
     //隐私政策
     static let privacy = "http://vscam.co/privacy.html"
+    //VSCAM
+    static let vscam = "https://vscam.co"
 }
 
