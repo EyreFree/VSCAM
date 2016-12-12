@@ -8,29 +8,27 @@ VSCAM 是一款使用 Swift 编写的 iOS 图片分享应用，更多信息见�
 登录与注册页使用 UITableView 实现了焦点所在编辑框自动滚动到屏幕中心的效果。  
 集成 UMeng 统计分析 SDK，可作为新手参考。
 
-### AppStore
+## AppStore
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/VSCAM/id1163589746?mt=8'>
-<img src='http://ww2.sinaimg.cn/large/0060lm7Tgw1f1hgrs1ebwj308102q0sp.jpg' width='144' height='49' />
+	<img src='http://ww2.sinaimg.cn/large/0060lm7Tgw1f1hgrs1ebwj308102q0sp.jpg' width='144' height='49'/>
 </a>
 
-### 开发环境
+## 开发环境
 
 - XCode 8.1
 - Swift 3.0.1
 
-### 构建
+## 构建
 
 0. 首先，需要安装 [CocoaPods](https://github.com/CocoaPods/CocoaPods) 如果你没有安装的话；
 1. 在终端中移动到当前工程根目录下执行 `pod install`；
 2. 用 XCode 打开 VSCAM.xcworkspace；
 3. 构建。
 
-### 预览
+## 预览
 
-![](assets/screenshot1.png)|![](assets/screenshot2.png)  
-:-------------------------:|:-------------------------:
-![](assets/screenshot3.png)|![](assets/screenshot4.png)
+![](assets/screenshot1.png)|![](assets/screenshot2.png)|![](assets/screenshot3.png)|![](assets/screenshot4.png)
 
  
 
