@@ -5,15 +5,17 @@ import UIKit
 class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
     weak var parentViewController: UIViewController?
-    var items = [BaseTableViewItem]()
+    var sections = [BaseTableViewSection]()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
+
         fatalError("init(coder:) has not been implemented")
     }
 
     init(_ parentViewController: UIViewController) {
         super.init(frame: CGRect.zero, style: .grouped)
+
         self.parentViewController = parentViewController
     }
 
@@ -23,22 +25,22 @@ class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
 
     func addReuseIdentifier() {
-        for item in items {
-            item.registerClass(tableView: self)
+        for section in sections {
+            section.registerClass(tableView: self)
         }
     }
 
     //MARK:- tableview
     func numberOfSections(in tableView: UITableView) -> Int {
-        return items.count
+        return sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items[section].number(tableView: tableView)
+        return sections[section].rows.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return items[indexPath.section].height(tableView: tableView, indexPath: indexPath)
+        return sections[indexPath.section].rows[indexPath.row].height(tableView: tableView, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -46,7 +48,7 @@ class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return items[indexPath.section].cell(tableView: tableView, indexPath: indexPath)
+        return sections[indexPath.section].rows[indexPath.row].cell(tableView: tableView, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

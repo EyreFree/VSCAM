@@ -4,6 +4,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'VSCAM' do
+    pod 'RxSwift', '~> 3.0.1'                   # RxSwift
+    pod 'RxCocoa', '~> 3.0.1'                   # RxCocoa
     pod 'SnapKit', '~> 3.0.1'                   # 约束
     pod 'Alamofire', '~> 4.0.1'                 # 网络
     pod 'SDWebImage', '~> 3.7.6'                # 图片加载

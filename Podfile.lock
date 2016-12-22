@@ -9,6 +9,9 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - RxCocoa (3.0.1):
+    - RxSwift (~> 3.0)
+  - RxSwift (3.0.1)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -25,6 +28,8 @@ DEPENDENCIES:
   - LFRoundProgressView (~> 1.0.0)
   - MJRefresh (~> 3.1.0)
   - NJKWebViewProgress (~> 0.2.3)
+  - RxCocoa (~> 3.0.1)
+  - RxSwift (~> 3.0.1)
   - SDWebImage (~> 3.7.6)
   - SnapKit (~> 3.0.1)
   - SVProgressHUD (~> 2.0.4)
@@ -39,6 +44,8 @@ SPEC CHECKSUMS:
   LFRoundProgressView: c4a404354fb9989ec4bc6ad2b3cde834f983d72b
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
+  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
@@ -46,6 +53,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: f1b08b540eba6ebad044a574cae6d988cf40cfda
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 85dbcd99fa2f47564fc16a1948dd9144a4df80a8
+PODFILE CHECKSUM: 48c6055fd773f8fada72ff17d7030e8eba1644c3
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0.beta.1

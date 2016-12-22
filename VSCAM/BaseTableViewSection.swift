@@ -2,24 +2,20 @@
 
 import UIKit
 
-class BaseTableViewItem {
+class BaseTableViewSection {
+
+    var rows = [BaseTableViewRow]()
 
     //MARK:- Identifier
-    func reuseIdentifier() -> String {
-        return "BaseTableViewItem"
-    }
-
     func registerClass(tableView: UITableView) {
-        for index in 0 ..< number(tableView: tableView) {
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier() + "\(index)")
+        for row in rows {
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: row.reuseIdentifier())
         }
     }
 
     //MARK:- Cell
     func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+        return tableView.dequeueReusableCell(withIdentifier: rows[indexPath.section].reuseIdentifier(), for: indexPath)
     }
 
     func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {

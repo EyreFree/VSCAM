@@ -1,9 +1,12 @@
 
 
 import UIKit
+import RxSwift
 
 //UIViewController基类
 class BaseViewController: UIViewController {
+
+    var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()

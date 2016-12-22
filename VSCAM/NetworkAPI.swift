@@ -15,7 +15,7 @@ class NetworkAPI {
     private var managerUnlimited: SessionManager!   //长时间的
     init() {
         var customHeader = SessionManager.defaultHTTPHeaders
-        customHeader.updateValue("http://vscam.co/", forKey: "referer")
+        customHeader.updateValue("https://vscam.co/", forKey: "referer")
 
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = customHeader

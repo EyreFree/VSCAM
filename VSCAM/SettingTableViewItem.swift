@@ -233,9 +233,10 @@ class SettingTableViewItem: BaseTableViewItem {
             view.tag = Tag.make(8)
             view.setTitle("确认更改", for: .normal)
             view.layer.cornerRadius = 20
+            view.isEnabled = false
             view.layer.masksToBounds = true
             view.setTitleColor(UIColor.white, for: .normal)
-            view.backgroundColor = UIColor(valueRGB: 0xA6A547)
+            view.backgroundColor = UIColor.gray
             view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             view.addTarget(tryController, action: Selector(("changeClicked")), for: .touchUpInside)
             cell.contentView.addSubview(view)

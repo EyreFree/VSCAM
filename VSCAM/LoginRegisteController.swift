@@ -1,6 +1,8 @@
 
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
@@ -18,6 +20,12 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
         //
         addKeyboardObserver()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        addRx()
     }
 
     deinit {
@@ -92,6 +100,49 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
             }
             self.view.sendSubview(toBack: view)
             self.tableViewRegiste = view
+        }
+    }
+
+    func addRx() {
+        //登录页面
+        let cellLogin = self.tableViewLogin.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
+        if let tryNameLabel = cellLogin?.viewWithTag(Tag.make(5)) as? UITextField,
+            let tryPWDLabel = cellLogin?.viewWithTag(Tag.make(7)) as? UITextField,
+            let tryConfirmButton = cellLogin?.viewWithTag(Tag.make(8)) as? UIButton {
+
+            Observable.combineLatest(tryNameLabel.rx.text.orEmpty, tryPWDLabel.rx.text.orEmpty) {
+                (textName, textPWD) -> Bool in
+                if textName.isEmpty == true || textPWD.isEmpty == true {
+                    return false
+                }
+                return true
+                }
+                .subscribe(onNext: {
+                    tryConfirmButton.isEnabled = $0
+                    tryConfirmButton.backgroundColor = $0 ? UIColor(valueRGB: 0xA6A547) : UIColor.gray
+                })
+                .addDisposableTo(disposeBag)
+        }
+
+        //注册页面
+        let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
+        if let tryNameLabel = cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField,
+            let tryMailLabel = cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField,
+            let tryPWDLabel = cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField,
+            let tryConfirmButton = cellRegiste?.viewWithTag(Tag.make(20)) as? UIButton {
+
+            Observable.combineLatest(tryNameLabel.rx.text.orEmpty, tryMailLabel.rx.text.orEmpty, tryPWDLabel.rx.text.orEmpty, BehaviorSubject(value: model.agree)) {
+                (textName, textMail, textPWD, agreeMark) -> Bool in
+                if textName.isEmpty == true || textMail.isEmpty == true || textPWD.isEmpty == true || agreeMark == false {
+                    return false
+                }
+                return true
+                }
+                .subscribe(onNext: {
+                    tryConfirmButton.isEnabled = $0
+                    tryConfirmButton.backgroundColor = $0 ? UIColor(valueRGB: 0xA6A547) : UIColor.gray
+                })
+                .addDisposableTo(disposeBag)
         }
     }
 

@@ -165,8 +165,9 @@ class LoginTableViewItem: BaseTableViewItem {
             view.setTitle("登录", for: .normal)
             view.layer.cornerRadius = 20
             view.layer.masksToBounds = true
+            view.isEnabled = false
+            view.backgroundColor = UIColor.gray
             view.setTitleColor(UIColor.white, for: .normal)
-            view.backgroundColor = UIColor(valueRGB: 0xA6A547)
             view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             view.addTarget(tryController, action: Selector(("loginClicked")), for: .touchUpInside)
             cell.contentView.addSubview(view)

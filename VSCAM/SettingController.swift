@@ -3,6 +3,8 @@
 import UIKit
 import KMPlaceholderTextView
 import SDWebImage
+import RxSwift
+import RxCocoa
 
 class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -21,6 +23,12 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
         //
         addKeyboardObserver()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        addRx()
     }
 
     deinit {
@@ -102,6 +110,27 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
+    func addRx() {
+        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
+        if let tryDescLabel = cell?.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView,
+            let tryUrlLabel = cell?.viewWithTag(Tag.make(7)) as? UITextField,
+            let tryConfirmButton = cell?.viewWithTag(Tag.make(8)) as? UIButton {
+
+            Observable.combineLatest(tryDescLabel.rx.text.orEmpty, tryUrlLabel.rx.text.orEmpty) {
+                (textDesc, textUrl) -> Bool in
+                if textDesc == Variable.loginUserInfo?.des && textUrl == Variable.loginUserInfo?.url {
+                    return false
+                }
+                return true
+                }
+                .subscribe(onNext: {
+                    tryConfirmButton.isEnabled = $0
+                    tryConfirmButton.backgroundColor = $0 ? UIColor(valueRGB: 0xA6A547) : UIColor.gray
+                })
+                .addDisposableTo(disposeBag)
+        }
+    }
+
     func backClicked() {
         Function.HideKeyboard()
         MainNavigationController.sharedInstance.popViewController(animated: true)
@@ -132,19 +161,25 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         Function.HideKeyboard()
         let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
         if let tryDesc = (cell?.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean(),
-            let tryUrl = (cell?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
+            let tryUrl = (cell?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean(),
+            let tryConfirmButton = cell?.viewWithTag(Tag.make(8)) as? UIButton {
 
-            NetworkAPI.sharedInstance.change(des: tryDesc, url: tryUrl) {
-                [weak self] (errorString) in
-                if let trySelf = self {
-                    if let tryErrorString = errorString {
-                        Function.MessageBox(trySelf, title: "更改失败", content: tryErrorString)
-                    } else {
-                        Variable.loginUserInfoSetDes(newValue: tryDesc)
-                        Variable.loginUserInfoSetUrl(newValue: tryUrl)
+            if tryConfirmButton.isEnabled {
+                NetworkAPI.sharedInstance.change(des: tryDesc, url: tryUrl) {
+                    [weak self] (errorString) in
+                    if let trySelf = self {
+                        if let tryErrorString = errorString {
+                            Function.MessageBox(trySelf, title: "更改失败", content: tryErrorString)
+                        } else {
+                            Variable.loginUserInfoSetDes(newValue: tryDesc)
+                            Variable.loginUserInfoSetUrl(newValue: tryUrl)
 
-                        Variable.loginNeedRefreshMain = true
-                        Function.MessageBox(trySelf, title: "提示", content: "更改个人信息成功", type: .success)
+                            Variable.loginNeedRefreshMain = true
+                            Function.MessageBox(trySelf, title: "提示", content: "更改个人信息成功", type: .success)
+
+                            tryConfirmButton.isEnabled = false
+                            tryConfirmButton.backgroundColor = UIColor.gray
+                        }
                     }
                 }
             }
