@@ -15,8 +15,10 @@ class SettingTableView: BaseTableView {
 
     override func onInit() {
         //添加数据
-        items.append(SettingTableViewItem())
-        items.append(SettingTableViewItemExt())
+        let section1 = BaseTableViewSection()
+        section1.rows.append(SettingTableViewItem())
+        section1.rows.append(SettingTableViewItemExt())
+        sections.append(section1)
 
         //UITableView设置
         self.delegate = self

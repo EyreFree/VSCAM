@@ -2,18 +2,11 @@
 
 import UIKit
 
-class PublishTableViewItemHead: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "PublishTableViewItemHead"
-    }
+class PublishTableViewItemHead: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
 
         //占位
@@ -22,7 +15,7 @@ class PublishTableViewItemHead: BaseTableViewItem {
         return cell
     }
 
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    override func height(tableView: UITableView) -> CGFloat {
         let screenWidth = UIScreen.main.bounds.size.width
         if let tryModel = ((tableView as? PublishTableView)?.parentViewController as? PublishController)?.model {
             if let tryScale = tryModel.image?.aspectRatio() {
@@ -30,10 +23,6 @@ class PublishTableViewItemHead: BaseTableViewItem {
             }
         }
         return screenWidth
-    }
-
-    override func number(tableView: UITableView) -> Int {
-        return 1
     }
 }
 

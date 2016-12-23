@@ -2,18 +2,11 @@
 
 import UIKit
 
-class RegisteTableViewItem: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "RegisteTableViewItem"
-    }
+class RegisteTableViewItem: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
 
         let tryController = (tableView as? RegisteTableView)?.parentViewController as? LoginRegisteController
@@ -327,7 +320,7 @@ class RegisteTableViewItem: BaseTableViewItem {
         if let tryAgreementFrameView = agreementFrameView {
 
             //是否同意协议
-            let agree = tryController?.model.agree == true
+            let agree = tryController?.model.agree.value == true
 
             //选择圆圈
             if let view = tryAgreementFrameView.viewWithTag(Tag.make(26)) as? UIImageView {
@@ -395,12 +388,8 @@ class RegisteTableViewItem: BaseTableViewItem {
         return cell
     }
     
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    override func height(tableView: UITableView) -> CGFloat {
         return CGSize.screen().height
-    }
-    
-    override func number(tableView: UITableView) -> Int {
-        return 1
     }
 }
 

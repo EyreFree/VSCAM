@@ -105,10 +105,9 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     func addRx() {
         //登录页面
-        let cellLogin = self.tableViewLogin.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryNameLabel = cellLogin?.viewWithTag(Tag.make(5)) as? UITextField,
-            let tryPWDLabel = cellLogin?.viewWithTag(Tag.make(7)) as? UITextField,
-            let tryConfirmButton = cellLogin?.viewWithTag(Tag.make(8)) as? UIButton {
+        if let tryNameLabel = self.view.viewWithTag(Tag.make(5)) as? UITextField,
+            let tryPWDLabel = self.view.viewWithTag(Tag.make(7)) as? UITextField,
+            let tryConfirmButton = self.view.viewWithTag(Tag.make(8)) as? UIButton {
 
             Observable.combineLatest(tryNameLabel.rx.text.orEmpty, tryPWDLabel.rx.text.orEmpty) {
                 (textName, textPWD) -> Bool in
@@ -125,13 +124,13 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
 
         //注册页面
-        let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryNameLabel = cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField,
-            let tryMailLabel = cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField,
-            let tryPWDLabel = cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField,
-            let tryConfirmButton = cellRegiste?.viewWithTag(Tag.make(20)) as? UIButton {
+        if let tryNameLabel = self.view.viewWithTag(Tag.make(15)) as? UITextField,
+            let tryMailLabel = self.view.viewWithTag(Tag.make(17)) as? UITextField,
+            let tryPWDLabel = self.view.viewWithTag(Tag.make(19)) as? UITextField,
+            let tryConfirmButton = self.view.viewWithTag(Tag.make(20)) as? UIButton {
 
-            Observable.combineLatest(tryNameLabel.rx.text.orEmpty, tryMailLabel.rx.text.orEmpty, tryPWDLabel.rx.text.orEmpty, BehaviorSubject(value: model.agree)) {
+            Observable.combineLatest(tryNameLabel.rx.text.orEmpty, tryMailLabel.rx.text.orEmpty,
+                                     tryPWDLabel.rx.text.orEmpty, model.agree.asObservable()) {
                 (textName, textMail, textPWD, agreeMark) -> Bool in
                 if textName.isEmpty == true || textMail.isEmpty == true || textPWD.isEmpty == true || agreeMark == false {
                     return false
@@ -153,9 +152,8 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     func loginClicked() {
         Function.HideKeyboard()
-        let cellLogin = self.tableViewLogin.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryID = (cellLogin?.viewWithTag(Tag.make(5)) as? UITextField)?.text?.clean(),
-            let tryPWD = (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
+        if let tryID = (self.view.viewWithTag(Tag.make(5)) as? UITextField)?.text?.clean(),
+            let tryPWD = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
 
             if tryID.isEmpty == true {
                 Function.MessageBox(self, title: "提示", content: "用户名不能为空", type: .info)
@@ -193,8 +191,13 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     //同意／不同意
     func agreeClicked() {
-        model.agree = model.agree == false
-        tableViewRegiste.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
+        model.agree.value = model.agree.value == false
+        
+        //选择圆圈
+        if let view = self.view.viewWithTag(Tag.make(26)) as? UIImageView {
+            view.image = UIImage(named: model.agree.value ? "图标_选择_是" : "图标_选择_否")
+        }
+        //tableViewRegiste.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
     }
 
     //查看用户协议
@@ -206,10 +209,9 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     func registeClicked() {
         Function.HideKeyboard()
-        let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryName = (cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField)?.text?.clean(),
-            let tryEmail = (cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField)?.text?.clean(),
-            let tryPWD = (cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField)?.text?.clean() {
+        if let tryName = (self.view.viewWithTag(Tag.make(15)) as? UITextField)?.text?.clean(),
+            let tryEmail = (self.view.viewWithTag(Tag.make(17)) as? UITextField)?.text?.clean(),
+            let tryPWD = (self.view.viewWithTag(Tag.make(19)) as? UITextField)?.text?.clean() {
 
             if tryName.isEmpty == true {
                 Function.MessageBox(self, title: "提示", content: "昵称不能为空", type: .info)
@@ -235,7 +237,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 Function.MessageBox(self, title: "提示", content: "密码格式错误")
                 return
             }*/
-            if model.agree != true {
+            if model.agree.value != true {
                 Function.MessageBox(self, title: "提示", content: "请查看并同意用户协议", type: .info)
                 return
             }
@@ -326,19 +328,16 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 self.tableViewRegiste.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
 
                 //找到当前焦点编辑框并且滚到那里去
-                let cellLogin = self.tableViewLogin.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-                let cellRegiste = self.tableViewRegiste.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-
                 let visibleHeight = CGSize.screen().height - tryHeight
-                if (cellLogin?.viewWithTag(Tag.make(5)) as? UITextField)?.isFirstResponder == true {
+                if (self.view.viewWithTag(Tag.make(5)) as? UITextField)?.isFirstResponder == true {
                     self.tableViewLogin.setContentOffset(CGPoint(x: 0, y: max(216 - (visibleHeight - 39) / 2, 0)))
-                } else if (cellLogin?.viewWithTag(Tag.make(7)) as? UITextField)?.isFirstResponder == true {
+                } else if (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.isFirstResponder == true {
                     self.tableViewLogin.setContentOffset(CGPoint(x: 0, y: max(269 - (visibleHeight - 39) / 2, 0)))
-                } else if (cellRegiste?.viewWithTag(Tag.make(15)) as? UITextField)?.isFirstResponder == true {
+                } else if (self.view.viewWithTag(Tag.make(15)) as? UITextField)?.isFirstResponder == true {
                     self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(184 - (visibleHeight - 39) / 2, 0)))
-                } else if (cellRegiste?.viewWithTag(Tag.make(17)) as? UITextField)?.isFirstResponder == true {
+                } else if (self.view.viewWithTag(Tag.make(17)) as? UITextField)?.isFirstResponder == true {
                     self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(237 - (visibleHeight - 39) / 2, 0)))
-                } else if (cellRegiste?.viewWithTag(Tag.make(19)) as? UITextField)?.isFirstResponder == true {
+                } else if (self.view.viewWithTag(Tag.make(19)) as? UITextField)?.isFirstResponder == true {
                     self.tableViewRegiste.setContentOffset(CGPoint(x: 0, y: max(290 - (visibleHeight - 39) / 2, 0)))
                 }
             }

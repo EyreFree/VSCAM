@@ -2,8 +2,9 @@
 
 import UIKit
 
-class BaseTableViewSection {
+class BaseTableViewSection: NSObject {
 
+    var indexSection = 0
     var rows = [BaseTableViewRow]()
 
     //MARK:- Identifier
@@ -15,15 +16,15 @@ class BaseTableViewSection {
 
     //MARK:- Cell
     func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: rows[indexPath.section].reuseIdentifier(), for: indexPath)
+        return rows[indexPath.row].cell(tableView: tableView)
     }
 
     func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
-        return 0
+        return rows[indexPath.row].height(tableView: tableView)
     }
 
     func number(tableView: UITableView) -> Int {
-        return 0
+        return rows.count
     }
 
     //MARK:- Header

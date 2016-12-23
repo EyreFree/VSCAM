@@ -111,10 +111,9 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     }
 
     func addRx() {
-        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryDescLabel = cell?.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView,
-            let tryUrlLabel = cell?.viewWithTag(Tag.make(7)) as? UITextField,
-            let tryConfirmButton = cell?.viewWithTag(Tag.make(8)) as? UIButton {
+        if let tryDescLabel = self.view.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView,
+            let tryUrlLabel = self.view.viewWithTag(Tag.make(7)) as? UITextField,
+            let tryConfirmButton = self.view.viewWithTag(Tag.make(8)) as? UIButton {
 
             Observable.combineLatest(tryDescLabel.rx.text.orEmpty, tryUrlLabel.rx.text.orEmpty) {
                 (textDesc, textUrl) -> Bool in
@@ -159,10 +158,9 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
     func changeClicked() {
         Function.HideKeyboard()
-        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-        if let tryDesc = (cell?.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean(),
-            let tryUrl = (cell?.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean(),
-            let tryConfirmButton = cell?.viewWithTag(Tag.make(8)) as? UIButton {
+        if let tryDesc = (self.view.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean(),
+            let tryUrl = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean(),
+            let tryConfirmButton = self.view.viewWithTag(Tag.make(8)) as? UIButton {
 
             if tryConfirmButton.isEnabled {
                 NetworkAPI.sharedInstance.change(des: tryDesc, url: tryUrl) {
@@ -270,12 +268,10 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
 
                 //找到当前焦点编辑框并且滚到那里去
-                let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.contentView
-
                 let visibleHeight = CGSize.screen().height - tryHeight
-                if (cell?.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.isFirstResponder == true {
+                if (self.view.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.isFirstResponder == true {
                     self.tableView.setContentOffset(CGPoint(x: 0, y: max(226 - (visibleHeight - 66) / 2, 0)))
-                } else if (cell?.viewWithTag(Tag.make(7)) as? UITextField)?.isFirstResponder == true {
+                } else if (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.isFirstResponder == true {
                     self.tableView.setContentOffset(CGPoint(x: 0, y: max(306 - (visibleHeight - 39) / 2, 0)))
                 }
             }

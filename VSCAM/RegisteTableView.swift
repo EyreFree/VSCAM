@@ -15,7 +15,9 @@ class RegisteTableView: BaseTableView {
 
     override func onInit() {
         //添加数据
-        items.append(RegisteTableViewItem())
+        let section1 = BaseTableViewSection()
+        section1.rows.append(RegisteTableViewItem())
+        sections.append(section1)
 
         //UITableView设置
         self.delegate = self

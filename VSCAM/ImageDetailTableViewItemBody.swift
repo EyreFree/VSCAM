@@ -2,18 +2,11 @@
 
 import UIKit
 
-class ImageDetailTableViewItemBody: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "ImageDetailTableViewItemBody"
-    }
+class ImageDetailTableViewItemBody: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
 
         if let tryController = (tableView as? ImageDetailTableView)?.parentViewController as? ImageDetailController {
@@ -252,12 +245,8 @@ class ImageDetailTableViewItemBody: BaseTableViewItem {
         return cell
     }
     
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    override func height(tableView: UITableView) -> CGFloat {
         return 333
-    }
-    
-    override func number(tableView: UITableView) -> Int {
-        return 1
     }
 }
 

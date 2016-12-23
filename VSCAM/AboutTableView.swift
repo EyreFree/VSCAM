@@ -15,9 +15,11 @@ class AboutTableView: BaseTableView {
 
     override func onInit() {
         //添加数据
-        items.append(AboutTableViewItemHeader())
-        items.append(AboutTableViewItemSelections())
-        items.append(AboutTableViewItemFooter())
+        let section1 = BaseTableViewSection()
+        section1.rows.append(AboutTableViewItemHeader())
+        section1.rows.append(AboutTableViewItemSelections())
+        section1.rows.append(AboutTableViewItemFooter())
+        sections.append(section1)
 
         //UITableView设置
         self.delegate = self

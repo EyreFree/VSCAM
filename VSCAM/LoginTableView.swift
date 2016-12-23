@@ -15,7 +15,9 @@ class LoginTableView: BaseTableView {
 
     override func onInit() {
         //添加数据
-        items.append(LoginTableViewItem())
+        let section1 = BaseTableViewSection()
+        section1.rows.append(LoginTableViewItem())
+        sections.append(section1)
 
         //UITableView设置
         self.delegate = self

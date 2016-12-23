@@ -36,11 +36,11 @@ class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].rows.count
+        return sections[section].number(tableView: tableView)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return sections[indexPath.section].rows[indexPath.row].height(tableView: tableView, indexPath: indexPath)
+        return sections[indexPath.section].height(tableView: tableView, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -48,23 +48,23 @@ class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return sections[indexPath.section].rows[indexPath.row].cell(tableView: tableView, indexPath: indexPath)
+        return sections[indexPath.section].cell(tableView: tableView, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return items[section].heightHeader(tableView: tableView)
+        return sections[section].heightHeader(tableView: tableView)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return items[section].header(tableView: tableView)
+        return sections[section].header(tableView: tableView)
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return items[section].heightFooter(tableView: tableView)
+        return sections[section].heightFooter(tableView: tableView)
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return items[section].footer(tableView: tableView)
+        return sections[section].footer(tableView: tableView)
     }
 
     //Extern

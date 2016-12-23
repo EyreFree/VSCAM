@@ -2,18 +2,11 @@
 
 import UIKit
 
-class PublishTableViewItemFoot: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "PublishTableViewItemFoot"
-    }
+class PublishTableViewItemFoot: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
 
         //占位
@@ -22,12 +15,8 @@ class PublishTableViewItemFoot: BaseTableViewItem {
         return cell
     }
 
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    override func height(tableView: UITableView) -> CGFloat {
         return 89
-    }
-
-    override func number(tableView: UITableView) -> Int {
-        return 1
     }
 }
 

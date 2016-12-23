@@ -2,18 +2,11 @@
 
 import UIKit
 
-class AboutTableViewItemFooter: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "AboutTableViewItemFooter"
-    }
+class AboutTableViewItemFooter: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor(valueRGB: 0xF8F8F8)
 
@@ -42,12 +35,8 @@ class AboutTableViewItemFooter: BaseTableViewItem {
         return cell
     }
 
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    override func height(tableView: UITableView) -> CGFloat {
         return 77
-    }
-
-    override func number(tableView: UITableView) -> Int {
-        return 1
     }
 }
 

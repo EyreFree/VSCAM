@@ -2,18 +2,11 @@
 
 import UIKit
 
-class ImageDetailTableViewItemFoot: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "ImageDetailTableViewItemFoot"
-    }
+class ImageDetailTableViewItemFoot: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
 
         //占位
@@ -22,15 +15,11 @@ class ImageDetailTableViewItemFoot: BaseTableViewItem {
         return cell
     }
 
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
-        return 140
-    }
-
-    override func number(tableView: UITableView) -> Int {
+    override func height(tableView: UITableView) -> CGFloat {
         if let tryModel = ((tableView as? ImageDetailTableView)?.parentViewController as? ImageDetailController)?.model {
             if let tryGps = (tryModel.imageBrief?.gps ?? tryModel.imageDetail?.gps) {
                 if tryGps.isEmpty == false {
-                    return 1
+                    return 140
                 }
             }
         }

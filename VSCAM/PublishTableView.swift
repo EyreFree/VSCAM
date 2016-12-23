@@ -15,8 +15,10 @@ class PublishTableView: BaseTableView {
 
     override func onInit() {
         //添加数据
-        items.append(PublishTableViewItemHead())
-        items.append(PublishTableViewItemFoot())
+        let section1 = BaseTableViewSection()
+        section1.rows.append(PublishTableViewItemHead())
+        section1.rows.append(PublishTableViewItemFoot())
+        sections.append(section1)
 
         //UITableView设置
         self.delegate = self

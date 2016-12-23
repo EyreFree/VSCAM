@@ -2,18 +2,11 @@
 
 import UIKit
 
-class SettingTableViewItemExt: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "SettingTableViewItemExt"
-    }
+class SettingTableViewItemExt: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
 
         let tryController = (tableView as? SettingTableView)?.parentViewController as? SettingController
@@ -93,12 +86,8 @@ class SettingTableViewItemExt: BaseTableViewItem {
         return cell
     }
 
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    override func height(tableView: UITableView) -> CGFloat {
         return 140
-    }
-    
-    override func number(tableView: UITableView) -> Int {
-        return 1
     }
 }
 

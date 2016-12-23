@@ -2,18 +2,11 @@
 
 import UIKit
 
-class LoginTableViewItem: BaseTableViewItem {
-
-    //MARK:- Identifier
-    override func reuseIdentifier() ->String {
-        return "LoginTableViewItem"
-    }
+class LoginTableViewItem: BaseTableViewRow {
 
     //MARK:- Cell
-    override func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: reuseIdentifier() + "\(indexPath.row)", for: indexPath
-        )
+    override func cell(tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
         cell.selectionStyle = .none
 
         let tryController = (tableView as? LoginTableView)?.parentViewController as? LoginRegisteController
@@ -260,12 +253,8 @@ class LoginTableViewItem: BaseTableViewItem {
         return cell
     }
 
-    override func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    override func height(tableView: UITableView) -> CGFloat {
         return CGSize.screen().height
-    }
-    
-    override func number(tableView: UITableView) -> Int {
-        return 1
     }
 }
 

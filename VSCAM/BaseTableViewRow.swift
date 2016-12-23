@@ -2,19 +2,27 @@
 
 import UIKit
 
-class BaseTableViewRow {
+class BaseTableViewRow: NSObject {
+
+    var indexSection = 0
+    var indexRow = 0
 
     //MARK:- Identifier
     func reuseIdentifier() -> String {
-        return "BaseTableViewRow"
+        return String(describing: type(of: self))
+    }
+
+    //MARK:- IndexPath
+    func rowIndexPath() -> IndexPath {
+        return IndexPath(row: indexRow, section: indexSection)
     }
 
     //MARK:- Cell
-    func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: indexPath)
+    func cell(tableView: UITableView) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
     }
 
-    func height(tableView: UITableView, indexPath: IndexPath) -> CGFloat {
+    func height(tableView: UITableView) -> CGFloat {
         return 0
     }
 }

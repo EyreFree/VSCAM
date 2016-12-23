@@ -15,9 +15,11 @@ class ImageDetailTableView: BaseTableView {
 
     override func onInit() {
         //添加数据
-        items.append(ImageDetailTableViewItemHead())
-        items.append(ImageDetailTableViewItemBody())
-        items.append(ImageDetailTableViewItemFoot())
+        let section1 = BaseTableViewSection()
+        section1.rows.append(ImageDetailTableViewItemHead())
+        section1.rows.append(ImageDetailTableViewItemBody())
+        section1.rows.append(ImageDetailTableViewItemFoot())
+        sections.append(section1)
 
         //UITableView设置
         self.delegate = self
