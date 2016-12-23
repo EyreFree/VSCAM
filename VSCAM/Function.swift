@@ -43,6 +43,34 @@ class Function: NSObject {
         UIApplication.shared.isStatusBarHidden = hidden
     }
 
+    //打开外部链接对应的页面
+    static func openOutUrl(url: String) -> Bool {
+        let preUrl = url.removePrefix(string: "http://").removePrefix(string: "https://")
+
+        //如果是图片详情页
+        let imagePagePrefix = NetworkURL.imageDetailPage.removeSuffix(string: "{pid}")
+            .removePrefix(string: "http://").removePrefix(string: "https://")
+        if preUrl.hasPrefix(imagePagePrefix) {
+            let imageID = preUrl.removePrefix(string: imagePagePrefix)
+            if let tryID = Int(imageID), imageID.count() > 0 {
+                print(tryID)
+                return true
+            }
+        }
+        //如果是用户详情页
+        let userPagePrefix = NetworkURL.userDetailPage.removeSuffix(string: "{name}")
+            .removePrefix(string: "http://").removePrefix(string: "https://")
+        if preUrl.hasPrefix(userPagePrefix) {
+            let userID = preUrl.removePrefix(string: userPagePrefix)
+            if userID.count() > 0 {
+                print(userID)
+                return true
+            }
+            return true
+        }
+        return false
+    }
+
     //打开分享对话框
     static func openShareView(controller: UIViewController, title: String, url: String) {
         if let tryUrl = NSURL(myString: url) {

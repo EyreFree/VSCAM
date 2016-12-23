@@ -56,6 +56,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //从 3D-Touch 启动
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        //判断标题
+        if shortcutItem.localizedTitle == "打开分享链接" {
+            let url = UIPasteboard.general.string ?? ""
+            if url.count() > 0 {
+                //打开外部分享链接
+                if Function.openOutUrl(url: url) == false {
+                    Function.MessageBox(MainNavigationController.sharedInstance, title: "提示", content: "剪贴板内容无法识别")
+                }
+            } else {
+                Function.MessageBox(MainNavigationController.sharedInstance, title: "提示", content: "剪贴板没有内容")
+            }
+        }
+        completionHandler(true)
+    }
+
     //自定义
     //配置 UMeng 参数
     func setUMengParam() {

@@ -131,11 +131,11 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
             Observable.combineLatest(tryNameLabel.rx.text.orEmpty, tryMailLabel.rx.text.orEmpty,
                                      tryPWDLabel.rx.text.orEmpty, model.agree.asObservable()) {
-                (textName, textMail, textPWD, agreeMark) -> Bool in
-                if textName.isEmpty == true || textMail.isEmpty == true || textPWD.isEmpty == true || agreeMark == false {
-                    return false
-                }
-                return true
+                                        (textName, textMail, textPWD, agreeMark) -> Bool in
+                                        if textName.isEmpty == true || textMail.isEmpty == true || textPWD.isEmpty == true || agreeMark == false {
+                                            return false
+                                        }
+                                        return true
                 }
                 .subscribe(onNext: {
                     tryConfirmButton.isEnabled = $0
@@ -164,13 +164,13 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 return
             }
             /*if false == tryID.conform(regex: "/(^\\w+((-\\w+)|(\\.\\w+))*\\@[\\w]+((\\.|-)[\\w]+)*\\.[\\w]+$|^[\\x{0800}-\\x{9fa5}\\w_]{2,12}$)/iu") {
-                Function.MessageBox(self, title: "提示", content: "用户名格式错误")
-                return
-            }*/
+             Function.MessageBox(self, title: "提示", content: "用户名格式错误")
+             return
+             }*/
             /*if false == tryPWD.conform(regex: "/^.{5,}$/") {
-                Function.MessageBox(self, title: "提示", content: "密码格式错误")
-                return
-            }*/
+             Function.MessageBox(self, title: "提示", content: "密码格式错误")
+             return
+             }*/
             Variable.lastLoginUser = tryID
             Variable.lastLoginPWD = ""
             NetworkAPI.sharedInstance.login(id: tryID, password: tryPWD) {
@@ -192,12 +192,11 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     //同意／不同意
     func agreeClicked() {
         model.agree.value = model.agree.value == false
-        
+
         //选择圆圈
         if let view = self.view.viewWithTag(Tag.make(26)) as? UIImageView {
             view.image = UIImage(named: model.agree.value ? "图标_选择_是" : "图标_选择_否")
         }
-        //tableViewRegiste.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
     }
 
     //查看用户协议
@@ -218,9 +217,9 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 return
             }
             /*if false == tryName.conform(regex: "/^[\\x{0800}-\\x{9fa5}\\w_]{2,20}$/iu") {
-                Function.MessageBox(self, title: "提示", content: "昵称格式错误")
-                return
-            }*/
+             Function.MessageBox(self, title: "提示", content: "昵称格式错误")
+             return
+             }*/
             if tryEmail.isEmpty == true {
                 Function.MessageBox(self, title: "提示", content: "邮箱不能为空", type: .info)
                 return
@@ -234,9 +233,9 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 return
             }
             /*if false == tryPWD.conform(regex: "/^.{5,}$/") {
-                Function.MessageBox(self, title: "提示", content: "密码格式错误")
-                return
-            }*/
+             Function.MessageBox(self, title: "提示", content: "密码格式错误")
+             return
+             }*/
             if model.agree.value != true {
                 Function.MessageBox(self, title: "提示", content: "请查看并同意用户协议", type: .info)
                 return
@@ -375,7 +374,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
         return true
     }
-
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         //失去焦点
         textField.superview?.layer.borderWidth = 0

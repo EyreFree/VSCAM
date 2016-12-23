@@ -46,7 +46,7 @@ class NetworkURL {
     static let imageOriginBig = "https://vscam.co/img/m/{origin}.jpg"
     //地图图片
     static let imageMap = "https://vscam.co/x/maps/{gps}%7C11%7C800*300.png"
-    //Web详情页地址
+    //图片详情页地址
     static let imageDetailPage = "https://vscam.co/#!g/{pid}"
     //头像
     static let avatarIgnore = "https://vscam.co/avatar/"
