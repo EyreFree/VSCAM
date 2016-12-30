@@ -139,6 +139,22 @@ class NetworkAPI {
         }
     }
 
+    //图片详情
+    func imageDetail(id: Int, finish: @escaping (PhotoDetailObject?, String?) -> Void) {
+        let parameters: [String : Any] = ["id": id]
+        manager.request(baseUrl + NetworkURL.imageDetail, method: .get, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            if let tryErrorString = result.0 {
+                finish(nil, tryErrorString)
+            } else if let tryObject = PhotoDetailObject(result.1) {
+                finish(tryObject, nil)
+            } else {
+                finish(nil, "数据格式错误")
+            }
+        }
+    }
+
     //获取个人信息
     //根据 uid 获取用户信息
     func userInfoList(uids: [Int], finish: @escaping ([UserInfoObject]?, String?) -> Void) {
