@@ -19,10 +19,33 @@
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.EyreFree.VSCAM</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>vscam</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.EyreFree.VSCAM</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>vscams</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.1.0</string>
+	<string>1.0.2.0</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>alipay</string>
@@ -76,17 +99,17 @@
 	<string>VSCAM 需要您的同意才能打开相册</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>VSCAM 需要您的同意才能使用语音识别</string>
-    <key>UIApplicationShortcutItems</key>
-    <array>
-        <dict>
-            <key>UIApplicationShortcutItemIconType</key>
-            <string>UIApplicationShortcutIconTypeShuffle</string>
-            <key>UIApplicationShortcutItemTitle</key>
-            <string>打开分享链接</string>
-            <key>UIApplicationShortcutItemType</key>
-            <string>0</string>
-        </dict>
-    </array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeShuffle</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>打开分享链接</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>0</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

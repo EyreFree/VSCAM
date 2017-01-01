@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let url = UIPasteboard.general.string ?? ""
             if url.count() > 0 {
                 //打开外部分享链接
-                if Function.openOutUrl(url: url) == false {
+                if Function.openInUrl(url: url) == false {
                     Function.MessageBox(MainNavigationController.sharedInstance, title: "提示", content: "剪贴板内容无法识别")
                 }
             } else {
@@ -71,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         completionHandler(true)
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return Function.openOutUrl(url: url.absoluteString)
     }
 
     //自定义

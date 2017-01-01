@@ -21,6 +21,9 @@
 		122429D91DB3D8FF00C8EE29 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429D81DB3D8FF00C8EE29 /* Int+.swift */; };
 		122429DB1DB3D95E00C8EE29 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429DA1DB3D95E00C8EE29 /* String+.swift */; };
 		122429DE1DB3DCF700C8EE29 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122429DD1DB3DCF700C8EE29 /* UIViewController+.swift */; };
+		123C14011E18CE8D00ED127B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123C14001E18CE8D00ED127B /* ShareViewController.swift */; };
+		123C14041E18CE8D00ED127B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 123C14021E18CE8D00ED127B /* MainInterface.storyboard */; };
+		123C14081E18CE8D00ED127B /* VSCAMShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 123C13FE1E18CE8D00ED127B /* VSCAMShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		123DD1181DCDCA690071C35B /* MainHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD1171DCDCA690071C35B /* MainHeadView.swift */; };
 		123DD11A1DCE4B3A0071C35B /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD1191DCE4B3A0071C35B /* UIImageView+.swift */; };
 		123DD11C1DCF1FCD0071C35B /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD11B1DCF1FCD0071C35B /* BaseCollectionView.swift */; };
@@ -96,6 +99,30 @@
 		E6270A015DC0AB51F53DCF7A /* Pods_VSCAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01B2475AE9C6785AF2EFBD0 /* Pods_VSCAM.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		123C14061E18CE8D00ED127B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8488D4311DAA46FD000E703C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 123C13FD1E18CE8D00ED127B;
+			remoteInfo = VSCAMShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		123C140C1E18CE8E00ED127B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				123C14081E18CE8D00ED127B /* VSCAMShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		121DE0391DCCB11900479BF0 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		121DE03B1DCCECA400479BF0 /* MainCollectinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectinView.swift; sourceTree = "<group>"; };
@@ -113,6 +140,10 @@
 		122429DA1DB3D95E00C8EE29 /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		122429DC1DB3D99F00C8EE29 /* VSCAM-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VSCAM-Bridging-Header.h"; sourceTree = "<group>"; };
 		122429DD1DB3DCF700C8EE29 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		123C13FE1E18CE8D00ED127B /* VSCAMShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VSCAMShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		123C14001E18CE8D00ED127B /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		123C14031E18CE8D00ED127B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		123C14051E18CE8D00ED127B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		123DD1171DCDCA690071C35B /* MainHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeadView.swift; sourceTree = "<group>"; };
 		123DD1191DCE4B3A0071C35B /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		123DD11B1DCF1FCD0071C35B /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
@@ -200,6 +231,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		123C13FB1E18CE8D00ED127B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8488D4361DAA46FD000E703C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +342,16 @@
 				1220F9E41DCB9EB6004379AD /* SecurityStrategy.m */,
 			);
 			path = SecurityStrategy;
+			sourceTree = "<group>";
+		};
+		123C13FF1E18CE8D00ED127B /* VSCAMShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				123C14001E18CE8D00ED127B /* ShareViewController.swift */,
+				123C14021E18CE8D00ED127B /* MainInterface.storyboard */,
+				123C14051E18CE8D00ED127B /* Info.plist */,
+			);
+			path = VSCAMShareExtension;
 			sourceTree = "<group>";
 		};
 		129ED06F1DF69DA200E0AB0C /* About */ = {
@@ -526,6 +574,7 @@
 			isa = PBXGroup;
 			children = (
 				8488D43B1DAA46FD000E703C /* VSCAM */,
+				123C13FF1E18CE8D00ED127B /* VSCAMShareExtension */,
 				8488D43A1DAA46FD000E703C /* Products */,
 				AFC4A15EFCBB0D2C18D69B32 /* Pods */,
 				1E72319BE1B6AF20258DBE13 /* Frameworks */,
@@ -536,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				8488D4391DAA46FD000E703C /* VSCAM.app */,
+				123C13FE1E18CE8D00ED127B /* VSCAMShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -664,6 +714,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		123C13FD1E18CE8D00ED127B /* VSCAMShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 123C140B1E18CE8E00ED127B /* Build configuration list for PBXNativeTarget "VSCAMShareExtension" */;
+			buildPhases = (
+				123C13FA1E18CE8D00ED127B /* Sources */,
+				123C13FB1E18CE8D00ED127B /* Frameworks */,
+				123C13FC1E18CE8D00ED127B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VSCAMShareExtension;
+			productName = VSCAMShareExtension;
+			productReference = 123C13FE1E18CE8D00ED127B /* VSCAMShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8488D4381DAA46FD000E703C /* VSCAM */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8488D44B1DAA46FD000E703C /* Build configuration list for PBXNativeTarget "VSCAM" */;
@@ -674,10 +741,12 @@
 				8488D4371DAA46FD000E703C /* Resources */,
 				835A624CD3466F729B7575F7 /* [CP] Embed Pods Frameworks */,
 				306710A19D3B89DE7E18A689 /* [CP] Copy Pods Resources */,
+				123C140C1E18CE8E00ED127B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				123C14071E18CE8D00ED127B /* PBXTargetDependency */,
 			);
 			name = VSCAM;
 			productName = VSCAM;
@@ -690,10 +759,15 @@
 		8488D4311DAA46FD000E703C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = EyreFree;
 				TargetAttributes = {
+					123C13FD1E18CE8D00ED127B = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = P3X2725LYY;
+						ProvisioningStyle = Automatic;
+					};
 					8488D4381DAA46FD000E703C = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = P3X2725LYY;
@@ -715,11 +789,20 @@
 			projectRoot = "";
 			targets = (
 				8488D4381DAA46FD000E703C /* VSCAM */,
+				123C13FD1E18CE8D00ED127B /* VSCAMShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		123C13FC1E18CE8D00ED127B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123C14041E18CE8D00ED127B /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8488D4371DAA46FD000E703C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -782,6 +865,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		123C13FA1E18CE8D00ED127B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123C14011E18CE8D00ED127B /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8488D4351DAA46FD000E703C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -873,7 +964,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		123C14071E18CE8D00ED127B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 123C13FD1E18CE8D00ED127B /* VSCAMShareExtension */;
+			targetProxy = 123C14061E18CE8D00ED127B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		123C14021E18CE8D00ED127B /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				123C14031E18CE8D00ED127B /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		8488D4401DAA46FD000E703C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -893,6 +1000,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		123C14091E18CE8E00ED127B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = P3X2725LYY;
+				INFOPLIST_FILE = VSCAMShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.EyreFree.VSCAM.VSCAMShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		123C140A1E18CE8E00ED127B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = P3X2725LYY;
+				INFOPLIST_FILE = VSCAMShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.EyreFree.VSCAM.VSCAMShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		8488D4491DAA46FD000E703C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -992,7 +1129,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9360017F96E4BDCEAB425B24 /* Pods-VSCAM.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = VSCAM/Info.plist;
@@ -1009,7 +1146,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6AFA9DAD913860BE44775608 /* Pods-VSCAM.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = VSCAM/Info.plist;
@@ -1025,6 +1162,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		123C140B1E18CE8E00ED127B /* Build configuration list for PBXNativeTarget "VSCAMShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				123C14091E18CE8E00ED127B /* Debug */,
+				123C140A1E18CE8E00ED127B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8488D4341DAA46FD000E703C /* Build configuration list for PBXProject "VSCAM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

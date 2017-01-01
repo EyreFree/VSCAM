@@ -43,8 +43,16 @@ class Function: NSObject {
         UIApplication.shared.isStatusBarHidden = hidden
     }
 
-    //打开外部链接对应的页面
+    //打开内部链接对应的页面
     static func openOutUrl(url: String) -> Bool {
+        if url.hasPrefix("vscam://") || url.hasPrefix("vscams://") {
+            return Function.openInUrl(url: url.removePrefix(string: "vscam://").removePrefix(string: "vscams://"))
+        }
+        return false
+    }
+
+    //打开外部链接对应的页面
+    static func openInUrl(url: String) -> Bool {
         let preUrl = url.removePrefix(string: "http://").removePrefix(string: "https://")
 
         //如果是图片详情页
