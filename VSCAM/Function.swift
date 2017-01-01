@@ -54,36 +54,21 @@ class Function: NSObject {
             let imageID = preUrl.removePrefix(string: imagePagePrefix)
             if let tryID = Int(imageID), imageID.count() > 0 {
                 print(tryID)
-/*
+
+                LoadingView.sharedInstance.show(controller: MainNavigationController.sharedInstance)
                 NetworkAPI.sharedInstance.imageDetail(id: tryID) {
                     (data, errorString) in
-                        if let tryErrorString = errorString {
-                            Function.MessageBox(<#T##controller: UIViewController##UIViewController#>, title: <#T##String?#>, content: <#T##String?#>)
-
-                            Function.MessageBox(trySelf, title: "图片举报失败", content: tryErrorString)
-                            LoadingView.sharedInstance.hide()
-                        } else {
-                            //主页刷新
-                            Variable.listNeedRefreshMain = true
-                            //用户页刷新
-                            for controller in MainNavigationController.sharedInstance.viewControllers {
-                                if let tryController = controller as? UserDetailController {
-                                    tryController.model.needRefreshList = true
-                                }
-                            }
-                            LoadingView.sharedInstance.hide()
-                            Function.MessageBox(
-                                trySelf, title: "提示",
-                                content: "图片举报成功，感谢您的反馈！您将不会在列表中再次看到该图片，我们将会尽快对您的举报信息进行核实与处理，您将在 24 小时内收到我们的反馈邮件。"
-                            ) {
-                                [weak self] (action) in
-                                if let _ = self {
-                                    MainNavigationController.sharedInstance.popViewController(animated: true)
-                                }
-                            }
-                        }
+                    if let tryErrorString = errorString {
+                        Function.MessageBox(
+                            MainNavigationController.sharedInstance, title: "图片详情页打开失败", content: tryErrorString
+                        )
+                    } else if let tryData = data {
+                        MainNavigationController.sharedInstance.pushViewController(
+                            ImageDetailController(imageDetail: tryData), animated: true
+                        )
+                    }
+                    LoadingView.sharedInstance.hide()
                 }
-*/
                 return true
             }
         }

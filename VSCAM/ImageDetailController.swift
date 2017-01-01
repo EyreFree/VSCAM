@@ -12,11 +12,12 @@ class ImageDetailController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(imageBrief: PhotoObject? = nil) {
+    init(imageBrief: PhotoObject? = nil, imageDetail: PhotoDetailObject? = nil) {
         super.init(nibName: nil, bundle: nil)
 
         addModel()
         model?.imageBrief = imageBrief
+        model?.imageDetail = imageDetail
     }
 
     override func viewDidLoad() {

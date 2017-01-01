@@ -173,7 +173,10 @@ class ImageDetailTableViewItemBody: BaseTableViewRow {
                     if apertureString.isEmpty == true {
                         apertureString = Define.placeHolderString
                     } else {
-                        apertureString = "f/" + apertureString
+                        let aperturePrefix = "f/"
+                        if apertureString.hasPrefix(aperturePrefix) == false {
+                            apertureString = aperturePrefix + apertureString
+                        }
                     }
                     if let view = tryInfoBackView.viewWithTag(Tag.make(13)) as? UILabel {
                         view.removeFromSuperview()

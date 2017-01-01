@@ -25,7 +25,7 @@ extension UIImageView {
         let holderImage = placeholder ?? UIImage.placeholderTransparent
 
         //如果是头像则强制刷新
-        var options = SDWebImageOptions.retryFailed
+        let options = SDWebImageOptions.retryFailed
         /*if let tryUrl = Url.absoluteString {
             if true == tryUrl.hasSubString(string: NetworkURL.avatarIgnore) {
                 options = [.retryFailed, .cacheMemoryOnly]
