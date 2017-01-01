@@ -15,6 +15,8 @@ class NetworkURL {
     static let imageDetail = "?a=p"
     //获取个人信息
     static let userInfoList = "?a=u&uid="
+    //获取个人信息详情
+    static let userInfoDetail = "?a=u&name="
     //登录
     static let login = "?a=u"
     //登出

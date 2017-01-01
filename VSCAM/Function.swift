@@ -53,8 +53,6 @@ class Function: NSObject {
         if preUrl.hasPrefix(imagePagePrefix) {
             let imageID = preUrl.removePrefix(string: imagePagePrefix)
             if let tryID = Int(imageID), imageID.count() > 0 {
-                print(tryID)
-
                 LoadingView.sharedInstance.show(controller: MainNavigationController.sharedInstance)
                 NetworkAPI.sharedInstance.imageDetail(id: tryID) {
                     (data, errorString) in
@@ -78,10 +76,22 @@ class Function: NSObject {
         if preUrl.hasPrefix(userPagePrefix) {
             let userID = preUrl.removePrefix(string: userPagePrefix)
             if userID.count() > 0 {
-                print(userID)
+                LoadingView.sharedInstance.show(controller: MainNavigationController.sharedInstance)
+                NetworkAPI.sharedInstance.userInfoDetail(name: userID) {
+                    (data, errorString) in
+                    if let tryErrorString = errorString {
+                        Function.MessageBox(
+                            MainNavigationController.sharedInstance, title: "用户详情页打开失败", content: tryErrorString
+                        )
+                    } else if let tryData = data {
+                        MainNavigationController.sharedInstance.pushViewController(
+                            UserDetailController(userData: tryData), animated: true
+                        )
+                    }
+                    LoadingView.sharedInstance.hide()
+                }
                 return true
             }
-            return true
         }
         return false
     }

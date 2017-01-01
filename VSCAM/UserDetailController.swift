@@ -181,7 +181,7 @@ class UserDetailController: BaseViewController {
             let customFooter = MJRefreshBackNormalFooter() {
                 [weak self] in
                 if let trySelf = self {
-                    if let tryUID = trySelf.model?.userData?.uid {
+                    if let tryUID = trySelf.model?.userData?.uid ?? trySelf.model?.userDetailData?.uid {
                         if let tryDate = trySelf.model?.imageList?.grids?.last?.unix {
                             NetworkAPI.sharedInstance.imageList(s: tryDate, u: tryUID) {
                                 [weak self] (imagelist, errorString) in
@@ -280,7 +280,7 @@ class UserDetailController: BaseViewController {
         if refreshImageListMark {
             refreshImageListMark = false
             //刷新列表
-            if let tryUID = self.model?.userData?.uid {
+            if let tryUID = self.model?.userData?.uid ?? self.model?.userDetailData?.uid {
                 self.collectionView.mj_footer.endRefreshingWithNoMoreData()
                 NetworkAPI.sharedInstance.imageList(u: tryUID) {
                     [weak self] (imagelist, errorString) in

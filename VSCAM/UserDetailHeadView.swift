@@ -65,7 +65,7 @@ class UserDetailHeadView: UIView {
             }
 
             //昵称
-            let userString = tryModel.userData?.name ?? Define.placeHolderString
+            let userString = (tryModel.userData?.name ?? tryModel.userDetailData?.name) ?? Define.placeHolderString
             if let view = self.viewWithTag(Tag.make(8)) as? UILabel {
                 view.text = userString
                 if replace {

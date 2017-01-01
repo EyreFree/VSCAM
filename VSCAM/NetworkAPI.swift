@@ -178,6 +178,22 @@ class NetworkAPI {
         }
     }
 
+    //个人信息详情
+    func userInfoDetail(name: String, finish: @escaping (UserInfoObject?, String?) -> Void) {
+        let parameters: [String : Any] = ["name": name]
+        manager.request(baseUrl + NetworkURL.userInfoDetail, method: .get, parameters: parameters).response {
+            (response) in
+            let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
+            if let tryErrorString = result.0 {
+                finish(nil, tryErrorString)
+            } else if let tryObject = UserInfoObject((result.1 as? NSArray)?.firstObject) {
+                finish(tryObject, nil)
+            } else {
+                finish(nil, "数据格式错误")
+            }
+        }
+    }
+
     //获取登录者信息
     func userSelfInfo(finish: @escaping (UserSelfInfoObject?, String?) -> Void) {
         manager.request((baseUrl + NetworkURL.userInfoList).replace(string: "&uid=", with: ""), method: .get).response {
