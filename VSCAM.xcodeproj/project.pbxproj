@@ -742,6 +742,7 @@
 				835A624CD3466F729B7575F7 /* [CP] Embed Pods Frameworks */,
 				306710A19D3B89DE7E18A689 /* [CP] Copy Pods Resources */,
 				123C140C1E18CE8E00ED127B /* Embed App Extensions */,
+				12E195881E23A7C400EEDA0B /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -817,6 +818,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		12E195881E23A7C400EEDA0B /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 87b627df0c46f63678df0870ac602fcd8ea18c1c 7441065bc67fcce4bb864bd117e84d8eea3ff6c24d9f14a83c26cf1e350e8d20";
+		};
 		306710A19D3B89DE7E18A689 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1169,6 +1184,7 @@
 				123C140A1E18CE8E00ED127B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8488D4341DAA46FD000E703C /* Build configuration list for PBXProject "VSCAM" */ = {
 			isa = XCConfigurationList;

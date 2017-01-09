@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        setFabricParam()
         setUMengParam()
         setGlobalStyle()
 
@@ -78,6 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     //自定义
+    //配置 Fabric
+    func setFabricParam() {
+        Fabric.with([Crashlytics.self])
+    }
+
     //配置 UMeng 参数
     func setUMengParam() {
         let config = UMAnalyticsConfig()
