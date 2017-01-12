@@ -9,7 +9,7 @@ VSCAM 是一款使用 Swift 编写的 iOS 图片分享应用，更多信息见�
 登录与注册页使用 UITableView 实现了焦点所在编辑框自动滚动到屏幕中心的效果；  
 使用 ShareExtension 利用系统分享实现从浏览器页面打开 App 对应页面；  
 使用 3D Touch 实现从剪贴板读取 URL 快速打开 App 内指定页面；  
-集成 UMeng 统计分析 SDK，可作为新手参考。
+集成 UMeng 与 Fabric 统计分析 SDK，可作为新手参考。
 
 ## AppStore
 
