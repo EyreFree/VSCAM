@@ -18,6 +18,7 @@ target 'VSCAM' do
     pod 'LFRoundProgressView', '~> 1.0.0'       # 进度条
     pod 'Fabric'                                # 统计
     pod 'Crashlytics'                           # 错误分析
+    pod 'MBNetwork', '~> 0.1.0'					# 某知名网络库
 
     # 图片浏览依赖
     pod 'YLGIFImage', '= 0.11'
