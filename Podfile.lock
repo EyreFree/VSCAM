@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (4.0.1)
-  - AlamofireObjectMapper (4.0.0):
-    - Alamofire (~> 4.0)
+  - Alamofire (4.3.0)
+  - AlamofireObjectMapper (4.0.1):
+    - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
@@ -9,9 +9,8 @@ PODS:
   - JGProgressHUD (1.3.6)
   - KMPlaceholderTextView (1.3.0)
   - LFRoundProgressView (1.0.0)
-  - MBNetwork (0.1.0):
-    - Alamofire (~> 4)
-    - AlamofireObjectMapper
+  - MBNetwork (0.4.0):
+    - AlamofireObjectMapper (~> 4)
     - SwiftProtobuf
   - MJRefresh (3.1.12)
   - NJKWebViewProgress (0.2.3):
@@ -30,17 +29,16 @@ PODS:
   - SVProgressHUD (2.0.4)
   - SwiftMessages (3.0.3)
   - SwiftProtobuf (0.9.24)
-  - UMengAnalytics-NO-IDFA (4.1.5)
+  - UMengAnalytics-NO-IDFA (4.1.9)
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0.1)
   - Crashlytics
   - Fabric
   - JGProgressHUD (~> 1.3.2)
   - KMPlaceholderTextView (~> 1.3.0)
   - LFRoundProgressView (~> 1.0.0)
-  - MBNetwork (~> 0.1.0)
+  - MBNetwork (~> 0.4.0)
   - MJRefresh (~> 3.1.0)
   - NJKWebViewProgress (~> 0.2.3)
   - RxCocoa (~> 3.0.1)
@@ -53,14 +51,14 @@ DEPENDENCIES:
   - YLGIFImage (= 0.11)
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   JGProgressHUD: cd599e041ab8363ac5ce83a21a6d95e21d359152
   KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
   LFRoundProgressView: c4a404354fb9989ec4bc6ad2b3cde834f983d72b
-  MBNetwork: 1a53ecaa6845c520260ac280055843344fcc5034
+  MBNetwork: eb17cb42056f0ed467aaee5345d592e24d364839
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
@@ -71,9 +69,9 @@ SPEC CHECKSUMS:
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
   SwiftProtobuf: e8815a37ecfb2a9d87c8aa2e0c248b0de072afc3
-  UMengAnalytics-NO-IDFA: f1b08b540eba6ebad044a574cae6d988cf40cfda
+  UMengAnalytics-NO-IDFA: 985292af177111685325c90c321094172b95d2cb
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 57654882ec14ba60936fcf7f837db299260eb06f
+PODFILE CHECKSUM: 98b64e7b2bc2f44c41c268d57ca276f7c01afd6e
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.2.0.beta.3
