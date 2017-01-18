@@ -1,5 +1,8 @@
 # VSCAM
 
+[![CI Status](http://img.shields.io/travis/EyreFree/VSCAM.svg?style=flat)](https://travis-ci.org/EyreFree/VSCAM)
+[![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/VSCAM)
+
 VSCAM 是一款使用 Swift 编写的 iOS 图片分享应用，更多信息见官网 [http://vscam.co/](http://vscam.co/)。
 
 首页使用 UICollectionView 实现不同尺寸图片的瀑布流展示；  
