@@ -3,9 +3,7 @@
 [![CI Status](http://img.shields.io/travis/EyreFree/VSCAM.svg?style=flat)](https://travis-ci.org/EyreFree/VSCAM)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/VSCAM)
 
-VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版。   
-Web：[http://vscam.co/](http://vscam.co/)   
-Android：[https://github.com/ayaseruri/vscam](https://github.com/ayaseruri/vscam)   
+VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本，Android 版参见：[https://github.com/ayaseruri/vscam](https://github.com/ayaseruri/vscam)，更多信息请访问官网：[http://vscam.co/](http://vscam.co/)。
 
 首页使用 UICollectionView 实现不同尺寸图片的瀑布流展示；  
 发布页使用 Alamofire 实现了图片后台上传并且实时显示上传进度；  
