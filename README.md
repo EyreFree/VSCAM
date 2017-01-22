@@ -32,10 +32,12 @@ VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本�
 2. 用 XCode 打开 VSCAM.xcworkspace；
 3. 构建。
 
+## 未完成
+
+1. 本地化；
+2. 动画；
+3. 评论／点赞；
+
 ## 预览
 
 ![](assets/screenshot.png)
-
- 
-
- 
