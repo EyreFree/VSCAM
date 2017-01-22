@@ -52,7 +52,7 @@ class AboutTableViewItemSelections: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(9)
-                    view.setTitle("去评分", for: .normal)
+                    view.setTitle(String.Localized("去评分"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("scoreClicked")), for: .touchUpInside)
@@ -70,7 +70,7 @@ class AboutTableViewItemSelections: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(10)
-                    view.setTitle("隐私政策", for: .normal)
+                    view.setTitle(String.Localized("隐私政策"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("privacyClicked")), for: .touchUpInside)

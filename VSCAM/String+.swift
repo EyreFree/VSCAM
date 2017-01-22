@@ -96,5 +96,10 @@ extension String {
         }
         return true
     }
+
+    //国际化
+    static func Localized(_ key: String) -> String {
+        return NSLocalizedString(key, comment: "")
+    }
 }
 

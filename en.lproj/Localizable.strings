@@ -1,0 +1,65 @@
+
+// Localizable.strings(English)
+
+"剪贴板内容无法识别" = "Clipboard contents can not be recognized";
+
+"剪贴板没有内容" = "Clipboard has no content";
+
+"提示" = "Warning";
+"确定" = "OK";
+"取消" = "Cancel";
+
+"请先登录" = "Please login first";
+
+"图片举报失败" = "Picture report failed";
+
+"缓存大小为" = "Size of cache is";
+"，确定要清理缓存么？" = ", sure to delete it?";
+
+"图片删除失败" = "Image deletion failed";
+
+"用户名不能为空" = "User name cannot be empty";
+
+"密码不能为空" = "Password cannot be empty";
+
+"登录失败" = "Logon failed";
+
+"图片列表加载失败" = "Image list load failed";
+
+"图片列表刷新失败" = "Image list refresh failed";
+
+"更改头像失败" = "Change avatar failed";
+
+"更改头像成功" = "Change Avatar success";
+
+"所选图片无效" = "The selected picture is not valid";
+
+"退出登录失败" = "Logout failed";
+
+"删除头像成功" = "Delete avatar success";
+
+"删除头像失败" = "Delete avatar failed";
+
+"更改失败" = "Change failed";
+
+"更改个人信息成功" = "Change personal information successfully";
+
+"发布失败" = "Publish failed";
+
+"上传失败" = "Upload failed";
+
+"图片正在上传" = "The picture is uploading";
+
+"图片描述不能为空" = "Picture description cannot be empty";
+
+"获取图片失败" = "Failed to get the picture";
+
+"图片获取无效" = "The picture is not valid";
+
+"注册失败" = "Failed to register";
+
+"昵称不能为空" = "Username can not be empty";
+"邮箱不能为空" = "Email can not be empty";
+"邮箱格式错误" = "Email format error";
+"密码不能为空" = "Password can not be empty";
+"请查看并同意用户协议" = "Please watch and agree the User agreement";

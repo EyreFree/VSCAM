@@ -45,7 +45,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             if let trySelf = self {
                 if let tryErrorString = errorString {
                     trySelf.model.uploadError = tryErrorString
-                    Function.MessageBox(trySelf, title: "上传失败", content: tryErrorString) {
+                    Function.MessageBox(trySelf, title: String.Localized("上传失败"), content: tryErrorString) {
                         [weak self] (action) in
                         if let trySelf = self {
                             trySelf.closeClicked()
@@ -197,7 +197,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             searchField.clipsToBounds = true
             searchField.textAlignment = .left
             let attributedPlaceholder = NSAttributedString(
-                string: "输入一句话照片简介", attributes: [
+                string: String.Localized("输入一句话照片简介"), attributes: [
                     NSForegroundColorAttributeName : UIColor(valueRGB: 0x535353),
                     NSFontAttributeName : UIFont.systemFont(ofSize: 16)
                 ]
@@ -296,16 +296,16 @@ class PublishController: BaseViewController, UITextFieldDelegate {
 
     func submitClicked(textField: UITextField) {
         if let tryErrorString = self.model.uploadError {
-            Function.MessageBox(self, title: "上传失败", content: tryErrorString) {
+            Function.MessageBox(self, title: String.Localized("上传失败"), content: tryErrorString) {
                 [weak self] (action) in
                 if let trySelf = self {
                     trySelf.closeClicked()
                 }
             }
         } else if self.model.uploadFinished == false {
-            Function.MessageBox(self, title: "提示", content: "图片正在上传", type: .info)
+            Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("图片正在上传"), type: .info)
         } else if textField.text?.clean().isEmpty != false {
-            Function.MessageBox(self, title: "提示", content: "图片描述不能为空", type: .info)
+            Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("图片描述不能为空"), type: .info)
         } else {
             if let tryPID = model.uploadResult?.pid, let tryText = textField.text?.clean(), let tryPreset = model.preset, let tryGPS = model.uploadResult?.gps, let tryExif = model.uploadResult?.exif {
                 LoadingView.sharedInstance.show(controller: self)
@@ -313,7 +313,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
                     [weak self] (errorString) in
                     if let trySelf = self {
                         if let tryErrorString = errorString {
-                            Function.MessageBox(trySelf, title: "发布失败", content: tryErrorString)
+                            Function.MessageBox(trySelf, title: String.Localized("发布失败"), content: tryErrorString)
                             LoadingView.sharedInstance.hide()
                         } else {
                             //主页刷新

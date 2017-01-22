@@ -13,8 +13,14 @@ enum MessageBoxType {
 class Function: NSObject {
 
     //简单的模态消息弹窗
-    static func MessageBox(_ controller: UIViewController, title: String?, content: String?, buttonTitle: String = "确定",
-                           type: MessageBoxType = .error, finish: ((UIAlertAction) -> Void)? = nil) {
+    static func MessageBox(
+        _ controller: UIViewController,
+        title: String?,
+        content: String?,
+        buttonTitle: String = String.Localized("确定"),
+        type: MessageBoxType = .error,
+        finish: ((UIAlertAction) -> Void)? = nil
+        ) {
         if nil != finish {
             let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: finish))
@@ -66,7 +72,9 @@ class Function: NSObject {
                     (data, errorString) in
                     if let tryErrorString = errorString {
                         Function.MessageBox(
-                            MainNavigationController.sharedInstance, title: "图片详情页打开失败", content: tryErrorString
+                            MainNavigationController.sharedInstance,
+                            title: String.Localized("图片详情页打开失败"),
+                            content: tryErrorString
                         )
                     } else if let tryData = data {
                         MainNavigationController.sharedInstance.pushViewController(
@@ -89,7 +97,9 @@ class Function: NSObject {
                     (data, errorString) in
                     if let tryErrorString = errorString {
                         Function.MessageBox(
-                            MainNavigationController.sharedInstance, title: "用户详情页打开失败", content: tryErrorString
+                            MainNavigationController.sharedInstance,
+                            title: String.Localized("用户详情页打开失败"),
+                            content: tryErrorString
                         )
                     } else if let tryData = data {
                         MainNavigationController.sharedInstance.pushViewController(
@@ -105,9 +115,14 @@ class Function: NSObject {
     }
 
     //打开分享对话框
-    static func openShareView(controller: UIViewController, title: String, url: String) {
+    static func openShareView(controller: UIViewController, title: String? = nil, url: String) {
         if let tryUrl = NSURL(myString: url) {
-            let shareVC = UIActivityViewController(activityItems: [title, tryUrl], applicationActivities: nil)
+            var items: [Any] = [tryUrl]
+            if let tryTitle = title {
+                items = [tryTitle, tryUrl]
+            }
+
+            let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
 
             //阻止 iPad Crash
             shareVC.popoverPresentationController?.sourceView = controller.view

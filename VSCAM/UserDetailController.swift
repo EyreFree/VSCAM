@@ -187,7 +187,7 @@ class UserDetailController: BaseViewController {
                                 [weak self] (imagelist, errorString) in
                                 if let trySelf = self {
                                     if let tryErrorString = errorString {
-                                        Function.MessageBox(trySelf, title: "图片列表加载失败", content: tryErrorString)
+                                        Function.MessageBox(trySelf, title: String.Localized("图片列表加载失败"), content: tryErrorString)
                                     } else if let tryImageList = imagelist {
                                         trySelf.model?.imageList?.append(newObject: tryImageList)
 
@@ -286,7 +286,7 @@ class UserDetailController: BaseViewController {
                     [weak self] (imagelist, errorString) in
                     if let trySelf = self {
                         if let tryErrorString = errorString {
-                            Function.MessageBox(trySelf, title: "图片列表刷新失败", content: tryErrorString)
+                            Function.MessageBox(trySelf, title: String.Localized("图片列表刷新失败"), content: tryErrorString)
                         } else if let tryImageList = imagelist {
                             trySelf.model?.imageList = tryImageList
 
@@ -321,7 +321,7 @@ class UserDetailController: BaseViewController {
     func shareClicked() {
         if let tryName = (model.userData?.name ?? model.userDetailData?.name) {
             let webUrl = NetworkURL.userDetailPage.replace(string: "{name}", with: tryName)
-            Function.openShareView(controller: self, title: "[VSCAM]\(tryName)", url: webUrl)
+            Function.openShareView(controller: self, url: webUrl)
         }
     }
 

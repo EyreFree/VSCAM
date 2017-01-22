@@ -232,13 +232,13 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle: nil
                                                                    message: nil
                                                             preferredStyle: UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle: NSLocalizedString(@"取消", @"")
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction *action) {
                                                              [tap setEnabled:TRUE];
                                                          }];
     [alert addAction: cancelAction];
-    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存到相册"
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle: NSLocalizedString(@"保存到相册", @"")
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction *action) {
                                                            [self saveImage];

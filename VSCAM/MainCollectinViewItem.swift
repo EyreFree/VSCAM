@@ -73,11 +73,6 @@ class MainCollectinViewItem: BaseCollectionViewItem {
             }
         }
 
-        //选中高亮
-        //let selectedView = UIView(frame: cell.frame)
-        //selectedView.backgroundColor = UIColor(valueRGB: 0xcccccc)
-        //cell.selectedBackgroundView = selectedView
-
         return cell
     }
 
@@ -88,45 +83,5 @@ class MainCollectinViewItem: BaseCollectionViewItem {
         }
         return CGSize(width: screenWidth, height: screenWidth)
     }
-
-    //暂时没用
-    /*
-    override func footer(collectionView: UICollectionView) -> UIView {
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.white
-
-        let textView = UILabel()
-        textView.text = "用力拉加载更多"
-        textView.textColor = UIColor.black
-        textView.font = UIFont.systemFont(ofSize: 14)
-        textView.textAlignment = .center
-        textView.sizeToFit()
-        backgroundView.addSubview(textView)
-        textView.snp.makeConstraints {
-            (make) in
-            make.height.equalTo(20)
-            make.width.equalTo(textView.frame.width)
-            make.centerX.equalTo(backgroundView)
-            make.bottom.equalTo(-68)
-        }
-
-        let greyBackView = UIView()
-        greyBackView.backgroundColor = UIColor(valueRGB: 0xF8F8F8)
-        backgroundView.addSubview(greyBackView)
-        greyBackView.snp.makeConstraints {
-            (make) in
-            make.height.equalTo(40)
-            make.width.equalTo(textView.frame.width + 67)
-            make.centerX.equalTo(backgroundView)
-            make.bottom.equalTo(-58)
-        }
-
-        backgroundView.sendSubview(toBack: greyBackView)
-        return backgroundView
-    }
-
-    override func heightFooter(collectionView: UICollectionView) -> CGFloat {
-        return 136
-    }*/
 }
 

@@ -75,7 +75,7 @@ class SettingTableViewItem: BaseTableViewRow {
             titleView.addTarget(
                 tryController, action: #selector(SettingController.changeAvatarClicked), for: .touchUpInside
             )
-            titleView.setTitle("更换", for: .normal)
+            titleView.setTitle(String.Localized("更换"), for: .normal)
             cell.contentView.addSubview(titleView)
             titleView.snp.makeConstraints {
                 (make) -> Void in
@@ -148,7 +148,7 @@ class SettingTableViewItem: BaseTableViewRow {
                 searchField.text = Variable.loginUserInfo?.des
                 searchField.textAlignment = .left
                 searchField.contentInset = UIEdgeInsets.init(top: -6, left: -3, bottom: 6, right: 3)
-                searchField.placeholder = "关于我的一句话自我介绍"
+                searchField.placeholder = String.Localized("关于我的一句话自我介绍")
                 searchField.placeholderFont = UIFont.systemFont(ofSize: 12)
                 searchField.placeholderColor = UIColor(valueRGB: 0x878787)
                 searchField.delegate = tryController
@@ -200,7 +200,7 @@ class SettingTableViewItem: BaseTableViewRow {
                 searchField.clipsToBounds = true
                 searchField.textAlignment = .left
                 let attributedPlaceholder = NSAttributedString(
-                    string: "个人博客 or 个人网站", attributes: [
+                    string: String.Localized("个人博客 or 个人网站"), attributes: [
                         NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
                         NSFontAttributeName : UIFont.systemFont(ofSize: 12)
                     ]
@@ -224,7 +224,7 @@ class SettingTableViewItem: BaseTableViewRow {
         } else {
             let view = UIButton(type: .system)
             view.tag = Tag.make(8)
-            view.setTitle("确认更改", for: .normal)
+            view.setTitle(String.Localized("确认更改"), for: .normal)
             view.layer.cornerRadius = 20
             view.isEnabled = false
             view.layer.masksToBounds = true
@@ -283,7 +283,7 @@ class SettingTableViewItem: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(11)
-                    view.setTitle("删除头像", for: .normal)
+                    view.setTitle(String.Localized("删除头像"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("deleteAvatarClicked")), for: .touchUpInside)
@@ -301,7 +301,7 @@ class SettingTableViewItem: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(12)
-                    view.setTitle("退出登录", for: .normal)
+                    view.setTitle(String.Localized("退出登录"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0xD0021B), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("logoutClicked")), for: .touchUpInside)

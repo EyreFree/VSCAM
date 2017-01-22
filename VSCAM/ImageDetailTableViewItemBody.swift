@@ -83,7 +83,10 @@ class ImageDetailTableViewItemBody: BaseTableViewRow {
                 var dateString = Define.placeHolderString
                 if let tryTime = (tryModel.imageBrief?.unix ?? tryModel.imageDetail?.unix) {
                     let date = Date.fromValue(value: tryTime)
-                    dateString = date.toString(format: date.getYear() != Date().getYear() ? "yyyy年MM月dd日" : "MM月dd日")
+                    let formatString = "MM" + String.Localized("月") + "dd" + String.Localized("日")
+                    dateString = date.toString(format:
+                        date.getYear() != Date().getYear() ? ("yyyy" + String.Localized("年") + formatString) : formatString
+                    )
                 }
                 if let view = cell.contentView.viewWithTag(Tag.make(9)) as? UILabel {
                     view.text = dateString

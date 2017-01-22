@@ -38,10 +38,16 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(
-            self, selector: #selector(SettingController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil
+            self,
+            selector: #selector(SettingController.keyboardWillShow(notification:)),
+            name: NSNotification.Name.UIKeyboardWillShow,
+            object: nil
         )
         NotificationCenter.default.addObserver(
-            self, selector: #selector(SettingController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil
+            self,
+            selector: #selector(SettingController.keyboardWillHide(notification:)),
+            name: NSNotification.Name.UIKeyboardWillHide,
+            object: nil
         )
     }
 
@@ -139,7 +145,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         Function.HideKeyboard()
         if let tryName = Variable.loginUserInfo?.name {
             let webUrl = NetworkURL.userDetailPage.replace(string: "{name}", with: tryName)
-            Function.openShareView(controller: self, title: "[VSCAM]\(tryName)", url: webUrl)
+            Function.openShareView(controller: self, url: webUrl)
         }
     }
 
@@ -167,13 +173,15 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                     [weak self] (errorString) in
                     if let trySelf = self {
                         if let tryErrorString = errorString {
-                            Function.MessageBox(trySelf, title: "更改失败", content: tryErrorString)
+                            Function.MessageBox(trySelf, title: String.Localized("更改失败"), content: tryErrorString)
                         } else {
                             Variable.loginUserInfoSetDes(newValue: tryDesc)
                             Variable.loginUserInfoSetUrl(newValue: tryUrl)
 
                             Variable.loginNeedRefreshMain = true
-                            Function.MessageBox(trySelf, title: "提示", content: "更改个人信息成功", type: .success)
+                            Function.MessageBox(
+                                trySelf, title: String.Localized("提示"), content: String.Localized("更改个人信息成功"), type: .success
+                            )
 
                             tryConfirmButton.isEnabled = false
                             tryConfirmButton.backgroundColor = UIColor.gray
@@ -191,13 +199,15 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
             [weak self] (errorString) in
             if let trySelf = self {
                 if let tryErrorString = errorString {
-                    Function.MessageBox(trySelf, title: "删除头像失败", content: tryErrorString)
+                    Function.MessageBox(trySelf, title: String.Localized("删除头像失败"), content: tryErrorString)
                 } else {
                     Variable.loginUserInfoSetAvatar(newValue: 0)
 
                     Variable.loginNeedRefreshMain = true
                     trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
-                    Function.MessageBox(trySelf, title: "提示", content: "删除头像成功", type: .success)
+                    Function.MessageBox(
+                        trySelf, title: String.Localized("提示"), content: String.Localized("删除头像成功"), type: .success
+                    )
                 }
             }
         }
@@ -210,7 +220,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
             [weak self] (errorString) in
             if let trySelf = self {
                 if let tryErrorString = errorString {
-                    Function.MessageBox(trySelf, title: "退出登录失败", content: tryErrorString)
+                    Function.MessageBox(trySelf, title: String.Localized("退出登录失败"), content: tryErrorString)
                 } else {
                     Variable.loginUserInfo = nil
                     NetworkCache.cookies = nil
@@ -230,16 +240,20 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
     func clearCacheClicked() {
         let cacheSize = Int(SDImageCache.shared().getSize()).f() / 1024.f() / 1024.f()
-        let cacheString = String(format: "%0.2fMB", cacheSize)
+        let cacheString = String(format: " %0.2f MB", cacheSize)
 
-        let alert = UIAlertController(title: "提示", message: "缓存大小为\(cacheString)，确定要清理缓存么？", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: String.Localized("提示"),
+            message: String.Localized("缓存大小为") + cacheString + String.Localized("，确定要清理缓存么？"),
+            preferredStyle: .alert
+        )
         alert.addAction(
-            UIAlertAction(title: "取消", style: .cancel, handler: {
+            UIAlertAction(title: String.Localized("取消"), style: .cancel, handler: {
                 (action) -> Void in
             })
         )
         alert.addAction(
-            UIAlertAction(title: "确定", style: .default) {
+            UIAlertAction(title: String.Localized("确定"), style: .default) {
                 [weak self] (action) -> Void in
                 if let _ = self {
                     SDImageCache.shared().clearDisk()
@@ -355,7 +369,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                 [weak self] (errorString) in
                 if let trySelf = self {
                     if let tryErrorString = errorString {
-                        Function.MessageBox(trySelf, title: "更改头像失败", content: tryErrorString)
+                        Function.MessageBox(trySelf, title: String.Localized("更改头像失败"), content: tryErrorString)
                     } else {
                         Variable.loginUserInfoSetAvatar(newValue: 1)
 
@@ -368,13 +382,18 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                         }
                         trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
 
-                        Function.MessageBox(trySelf, title: "提示", content: "更改头像成功", type: .success)
+                        Function.MessageBox(
+                            trySelf,
+                            title: String.Localized("提示"),
+                            content: String.Localized("更改头像成功"),
+                            type: .success
+                        )
                     }
                     LoadingView.sharedInstance.hide()
                 }
             }
         } else {
-            Function.MessageBox(self, title: "更换头像失败", content: "所选图片无效")
+            Function.MessageBox(self, title: String.Localized("更改头像失败"), content: String.Localized("所选图片无效"))
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }

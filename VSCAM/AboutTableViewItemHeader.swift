@@ -56,7 +56,7 @@ class AboutTableViewItemHeader: BaseTableViewRow {
             titleView.tag = Tag.make(5)
             titleView.font = UIFont.systemFont(ofSize: 14)
             titleView.textColor = UIColor(valueRGB: 0x666666)
-            titleView.text = "\(Variable.versionLocal ?? "未知版本")"
+            titleView.text = "\(Variable.versionLocal ?? String.Localized("未知版本"))"
             titleView.textAlignment = .center
             cell.contentView.addSubview(titleView)
 
@@ -77,7 +77,7 @@ class AboutTableViewItemHeader: BaseTableViewRow {
             titleView.tag = Tag.make(6)
             titleView.font = UIFont.systemFont(ofSize: 14)
             titleView.textColor = UIColor.black
-            titleView.text = "手机拍摄、胶片味、意识流"
+            titleView.text = String.Localized("手机拍摄、胶片味、意识流")
             titleView.alpha = 0.35
             titleView.textAlignment = .center
             cell.contentView.addSubview(titleView)

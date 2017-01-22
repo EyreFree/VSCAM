@@ -55,7 +55,7 @@ class NetworkAPI {
             return "\(errorString))"
         }
         if 200 != response?.statusCode {
-            return "请求失败(\(response?.statusCode ?? 0))"
+            return String.Localized("请求失败") + "(\(response?.statusCode ?? 0))"
         }
         return nil
     }
@@ -81,11 +81,11 @@ class NetworkAPI {
                 if resultString == "true" {
                     return (nil, nil)
                 } else if resultString == "false" {
-                    return ("操作失败", nil)
+                    return (String.Localized("操作失败"), nil)
                 }
             }
         }
-        return ("数据异常", nil)
+        return (String.Localized("数据异常"), nil)
     }
 
     //拼 JSON 数组
@@ -126,7 +126,7 @@ class NetworkAPI {
             (response) in
             let result = self.resultAnalysis(response.response, data: response.data, error: response.error)
             if let tryErrorString = result.0 {
-                if tryErrorString == "数据异常" {
+                if tryErrorString == String.Localized("数据异常") {
                     finish(ImageListObject(), nil)
                     return
                 }
@@ -134,7 +134,7 @@ class NetworkAPI {
             } else if let tryObject = ImageListObject(result.1) {
                 finish(tryObject, nil)
             } else {
-                finish(nil, "数据格式错误")
+                finish(nil, String.Localized("数据格式错误"))
             }
         }
     }
@@ -150,7 +150,7 @@ class NetworkAPI {
             } else if let tryObject = PhotoDetailObject(result.1) {
                 finish(tryObject, nil)
             } else {
-                finish(nil, "数据格式错误")
+                finish(nil, String.Localized("数据格式错误"))
             }
         }
     }
@@ -173,7 +173,7 @@ class NetworkAPI {
                 }
                 finish(objectList, nil)
             } else {
-                finish(nil, "数据格式错误")
+                finish(nil, String.Localized("数据格式错误"))
             }
         }
     }
@@ -189,7 +189,7 @@ class NetworkAPI {
             } else if let tryObject = UserInfoObject((result.1 as? NSArray)?.firstObject) {
                 finish(tryObject, nil)
             } else {
-                finish(nil, "数据格式错误")
+                finish(nil, String.Localized("数据格式错误"))
             }
         }
     }
@@ -204,7 +204,7 @@ class NetworkAPI {
             } else if let tryObject = UserSelfInfoObject(result.1) {
                 finish(tryObject, nil)
             } else {
-                finish(nil, "数据格式错误")
+                finish(nil, String.Localized("数据格式错误"))
             }
         }
     }
@@ -283,7 +283,7 @@ class NetworkAPI {
                 }
             })
         } else {
-            finish("图片编码失败")
+            finish(String.Localized("图片编码失败"))
         }
     }
 

@@ -67,7 +67,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 let centeredParagraphStyle = NSMutableParagraphStyle()
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
-                    string: "中英日数字_", attributes: [
+                    string: String.Localized("中英日数字_"), attributes: [
                         NSParagraphStyleAttributeName: centeredParagraphStyle,
                         NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
                         NSFontAttributeName : UIFont.systemFont(ofSize: 14)
@@ -204,7 +204,7 @@ class RegisteTableViewItem: BaseTableViewRow {
         } else {
             let view = UIButton(type: .system)
             view.tag = Tag.make(20)
-            view.setTitle("加入", for: .normal)
+            view.setTitle(String.Localized("加入"), for: .normal)
             view.layer.cornerRadius = 20
             view.layer.masksToBounds = true
             view.isEnabled = false
@@ -267,7 +267,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 } else {
                     let imgView = UILabel()
                     imgView.tag = Tag.make(23)
-                    imgView.text = "　已有账号？"
+                    imgView.text = String.Localized("　已有账号？")
                     imgView.font = UIFont.systemFont(ofSize: 13)
                     imgView.textAlignment = .center
                     imgView.textColor = UIColor(valueRGB: 0x878787)
@@ -285,7 +285,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(24)
-                    view.setTitle("登录", for: .normal)
+                    view.setTitle(String.Localized("登录"), for: .normal)
                     view.setTitleColor(UIColor.black, for: .normal)
                     view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
                     view.addTarget(tryController, action: Selector(("switchToLogin")), for: .touchUpInside)
@@ -345,7 +345,7 @@ class RegisteTableViewItem: BaseTableViewRow {
             } else {
                 let imgView = UILabel()
                 imgView.tag = Tag.make(27)
-                imgView.text = "      同意"
+                imgView.text = String.Localized("      同意")
                 imgView.font = UIFont.systemFont(ofSize: 13)
                 imgView.textAlignment = .left
                 imgView.textColor = UIColor(valueRGB: 0x878787)
@@ -367,7 +367,7 @@ class RegisteTableViewItem: BaseTableViewRow {
             } else {
                 let imgView = UILabel()
                 imgView.tag = Tag.make(28)
-                imgView.text = "用户协议"
+                imgView.text = String.Localized("用户协议")
                 imgView.font = UIFont.systemFont(ofSize: 13)
                 imgView.textAlignment = .center
                 imgView.textColor = UIColor(valueRGB: 0xA6A547)

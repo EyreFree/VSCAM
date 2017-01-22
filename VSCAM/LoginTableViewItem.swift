@@ -155,7 +155,7 @@ class LoginTableViewItem: BaseTableViewRow {
         } else {
             let view = UIButton(type: .system)
             view.tag = Tag.make(8)
-            view.setTitle("登录", for: .normal)
+            view.setTitle(String.Localized("登录"), for: .normal)
             view.layer.cornerRadius = 20
             view.layer.masksToBounds = true
             view.isEnabled = false
@@ -218,7 +218,7 @@ class LoginTableViewItem: BaseTableViewRow {
                 } else {
                     let imgView = UILabel()
                     imgView.tag = Tag.make(11)
-                    imgView.text = "　尚未注册？"
+                    imgView.text = String.Localized("　尚未注册？")
                     imgView.font = UIFont.systemFont(ofSize: 13)
                     imgView.textAlignment = .center
                     imgView.textColor = UIColor(valueRGB: 0x878787)
@@ -236,7 +236,7 @@ class LoginTableViewItem: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(12)
-                    view.setTitle("加入", for: .normal)
+                    view.setTitle(String.Localized("加入"), for: .normal)
                     view.setTitleColor(UIColor.black, for: .normal)
                     view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
                     view.addTarget(tryController, action: Selector(("switchToRegiste")), for: .touchUpInside)

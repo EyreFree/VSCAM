@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+        ) -> Bool {
 
         setFabricParam()
         setUMengParam()
@@ -26,8 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -56,27 +58,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
     }
 
     //从 3D-Touch 启动
-    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+    func application(
+        _ application: UIApplication,
+        performActionFor shortcutItem: UIApplicationShortcutItem,
+        completionHandler: @escaping (Bool) -> Void
+        ) {
         //判断标题
         if shortcutItem.localizedTitle == "打开分享链接" {
             let url = UIPasteboard.general.string ?? ""
             if url.count() > 0 {
                 //打开外部分享链接
                 if Function.openInUrl(url: url) == false {
-                    Function.MessageBox(MainNavigationController.sharedInstance, title: "提示", content: "剪贴板内容无法识别")
+                    Function.MessageBox(
+                        MainNavigationController.sharedInstance,
+                        title: String.Localized("提示"),
+                        content: String.Localized("剪贴板内容无法识别")
+                    )
                 }
             } else {
-                Function.MessageBox(MainNavigationController.sharedInstance, title: "提示", content: "剪贴板没有内容")
+                Function.MessageBox(
+                    MainNavigationController.sharedInstance,
+                    title: String.Localized("提示"),
+                    content: String.Localized("剪贴板没有内容")
+                )
             }
         }
         completionHandler(true)
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplicationOpenURLOptionsKey : Any] = [:]
+        ) -> Bool {
         return Function.openOutUrl(url: url.absoluteString)
     }
 

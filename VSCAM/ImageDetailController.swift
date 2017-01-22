@@ -225,12 +225,12 @@ class ImageDetailController: BaseViewController {
             title: nil, message: nil, preferredStyle: .actionSheet
         )
 
-        let cancelActionButton = UIAlertAction(title: "取消", style: .cancel) {
+        let cancelActionButton = UIAlertAction(title: String.Localized("取消"), style: .cancel) {
             action -> Void in
         }
         actionSheetController.addAction(cancelActionButton)
 
-        let actionButton1 = UIAlertAction(title: "分享", style: .default) {
+        let actionButton1 = UIAlertAction(title: String.Localized("分享"), style: .default) {
             [weak self] action -> Void in
             if let strongSelf = self {
                 strongSelf.shareAction()
@@ -239,7 +239,7 @@ class ImageDetailController: BaseViewController {
         actionSheetController.addAction(actionButton1)
 
         if (model.imageBrief?.uid ?? model.imageDetail?.uid) == Variable.loginUserInfo?.uid && Variable.loginUserInfo?.uid != nil {
-            let actionButton2 = UIAlertAction(title: "删除", style: .destructive) {
+            let actionButton2 = UIAlertAction(title: String.Localized("删除"), style: .destructive) {
                 [weak self] action -> Void in
                 if let strongSelf = self {
                     strongSelf.deleteAction()
@@ -247,7 +247,7 @@ class ImageDetailController: BaseViewController {
             }
             actionSheetController.addAction(actionButton2)
         } else {
-            let actionButton2 = UIAlertAction(title: "举报", style: .destructive) {
+            let actionButton2 = UIAlertAction(title: String.Localized("举报"), style: .destructive) {
                 [weak self] action -> Void in
                 if let strongSelf = self {
                     strongSelf.reportAction()
@@ -268,32 +268,35 @@ class ImageDetailController: BaseViewController {
     }
 
     func shareAction() {
-        if let tryPID = (model.imageBrief?.pid ?? model.imageDetail?.pid),
-            let tryTitle = (model.imageBrief?.text ?? model.imageDetail?.text) {
+        if let tryPID = (model.imageBrief?.pid ?? model.imageDetail?.pid) {
             let webUrl = NetworkURL.imageDetailPage.replace(string: "{pid}", with: "\(tryPID)")
-            Function.openShareView(controller: self, title: "[VSCAM]\(tryTitle)", url: webUrl)
+            Function.openShareView(controller: self, url: webUrl)
         }
     }
 
     func reportAction() {
         if Variable.loginUserInfo == nil {
-            Function.MessageBox(self, title: "提示", content: "请先登录", type: .info)
+            Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("请先登录"), type: .info)
             return
         }
 
-        let alert = UIAlertController(title: "举报", message: "请填写您的举报描述信息以方便我们的查证与处理", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: String.Localized("举报"),
+            message: String.Localized("请填写您的举报描述信息以方便我们的查证与处理"),
+            preferredStyle: .alert
+        )
         alert.addTextField() {
             (textField) -> Void in
-            textField.placeholder = "描述信息"
+            textField.placeholder = String.Localized("描述信息")
             textField.keyboardType = .default
         }
         alert.addAction(
-            UIAlertAction(title: "取消", style: .cancel, handler: {
+            UIAlertAction(title: String.Localized("取消"), style: .cancel, handler: {
                 (action) -> Void in
             })
         )
         alert.addAction(
-            UIAlertAction(title: "确认", style: .default, handler: {
+            UIAlertAction(title: String.Localized("确定"), style: .default, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
                     let text = alert.textFields?[0].text
@@ -304,7 +307,7 @@ class ImageDetailController: BaseViewController {
                             [weak self] (errorString) in
                             if let trySelf = self {
                                 if let tryErrorString = errorString {
-                                    Function.MessageBox(trySelf, title: "图片举报失败", content: tryErrorString)
+                                    Function.MessageBox(trySelf, title: String.Localized("图片举报失败"), content: tryErrorString)
                                     LoadingView.sharedInstance.hide()
                                 } else {
                                     //主页刷新
@@ -317,8 +320,9 @@ class ImageDetailController: BaseViewController {
                                     }
                                     LoadingView.sharedInstance.hide()
                                     Function.MessageBox(
-                                        trySelf, title: "提示",
-                                        content: "图片举报成功，感谢您的反馈！您将不会在列表中再次看到该图片，我们将会尽快对您的举报信息进行核实与处理，您将在 24 小时内收到我们的反馈邮件。"
+                                        trySelf,
+                                        title: String.Localized("提示"),
+                                        content: String.Localized("图片举报成功，感谢您的反馈！您将不会在列表中再次看到该图片，我们将会尽快对您的举报信息进行核实与处理，您将在 24 小时内收到我们的反馈邮件。")
                                     ) {
                                         [weak self] (action) in
                                         if let _ = self {
@@ -342,7 +346,7 @@ class ImageDetailController: BaseViewController {
                 [weak self] (errorString) in
                 if let trySelf = self {
                     if let tryErrorString = errorString {
-                        Function.MessageBox(trySelf, title: "图片删除失败", content: tryErrorString)
+                        Function.MessageBox(trySelf, title: String.Localized("图片删除失败"), content: tryErrorString)
                         LoadingView.sharedInstance.hide()
                     } else {
                         //主页刷新

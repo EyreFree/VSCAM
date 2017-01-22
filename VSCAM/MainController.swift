@@ -105,7 +105,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                             [weak self] (imagelist, errorString) in
                             if let trySelf = self {
                                 if let tryErrorString = errorString {
-                                    Function.MessageBox(trySelf, title: "图片列表加载失败", content: tryErrorString)
+                                    Function.MessageBox(trySelf, title: String.Localized("图片列表加载失败"), content: tryErrorString)
                                 } else if let tryImageList = imagelist {
                                     trySelf.model?.imageList?.append(newObject: tryImageList)
 
@@ -196,7 +196,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                 [weak self] (imagelist, errorString) in
                 if let trySelf = self {
                     if let tryErrorString = errorString {
-                        Function.MessageBox(trySelf, title: "图片列表刷新失败", content: tryErrorString)
+                        Function.MessageBox(trySelf, title: String.Localized("图片列表刷新失败"), content: tryErrorString)
                     } else if let tryImageList = imagelist {
                         trySelf.model?.imageList = tryImageList
 
@@ -237,7 +237,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
 
     func publishClicked() {
         if Variable.loginUserInfo == nil {
-            Function.MessageBox(self, title: "提示", content: "请先登录", type: .info)
+            Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("请先登录"), type: .info)
         } else {
             if nil == imagePicker {
                 let picker = UIImagePickerController()
@@ -309,19 +309,24 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                                     return
                                 }
                                 Function.MessageBox(
-                                    trySelf, title: "提示", content: "请选择使用 iPhone 拍摄的照片或其它经过处理的图片", type: .info
+                                    trySelf,
+                                    title: String.Localized("提示"),
+                                    content: String.Localized("请选择使用 iPhone 拍摄的照片或其它经过处理的图片"),
+                                    type: .info
                                 )
                                 return
                             }
                         }
-                        Function.MessageBox(trySelf, title: "获取图片失败", content: "所选图片无效")
+                        Function.MessageBox(
+                            trySelf, title: String.Localized("获取图片失败"), content: String.Localized("所选图片无效")
+                        )
                     }
                 })
                 imagePicker.dismiss(animated: true, completion: nil)
                 return
             }
         }
-        Function.MessageBox(self, title: "获取图片失败", content: "图片获取无效")
+        Function.MessageBox(self, title: String.Localized("获取图片失败"), content: String.Localized("图片获取无效"))
         imagePicker.dismiss(animated: true, completion: nil)
     }
 }

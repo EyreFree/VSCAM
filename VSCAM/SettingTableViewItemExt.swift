@@ -51,7 +51,7 @@ class SettingTableViewItemExt: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(18)
-                    view.setTitle("清理缓存", for: .normal)
+                    view.setTitle(String.Localized("清理缓存"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("clearCacheClicked")), for: .touchUpInside)
@@ -69,7 +69,7 @@ class SettingTableViewItemExt: BaseTableViewRow {
                 } else {
                     let view = UIButton(type: .system)
                     view.tag = Tag.make(19)
-                    view.setTitle("关于 VSCAM", for: .normal)
+                    view.setTitle(String.Localized("关于 VSCAM"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                     view.addTarget(tryController, action: Selector(("aboutClicked")), for: .touchUpInside)
