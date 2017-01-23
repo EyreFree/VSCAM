@@ -254,7 +254,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 imgView.snp.makeConstraints {
                     (make) -> Void in
                     make.center.equalTo(tryBottomFrameView)
-                    make.width.equalTo(86)
+                    make.width.greaterThanOrEqualTo(86)
                     make.height.equalTo(51)
                 }
                 bottomFrameInView = imgView
@@ -309,7 +309,7 @@ class RegisteTableViewItem: BaseTableViewRow {
             cell.contentView.addSubview(imgView)
             imgView.snp.makeConstraints {
                 (make) -> Void in
-                make.width.equalTo(107)
+                make.width.greaterThanOrEqualTo(107)
                 make.height.equalTo(16)
                 make.centerX.equalTo(cell)
                 make.top.equalTo(358)
@@ -340,8 +340,9 @@ class RegisteTableViewItem: BaseTableViewRow {
             }
             
             //文字
-            if let _ = tryAgreementFrameView.viewWithTag(Tag.make(27)) as? UILabel {
-
+            var agreeTextView: UILabel!
+            if let view = tryAgreementFrameView.viewWithTag(Tag.make(27)) as? UILabel {
+                agreeTextView = view
             } else {
                 let imgView = UILabel()
                 imgView.tag = Tag.make(27)
@@ -357,8 +358,10 @@ class RegisteTableViewItem: BaseTableViewRow {
                 tryAgreementFrameView.addSubview(imgView)
                 imgView.snp.makeConstraints {
                     (make) -> Void in
-                    make.top.left.bottom.right.equalTo(0)
+                    make.top.left.bottom.equalTo(0)
+                    make.width.equalTo(imgView.frame.width)
                 }
+                agreeTextView = imgView
             }
 
             //用户协议
@@ -380,6 +383,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 imgView.snp.makeConstraints {
                     (make) -> Void in
                     make.top.bottom.right.equalTo(0)
+                    make.left.equalTo(agreeTextView.snp.right).offset(3)
                     make.width.equalTo(imgView.frame.width)
                 }
             }

@@ -205,7 +205,7 @@ class LoginTableViewItem: BaseTableViewRow {
                 imgView.snp.makeConstraints {
                     (make) -> Void in
                     make.center.equalTo(tryBottomFrameView)
-                    make.width.equalTo(86)
+                    make.width.greaterThanOrEqualTo(86)
                     make.height.equalTo(51)
                 }
                 bottomFrameInView = imgView

@@ -270,7 +270,7 @@ class SettingTableViewItem: BaseTableViewRow {
                 imgView.snp.makeConstraints {
                     (make) -> Void in
                     make.center.equalTo(tryBottomFrameView)
-                    make.width.equalTo(60)
+                    make.width.greaterThanOrEqualTo(60)
                     make.height.equalTo(66)
                 }
                 bottomFrameInView = imgView

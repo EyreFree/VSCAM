@@ -84,7 +84,7 @@
 "删除" = "Delete";
 "年" = "/";
 "月" = "/";
-"日" = "/";
+"日" = "";
 "登录" = "Login";
 "　尚未注册？" = "　Not yet registered?";
 "加入" = "Join";
@@ -95,7 +95,7 @@
 "更换" = "Change";
 "关于我的一句话自我介绍" = "Information about me";
 "个人博客 or 个人网站" = "Blog or Website";
-"确认更改" = "Confirm change";
+"确认更改" = "Modify";
 "删除头像" = "Delete avatar";
 "退出登录" = "Logout";
 "清理缓存" = "Clean cache";
