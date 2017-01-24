@@ -329,5 +329,12 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         Function.MessageBox(self, title: String.Localized("获取图片失败"), content: String.Localized("图片获取无效"))
         imagePicker.dismiss(animated: true, completion: nil)
     }
+
+    // 修复照片选择器状态栏问题
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if navigationController.isKind(of: UIImagePickerController.classForCoder()) {
+            Function.setStatusBar(hidden: false)
+        }
+    }
 }
 
