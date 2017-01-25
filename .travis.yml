@@ -12,7 +12,7 @@ before_install:
 
 script:
   - set -o pipefail
-  - xcodebuild -workspace VSCAM.xcworkspace -scheme VSCAM -sdk iphonesimulator10.0 build analyze | xcpretty -c
+  - xcodebuild -workspace VSCAM.xcworkspace -scheme VSCAM -sdk iphonesimulator10.0 build analyze #| xcpretty -c
   #- xcodebuild -workspace VSCAM.xcworkspace -scheme VSCAM -configuration Debug clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
   #- xcodebuild -workspace VSCAM.xcworkspace -scheme VSCAM -configuration Release clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
