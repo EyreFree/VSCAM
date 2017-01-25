@@ -73,11 +73,11 @@ class UserDetailHeadView: UIView {
                     view.snp.makeConstraints {
                         (make) -> Void in
                         if hasAvatar {
-                            make.top.equalTo(183)
-                            make.height.equalTo(24)
+                            make.top.equalTo(181)
+                            make.height.equalTo(26)
                         } else {
-                            make.top.equalTo(110)
-                            make.height.equalTo(36)
+                            make.top.equalTo(106)
+                            make.height.equalTo(40)
                         }
                         make.left.equalTo(25)
                         make.right.equalTo(-25)
@@ -95,11 +95,11 @@ class UserDetailHeadView: UIView {
                 imgView.snp.makeConstraints {
                     (make) -> Void in
                     if hasAvatar {
-                        make.top.equalTo(183)
-                        make.height.equalTo(24)
+                        make.top.equalTo(181)
+                        make.height.equalTo(26)
                     } else {
-                        make.top.equalTo(110)
-                        make.height.equalTo(36)
+                        make.top.equalTo(106)
+                        make.height.equalTo(40)
                     }
                     make.left.equalTo(25)
                     make.right.equalTo(-25)

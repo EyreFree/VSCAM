@@ -102,8 +102,8 @@ class SettingTableViewItem: BaseTableViewRow {
                 (make) -> Void in
                 make.left.equalTo(20)
                 make.right.equalTo(-20)
-                make.top.equalTo(183)
-                make.height.equalTo(24)
+                make.top.equalTo(181)
+                make.height.equalTo(26)
             }
         }
 
