@@ -40,13 +40,13 @@ class AboutTableViewItemSelections: BaseTableViewRow {
                     (make) -> Void in
                     make.center.equalTo(tryBottomFrameView)
                     make.width.equalTo(60)
-                    make.height.equalTo(66)
+                    make.height.equalTo(99)
                 }
                 bottomFrameInView = imgView
             }
 
             if let tryBottomFrameInView = bottomFrameInView {
-                //删除头像
+                //去评分
                 if let _ = tryBottomFrameInView.viewWithTag(Tag.make(9)) as? UIButton {
 
                 } else {
@@ -64,8 +64,27 @@ class AboutTableViewItemSelections: BaseTableViewRow {
                     }
                 }
 
-                //退出登录
+                //欢迎页面
                 if let _ = tryBottomFrameInView.viewWithTag(Tag.make(10)) as? UIButton {
+
+                } else {
+                    let view = UIButton(type: .system)
+                    view.tag = Tag.make(10)
+                    view.setTitle(String.Localized("欢迎页面"), for: .normal)
+                    view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
+                    view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+                    view.addTarget(tryController, action: Selector(("welcomeClicked")), for: .touchUpInside)
+                    tryBottomFrameInView.addSubview(view)
+                    view.snp.makeConstraints {
+                        (make) -> Void in
+                        make.center.equalTo(tryBottomFrameInView)
+                        make.left.right.equalTo(0)
+                        make.height.equalTo(18)
+                    }
+                }
+
+                //隐私政策
+                if let _ = tryBottomFrameInView.viewWithTag(Tag.make(11)) as? UIButton {
 
                 } else {
                     let view = UIButton(type: .system)

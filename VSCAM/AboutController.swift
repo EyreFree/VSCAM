@@ -70,6 +70,10 @@ class AboutController: BaseViewController {
         }
     }
 
+    func welcomeClicked() {
+        MainNavigationController.sharedInstance.pushViewController(EFOpenController(), animated: true)
+    }
+
     func privacyClicked() {
         if let tryUrl = URL(myString: NetworkURL.privacy) {
             UIApplication.shared.openURL(tryUrl)
