@@ -18,6 +18,9 @@
 //图片浏览器
 #import "MJPhotoBrowser.h"
 
+//更新引导
+#import "EFOpenController.h"
+
 #endif /* VSCAM_Bridging_Header_h */
 
 

@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setFabricParam()
         setUMengParam()
+
+        setVersion()
+        loadStory()
+
         setGlobalStyle()
 
         return true
@@ -113,6 +117,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MobClick.start(withConfigure: config)
     }
 
+    func setVersion() {
+        //更新
+        let verOut = UserDefaults.standard.string(forKey: "VSCAM_SAVE_VERSION")
+
+        let dict = Bundle.main.infoDictionary
+        if let newver = dict?["CFBundleVersion"] as? String {
+            if let ver = verOut {
+                let result = newver.compare(ver, options: .numeric)
+                if result == .orderedDescending {
+                    UserDefaults.standard.set(
+                        false, forKey: "VSCAM_FIRST_RUN"
+                    )
+                }
+            }
+            UserDefaults.standard.set(
+                newver, forKey: "VSCAM_SAVE_VERSION"
+            )
+        }
+    }
+
+    func loadStory() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let targetController = storyboard.instantiateInitialViewController()
+        if let navi = targetController as? UINavigationController {
+            if false == UserDefaults.standard.bool(forKey: "VSCAM_FIRST_RUN") {
+                let open = EFOpenController()
+                open.nextView = navi.topViewController!.view
+                open.nextCtrl = navi
+                window?.rootViewController = open
+            } else {
+                window?.rootViewController = navi
+            }
+        }
+        window?.makeKeyAndVisible()
+    }
+
     //设置一些全局样式
     func setGlobalStyle() {
         // 全局的各种颜色
@@ -123,4 +164,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )*/
     }
 }
-

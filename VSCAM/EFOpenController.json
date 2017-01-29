@@ -1,0 +1,35 @@
+{
+    "pages": [
+              {
+              "image": "welcome_1"
+              },
+              {
+              "image": "welcome_2"
+              },
+              {
+              "image": "welcome_3"
+              }
+              ],
+    "pagecolor": [
+                  [
+                   144, 144, 144, 1
+                   ],
+                  [
+                   144, 144, 144, 0.25
+                   ]
+                  ],
+    "button": {
+        "title": "Enter",
+        "color": [
+                  144, 144, 144, 1
+                  ],
+        "size": [
+                 138, 41
+                 ],
+        "yoff": -66,
+        "round": 20,
+        "frame": [
+                  144, 144, 144, 0.85
+                  ]
+    }
+}

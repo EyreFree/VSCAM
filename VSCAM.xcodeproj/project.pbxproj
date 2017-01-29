@@ -28,6 +28,8 @@
 		123DD11A1DCE4B3A0071C35B /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD1191DCE4B3A0071C35B /* UIImageView+.swift */; };
 		123DD11C1DCF1FCD0071C35B /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD11B1DCF1FCD0071C35B /* BaseCollectionView.swift */; };
 		123DD11E1DCF20130071C35B /* BaseCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD11D1DCF20130071C35B /* BaseCollectionViewItem.swift */; };
+		125559FA1E3E188800303F34 /* EFOpenController.json in Resources */ = {isa = PBXBuildFile; fileRef = 125559F91E3E188800303F34 /* EFOpenController.json */; };
+		125559FE1E3E1D2E00303F34 /* EFOpenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 125559FD1E3E1D2E00303F34 /* EFOpenController.m */; };
 		127D28901DE33CA90000A7A2 /* PublishTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127D288F1DE33CA90000A7A2 /* PublishTableView.swift */; };
 		127D28921DE33E990000A7A2 /* PublishTableViewItemHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127D28911DE33E990000A7A2 /* PublishTableViewItemHead.swift */; };
 		127D28941DE33F9A0000A7A2 /* PublishTableViewItemFoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127D28931DE33F9A0000A7A2 /* PublishTableViewItemFoot.swift */; };
@@ -149,6 +151,9 @@
 		123DD1191DCE4B3A0071C35B /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		123DD11B1DCF1FCD0071C35B /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		123DD11D1DCF20130071C35B /* BaseCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewItem.swift; sourceTree = "<group>"; };
+		125559F91E3E188800303F34 /* EFOpenController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EFOpenController.json; sourceTree = "<group>"; };
+		125559FC1E3E1D2E00303F34 /* EFOpenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFOpenController.h; sourceTree = "<group>"; };
+		125559FD1E3E1D2E00303F34 /* EFOpenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFOpenController.m; sourceTree = "<group>"; };
 		127D288F1DE33CA90000A7A2 /* PublishTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishTableView.swift; sourceTree = "<group>"; };
 		127D28911DE33E990000A7A2 /* PublishTableViewItemHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishTableViewItemHead.swift; sourceTree = "<group>"; };
 		127D28931DE33F9A0000A7A2 /* PublishTableViewItemFoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishTableViewItemFoot.swift; sourceTree = "<group>"; };
@@ -338,6 +343,7 @@
 		1220F9E11DCB9EB6004379AD /* 3rdPart */ = {
 			isa = PBXGroup;
 			children = (
+				125559FB1E3E1D2E00303F34 /* EFOpenController */,
 				8453F3BE1DE5A0FE001D3905 /* MJPhotoBrowser */,
 				84741DD41DD1BECC006ECD6D /* WaterFlowLayout */,
 				1220F9E21DCB9EB6004379AD /* SecurityStrategy */,
@@ -362,6 +368,15 @@
 				123C14051E18CE8D00ED127B /* Info.plist */,
 			);
 			path = VSCAMShareExtension;
+			sourceTree = "<group>";
+		};
+		125559FB1E3E1D2E00303F34 /* EFOpenController */ = {
+			isa = PBXGroup;
+			children = (
+				125559FC1E3E1D2E00303F34 /* EFOpenController.h */,
+				125559FD1E3E1D2E00303F34 /* EFOpenController.m */,
+			);
+			path = EFOpenController;
 			sourceTree = "<group>";
 		};
 		129ED06F1DF69DA200E0AB0C /* About */ = {
@@ -707,6 +722,7 @@
 		8488D4551DAA49DD000E703C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				125559F91E3E188800303F34 /* EFOpenController.json */,
 				8488D4481DAA46FD000E703C /* Info.plist */,
 				122429DC1DB3D99F00C8EE29 /* VSCAM-Bridging-Header.h */,
 			);
@@ -823,6 +839,7 @@
 			files = (
 				12F625611E349C3200356EF3 /* Localizable.strings in Resources */,
 				8488D4471DAA46FD000E703C /* LaunchScreen.storyboard in Resources */,
+				125559FA1E3E188800303F34 /* EFOpenController.json in Resources */,
 				8488D4441DAA46FD000E703C /* Assets.xcassets in Resources */,
 				8453F3CD1DE5A0FE001D3905 /* MJPhotoBrowser.bundle in Resources */,
 				8488D4421DAA46FD000E703C /* Main.storyboard in Resources */,
@@ -951,6 +968,7 @@
 				8453F3CC1DE5A0FE001D3905 /* MJPhoto.m in Sources */,
 				84741DDF1DD1CFA4006ECD6D /* NetworkCache.swift in Sources */,
 				122429D31DB3D49400C8EE29 /* UIColor+.swift in Sources */,
+				125559FE1E3E1D2E00303F34 /* EFOpenController.m in Sources */,
 				1298EDF01DAE984400F8B4BD /* Regex.swift in Sources */,
 				12F229B91DD2228600C0F6D0 /* Double+.swift in Sources */,
 				1298EDEF1DAE984400F8B4BD /* Function.swift in Sources */,
