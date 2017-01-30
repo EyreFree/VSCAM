@@ -46,3 +46,11 @@ VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本�
 ## 预览
 
 ![](assets/screenshot.png)
+
+## 作者
+
+EyreFree, eyrefree@eyrefree.org
+
+## 协议
+
+VSCAM is available under the MIT license. See the LICENSE file for more info.
