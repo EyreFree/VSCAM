@@ -25,6 +25,12 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         addKeyboardObserver()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        Function.setStatusBar(hidden: true)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -396,6 +402,13 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
             Function.MessageBox(self, title: String.Localized("更改头像失败"), content: String.Localized("所选图片无效"))
         }
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+
+    // 修复照片选择器状态栏问题
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if navigationController.isKind(of: UIImagePickerController.classForCoder()) {
+            Function.setStatusBar(hidden: false)
+        }
     }
 }
 
