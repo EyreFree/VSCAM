@@ -53,4 +53,4 @@ EyreFree, eyrefree@eyrefree.org
 
 ## 协议
 
-VSCAM is available under the MIT license. See the LICENSE file for more info.
+VSCAM 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
