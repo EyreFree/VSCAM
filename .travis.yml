@@ -12,7 +12,7 @@ before_install:
 
 script:
   - set -o pipefail
-  - xcodebuild -workspace VSCAM.xcworkspace -scheme VSCAM -destination "OS=10.3,name=iPhone SE" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty
+  - xcodebuild -workspace VSCAM.xcworkspace -scheme VSCAM -destination "OS=10.3.1,name=iPhone SE" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty
 
 after_success:
   - sleep 3
