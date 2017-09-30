@@ -1,7 +1,12 @@
-# VSCAM
+![](https://raw.githubusercontent.com/EyreFree/VSCAM/master/assets/VSCAM.png)
 
-[![CI Status](http://img.shields.io/travis/EyreFree/VSCAM.svg?style=flat)](https://travis-ci.org/EyreFree/VSCAM)
-[![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/VSCAM)
+<p align="center">
+<a href="https://travis-ci.org/EyreFree/VSCAM"><img src="http://img.shields.io/travis/EyreFree/VSCAM.svg"></a>
+<a href="https://github.com/apple/swift"><img src="https://img.shields.io/badge/language-swift-orange.svg"></a>
+<a href="https://twitter.com/EyreFree777"><img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat"></a>
+<a href="http://weibo.com/eyrefree777"><img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat"></a>
+<img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
+</p>
 
 VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本，Android 版参见：[https://github.com/ayaseruri/vscam](https://github.com/ayaseruri/vscam)，更多信息请访问官网：[http://vscam.co/](http://vscam.co/)。
 
