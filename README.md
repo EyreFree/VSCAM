@@ -8,7 +8,9 @@
 <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
 </p>
 
-VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本，Android 版参见：[https://github.com/ayaseruri/vscam](https://github.com/ayaseruri/vscam)，更多信息请访问官网：[http://vscam.co/](http://vscam.co/)。
+VSCAM 是一个图片分享发布装置，本仓库为 iOS 端源代码，使用 Swift 进行开发。
+
+## 概述
 
 - 首页使用 UICollectionView 实现不同尺寸图片的瀑布流展示；  
 - 发布页使用 Alamofire 实现了图片后台上传并且实时显示上传进度；  
@@ -25,7 +27,7 @@ VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本�
 	<img src='http://ww2.sinaimg.cn/large/0060lm7Tgw1f1hgrs1ebwj308102q0sp.jpg' width='144' height='49'/>
 </a>
 
-## 开发环境
+## 环境
 
 | Version | Needs                                |
 |:--------|:-------------------------------------|
@@ -39,7 +41,7 @@ VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本�
 2. 用 XCode 打开 VSCAM.xcworkspace；
 3. 构建。
 
-## 计划中
+## 计划
 
 1. iPad 适配；
 2. 动画；
@@ -49,9 +51,16 @@ VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本�
 
 ![](assets/screenshot.png)
 
+## 其他
+
+Android 版源码参见：[https://github.com/ayaseruri/vscam](https://github.com/ayaseruri/vscam)
+
+更多信息请访问官网：[http://vscam.co/](http://vscam.co/)
+
 ## 作者
 
-EyreFree, eyrefree@eyrefree.org
+- 设计：[itorr](https://github.com/itorr), itorrrrrr@me.com
+- 施工：[EyreFree](https://github.com/EyreFree), eyrefree@eyrefree.org
 
 ## 协议
 
