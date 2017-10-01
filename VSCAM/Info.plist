@@ -20,7 +20,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.5</string>
+	<string>4.0.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -45,7 +45,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.5.0</string>
+	<string>4.0.0.0</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -107,10 +107,10 @@
 	<string>VSCAM need library, QWQ</string>
 	<key>NSCameraUsageDescription</key>
 	<string>VSCAM need camera, QAQ</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>VSCAM need album, QWQ</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>VSCAM need access, QWQ</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>VSCAM need album, QWQ</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
