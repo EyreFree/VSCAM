@@ -47,7 +47,7 @@ class MUGProgressIndicator: JGProgressHUDIndicatorView {
         rotateView.layer.contents = UIImage(named: "fadai")?.cgImage
 
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = NSNumber(value: M_PI * 2.0)
+        rotationAnimation.toValue = NSNumber(value: Double.pi * 2.0)
         //rotationAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         rotationAnimation.duration = 1
         rotationAnimation.repeatCount = Float.infinity

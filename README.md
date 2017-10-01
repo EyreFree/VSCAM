@@ -27,8 +27,10 @@ VSCAM 是一款图片分享应用，此处为使用 Swift 编写的 iOS 版本�
 
 ## 开发环境
 
-- XCode 8.1+
-- Swift 3.0.1+
+| Version | Needs                                |
+|:--------|:-------------------------------------|
+| 1.x     | XCode 8.0+<br>Swift 3.0+<br>iOS 9.0+ |
+| 4.x     | XCode 9.0+<br>Swift 4.0+<br>iOS 9.0+ |
 
 ## 构建
 
