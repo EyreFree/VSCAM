@@ -69,12 +69,12 @@ extension UIViewController {
         }
     }
 
-    func naviButtonClick(button: UIBarButtonItem) {
+    @objc func naviButtonClick(button: UIBarButtonItem) {
         //收起键盘
         Function.HideKeyboard()
     }
 
-    func naviLeftButtonClick(button: UIBarButtonItem) {
+    @objc func naviLeftButtonClick(button: UIBarButtonItem) {
         //收起键盘
         Function.HideKeyboard()
     }

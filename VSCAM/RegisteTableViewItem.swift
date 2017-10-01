@@ -70,9 +70,9 @@ class RegisteTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: String.Localized("中英日数字_"), attributes: [
-                        NSParagraphStyleAttributeName: centeredParagraphStyle,
-                        NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
-                        NSFontAttributeName : UIFont.systemFont(ofSize: 14)
+                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -126,9 +126,9 @@ class RegisteTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: "@", attributes: [
-                        NSParagraphStyleAttributeName: centeredParagraphStyle,
-                        NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
-                        NSFontAttributeName : UIFont.systemFont(ofSize: 14)
+                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -183,9 +183,9 @@ class RegisteTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: "******", attributes: [
-                        NSParagraphStyleAttributeName: centeredParagraphStyle,
-                        NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
-                        NSFontAttributeName : UIFont.systemFont(ofSize: 14)
+                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -213,7 +213,7 @@ class RegisteTableViewItem: BaseTableViewRow {
             view.backgroundColor = UIColor.gray
             view.setTitleColor(UIColor.white, for: .normal)
             view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            view.addTarget(tryController, action: Selector(("registeClicked")), for: .touchUpInside)
+            view.addTarget(tryController, action: #selector(LoginRegisteController.registeClicked), for: .touchUpInside)
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -250,7 +250,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 imgView.tag = Tag.make(22)
                 imgView.isUserInteractionEnabled = true
                 imgView.addGestureRecognizer(
-                    UITapGestureRecognizer(target: tryController, action: Selector(("switchToLogin")))
+                    UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.switchToLogin))
                 )
                 tryBottomFrameView.addSubview(imgView)
                 imgView.snp.makeConstraints {
@@ -290,7 +290,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                     view.setTitle(String.Localized("登录"), for: .normal)
                     view.setTitleColor(UIColor.black, for: .normal)
                     view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-                    view.addTarget(tryController, action: Selector(("switchToLogin")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(LoginRegisteController.switchToLogin), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in
@@ -354,7 +354,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 imgView.textColor = UIColor(valueRGB: 0x878787)
                 imgView.isUserInteractionEnabled = true
                 imgView.addGestureRecognizer(
-                    UITapGestureRecognizer(target: tryController, action: Selector(("agreeClicked")))
+                    UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.agreeClicked))
                 )
                 imgView.sizeToFit()
                 tryAgreementFrameView.addSubview(imgView)
@@ -378,7 +378,7 @@ class RegisteTableViewItem: BaseTableViewRow {
                 imgView.textColor = UIColor(valueRGB: 0xA6A547)
                 imgView.isUserInteractionEnabled = true
                 imgView.addGestureRecognizer(
-                    UITapGestureRecognizer(target: tryController, action: Selector(("agreementClicked")))
+                    UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.agreementClicked))
                 )
                 imgView.sizeToFit()
                 tryAgreementFrameView.addSubview(imgView)

@@ -60,27 +60,27 @@ class AboutController: BaseViewController {
         }
     }
 
-    func backClicked() {
+    @objc func backClicked() {
         MainNavigationController.sharedInstance.popViewController(animated: true)
     }
 
-    func scoreClicked() {
+    @objc func scoreClicked() {
         if let tryUrl = URL(myString: NetworkURL.appStore) {
             UIApplication.shared.openURL(tryUrl)
         }
     }
 
-    func welcomeClicked() {
+    @objc func welcomeClicked() {
         MainNavigationController.sharedInstance.pushViewController(EFOpenController(), animated: true)
     }
 
-    func privacyClicked() {
+    @objc func privacyClicked() {
         if let tryUrl = URL(myString: NetworkURL.privacy) {
             UIApplication.shared.openURL(tryUrl)
         }
     }
 
-    func vscamClicked() {
+    @objc func vscamClicked() {
         if let tryUrl = URL(myString: NetworkURL.vscam) {
             UIApplication.shared.openURL(tryUrl)
         }

@@ -104,15 +104,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>VSCAM 需要您的同意才能读取媒体资料库</string>
+	<string>VSCAM need library, QWQ</string>
 	<key>NSCameraUsageDescription</key>
-	<string>VSCAM 需要您的同意才能打开摄像头</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>VSCAM 需要您的同意才能打开麦克风</string>
+	<string>VSCAM need camera, QAQ</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>VSCAM 需要您的同意才能打开相册</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>VSCAM 需要您的同意才能使用语音识别</string>
+	<string>VSCAM need album, QWQ</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>VSCAM need access, QWQ</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

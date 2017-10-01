@@ -312,18 +312,18 @@ class UserDetailController: BaseViewController {
         }
     }
 
-    func backClicked() {
+    @objc func backClicked() {
         MainNavigationController.sharedInstance.popViewController(animated: true)
     }
 
-    func shareClicked() {
+    @objc func shareClicked() {
         if let tryName = (model.userData?.name ?? model.userDetailData?.name) {
             let webUrl = NetworkURL.userDetailPage.replace(string: "{name}", with: tryName)
             Function.openShareView(controller: self, url: webUrl)
         }
     }
 
-    func settingClicked() {
+    @objc func settingClicked() {
         MainNavigationController.sharedInstance.pushViewController(SettingController(), animated: true)
     }
 }

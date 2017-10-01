@@ -223,7 +223,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         }
     }
 
-    func avatarClicked() {
+    @objc func avatarClicked() {
         if let tryUserInfo = Variable.loginUserInfo {
             MainNavigationController.sharedInstance.pushViewController(
                 UserDetailController(userData: tryUserInfo), animated: true
@@ -235,7 +235,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         }
     }
 
-    func publishClicked() {
+    @objc func publishClicked() {
         if Variable.loginUserInfo == nil {
             Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("请先登录"), type: .info)
         } else {

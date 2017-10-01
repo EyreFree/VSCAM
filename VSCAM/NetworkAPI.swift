@@ -77,7 +77,7 @@ class NetworkAPI {
             }
         }
         if let tryData = data {
-            if let resultString = NSString(data: tryData, encoding: String.Encoding.utf8.rawValue) as? String {
+            if let resultString = NSString(data: tryData, encoding: String.Encoding.utf8.rawValue) as String? {
                 if resultString == "true" {
                     return (nil, nil)
                 } else if resultString == "false" {

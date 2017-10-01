@@ -203,8 +203,8 @@ class SettingTableViewItem: BaseTableViewRow {
                 searchField.textAlignment = .left
                 let attributedPlaceholder = NSAttributedString(
                     string: String.Localized("个人博客 or 个人网站"), attributes: [
-                        NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
-                        NSFontAttributeName : UIFont.systemFont(ofSize: 12)
+                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -233,7 +233,7 @@ class SettingTableViewItem: BaseTableViewRow {
             view.setTitleColor(UIColor.white, for: .normal)
             view.backgroundColor = UIColor.gray
             view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            view.addTarget(tryController, action: Selector(("changeClicked")), for: .touchUpInside)
+            view.addTarget(tryController, action: #selector(SettingController.changeClicked), for: .touchUpInside)
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -288,7 +288,7 @@ class SettingTableViewItem: BaseTableViewRow {
                     view.setTitle(String.Localized("删除头像"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                    view.addTarget(tryController, action: Selector(("deleteAvatarClicked")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(SettingController.deleteAvatarClicked), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in
@@ -306,7 +306,7 @@ class SettingTableViewItem: BaseTableViewRow {
                     view.setTitle(String.Localized("退出登录"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0xD0021B), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                    view.addTarget(tryController, action: Selector(("logoutClicked")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(SettingController.logoutClicked), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in
@@ -324,4 +324,3 @@ class SettingTableViewItem: BaseTableViewRow {
         return CGSize.screen().height
     }
 }
-

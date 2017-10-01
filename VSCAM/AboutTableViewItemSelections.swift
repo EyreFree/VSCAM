@@ -57,7 +57,7 @@ class AboutTableViewItemSelections: BaseTableViewRow {
                     view.setTitle(String.Localized("去评分"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                    view.addTarget(tryController, action: Selector(("scoreClicked")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(AboutController.scoreClicked), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in
@@ -75,7 +75,7 @@ class AboutTableViewItemSelections: BaseTableViewRow {
                     view.setTitle(String.Localized("欢迎页面"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                    view.addTarget(tryController, action: Selector(("welcomeClicked")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(AboutController.welcomeClicked), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in
@@ -94,7 +94,7 @@ class AboutTableViewItemSelections: BaseTableViewRow {
                     view.setTitle(String.Localized("隐私政策"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                    view.addTarget(tryController, action: Selector(("privacyClicked")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(AboutController.privacyClicked), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in

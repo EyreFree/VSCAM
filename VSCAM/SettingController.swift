@@ -142,12 +142,12 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
-    func backClicked() {
+    @objc func backClicked() {
         Function.HideKeyboard()
         MainNavigationController.sharedInstance.popViewController(animated: true)
     }
 
-    func shareClicked() {
+    @objc func shareClicked() {
         Function.HideKeyboard()
         if let tryName = Variable.loginUserInfo?.name {
             let webUrl = NetworkURL.userDetailPage.replace(string: "{name}", with: tryName)
@@ -155,7 +155,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
-    func changeAvatarClicked() {
+    @objc func changeAvatarClicked() {
         Function.HideKeyboard()
 
         if nil == imagePicker {
@@ -168,7 +168,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         self.present(imagePicker, animated: true, completion: nil)
     }
 
-    func changeClicked() {
+    @objc func changeClicked() {
         Function.HideKeyboard()
         if let tryDesc = (self.view.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean(),
             let tryUrl = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean(),
@@ -198,7 +198,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
-    func deleteAvatarClicked() {
+    @objc func deleteAvatarClicked() {
         Function.HideKeyboard()
 
         NetworkAPI.sharedInstance.avatarDelete() {
@@ -219,7 +219,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
-    func logoutClicked() {
+    @objc func logoutClicked() {
         Function.HideKeyboard()
 
         NetworkAPI.sharedInstance.logout() {
@@ -244,7 +244,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
-    func clearCacheClicked() {
+    @objc func clearCacheClicked() {
         let cacheSize = Int(SDImageCache.shared().getSize()).f() / 1024.f() / 1024.f()
         let cacheString = String(format: " %0.2f MB", cacheSize)
 
@@ -269,13 +269,13 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         self.present(alert, animated: true, completion: nil)
     }
 
-    func aboutClicked() {
+    @objc func aboutClicked() {
         MainNavigationController.sharedInstance.pushViewController(
             AboutController(), animated: true
         )
     }
 
-    func editFrameClicked(recognizer: UIGestureRecognizer) {
+    @objc func editFrameClicked(recognizer: UIGestureRecognizer) {
         if let tryTag = recognizer.view?.tag {
             (recognizer.view?.viewWithTag(tryTag + 1) as? UITextField)?.becomeFirstResponder()
         }

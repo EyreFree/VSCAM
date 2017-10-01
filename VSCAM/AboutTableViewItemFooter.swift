@@ -24,7 +24,7 @@ class AboutTableViewItemFooter: BaseTableViewRow {
             view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
             view.alpha = 0.35
             view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-            view.addTarget(tryController, action: Selector(("vscamClicked")), for: .touchUpInside)
+            view.addTarget(tryController, action: #selector(AboutController.vscamClicked), for: .touchUpInside)
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in

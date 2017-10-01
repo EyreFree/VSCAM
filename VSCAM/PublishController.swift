@@ -198,8 +198,8 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             searchField.textAlignment = .left
             let attributedPlaceholder = NSAttributedString(
                 string: String.Localized("输入一句话照片简介"), attributes: [
-                    NSForegroundColorAttributeName : UIColor(valueRGB: 0x535353),
-                    NSFontAttributeName : UIFont.systemFont(ofSize: 16)
+                    NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x535353),
+                    NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)
                 ]
             )
             searchField.attributedPlaceholder = attributedPlaceholder
@@ -273,7 +273,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    func closeClicked() {
+    @objc func closeClicked() {
         //键盘收起
         returnMark = true
         Function.HideKeyboard()
@@ -281,7 +281,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         self.dismiss(animated: true)
     }
 
-    func editFrameClicked(recognizer: UIGestureRecognizer) {
+    @objc func editFrameClicked(recognizer: UIGestureRecognizer) {
         if let tryTag = recognizer.view?.tag {
             switch tryTag {
             case Tag.make(3):

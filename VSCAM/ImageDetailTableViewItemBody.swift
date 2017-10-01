@@ -257,4 +257,3 @@ class ImageDetailTableViewItemBody: BaseTableViewRow {
         return 333
     }
 }
-

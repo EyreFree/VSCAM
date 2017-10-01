@@ -13,7 +13,7 @@ extension UINavigationController {
         self.navigationBar.tintColor = UIColor.black
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         self.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.black
+            NSAttributedStringKey.foregroundColor: UIColor.black
         ]
     }
 
@@ -26,7 +26,7 @@ extension UINavigationController {
         self.navigationBar.tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         self.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white
+            NSAttributedStringKey.foregroundColor: UIColor.white
         ]
     }
 }

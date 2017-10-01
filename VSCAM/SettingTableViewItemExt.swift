@@ -56,7 +56,7 @@ class SettingTableViewItemExt: BaseTableViewRow {
                     view.setTitle(String.Localized("清理缓存"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                    view.addTarget(tryController, action: Selector(("clearCacheClicked")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(SettingController.clearCacheClicked), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in
@@ -74,7 +74,7 @@ class SettingTableViewItemExt: BaseTableViewRow {
                     view.setTitle(String.Localized("关于 VSCAM"), for: .normal)
                     view.setTitleColor(UIColor(valueRGB: 0x0E0E0E), for: .normal)
                     view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                    view.addTarget(tryController, action: Selector(("aboutClicked")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(SettingController.aboutClicked), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in

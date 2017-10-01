@@ -74,9 +74,9 @@ class LoginTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: "@", attributes: [
-                        NSParagraphStyleAttributeName: centeredParagraphStyle,
-                        NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
-                        NSFontAttributeName : UIFont.systemFont(ofSize: 14)
+                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -133,9 +133,9 @@ class LoginTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: "******", attributes: [
-                        NSParagraphStyleAttributeName: centeredParagraphStyle,
-                        NSForegroundColorAttributeName : UIColor(valueRGB: 0x878787),
-                        NSFontAttributeName : UIFont.systemFont(ofSize: 14)
+                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -164,7 +164,7 @@ class LoginTableViewItem: BaseTableViewRow {
             view.backgroundColor = UIColor.gray
             view.setTitleColor(UIColor.white, for: .normal)
             view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            view.addTarget(tryController, action: Selector(("loginClicked")), for: .touchUpInside)
+            view.addTarget(tryController, action: #selector(LoginRegisteController.loginClicked), for: .touchUpInside)
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -201,7 +201,7 @@ class LoginTableViewItem: BaseTableViewRow {
                 imgView.tag = Tag.make(10)
                 imgView.isUserInteractionEnabled = true
                 imgView.addGestureRecognizer(
-                    UITapGestureRecognizer(target: tryController, action: Selector(("switchToRegiste")))
+                    UITapGestureRecognizer(target: tryController, action: #selector(LoginRegisteController.switchToRegiste))
                 )
                 tryBottomFrameView.addSubview(imgView)
                 imgView.snp.makeConstraints {
@@ -241,7 +241,7 @@ class LoginTableViewItem: BaseTableViewRow {
                     view.setTitle(String.Localized("加入"), for: .normal)
                     view.setTitleColor(UIColor.black, for: .normal)
                     view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-                    view.addTarget(tryController, action: Selector(("switchToRegiste")), for: .touchUpInside)
+                    view.addTarget(tryController, action: #selector(LoginRegisteController.switchToRegiste), for: .touchUpInside)
                     tryBottomFrameInView.addSubview(view)
                     view.snp.makeConstraints {
                         (make) -> Void in

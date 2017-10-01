@@ -209,11 +209,11 @@ class ImageDetailController: BaseViewController {
         }
     }
 
-    func backClicked() {
+    @objc func backClicked() {
         MainNavigationController.sharedInstance.popViewController(animated: true)
     }
 
-    func shareClicked() {
+    @objc func shareClicked() {
         let actionSheetController = UIAlertController(
             title: nil, message: nil, preferredStyle: .actionSheet
         )
@@ -358,7 +358,7 @@ class ImageDetailController: BaseViewController {
         }
     }
 
-    func userClicked() {
+    @objc func userClicked() {
         if let tryUser = model?.imageBrief?.user ?? model?.imageDetail?.user {
             MainNavigationController.sharedInstance.pushViewController(
                 UserDetailController(userData: tryUser), animated: true

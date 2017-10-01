@@ -151,12 +151,12 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    func backClicked() {
+    @objc func backClicked() {
         Function.HideKeyboard()
         MainNavigationController.sharedInstance.popViewController(animated: true)
     }
 
-    func loginClicked() {
+    @objc func loginClicked() {
         Function.HideKeyboard()
         if let tryID = (self.view.viewWithTag(Tag.make(5)) as? UITextField)?.text?.clean(),
             let tryPWD = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
@@ -192,7 +192,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     }
 
     //同意／不同意
-    func agreeClicked() {
+    @objc func agreeClicked() {
         model.agree.value = model.agree.value == false
 
         //选择圆圈
@@ -202,13 +202,13 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     }
 
     //查看用户协议
-    func agreementClicked() {
+    @objc func agreementClicked() {
         if let tryUrl = URL(myString: NetworkURL.privacy) {
             UIApplication.shared.openURL(tryUrl)
         }
     }
 
-    func registeClicked() {
+    @objc func registeClicked() {
         Function.HideKeyboard()
         if let tryName = (self.view.viewWithTag(Tag.make(15)) as? UITextField)?.text?.clean(),
             let tryEmail = (self.view.viewWithTag(Tag.make(17)) as? UITextField)?.text?.clean(),
@@ -259,11 +259,11 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    func switchToLogin() {
+    @objc func switchToLogin() {
         switchClicked(title: "登录")
     }
 
-    func switchToRegiste() {
+    @objc func switchToRegiste() {
         switchClicked(title: "加入")
     }
 
@@ -308,7 +308,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    func editFrameClicked(recognizer: UIGestureRecognizer) {
+    @objc func editFrameClicked(recognizer: UIGestureRecognizer) {
         if let tryTag = recognizer.view?.tag {
             switch tryTag {
             case Tag.make(4), Tag.make(6):

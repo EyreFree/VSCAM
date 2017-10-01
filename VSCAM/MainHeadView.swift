@@ -82,7 +82,7 @@ class MainHeadView: UIView {
             view.tag = Tag.make(3)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
-                UITapGestureRecognizer(target: parentViewController, action: Selector(("avatarClicked")))
+                UITapGestureRecognizer(target: parentViewController, action: #selector(MainController.avatarClicked))
             )
             self.addSubview(view)
             view.snp.makeConstraints {
@@ -153,4 +153,3 @@ class MainHeadView: UIView {
         }
     }
 }
-
