@@ -7,7 +7,9 @@ class SettingTableViewItem: BaseTableViewRow {
 
     //MARK:- Cell
     override func cell(tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier()) ?? UITableViewCell(
+            style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier()
+        )
         cell.selectionStyle = .none
 
         let tryController = (tableView as? SettingTableView)?.parentViewController as? SettingController

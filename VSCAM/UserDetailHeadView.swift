@@ -69,8 +69,7 @@ class UserDetailHeadView: UIView {
             if let view = self.viewWithTag(Tag.make(8)) as? UILabel {
                 view.text = userString
                 if replace {
-                    view.snp.removeConstraints()
-                    view.snp.makeConstraints {
+                    view.snp.remakeConstraints {
                         (make) -> Void in
                         if hasAvatar {
                             make.top.equalTo(181)
@@ -111,8 +110,7 @@ class UserDetailHeadView: UIView {
             if let view = self.viewWithTag(Tag.make(9)) as? UILabel {
                 view.text = desString
                 if replace {
-                    view.snp.removeConstraints()
-                    view.snp.makeConstraints {
+                    view.snp.remakeConstraints {
                         (make) -> Void in
                         if hasAvatar {
                             make.top.equalTo(218)

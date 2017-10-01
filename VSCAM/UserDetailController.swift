@@ -50,8 +50,7 @@ class UserDetailController: BaseViewController {
 
             if let tryHeadView = self.view.viewWithTag(Tag.make(0)) as? UserDetailHeadView {
                 if needReplace {
-                    tryHeadView.snp.removeConstraints()
-                    tryHeadView.snp.makeConstraints {
+                    tryHeadView.snp.remakeConstraints {
                         (make) -> Void in
                         make.top.left.right.equalTo(0)
                         make.height.equalTo(model.hasAvatar ? 256 : 186)
@@ -232,8 +231,7 @@ class UserDetailController: BaseViewController {
             } else if topMargin < -marginHead {
                 topMargin = -marginHead
             }
-            headView.snp.removeConstraints()
-            headView.snp.makeConstraints {
+            headView.snp.remakeConstraints {
                 (make) -> Void in
                 make.top.equalTo(topMargin)
                 make.left.right.equalTo(0)

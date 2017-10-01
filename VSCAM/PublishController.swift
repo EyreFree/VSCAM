@@ -247,7 +247,6 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             //背景图片
             var imgViewReal: UIImageView!
             if let imgView = self.view.viewWithTag(Tag.make(6)) as? UIImageView {
-                imgView.snp.removeConstraints()
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView()
@@ -259,7 +258,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
                 self.view.sendSubview(toBack: imgView)
                 imgViewReal = imgView
             }
-            imgViewReal.snp.makeConstraints {
+            imgViewReal.snp.remakeConstraints {
                 (make) -> Void in
                 make.left.right.equalTo(0)
                 make.top.equalTo(min(0, -offsetHead))

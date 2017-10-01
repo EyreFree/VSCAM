@@ -6,7 +6,9 @@ class AboutTableViewItemHeader: BaseTableViewRow {
 
     //MARK:- Cell
     override func cell(tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier(), for: rowIndexPath())
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier()) ?? UITableViewCell(
+            style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier()
+        )
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor(valueRGB: 0xF8F8F8)
 

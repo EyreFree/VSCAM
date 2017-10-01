@@ -86,12 +86,7 @@ class ImageDetailController: BaseViewController {
             self.view.sendSubview(toBack: view)
             self.tableView = view
         }
-
-        //底部图片
-        refreshFootImage(offset: tableView.contentSize.height - CGSize.screen().height, reloadImage: true)
-
-        //顶部图片
-        refreshHeadImage(offset: 0, reloadImage: true)
+        tableView.replaceImages(reloadImage: true)
     }
 
     func refreshHeadImage(offset: CGFloat, reloadImage: Bool = false) {
@@ -99,7 +94,6 @@ class ImageDetailController: BaseViewController {
             //背景图片
             var imgViewReal: UIImageView!
             if let imgView = self.view.viewWithTag(Tag.make(2)) as? UIImageView {
-                imgView.snp.removeConstraints()
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView()
@@ -111,7 +105,7 @@ class ImageDetailController: BaseViewController {
                 self.view.sendSubview(toBack: imgView)
                 imgViewReal = imgView
             }
-            imgViewReal.snp.makeConstraints {
+            imgViewReal.snp.remakeConstraints {
                 (make) -> Void in
                 make.top.left.right.equalTo(0)
                 make.height.equalTo(max(0, tryModel.headImageHeight() - offset))
@@ -167,7 +161,6 @@ class ImageDetailController: BaseViewController {
             //背景图片
             var imgViewReal: UIImageView!
             if let imgView = self.view.viewWithTag(Tag.make(0)) as? UIImageView {
-                imgView.snp.removeConstraints()
                 imgViewReal = imgView
             } else {
                 let imgView = UIImageView(frame: CGRect.zero)
@@ -184,7 +177,7 @@ class ImageDetailController: BaseViewController {
                 imgViewReal.isHidden = true
             } else if offset > 0 {
                 imgViewReal.isHidden = false
-                imgViewReal.snp.makeConstraints {
+                imgViewReal.snp.remakeConstraints {
                     (make) -> Void in
                     make.left.right.equalTo(0)
                     make.bottom.equalTo(offset)
@@ -192,7 +185,7 @@ class ImageDetailController: BaseViewController {
                 }
             } else {
                 imgViewReal.isHidden = false
-                imgViewReal.snp.makeConstraints {
+                imgViewReal.snp.remakeConstraints {
                     (make) -> Void in
                     make.bottom.left.right.equalTo(0)
                     make.height.equalTo(140 - offset)

@@ -39,11 +39,23 @@ class ImageDetailTableView: BaseTableView {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetHead = scrollView.contentOffset.y
-        (parentViewController as? ImageDetailController)?.refreshHeadImage(offset: offsetHead)
+        replaceImages()
+    }
 
-        let offsetFoot = scrollView.contentSize.height - (CGSize.screen().height + scrollView.contentOffset.y)
-        (parentViewController as? ImageDetailController)?.refreshFootImage(offset: offsetFoot)
+    func replaceImages(reloadImage: Bool = false) {
+        let offsetHead = self.contentOffset.y
+        (parentViewController as? ImageDetailController)?.refreshHeadImage(offset: offsetHead, reloadImage: reloadImage)
+
+        let offsetFoot = customContentHeight() - (CGSize.screen().height + self.contentOffset.y)
+        (parentViewController as? ImageDetailController)?.refreshFootImage(offset: offsetFoot, reloadImage: reloadImage)
+    }
+
+    func customContentHeight() -> CGFloat {
+        var height: CGFloat = 0
+        for row in sections[0].rows {
+            height += row.height(tableView: self)
+        }
+        return height
     }
 
     //MARK:- tableview
