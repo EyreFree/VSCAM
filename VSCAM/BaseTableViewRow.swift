@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class BaseTableViewRow: NSObject {
@@ -26,4 +25,3 @@ class BaseTableViewRow: NSObject {
         return 0
     }
 }
-

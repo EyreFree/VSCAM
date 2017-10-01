@@ -1,5 +1,4 @@
 
-
 import UIKit
 import KMPlaceholderTextView
 import SDWebImage
@@ -411,4 +410,3 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 }
-

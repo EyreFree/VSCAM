@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class AboutTableViewItemHeader: BaseTableViewRow {
@@ -100,4 +99,3 @@ class AboutTableViewItemHeader: BaseTableViewRow {
         return 417
     }
 }
-

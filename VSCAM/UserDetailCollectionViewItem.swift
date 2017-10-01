@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class UserDetailCollectinViewItem: BaseCollectionViewItem {
@@ -83,4 +82,3 @@ class UserDetailCollectinViewItem: BaseCollectionViewItem {
         return CGSize(width: screenWidth, height: screenWidth)
     }
 }
-

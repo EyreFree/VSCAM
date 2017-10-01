@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 //MARK:- 接口地址
@@ -65,4 +64,3 @@ class NetworkURL {
     //VSCAM
     static let vscam = "https://vscam.co"
 }
-

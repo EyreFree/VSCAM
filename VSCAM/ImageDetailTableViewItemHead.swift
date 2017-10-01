@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class ImageDetailTableViewItemHead: BaseTableViewRow {
@@ -27,4 +26,3 @@ class ImageDetailTableViewItemHead: BaseTableViewRow {
         return screenWidth
     }
 }
-

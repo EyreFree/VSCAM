@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 extension NSURL {
@@ -39,4 +38,3 @@ extension URL {
         }
     }
 }
-

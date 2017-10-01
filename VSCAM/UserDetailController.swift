@@ -1,5 +1,4 @@
 
-
 import UIKit
 import MJRefresh
 
@@ -327,4 +326,3 @@ class UserDetailController: BaseViewController {
         MainNavigationController.sharedInstance.pushViewController(SettingController(), animated: true)
     }
 }
-

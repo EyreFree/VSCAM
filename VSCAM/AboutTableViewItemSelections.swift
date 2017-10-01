@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class AboutTableViewItemSelections: BaseTableViewRow {
@@ -112,4 +111,3 @@ class AboutTableViewItemSelections: BaseTableViewRow {
         return CGSize.screen().height - 417 - 77
     }
 }
-

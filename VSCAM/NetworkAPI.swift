@@ -1,5 +1,4 @@
 
-
 import UIKit
 import Alamofire
 
@@ -342,4 +341,3 @@ class NetworkAPI {
         }
     }
 }
-

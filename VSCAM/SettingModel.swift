@@ -1,9 +1,7 @@
 
-
 import Foundation
 
 class SettingModel {
 
 
 }
-

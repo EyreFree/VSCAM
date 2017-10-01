@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class RegisteTableViewItem: BaseTableViewRow {
@@ -398,4 +397,3 @@ class RegisteTableViewItem: BaseTableViewRow {
         return CGSize.screen().height
     }
 }
-

@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
@@ -72,4 +71,3 @@ class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         Function.HideKeyboard()
     }
 }
-

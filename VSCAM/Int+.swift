@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 extension Int {
@@ -27,4 +26,3 @@ extension Int64 {
         return CGFloat(self)
     }
 }
-

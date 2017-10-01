@@ -1,5 +1,4 @@
 
-
 import UIKit
 import JGProgressHUD
 
@@ -61,4 +60,3 @@ class MUGProgressIndicator: JGProgressHUDIndicatorView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

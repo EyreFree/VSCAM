@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class SettingTableView: BaseTableView {
@@ -55,4 +54,3 @@ class SettingTableView: BaseTableView {
         }
     }
 }
-

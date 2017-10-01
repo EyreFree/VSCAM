@@ -1,5 +1,4 @@
 
-
 import UIKit
 import SDWebImage
 
@@ -86,4 +85,3 @@ class AboutController: BaseViewController {
         }
     }
 }
-

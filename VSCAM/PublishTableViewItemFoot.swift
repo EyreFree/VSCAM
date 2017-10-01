@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class PublishTableViewItemFoot: BaseTableViewRow {
@@ -21,4 +20,3 @@ class PublishTableViewItemFoot: BaseTableViewRow {
         return 89
     }
 }
-

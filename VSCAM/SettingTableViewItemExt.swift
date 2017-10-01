@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class SettingTableViewItemExt: BaseTableViewRow {
@@ -92,4 +91,3 @@ class SettingTableViewItemExt: BaseTableViewRow {
         return 140
     }
 }
-

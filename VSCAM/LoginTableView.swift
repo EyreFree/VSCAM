@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class LoginTableView: BaseTableView {
@@ -54,4 +53,3 @@ class LoginTableView: BaseTableView {
         }
     }
 }
-

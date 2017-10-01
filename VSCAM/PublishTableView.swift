@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class PublishTableView: BaseTableView {
@@ -64,4 +63,3 @@ class PublishTableView: BaseTableView {
         }
     }
 }
-

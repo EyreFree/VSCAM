@@ -1,5 +1,4 @@
 
-
 import Foundation
 import UIKit
 
@@ -34,4 +33,3 @@ extension UIColor {
         return nil
     }
 }
-

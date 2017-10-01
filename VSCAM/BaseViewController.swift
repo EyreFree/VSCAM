@@ -1,5 +1,4 @@
 
-
 import UIKit
 import RxSwift
 
@@ -23,4 +22,3 @@ class BaseViewController: UIViewController {
         //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
-

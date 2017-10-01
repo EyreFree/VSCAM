@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class Regex {
@@ -11,4 +10,3 @@ class Regex {
     static let NumberInt = "^[0-9]*$"
     static let NumberDouble = "^[0-9.]*$"
 }
-

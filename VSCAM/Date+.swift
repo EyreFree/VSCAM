@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 extension Date {
@@ -35,4 +34,3 @@ extension Date {
         return Date(timeIntervalSince1970: Double(value))
     }
 }
-

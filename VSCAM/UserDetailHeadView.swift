@@ -1,5 +1,4 @@
 
-
 import UIKit
 import SnapKit
 
@@ -145,4 +144,3 @@ class UserDetailHeadView: UIView {
         }
     }
 }
-

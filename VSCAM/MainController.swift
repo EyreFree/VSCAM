@@ -1,5 +1,4 @@
 
-
 import UIKit
 import MJRefresh
 import Photos
@@ -337,4 +336,3 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         }
     }
 }
-

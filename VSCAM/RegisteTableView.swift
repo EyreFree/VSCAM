@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class RegisteTableView: BaseTableView {
@@ -54,4 +53,3 @@ class RegisteTableView: BaseTableView {
         }
     }
 }
-

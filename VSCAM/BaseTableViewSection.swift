@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class BaseTableViewSection: NSObject {
@@ -45,4 +44,3 @@ class BaseTableViewSection: NSObject {
         return CGFloat.zeroHeight
     }
 }
-

@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -98,4 +97,3 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
         return reusableview;
     }
 }
-

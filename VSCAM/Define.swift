@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class Define {
@@ -14,4 +13,3 @@ class Define {
     // always todo do not remove this mark
     static let isDebug = false
 }
-

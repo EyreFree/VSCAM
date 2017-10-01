@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class AboutTableViewItemFooter: BaseTableViewRow {
@@ -41,4 +40,3 @@ class AboutTableViewItemFooter: BaseTableViewRow {
         return 77
     }
 }
-

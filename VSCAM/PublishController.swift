@@ -1,5 +1,4 @@
 
-
 import UIKit
 import MJRefresh
 import LFRoundProgressView
@@ -399,4 +398,3 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         return returnMark
     }
 }
-

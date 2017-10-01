@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 extension UITableView {
@@ -27,4 +26,3 @@ extension UITableView {
         }
     }
 }
-

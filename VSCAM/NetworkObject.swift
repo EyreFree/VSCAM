@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class PhotoObject {
@@ -473,4 +472,3 @@ class UserSelfInfoObject: UserInfoObject {
         }
     }
 }
-

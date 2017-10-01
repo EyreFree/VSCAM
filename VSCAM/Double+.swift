@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 extension Double {
@@ -9,4 +8,3 @@ extension Double {
         return CGFloat(self)
     }
 }
-

@@ -1,5 +1,4 @@
 
-
 import Foundation
 
 class NetworkError {
@@ -23,4 +22,3 @@ class NetworkError {
         }
     }
 }
-

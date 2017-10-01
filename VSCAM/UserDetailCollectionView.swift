@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class UserDetailCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
@@ -52,4 +51,3 @@ class UserDetailCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
         return items[indexPath.section].size(collectionView: self, indexPath: indexPath).height
     }
 }
-

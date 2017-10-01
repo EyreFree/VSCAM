@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class BaseCollectionViewItem {
@@ -58,4 +57,3 @@ class BaseCollectionViewItem {
         return CGFloat.zeroHeight
     }
 }
-

@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class PublishTableViewItemHead: BaseTableViewRow {
@@ -27,4 +26,3 @@ class PublishTableViewItemHead: BaseTableViewRow {
         return screenWidth
     }
 }
-

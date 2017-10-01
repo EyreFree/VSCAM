@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class ImageDetailTableView: BaseTableView {
@@ -77,4 +76,3 @@ class ImageDetailTableView: BaseTableView {
         }
     }
 }
-

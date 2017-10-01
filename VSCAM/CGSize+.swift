@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 extension CGSize {
@@ -9,4 +8,3 @@ extension CGSize {
         return UIScreen.main.bounds.size
     }
 }
-

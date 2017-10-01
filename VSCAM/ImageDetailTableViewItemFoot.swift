@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class ImageDetailTableViewItemFoot: BaseTableViewRow {
@@ -28,4 +27,3 @@ class ImageDetailTableViewItemFoot: BaseTableViewRow {
         return 0
     }
 }
-

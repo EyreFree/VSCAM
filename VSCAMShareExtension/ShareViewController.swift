@@ -1,10 +1,3 @@
-//
-//  ShareViewController.swift
-//  VSCAMShareExtension
-//
-//  Created by EyreFree on 17/1/1.
-//  Copyright © 2017年 EyreFree. All rights reserved.
-//
 
 import UIKit
 import Social

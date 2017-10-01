@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class LoginTableViewItem: BaseTableViewRow {
@@ -259,4 +258,3 @@ class LoginTableViewItem: BaseTableViewRow {
         return CGSize.screen().height
     }
 }
-

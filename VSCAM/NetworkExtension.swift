@@ -1,5 +1,4 @@
 
-
 extension Double {
 
     static func fromJson(_ dict: Any?) -> Double? {
@@ -95,4 +94,3 @@ extension NSData {
         return nil
     }
 }
-

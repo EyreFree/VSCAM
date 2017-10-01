@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 extension UIImage {
@@ -116,4 +115,3 @@ extension UIImage {
         return self.size.height / self.size.width
     }
 }
-
