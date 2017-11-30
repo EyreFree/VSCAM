@@ -2,6 +2,7 @@
 
 <p align="center">
 <a href="https://travis-ci.org/EyreFree/VSCAM"><img src="http://img.shields.io/travis/EyreFree/VSCAM.svg"></a>
+<a href="https://codebeat.co/projects/github-com-eyrefree-vscam-master"><img alt="codebeat badge" src="https://codebeat.co/badges/042a96e8-e93a-4f98-bba7-da9c806647e9" /></a>
 <a href="https://github.com/apple/swift"><img src="https://img.shields.io/badge/language-swift-orange.svg"></a>
 <a href="https://twitter.com/EyreFree777"><img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat"></a>
 <a href="http://weibo.com/eyrefree777"><img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat"></a>
@@ -63,5 +64,7 @@ Android 版源码参见：[https://github.com/ayaseruri/vscam](https://github.co
 - 施工：[EyreFree](https://github.com/EyreFree), eyrefree@eyrefree.org
 
 ## 协议
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png)
 
 VSCAM 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
