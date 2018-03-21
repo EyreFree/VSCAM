@@ -12,15 +12,18 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
-  - RxCocoa (3.0.1):
-    - RxSwift (~> 3.0)
-  - RxSwift (3.0.1)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
-  - SnapKit (3.0.2)
+  - SnapKit (4.0.0)
   - SVProgressHUD (2.0.4)
-  - SwiftMessages (3.0.3)
+  - SwiftMessages (4.1.0)
   - UMengAnalytics-NO-IDFA (4.1.9)
   - YLGIFImage (0.11)
 
@@ -33,12 +36,13 @@ DEPENDENCIES:
   - LFRoundProgressView (~> 1.0.0)
   - MJRefresh (~> 3.1.0)
   - NJKWebViewProgress (~> 0.2.3)
-  - RxCocoa (~> 3.0.1)
-  - RxSwift (~> 3.0.1)
+  - R.swift
+  - RxCocoa (~> 4.1.2)
+  - RxSwift (~> 4.1.2)
   - SDWebImage (~> 3.7.6)
-  - SnapKit (~> 3.0.1)
+  - SnapKit (~> 4.0.0)
   - SVProgressHUD (~> 2.0.4)
-  - SwiftMessages (~> 3.0.3)
+  - SwiftMessages (~> 4.1.0)
   - UMengAnalytics-NO-IDFA (~> 4.1.5)
   - YLGIFImage (= 0.11)
 
@@ -51,15 +55,17 @@ SPEC CHECKSUMS:
   LFRoundProgressView: c4a404354fb9989ec4bc6ad2b3cde834f983d72b
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
-  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
-  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
-  SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   UMengAnalytics-NO-IDFA: 985292af177111685325c90c321094172b95d2cb
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: ecb35746b2f63b3a757742b1d703d8884c38f39c
+PODFILE CHECKSUM: adde0d3bb8fa49522653a1a587a2263424de446c
 
 COCOAPODS: 1.3.1
