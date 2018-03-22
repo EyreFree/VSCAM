@@ -18,7 +18,7 @@ class LoginTableViewItem: BaseTableViewRow {
         } else {
             let view = UIImageView()
             view.tag = Tag.make(3)
-            view.image = UIImage(named: "图标_小人")
+            view.image = R.image.图标_小人()
             view.contentMode = .scaleAspectFit
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {

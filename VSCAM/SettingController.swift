@@ -72,7 +72,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_返回_黑")
+            view.image = R.image.按钮_返回_黑()
             view.tag = Tag.make(0)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
@@ -91,7 +91,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_更多_黑")
+            view.image = R.image.按钮_更多_黑()
             view.tag = Tag.make(1)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(

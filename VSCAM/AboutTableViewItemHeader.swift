@@ -18,7 +18,7 @@ class AboutTableViewItemHeader: BaseTableViewRow {
             let view = UIImageView()
             view.tag = Tag.make(3)
             view.contentMode = .scaleAspectFit
-            view.image = UIImage(named: "icon")
+            view.image = R.image.icon()
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in

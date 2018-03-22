@@ -2,6 +2,7 @@
 
 import UIKit
 import MJRefresh
+import Rswift
 
 class ImageDetailController: BaseViewController {
 
@@ -39,7 +40,7 @@ class ImageDetailController: BaseViewController {
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_返回_白")
+            view.image = R.image.按钮_返回_白()
             view.tag = Tag.make(4)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
@@ -58,7 +59,7 @@ class ImageDetailController: BaseViewController {
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_更多_白")
+            view.image = R.image.按钮_更多_白()
             view.tag = Tag.make(5)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(

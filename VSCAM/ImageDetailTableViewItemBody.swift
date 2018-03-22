@@ -153,7 +153,7 @@ class ImageDetailTableViewItemBody: BaseTableViewRow {
                     }
                     let apertureIconView = UIImageView()
                     apertureIconView.tag = Tag.make(12)
-                    apertureIconView.image = UIImage(named: "图标_光圈")
+                    apertureIconView.image = R.image.图标_光圈()
                     apertureIconView.contentMode = .center
                     tryInfoBackView.addSubview(apertureIconView)
                     apertureIconView.snp.makeConstraints {
@@ -207,7 +207,7 @@ class ImageDetailTableViewItemBody: BaseTableViewRow {
                     }
                     let isoIconView = UIImageView()
                     isoIconView.tag = Tag.make(14)
-                    isoIconView.image = UIImage(named: "图标_ISO")
+                    isoIconView.image = R.image.图标_ISO()
                     isoIconView.contentMode = .center
                     tryInfoBackView.addSubview(isoIconView)
                     isoIconView.snp.makeConstraints {

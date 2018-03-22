@@ -64,7 +64,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_返回_黑")
+            view.image = R.image.按钮_返回_黑()
             view.tag = Tag.make(0)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
@@ -197,7 +197,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
         //选择圆圈
         if let view = self.view.viewWithTag(Tag.make(26)) as? UIImageView {
-            view.image = UIImage(named: model.agree.value ? "图标_选择_是" : "图标_选择_否")
+            view.image = model.agree.value ? R.image.图标_选择_是() : R.image.图标_选择_否()
         }
     }
 

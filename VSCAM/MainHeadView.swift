@@ -122,7 +122,7 @@ class MainHeadView: UIView {
         } else {
             let view = UIImageView()
             view.contentMode = .scaleAspectFit
-            view.image = UIImage(named: "logo")
+            view.image = R.image.logo()
             view.tag = Tag.make(5)
             self.addSubview(view)
             view.snp.makeConstraints {
@@ -139,7 +139,7 @@ class MainHeadView: UIView {
 
         } else {
             let view = UIButton()
-            view.setImage(UIImage(named: "按钮_新建"), for: .normal)
+            view.setImage(R.image.按钮_新建(), for: .normal)
             view.tag = Tag.make(6)
             view.isUserInteractionEnabled = true
             view.addTarget(parentViewController, action: #selector(MainController.publishClicked), for: .touchUpInside)

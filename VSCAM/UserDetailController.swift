@@ -76,7 +76,7 @@ class UserDetailController: BaseViewController {
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_返回_黑")
+            view.image = R.image.按钮_返回_黑()
             view.tag = Tag.make(4)
             view.isUserInteractionEnabled = true
             view.addGestureRecognizer(
@@ -95,7 +95,7 @@ class UserDetailController: BaseViewController {
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_更多_黑")
+            view.image = R.image.按钮_更多_黑()
             view.tag = Tag.make(5)
             view.isUserInteractionEnabled = true
             view.isHidden = isSelf
@@ -115,7 +115,7 @@ class UserDetailController: BaseViewController {
         } else {
             let view = UIImageView()
             view.contentMode = .center
-            view.image = UIImage(named: "按钮_设置_黑")
+            view.image = R.image.按钮_设置_黑()
             view.tag = Tag.make(6)
             view.isUserInteractionEnabled = true
             view.isHidden = !isSelf
@@ -239,15 +239,15 @@ class UserDetailController: BaseViewController {
         }
 
         if let view = self.view.viewWithTag(Tag.make(4)) as? UIImageView {
-            view.image = UIImage(named: alpha <= 0 ? "按钮_返回_白" : "按钮_返回_黑")
+            view.image = alpha <= 0 ? R.image.按钮_返回_白() : R.image.按钮_返回_黑()
         }
 
         if let view = self.view.viewWithTag(Tag.make(5)) as? UIImageView {
-            view.image = UIImage(named: alpha <= 0 ? "按钮_更多_白" : "按钮_更多_黑")
+            view.image = alpha <= 0 ? R.image.按钮_更多_白() : R.image.按钮_更多_黑()
         }
 
         if let view = self.view.viewWithTag(Tag.make(6)) as? UIImageView {
-            view.image = UIImage(named: alpha <= 0 ? "按钮_设置_白" : "按钮_设置_黑")
+            view.image = alpha <= 0 ? R.image.按钮_设置_白() : R.image.按钮_设置_黑()
         }
     }
 

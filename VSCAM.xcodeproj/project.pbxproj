@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1216764E20638BDC00872D06 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1216764D20638BDC00872D06 /* R.generated.swift */; };
 		121DE03A1DCCB11900479BF0 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DE0391DCCB11900479BF0 /* MainModel.swift */; };
 		121DE03C1DCCECA400479BF0 /* MainCollectinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DE03B1DCCECA400479BF0 /* MainCollectinView.swift */; };
 		1220F9E51DCB9EB6004379AD /* SecurityStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1220F9E41DCB9EB6004379AD /* SecurityStrategy.m */; };
@@ -127,6 +128,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1216764D20638BDC00872D06 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		121DE0391DCCB11900479BF0 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		121DE03B1DCCECA400479BF0 /* MainCollectinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectinView.swift; sourceTree = "<group>"; };
 		1220F9E31DCB9EB6004379AD /* SecurityStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityStrategy.h; sourceTree = "<group>"; };
@@ -635,6 +637,7 @@
 		8488D44E1DAA4986000E703C /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				1216764D20638BDC00872D06 /* R.generated.swift */,
 				12F625631E349C3200356EF3 /* Localizable.strings */,
 				8488D4401DAA46FD000E703C /* Main.storyboard */,
 				8488D4431DAA46FD000E703C /* Assets.xcassets */,
@@ -763,6 +766,7 @@
 			buildConfigurationList = 8488D44B1DAA46FD000E703C /* Build configuration list for PBXNativeTarget "VSCAM" */;
 			buildPhases = (
 				F27AC73B40782171E4CE4518 /* [CP] Check Pods Manifest.lock */,
+				1216764C20638B8D00872D06 /* R.swift */,
 				8488D4351DAA46FD000E703C /* Sources */,
 				8488D4361DAA46FD000E703C /* Frameworks */,
 				8488D4371DAA46FD000E703C /* Resources */,
@@ -851,6 +855,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1216764C20638B8D00872D06 /* R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = R.swift;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
 		12E195881E23A7C400EEDA0B /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1028,6 +1046,7 @@
 				129ED0781DF6A00600E0AB0C /* AboutTableView.swift in Sources */,
 				12B3D4F71DD72FC100BD4388 /* UserDetailCollectionViewItem.swift in Sources */,
 				12E61F141DE1F1960087BDC3 /* PublishModel.swift in Sources */,
+				1216764E20638BDC00872D06 /* R.generated.swift in Sources */,
 				12E61F081DE08D6E0087BDC3 /* SettingTableView.swift in Sources */,
 				122429D71DB3D8B000C8EE29 /* CGFloat+.swift in Sources */,
 				1298EDF11DAE984400F8B4BD /* Variable.swift in Sources */,

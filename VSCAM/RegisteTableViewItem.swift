@@ -18,7 +18,7 @@ class RegisteTableViewItem: BaseTableViewRow {
         } else {
             let view = UIImageView()
             view.tag = Tag.make(13)
-            view.image = UIImage(named: "图标_小笔")
+            view.image = R.image.图标_小笔()
             view.contentMode = .scaleAspectFit
             cell.contentView.addSubview(view)
             view.snp.makeConstraints {
@@ -325,11 +325,11 @@ class RegisteTableViewItem: BaseTableViewRow {
 
             //选择圆圈
             if let view = tryAgreementFrameView.viewWithTag(Tag.make(26)) as? UIImageView {
-                view.image = UIImage(named: agree ? "图标_选择_是" : "图标_选择_否")
+                view.image = agree ? R.image.图标_选择_是() : R.image.图标_选择_否()
             } else {
                 let view = UIImageView()
                 view.tag = Tag.make(26)
-                view.image = UIImage(named: agree ? "图标_选择_是" : "图标_选择_否")
+                view.image = agree ? R.image.图标_选择_是() : R.image.图标_选择_否()
                 view.contentMode = .scaleAspectFit
                 tryAgreementFrameView.addSubview(view)
                 view.snp.makeConstraints {
