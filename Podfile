@@ -20,7 +20,8 @@ target 'VSCAM' do
 
     pod 'SnapKit', '~> 4.0.0'                   # 约束
     pod 'Alamofire', '~> 4.0.1'                 # 网络
-    pod 'R.swift'				                # 资源引用
+    pod 'R.swift', '~> 4.0.0'				    # 资源引用
     pod 'SDWebImage', '~> 3.7.6'                # 图片加载
+    pod 'Kingfisher', '~> 4.6.1'                # 图片加载
     pod 'MJRefresh', '~> 3.1.0'                 # 上拉/下拉刷新
 end

@@ -4,6 +4,7 @@ PODS:
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
   - JGProgressHUD (1.3.6)
+  - Kingfisher (4.6.1)
   - KMPlaceholderTextView (1.3.0)
   - LFRoundProgressView (1.0.0)
   - MJRefresh (3.1.12)
@@ -32,11 +33,12 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - JGProgressHUD (~> 1.3.2)
+  - Kingfisher (~> 4.6.1)
   - KMPlaceholderTextView (~> 1.3.0)
   - LFRoundProgressView (~> 1.0.0)
   - MJRefresh (~> 3.1.0)
   - NJKWebViewProgress (~> 0.2.3)
-  - R.swift
+  - R.swift (~> 4.0.0)
   - RxCocoa (~> 4.1.2)
   - RxSwift (~> 4.1.2)
   - SDWebImage (~> 3.7.6)
@@ -51,6 +53,7 @@ SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   JGProgressHUD: cd599e041ab8363ac5ce83a21a6d95e21d359152
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
   LFRoundProgressView: c4a404354fb9989ec4bc6ad2b3cde834f983d72b
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -66,6 +69,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 985292af177111685325c90c321094172b95d2cb
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: adde0d3bb8fa49522653a1a587a2263424de446c
+PODFILE CHECKSUM: a11f992e6cd96e64a50ce381fb2bd8b67fcba61f
 
 COCOAPODS: 1.3.1
