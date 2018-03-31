@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
+// import Fabric
+// import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //自定义
     //配置 Fabric
     func setFabricParam() {
-        Fabric.with([Crashlytics.self])
+        // Fabric.with([Crashlytics.self])
     }
 
     //配置 UMeng 参数
