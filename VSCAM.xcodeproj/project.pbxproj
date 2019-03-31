@@ -771,7 +771,6 @@
 				8488D4361DAA46FD000E703C /* Frameworks */,
 				8488D4371DAA46FD000E703C /* Resources */,
 				835A624CD3466F729B7575F7 /* [CP] Embed Pods Frameworks */,
-				306710A19D3B89DE7E18A689 /* [CP] Copy Pods Resources */,
 				123C140C1E18CE8E00ED127B /* Embed App Extensions */,
 				12E195881E23A7C400EEDA0B /* Fabric */,
 			);
@@ -792,18 +791,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = EyreFree;
 				TargetAttributes = {
 					123C13FD1E18CE8D00ED127B = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = P3X2725LYY;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					8488D4381DAA46FD000E703C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = P3X2725LYY;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -811,7 +808,7 @@
 			};
 			buildConfigurationList = 8488D4341DAA46FD000E703C /* Build configuration list for PBXProject "VSCAM" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -883,28 +880,13 @@
 			shellPath = /bin/sh;
 			shellScript = "# \"${PODS_ROOT}/Fabric/run\" 87b627df0c46f63678df0870ac602fcd8ea18c1c 7441065bc67fcce4bb864bd117e84d8eea3ff6c24d9f14a83c26cf1e350e8d20";
 		};
-		306710A19D3B89DE7E18A689 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		835A624CD3466F729B7575F7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VSCAM/Pods-VSCAM-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
@@ -941,7 +923,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VSCAM/Pods-VSCAM-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VSCAM/Pods-VSCAM-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F27AC73B40782171E4CE4518 /* [CP] Check Pods Manifest.lock */ = {
@@ -1122,7 +1104,7 @@
 		123C14091E18CE8E00ED127B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = P3X2725LYY;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VSCAMShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1138,7 +1120,7 @@
 		123C140A1E18CE8E00ED127B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = P3X2725LYY;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VSCAMShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1165,6 +1147,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1172,6 +1155,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1224,6 +1208,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1231,6 +1216,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1268,7 +1254,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P3X2725LYY;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VSCAM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EyreFree.VSCAM;
@@ -1286,7 +1272,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P3X2725LYY;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VSCAM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EyreFree.VSCAM;

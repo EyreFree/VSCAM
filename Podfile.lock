@@ -43,6 +43,26 @@ DEPENDENCIES:
   - UMengAnalytics-NO-IDFA (~> 4.1.5)
   - YLGIFImage (= 0.11)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - JGProgressHUD
+    - Kingfisher
+    - KMPlaceholderTextView
+    - LFRoundProgressView
+    - MJRefresh
+    - NJKWebViewProgress
+    - R.swift
+    - R.swift.Library
+    - RxCocoa
+    - RxSwift
+    - SDWebImage
+    - SnapKit
+    - SVProgressHUD
+    - SwiftMessages
+    - UMengAnalytics-NO-IDFA
+    - YLGIFImage
+
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   JGProgressHUD: cd599e041ab8363ac5ce83a21a6d95e21d359152
@@ -64,4 +84,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 12b7121cccf78838f3e18be4ce5cdb175b9d28ef
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.6.1
