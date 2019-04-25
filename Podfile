@@ -1,11 +1,9 @@
-
+inhibit_all_warnings!
 platform :ios, '9.0'
 use_frameworks!
 
 target 'VSCAM' do
-    pod 'UMengAnalytics-NO-IDFA', '~> 4.1.5'    # UMeng 统计分析
-    # pod 'Fabric'                                # 统计
-    # pod 'Crashlytics'                           # 错误分析
+    pod 'BaiduMobStatCodeless'                  # 百度统计分析
 
     pod 'RxSwift', '~> 4.1.2'                   # RxSwift
     pod 'RxCocoa', '~> 4.1.2'                   # RxCocoa

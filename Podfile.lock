@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
+  - BaiduMobStatCodeless (5.0.0)
   - JGProgressHUD (1.3.6)
   - Kingfisher (4.6.1)
   - KMPlaceholderTextView (1.3.0)
@@ -22,11 +23,11 @@ PODS:
   - SnapKit (4.0.0)
   - SVProgressHUD (2.0.4)
   - SwiftMessages (4.1.0)
-  - UMengAnalytics-NO-IDFA (4.1.9)
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
+  - BaiduMobStatCodeless
   - JGProgressHUD (~> 1.3.2)
   - Kingfisher (~> 4.6.1)
   - KMPlaceholderTextView (~> 1.3.0)
@@ -40,12 +41,12 @@ DEPENDENCIES:
   - SnapKit (~> 4.0.0)
   - SVProgressHUD (~> 2.0.4)
   - SwiftMessages (~> 4.1.0)
-  - UMengAnalytics-NO-IDFA (~> 4.1.5)
   - YLGIFImage (= 0.11)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BaiduMobStatCodeless
     - JGProgressHUD
     - Kingfisher
     - KMPlaceholderTextView
@@ -60,11 +61,11 @@ SPEC REPOS:
     - SnapKit
     - SVProgressHUD
     - SwiftMessages
-    - UMengAnalytics-NO-IDFA
     - YLGIFImage
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  BaiduMobStatCodeless: ef513de2f4fd1f39cf1ca70f0d2ddaedd0afb3ca
   JGProgressHUD: cd599e041ab8363ac5ce83a21a6d95e21d359152
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
@@ -79,9 +80,8 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
-  UMengAnalytics-NO-IDFA: 985292af177111685325c90c321094172b95d2cb
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 12b7121cccf78838f3e18be4ce5cdb175b9d28ef
+PODFILE CHECKSUM: 87858890908365cc3da905bba590cb3dec45b36b
 
 COCOAPODS: 1.6.1

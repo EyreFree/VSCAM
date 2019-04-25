@@ -8,9 +8,6 @@
 //Background Blur
 #import "SecurityStrategy.h"
 
-//UMeng
-#import "UMMobClick/MobClick.h"
-
 //不规则瀑布流
 #import "MyWaterflowLayout.h"
 

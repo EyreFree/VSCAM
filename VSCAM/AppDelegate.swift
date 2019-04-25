@@ -7,8 +7,6 @@
 //
 
 import UIKit
-// import Fabric
-// import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,9 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
         ) -> Bool {
-
-        setFabricParam()
-        setUMengParam()
 
         setVersion()
         loadStory()
@@ -102,21 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     //自定义
-    //配置 Fabric
-    func setFabricParam() {
-        // Fabric.with([Crashlytics.self])
-    }
-
-    //配置 UMeng 参数
-    func setUMengParam() {
-        let config = UMAnalyticsConfig()
-        config.appKey = "57fe536267e58ee0e6003e6c"
-        config.bCrashReportEnabled = true
-        config.channelId = "App Store"
-        config.ePolicy = BATCH
-        MobClick.start(withConfigure: config)
-    }
-
     func setVersion() {
         //更新
         let verOut = UserDefaults.standard.string(forKey: "VSCAM_SAVE_VERSION")
