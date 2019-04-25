@@ -7,7 +7,7 @@ extension String {
     //替换前缀
     func replacePrefix(string: String, with: String) -> String {
         if self.hasPrefix(string) {
-            return with + String(self.dropFirst(string.characters.count))
+            return with + String(self.dropFirst(string.count))
         }
         return self
     }
