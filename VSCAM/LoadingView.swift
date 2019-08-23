@@ -16,7 +16,7 @@ class LoadingView: UIView {
             loadingView.layoutChangeAnimationDuration = 0
             loadingView.textLabel.text = title
             //loadingView.indicatorView = MUGProgressIndicator()
-            loadingView.show(in: isTop ? controller.topView() : controller.view, animated: false)
+            loadingView.show(in: isTop ? controller.zTopView : controller.view, animated: false)
         }
     }
 

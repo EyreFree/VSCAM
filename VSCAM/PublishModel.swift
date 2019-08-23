@@ -12,7 +12,7 @@ class PublishModel {
     var uploadResult: PhotoUploadObject?
 
     func headImageHeight() -> CGFloat {
-        var scale = 1.f()
+        var scale = 1.cgFloat
         if let tryScale = image?.aspectRatio() {
             scale = tryScale
         }

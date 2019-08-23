@@ -3,8 +3,8 @@ import UIKit
 
 class LoginTableView: BaseTableView {
 
-    override init(_ parentViewController: UIViewController) {
-        super.init(parentViewController)
+    override init() {
+        super.init()
         onInit()
     }
 

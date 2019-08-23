@@ -261,7 +261,7 @@ class NetworkAPI {
 
     //修改头像
     func avatarSet(avatar: UIImage, finish: @escaping (String?) -> Void) {
-        if let tryAvatarData = UIImageJPEGRepresentation(avatar, 1) {
+        if let tryAvatarData = avatar.jpg(compressionQuality: 1) {
             refreshManagerUnlimitedCookies()
             managerUnlimited.upload(multipartFormData: {
                 (multipartFormData) in

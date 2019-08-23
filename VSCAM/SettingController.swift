@@ -45,20 +45,20 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(SettingController.keyboardWillShow(notification:)),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(SettingController.keyboardWillHide(notification:)),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
     }
 
     func removeKeyboardObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func addModel() {
@@ -109,14 +109,14 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
         if let _ = self.view.viewWithTag(Tag.make(2)) as? SettingTableView {
 
         } else {
-            let view = SettingTableView(self)
+            let view = SettingTableView()
             view.tag = Tag.make(2)
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.bottom.equalTo(0)
             }
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             self.tableView = view
         }
     }
@@ -169,8 +169,8 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
     @objc func changeClicked() {
         Function.HideKeyboard()
-        if let tryDesc = (self.view.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean(),
-            let tryUrl = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean(),
+        if let tryDesc = (self.view.viewWithTag(Tag.make(5)) as? KMPlaceholderTextView)?.text?.clean,
+            let tryUrl = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean,
             let tryConfirmButton = self.view.viewWithTag(Tag.make(8)) as? UIButton {
 
             if tryConfirmButton.isEnabled {
@@ -209,7 +209,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                     Variable.loginUserInfoSetAvatar(newValue: 0)
 
                     Variable.loginNeedRefreshMain = true
-                    trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
+                    trySelf.tableView?.reloadRowsWithoutAnimation(indexPathArray: [IndexPath(row: 0, section: 0)])
                     Function.MessageBox(
                         trySelf, title: String.Localized("提示"), content: String.Localized("删除头像成功"), type: .success
                     )
@@ -244,7 +244,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     }
 
     @objc func clearCacheClicked() {
-        let cacheSize = Int(SDImageCache.shared().getSize()).f() / 1024.f() / 1024.f()
+        let cacheSize = Int(SDImageCache.shared.totalDiskSize()).cgFloat / 1024.cgFloat / 1024.cgFloat
         let cacheString = String(format: " %0.2f MB", cacheSize)
 
         let alert = UIAlertController(
@@ -261,7 +261,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
             UIAlertAction(title: String.Localized("确定"), style: .default) {
                 [weak self] (action) -> Void in
                 if let _ = self {
-                    SDImageCache.shared().clearDisk()
+                    SDImageCache.shared.clearDisk()
                 }
             }
         )
@@ -283,7 +283,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     //键盘出现
     @objc func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let tryHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+            if let tryHeight = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
 
                 //找到当前焦点编辑框并且滚到那里去
@@ -365,8 +365,8 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
     }
 
     private var pickerImage: UIImage!
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let selectImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             pickerImage = selectImage.copy() as? UIImage
 
             LoadingView.sharedInstance.show(controller: self)
@@ -382,10 +382,10 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
 
                         if let tryUrlBig = Variable.loginUserInfo?.avatarUrl(),
                             let tryUrlSmall = Variable.loginUserInfo?.avatarUrl(isBig: false) {
-                            SDWebImageManager.shared().saveImage(toCache: trySelf.pickerImage, for: URL(myString: tryUrlBig))
-                            SDWebImageManager.shared().saveImage(toCache: trySelf.pickerImage, for: URL(myString: tryUrlSmall))
+                            SDImageCache.shared.store(trySelf.pickerImage, forKey: tryUrlBig, completion: nil)
+                            SDImageCache.shared.store(trySelf.pickerImage, forKey: tryUrlSmall, completion: nil)
                         }
-                        trySelf.tableView?.reloadRows(indexPathArray: [IndexPath(row: 0, section: 0)])
+                        trySelf.tableView?.reloadRowsWithoutAnimation(indexPathArray: [IndexPath(row: 0, section: 0)])
 
                         Function.MessageBox(
                             trySelf,

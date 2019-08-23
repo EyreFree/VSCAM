@@ -77,7 +77,7 @@ class UserDetailCollectinViewItem: BaseCollectionViewItem {
     override func size(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
         let screenWidth = CGFloat(UIScreen.main.bounds.size.width - 30) / CGFloat(2.0)
         if let tryScale = ((collectionView as? UserDetailCollectinView)?.parentViewController as? UserDetailController)?.model?.imageList?.grids?[indexPath.row].scale {
-            return CGSize(width: screenWidth, height: screenWidth * tryScale.f() + 30)
+            return CGSize(width: screenWidth, height: screenWidth * tryScale.cgFloat + 30)
         }
         return CGSize(width: screenWidth, height: screenWidth)
     }

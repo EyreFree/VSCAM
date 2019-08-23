@@ -7,7 +7,7 @@ class SettingTableViewItem: BaseTableViewRow {
     //MARK:- Cell
     override func cell(tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier()) ?? UITableViewCell(
-            style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier()
+            style: UITableViewCell.CellStyle.default, reuseIdentifier: reuseIdentifier()
         )
         cell.selectionStyle = .none
 
@@ -202,12 +202,12 @@ class SettingTableViewItem: BaseTableViewRow {
                 searchField.textAlignment = .left
                 let attributedPlaceholder = NSAttributedString(
                     string: String.Localized("个人博客 or 个人网站"), attributes: [
-                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
-                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12)
+                        NSAttributedString.Key.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
-                searchField.clearButtonMode = UITextFieldViewMode.whileEditing
+                searchField.clearButtonMode = UITextField.ViewMode.whileEditing
                 searchField.delegate = tryController
                 searchField.tag = Tag.make(7)
                 tryEditPasswordFrameView.addSubview(searchField)

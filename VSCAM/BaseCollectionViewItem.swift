@@ -10,11 +10,11 @@ class BaseCollectionViewItem {
 
     func registerClass(collectionView: UICollectionView) {
         collectionView.register(
-            UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: reuseIdentifier() + "Header"
         )
         collectionView.register(
-            UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+            UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
             withReuseIdentifier: reuseIdentifier() + "Footer"
         )
         for index in 0 ..< number(collectionView: collectionView) {

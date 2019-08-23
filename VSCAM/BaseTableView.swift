@@ -3,7 +3,6 @@ import UIKit
 
 class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
-    weak var parentViewController: UIViewController?
     var sections = [BaseTableViewSection]()
 
     required init?(coder aDecoder: NSCoder) {
@@ -12,10 +11,8 @@ class BaseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(_ parentViewController: UIViewController) {
+    init() {
         super.init(frame: CGRect.zero, style: .grouped)
-
-        self.parentViewController = parentViewController
     }
 
     func onInit() {

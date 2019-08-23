@@ -3,15 +3,6 @@ import UIKit
 
 extension UIViewController {
 
-    //查找顶层View
-    func topView() -> UIView {
-        var recentVC = self
-        while let parentVC = recentVC.parent {
-            recentVC = parentVC
-        }
-        return recentVC.view
-    }
-
     //MARK:- 导航栏
     //设置导航栏标题
     func setNavigationTitle(title: String) {

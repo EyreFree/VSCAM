@@ -3,7 +3,6 @@ import UIKit
 
 class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    weak var parentViewController: UIViewController?
     var items = [BaseCollectionViewItem]()
 
     required init?(coder aDecoder: NSCoder) {
@@ -11,9 +10,8 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(_ parentViewController: UIViewController) {
+    init() {
         super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
-        self.parentViewController = parentViewController
     }
 
     func onInit() {
@@ -60,7 +58,7 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
         var reusableview = UICollectionReusableView()
 
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             reusableview = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Header", for: indexPath
             )
@@ -75,7 +73,7 @@ class BaseCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, 
                 make.top.left.right.bottom.equalTo(0)
             }
             break
-        case UICollectionElementKindSectionFooter:
+        case UICollectionView.elementKindSectionFooter:
             reusableview = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: items[indexPath.section].reuseIdentifier() + "Footer", for: indexPath
             )

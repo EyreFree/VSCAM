@@ -6,7 +6,7 @@ class PublishTableViewItemHead: BaseTableViewRow {
     //MARK:- Cell
     override func cell(tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier()) ?? UITableViewCell(
-            style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier()
+            style: UITableViewCell.CellStyle.default, reuseIdentifier: reuseIdentifier()
         )
         cell.selectionStyle = .none
 

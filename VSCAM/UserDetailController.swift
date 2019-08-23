@@ -139,7 +139,7 @@ class UserDetailController: BaseViewController {
             view.isUserInteractionEnabled = false
             view.tag = Tag.make(0)
             self.view.addSubview(view)
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.equalTo(0)
@@ -151,10 +151,10 @@ class UserDetailController: BaseViewController {
         if let _ = self.view.viewWithTag(Tag.make(1)) as? UserDetailCollectinView {
 
         } else {
-            let view = UserDetailCollectinView(self)
+            let view = UserDetailCollectinView()
             view.tag = Tag.make(1)
             self.view.addSubview(view)
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.bottom.equalTo(0)
@@ -211,7 +211,7 @@ class UserDetailController: BaseViewController {
     }
 
     func refreshHeadView(offset: CGFloat) {
-        let marginHead = (model.hasAvatar ? 256 : 186).f()
+        let marginHead = (model.hasAvatar ? 256 : 186).cgFloat
         let finalOffset = offset + marginHead
 
         var alpha = (marginHead - finalOffset) / marginHead

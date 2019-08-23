@@ -10,9 +10,9 @@ class ImageDetailModel {
     var image: UIImage?
 
     func headImageHeight() -> CGFloat {
-        var scale = 1.f()
+        var scale = 1.cgFloat
         if let tryScale = (imageBrief?.scale ?? imageDetail?.scale) {
-            scale = tryScale.f()
+            scale = tryScale.cgFloat
         }
         return scale * UIScreen.main.bounds.size.width
     }

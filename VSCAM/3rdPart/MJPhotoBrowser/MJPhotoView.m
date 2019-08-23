@@ -9,6 +9,7 @@
 #import "MJPhoto.h"
 #import "MJPhotoLoadingView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/SDWebImage.h>
 
 #define ESWeak(var, weakVar) __weak __typeof(&*var) weakVar = var
 #define ESStrong_DoNotCheckNil(weakVar, _var) __typeof(&*weakVar) _var = weakVar
@@ -110,12 +111,12 @@
         ESWeak_(_photoLoadingView);
         ESWeak_(_imageView);
 
-        [SDWebImageManager.sharedManager downloadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             ESStrong_(_photoLoadingView);
             if (receivedSize > kMinProgress) {
                 __photoLoadingView.progress = (float)receivedSize/expectedSize;
             }
-        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
             ESStrongSelf;
             ESStrong_(_imageView);
             __imageView.image = image;

@@ -8,8 +8,8 @@ class MainCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override init(_ parentViewController: UIViewController) {
-        super.init(parentViewController)
+    override init() {
+        super.init()
         onInit()
     }
 

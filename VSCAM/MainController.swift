@@ -58,7 +58,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         if let _ = self.view.viewWithTag(Tag.make(0)) as? MainHeadView {
 
         } else {
-            let view = MainHeadView(self)
+            let view = MainHeadView()
             view.isUserInteractionEnabled = true
             view.layer.masksToBounds = false
             view.tag = Tag.make(0)
@@ -74,7 +74,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         if let _ = self.view.viewWithTag(Tag.make(1)) as? MainCollectinView {
 
         } else {
-            let view = MainCollectinView(self)
+            let view = MainCollectinView()
             view.tag = Tag.make(1)
             self.view.addSubview(view)
             view.snp.makeConstraints {
@@ -254,8 +254,8 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
         imagePicker.dismiss(animated: true, completion: nil)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let tryUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let tryUrl = info[UIImagePickerController.InfoKey.referenceURL] as? URL {
             if let tryFetchResult = PHAsset.fetchAssets(withALAssetURLs: [tryUrl], options: nil).firstObject {
                 PHImageManager.default().requestImageData(for: tryFetchResult, options: nil, resultHandler: {
                     [weak self] (imageData, dataUTI, orientation, info) in
@@ -302,7 +302,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
                                 }
                                 if let tryPreset = preset {
                                     trySelf.present(
-                                        PublishController(imageData: tryImageData, preset: tryPreset.clean().uppercased()),
+                                        PublishController(imageData: tryImageData, preset: tryPreset.clean.uppercased()),
                                         animated: true
                                     )
                                     return

@@ -4,17 +4,14 @@ import SnapKit
 
 class MainHeadView: UIView {
 
-    weak var parentViewController: UIViewController!
-
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(_ parentViewController: UIViewController) {
+    init() {
         super.init(frame: CGRect.zero)
 
-        self.parentViewController = parentViewController
         onInit()
     }
 

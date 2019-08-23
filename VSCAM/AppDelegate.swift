@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
         ) -> Bool {
 
         setVersion()
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let view = SecurityStrategy(frame: self.window?.frame ?? UIScreen.main.bounds)
         view.tag = Tag.make(10086)
         for window in UIApplication.shared.windows {
-            if window.windowLevel == UIWindowLevelNormal {
+            if window.windowLevel == UIWindow.Level.normal {
                 window.addSubview(view)
             }
         }
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         //移除模糊效果，进入前台
         for window in UIApplication.shared.windows {
-            if window.windowLevel == UIWindowLevelNormal {
+            if window.windowLevel == UIWindow.Level.normal {
                 let view = window.viewWithTag(Tag.make(10086))
                 view?.removeFromSuperview()
             }
@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(
         _ app: UIApplication,
         open url: URL,
-        options: [UIApplicationOpenURLOptionsKey : Any] = [:]
+        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
         ) -> Bool {
         return Function.openOutUrl(url: url.absoluteString)
     }

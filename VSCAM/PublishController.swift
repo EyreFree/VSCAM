@@ -70,17 +70,17 @@ class PublishController: BaseViewController, UITextFieldDelegate {
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(
             self, selector: #selector(PublishController.keyboardWillShow(notification:)),
-            name: NSNotification.Name.UIKeyboardWillShow, object: nil
+            name: UIResponder.keyboardWillShowNotification, object: nil
         )
         NotificationCenter.default.addObserver(
             self, selector: #selector(PublishController.keyboardWillHide(notification:)),
-            name: NSNotification.Name.UIKeyboardWillHide, object: nil
+            name: UIResponder.keyboardWillHideNotification, object: nil
         )
     }
 
     func removeKeyboardObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func addModel() {
@@ -133,14 +133,14 @@ class PublishController: BaseViewController, UITextFieldDelegate {
         if let _ = self.view.viewWithTag(Tag.make(1)) as? PublishTableView {
 
         } else {
-            let view = PublishTableView(self)
+            let view = PublishTableView()
             view.tag = Tag.make(1)
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.bottom.equalTo(0)
             }
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             self.tableView = view
         }
 
@@ -197,8 +197,8 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             searchField.textAlignment = .left
             let attributedPlaceholder = NSAttributedString(
                 string: String.Localized("输入一句话照片简介"), attributes: [
-                    NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x535353),
-                    NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)
+                    NSAttributedString.Key.foregroundColor : UIColor(valueRGB: 0x535353),
+                    NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)
                 ]
             )
             searchField.attributedPlaceholder = attributedPlaceholder
@@ -254,7 +254,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
                 imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.contentMode = .scaleAspectFill
                 self.view.addSubview(imgView)
-                self.view.sendSubview(toBack: imgView)
+                self.view.sendSubviewToBack(imgView)
                 imgViewReal = imgView
             }
             imgViewReal.snp.remakeConstraints {
@@ -302,10 +302,10 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             }
         } else if self.model.uploadFinished == false {
             Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("图片正在上传"), type: .info)
-        } else if textField.text?.clean().isEmpty != false {
+        } else if textField.text?.clean.isEmpty != false {
             Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("图片描述不能为空"), type: .info)
         } else {
-            if let tryPID = model.uploadResult?.pid, let tryText = textField.text?.clean(), let tryPreset = model.preset, let tryGPS = model.uploadResult?.gps, let tryExif = model.uploadResult?.exif {
+            if let tryPID = model.uploadResult?.pid, let tryText = textField.text?.clean, let tryPreset = model.preset, let tryGPS = model.uploadResult?.gps, let tryExif = model.uploadResult?.exif {
                 LoadingView.sharedInstance.show(controller: self)
                 NetworkAPI.sharedInstance.release(pid: tryPID, text: tryText, preset: tryPreset, exif: tryExif, gps: tryGPS) {
                     [weak self] (errorString) in
@@ -331,7 +331,7 @@ class PublishController: BaseViewController, UITextFieldDelegate {
     //键盘出现
     @objc func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let tryHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+            if let tryHeight = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
                 //底部视图
                 UIView.animate(withDuration: 0.28) {

@@ -6,7 +6,7 @@ class RegisteTableViewItem: BaseTableViewRow {
     //MARK:- Cell
     override func cell(tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier()) ?? UITableViewCell(
-            style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier()
+            style: UITableViewCell.CellStyle.default, reuseIdentifier: reuseIdentifier()
         )
         cell.selectionStyle = .none
 
@@ -69,9 +69,9 @@ class RegisteTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: String.Localized("中英日数字_"), attributes: [
-                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
-                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
-                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
+                        NSAttributedString.Key.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedString.Key.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -125,9 +125,9 @@ class RegisteTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: "@", attributes: [
-                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
-                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
-                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
+                        NSAttributedString.Key.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedString.Key.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder
@@ -182,9 +182,9 @@ class RegisteTableViewItem: BaseTableViewRow {
                 centeredParagraphStyle.alignment = .center
                 let attributedPlaceholder = NSAttributedString(
                     string: "******", attributes: [
-                        NSAttributedStringKey.paragraphStyle: centeredParagraphStyle,
-                        NSAttributedStringKey.foregroundColor : UIColor(valueRGB: 0x878787),
-                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)
+                        NSAttributedString.Key.paragraphStyle: centeredParagraphStyle,
+                        NSAttributedString.Key.foregroundColor : UIColor(valueRGB: 0x878787),
+                        NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)
                     ]
                 )
                 searchField.attributedPlaceholder = attributedPlaceholder

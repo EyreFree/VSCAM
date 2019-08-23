@@ -2,6 +2,8 @@
 #ifndef VSCAM_Bridging_Header_h
 #define VSCAM_Bridging_Header_h
 
+@import EFFoundation;
+
 //MD5
 #import <CommonCrypto/CommonDigest.h>
 

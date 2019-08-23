@@ -32,7 +32,7 @@ extension UIImageView {
         }*/
 
         //加载图片
-        self.sd_setImage(with: Url as URL!, placeholderImage: holderImage, options: options) {
+        self.sd_setImage(with: Url as URL?, placeholderImage: holderImage, options: options) {
             [weak self] (image, error, cacheType, imageUrl) in
             if let strongSelf = self {
                 if nil != image && cacheType == .none && animated {

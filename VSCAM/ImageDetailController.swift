@@ -77,14 +77,14 @@ class ImageDetailController: BaseViewController {
         if let _ = self.view.viewWithTag(Tag.make(1)) as? ImageDetailTableView {
 
         } else {
-            let view = ImageDetailTableView(self)
+            let view = ImageDetailTableView()
             view.tag = Tag.make(1)
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.bottom.equalTo(0)
             }
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             self.tableView = view
         }
         tableView.replaceImages(reloadImage: true)
@@ -103,7 +103,7 @@ class ImageDetailController: BaseViewController {
                 imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.contentMode = .scaleAspectFill
                 self.view.addSubview(imgView)
-                self.view.sendSubview(toBack: imgView)
+                self.view.sendSubviewToBack(imgView)
                 imgViewReal = imgView
             }
             imgViewReal.snp.remakeConstraints {
@@ -170,7 +170,7 @@ class ImageDetailController: BaseViewController {
                 imgView.backgroundColor = UIColor(valueRGB: 0x222222)
                 imgView.contentMode = .scaleAspectFill
                 self.view.addSubview(imgView)
-                self.view.sendSubview(toBack: imgView)
+                self.view.sendSubviewToBack(imgView)
                 imgViewReal = imgView
             }
 

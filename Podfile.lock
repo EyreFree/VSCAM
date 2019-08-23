@@ -1,52 +1,71 @@
 PODS:
-  - Alamofire (4.0.1)
-  - BaiduMobStatCodeless (5.0.0)
-  - JGProgressHUD (1.3.6)
-  - Kingfisher (4.6.1)
-  - KMPlaceholderTextView (1.3.0)
+  - Alamofire (4.8.2)
+  - BaiduMobStatCodeless (5.0.5)
+  - DeviceKit (2.0.0)
+  - EFFoundation (0.5.2):
+    - DeviceKit (>= 2.0.0)
+    - ReachabilitySwift (>= 4.3.1)
+    - SwiftyAttributes (>= 5.1.1)
+  - EFNavigationBar (5.1.1):
+    - DeviceKit (~> 2.0.0)
+  - JGProgressHUD (2.0.4)
+  - Kingfisher (5.7.1)
+  - KMPlaceholderTextView (1.4.0)
   - LFRoundProgressView (1.0.0)
-  - MJRefresh (3.1.12)
+  - MJRefresh (3.2.0)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
-  - R.swift (4.0.0):
-    - R.swift.Library (~> 4.0.0)
-  - R.swift.Library (4.0.0)
-  - RxCocoa (4.1.2):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.1.2)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
-  - SnapKit (4.0.0)
-  - SVProgressHUD (2.0.4)
-  - SwiftMessages (4.1.0)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
+  - ReachabilitySwift (4.3.1)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - SDWebImage (5.1.0):
+    - SDWebImage/Core (= 5.1.0)
+  - SDWebImage/Core (5.1.0)
+  - SnapKit (5.0.1)
+  - SVProgressHUD (2.2.5)
+  - SwiftMessages (7.0.0):
+    - SwiftMessages/App (= 7.0.0)
+  - SwiftMessages/App (7.0.0)
+  - SwiftyAttributes (5.1.1)
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0.1)
+  - Alamofire
   - BaiduMobStatCodeless
-  - JGProgressHUD (~> 1.3.2)
-  - Kingfisher (~> 4.6.1)
-  - KMPlaceholderTextView (~> 1.3.0)
-  - LFRoundProgressView (~> 1.0.0)
-  - MJRefresh (~> 3.1.0)
-  - NJKWebViewProgress (~> 0.2.3)
-  - R.swift (~> 4.0.0)
-  - RxCocoa (~> 4.1.2)
-  - RxSwift (~> 4.1.2)
-  - SDWebImage (~> 3.7.6)
-  - SnapKit (~> 4.0.0)
-  - SVProgressHUD (~> 2.0.4)
-  - SwiftMessages (~> 4.1.0)
-  - YLGIFImage (= 0.11)
+  - EFFoundation
+  - EFNavigationBar
+  - JGProgressHUD
+  - Kingfisher
+  - KMPlaceholderTextView
+  - LFRoundProgressView
+  - MJRefresh
+  - NJKWebViewProgress
+  - R.swift
+  - RxCocoa
+  - RxSwift
+  - SDWebImage
+  - SnapKit
+  - SVProgressHUD
+  - SwiftMessages
+  - YLGIFImage
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - BaiduMobStatCodeless
+    - DeviceKit
+    - EFFoundation
+    - EFNavigationBar
     - JGProgressHUD
     - Kingfisher
     - KMPlaceholderTextView
@@ -55,33 +74,42 @@ SPEC REPOS:
     - NJKWebViewProgress
     - R.swift
     - R.swift.Library
+    - ReachabilitySwift
     - RxCocoa
+    - RxRelay
     - RxSwift
     - SDWebImage
     - SnapKit
     - SVProgressHUD
     - SwiftMessages
+    - SwiftyAttributes
     - YLGIFImage
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  BaiduMobStatCodeless: ef513de2f4fd1f39cf1ca70f0d2ddaedd0afb3ca
-  JGProgressHUD: cd599e041ab8363ac5ce83a21a6d95e21d359152
-  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
-  KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  BaiduMobStatCodeless: d88efbc97e63d6cc5312d0ddf15b5e9f401e7364
+  DeviceKit: 72d36709552d4b3582abd76a53949148acad9811
+  EFFoundation: 8f64bd994266b22e4e8d9c360a142d559aa10532
+  EFNavigationBar: 5f8845a3be575eb6cfa8bc0a0e63b60aa6f5bf17
+  JGProgressHUD: 62658b14e72cccf179efc7a13bcb54d30b92fc22
+  Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
+  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   LFRoundProgressView: c4a404354fb9989ec4bc6ad2b3cde834f983d72b
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
-  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
-  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
-  RxSwift: e49536837d9901277638493ea537394d4b55f570
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
-  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftMessages: a952f7a9103d9aeab93730a2861d2d8fcdd8758f
+  SwiftyAttributes: e3e13891ddac3c62b3d7798d5c3969cea88e62bb
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 87858890908365cc3da905bba590cb3dec45b36b
+PODFILE CHECKSUM: f5f5fa9a6a87119ba3e96fb60ede9bdf10b2e20d
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.5

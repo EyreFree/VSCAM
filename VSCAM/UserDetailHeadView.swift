@@ -4,8 +4,6 @@ import SnapKit
 
 class UserDetailHeadView: UIView {
 
-    weak var parentViewController: UIViewController!
-
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         fatalError("init(coder:) has not been implemented")
@@ -14,7 +12,6 @@ class UserDetailHeadView: UIView {
     init(_ parentViewController: UIViewController) {
         super.init(frame: CGRect.zero)
 
-        self.parentViewController = parentViewController
         onInit()
     }
 

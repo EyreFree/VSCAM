@@ -37,20 +37,20 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(LoginRegisteController.keyboardWillShow(notification:)),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(LoginRegisteController.keyboardWillHide(notification:)),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
     }
 
     func removeKeyboardObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func addModel() {
@@ -82,21 +82,21 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
         if let _ = self.view.viewWithTag(Tag.make(1)) as? LoginTableView {
 
         } else {
-            let view = LoginTableView(self)
+            let view = LoginTableView()
             view.tag = Tag.make(1)
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.bottom.equalTo(0)
             }
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             self.tableViewLogin = view
         }
 
         if let _ = self.view.viewWithTag(Tag.make(2)) as? RegisteTableView {
 
         } else {
-            let view = RegisteTableView(self)
+            let view = RegisteTableView()
             view.tag = Tag.make(2)
             view.isHidden = true
             self.view.addSubview(view)
@@ -104,7 +104,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                 (make) -> Void in
                 make.top.left.right.bottom.equalTo(0)
             }
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             self.tableViewRegiste = view
         }
     }
@@ -158,8 +158,8 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     @objc func loginClicked() {
         Function.HideKeyboard()
-        if let tryID = (self.view.viewWithTag(Tag.make(5)) as? UITextField)?.text?.clean(),
-            let tryPWD = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean() {
+        if let tryID = (self.view.viewWithTag(Tag.make(5)) as? UITextField)?.text?.clean,
+            let tryPWD = (self.view.viewWithTag(Tag.make(7)) as? UITextField)?.text?.clean {
 
             if tryID.isEmpty == true {
                 Function.MessageBox(
@@ -210,9 +210,9 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
 
     @objc func registeClicked() {
         Function.HideKeyboard()
-        if let tryName = (self.view.viewWithTag(Tag.make(15)) as? UITextField)?.text?.clean(),
-            let tryEmail = (self.view.viewWithTag(Tag.make(17)) as? UITextField)?.text?.clean(),
-            let tryPWD = (self.view.viewWithTag(Tag.make(19)) as? UITextField)?.text?.clean() {
+        if let tryName = (self.view.viewWithTag(Tag.make(15)) as? UITextField)?.text?.clean,
+            let tryEmail = (self.view.viewWithTag(Tag.make(17)) as? UITextField)?.text?.clean,
+            let tryPWD = (self.view.viewWithTag(Tag.make(19)) as? UITextField)?.text?.clean {
 
             if tryName.isEmpty == true {
                 Function.MessageBox(
@@ -326,7 +326,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     //键盘出现
     @objc func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let tryHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+            if let tryHeight = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
                 self.tableViewLogin.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
                 self.tableViewRegiste.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tryHeight, right: 0)
 

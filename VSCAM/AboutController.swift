@@ -47,14 +47,14 @@ class AboutController: BaseViewController {
         if let _ = self.view.viewWithTag(Tag.make(1)) as? AboutTableView {
 
         } else {
-            let view = AboutTableView(self)
+            let view = AboutTableView()
             view.tag = Tag.make(1)
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.bottom.equalTo(0)
             }
-            self.view.sendSubview(toBack: view)
+            self.view.sendSubviewToBack(view)
             self.tableView = view
         }
     }
