@@ -104,7 +104,8 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.left.equalTo(8)
+                make.top.equalTo(CGFloat.statusBarHeight - 20 + 8)
+                make.left.equalTo(8)
                 make.width.height.equalTo(39)
             }
         }
@@ -124,7 +125,8 @@ class PublishController: BaseViewController, UITextFieldDelegate {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.right.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.right.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }

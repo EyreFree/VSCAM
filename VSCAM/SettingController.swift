@@ -81,7 +81,8 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.left.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.left.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }
@@ -100,7 +101,8 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.right.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.right.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }
@@ -137,7 +139,7 @@ class SettingController: BaseViewController, UITextFieldDelegate, UITextViewDele
                     tryConfirmButton.isEnabled = $0
                     tryConfirmButton.backgroundColor = $0 ? UIColor(valueRGB: 0xA6A547) : UIColor.gray
                 })
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 

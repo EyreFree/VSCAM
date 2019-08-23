@@ -38,7 +38,8 @@ class AboutController: BaseViewController {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.left.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.left.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }
@@ -64,8 +65,8 @@ class AboutController: BaseViewController {
     }
 
     @objc func scoreClicked() {
-        if let tryUrl = URL(myString: NetworkURL.appStore) {
-            UIApplication.shared.openURL(tryUrl)
+        if let tryUrl = URL(myString: NetworkURL.review) {
+            UIApplication.shared.open(tryUrl)
         }
     }
 
@@ -75,13 +76,13 @@ class AboutController: BaseViewController {
 
     @objc func privacyClicked() {
         if let tryUrl = URL(myString: NetworkURL.privacy) {
-            UIApplication.shared.openURL(tryUrl)
+            UIApplication.shared.open(tryUrl)
         }
     }
 
     @objc func vscamClicked() {
         if let tryUrl = URL(myString: NetworkURL.vscam) {
-            UIApplication.shared.openURL(tryUrl)
+            UIApplication.shared.open(tryUrl)
         }
     }
 }

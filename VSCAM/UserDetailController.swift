@@ -85,7 +85,8 @@ class UserDetailController: BaseViewController {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.left.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.left.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }
@@ -105,7 +106,8 @@ class UserDetailController: BaseViewController {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.right.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.right.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }
@@ -125,7 +127,8 @@ class UserDetailController: BaseViewController {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.right.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.right.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }
@@ -143,7 +146,7 @@ class UserDetailController: BaseViewController {
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.equalTo(0)
-                make.height.equalTo(model.hasAvatar ? 256 : 186)
+                make.height.equalTo((model.hasAvatar ? 256 : 186) + CGFloat.statusBarHeight - 20)
             }
         }
 

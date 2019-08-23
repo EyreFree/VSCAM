@@ -29,7 +29,7 @@ class UserDetailCollectinView: BaseCollectionView, MyWaterflowLayoutDelegate {
         self.bounces = true
         self.alwaysBounceVertical = true
         let hasAvatar = (parentViewController as? UserDetailController)?.model?.hasAvatar ?? false
-        self.contentInset = UIEdgeInsets(top: hasAvatar ? 256 : 186, left: 0, bottom: 0, right: 0)
+        self.contentInset = UIEdgeInsets(top: (hasAvatar ? 256 : 186) + CGFloat.statusBarHeight - 20, left: 0, bottom: 0, right: 0)
         self.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         addReuseIdentifier()

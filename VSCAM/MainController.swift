@@ -66,7 +66,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.top.left.right.equalTo(0)
-                make.height.equalTo(69)
+                make.height.equalTo(CGFloat.navigationBarHeight + CGFloat.statusBarHeight)
             }
         }
 
@@ -79,7 +79,7 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.equalTo(69)
+                make.top.equalTo(CGFloat.navigationBarHeight + CGFloat.statusBarHeight)
                 make.left.right.bottom.equalTo(0)
             }
             self.collectionView = view
@@ -219,33 +219,6 @@ class MainController: BaseViewController, UIImagePickerControllerDelegate, UINav
             MainNavigationController.sharedInstance.pushViewController(
                 ImageDetailController(imageBrief: tryImages[index]), animated: true
             )
-        }
-    }
-
-    @objc func avatarClicked() {
-        if let tryUserInfo = Variable.loginUserInfo {
-            MainNavigationController.sharedInstance.pushViewController(
-                UserDetailController(userData: tryUserInfo), animated: true
-            )
-        } else {
-            MainNavigationController.sharedInstance.pushViewController(
-                LoginRegisteController(), animated: true
-            )
-        }
-    }
-
-    @objc func publishClicked() {
-        if Variable.loginUserInfo == nil {
-            Function.MessageBox(self, title: String.Localized("提示"), content: String.Localized("请先登录"), type: .info)
-        } else {
-            if nil == imagePicker {
-                let picker = UIImagePickerController()
-                picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = false
-                imagePicker = picker
-            }
-            self.present(imagePicker, animated: true, completion: nil)
         }
     }
 

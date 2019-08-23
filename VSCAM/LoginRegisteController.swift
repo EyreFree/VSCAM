@@ -126,7 +126,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                     tryConfirmButton.isEnabled = $0
                     tryConfirmButton.backgroundColor = $0 ? UIColor(valueRGB: 0xA6A547) : UIColor.gray
                 })
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
 
         //注册页面
@@ -147,7 +147,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
                     tryConfirmButton.isEnabled = $0
                     tryConfirmButton.backgroundColor = $0 ? UIColor(valueRGB: 0xA6A547) : UIColor.gray
                 })
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 
@@ -204,7 +204,7 @@ class LoginRegisteController: BaseViewController, UITextFieldDelegate {
     //查看用户协议
     @objc func agreementClicked() {
         if let tryUrl = URL(myString: NetworkURL.privacy) {
-            UIApplication.shared.openURL(tryUrl)
+            UIApplication.shared.open(tryUrl)
         }
     }
 

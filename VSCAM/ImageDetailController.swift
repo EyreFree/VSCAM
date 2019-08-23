@@ -49,7 +49,8 @@ class ImageDetailController: BaseViewController {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.left.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.left.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }
@@ -68,7 +69,8 @@ class ImageDetailController: BaseViewController {
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
-                make.top.right.equalTo(0)
+                make.top.equalTo(CGFloat.statusBarHeight - 20)
+                make.right.equalTo(0)
                 make.width.height.equalTo(55)
             }
         }

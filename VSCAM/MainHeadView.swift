@@ -77,9 +77,18 @@ class MainHeadView: UIView {
             let view = UIView()
             view.tag = Tag.make(3)
             view.isUserInteractionEnabled = true
-            view.addGestureRecognizer(
-                UITapGestureRecognizer(target: parentViewController, action: #selector(MainController.avatarClicked))
-            )
+            view.addGestureRecognizer(UITapGestureRecognizer({ [weak self] (recognizer) in
+                guard let _ = self else { return }
+                if let tryUserInfo = Variable.loginUserInfo {
+                    MainNavigationController.sharedInstance.pushViewController(
+                        UserDetailController(userData: tryUserInfo), animated: true
+                    )
+                } else {
+                    MainNavigationController.sharedInstance.pushViewController(
+                        LoginRegisteController(), animated: true
+                    )
+                }
+            }))
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
@@ -125,7 +134,7 @@ class MainHeadView: UIView {
             view.snp.makeConstraints {
                 (make) -> Void in
                 make.centerX.equalTo(self)
-                make.top.equalTo(32)
+                make.bottom.equalTo(-14)
                 make.width.equalTo(59)
                 make.height.equalTo(22)
             }
@@ -139,7 +148,22 @@ class MainHeadView: UIView {
             view.setImage(R.image.按钮_新建(), for: .normal)
             view.tag = Tag.make(6)
             view.isUserInteractionEnabled = true
-            view.addTarget(parentViewController, action: #selector(MainController.publishClicked), for: .touchUpInside)
+            view.addTouchUpInsideHandler { [weak self] (button) in
+                guard let self = self else { return }
+                guard let controller: MainController = self.parentViewController as? MainController else { return }
+                if Variable.loginUserInfo == nil {
+                    Function.MessageBox(controller, title: String.Localized("提示"), content: String.Localized("请先登录"), type: .info)
+                } else {
+                    if nil == controller.imagePicker {
+                        let picker = UIImagePickerController()
+                        picker.sourceType = .photoLibrary
+                        picker.delegate = controller
+                        picker.allowsEditing = false
+                        controller.imagePicker = picker
+                    }
+                    controller.present(controller.imagePicker, animated: true, completion: nil)
+                }
+            }
             self.addSubview(view)
             view.snp.makeConstraints {
                 (make) -> Void in
