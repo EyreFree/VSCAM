@@ -1,15 +1,17 @@
 PODS:
-  - Alamofire (4.8.2)
-  - BaiduMobStatCodeless (5.0.5)
-  - DeviceKit (2.0.0)
-  - EFFoundation (0.5.2):
-    - DeviceKit (>= 2.0.0)
-    - ReachabilitySwift (>= 4.3.1)
-    - SwiftyAttributes (>= 5.1.1)
-  - EFNavigationBar (5.1.1):
-    - DeviceKit (~> 2.0.0)
+  - Alamofire (4.9.0)
+  - BaiduMobStatCodeless (5.0.8)
+  - DeviceKit (2.2.0)
+  - EFFoundation/Core (0.9.2)
+  - EFFoundation/Device (0.9.2):
+    - DeviceKit (>= 2.2.0)
+    - EFFoundation/Core
+  - EFNavigationBar (5.1.4):
+    - EFFoundation/Device (>= 0.9.2)
   - JGProgressHUD (2.0.4)
-  - Kingfisher (5.7.1)
+  - Kingfisher (5.8.1):
+    - Kingfisher/Core (= 5.8.1)
+  - Kingfisher/Core (5.8.1)
   - KMPlaceholderTextView (1.4.0)
   - LFRoundProgressView (1.0.0)
   - MJRefresh (3.2.0)
@@ -21,29 +23,26 @@ PODS:
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
-  - ReachabilitySwift (4.3.1)
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
-  - SDWebImage (5.1.0):
-    - SDWebImage/Core (= 5.1.0)
-  - SDWebImage/Core (5.1.0)
+  - SDWebImage (5.2.0):
+    - SDWebImage/Core (= 5.2.0)
+  - SDWebImage/Core (5.2.0)
   - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
-  - SwiftMessages (7.0.0):
-    - SwiftMessages/App (= 7.0.0)
-  - SwiftMessages/App (7.0.0)
-  - SwiftyAttributes (5.1.1)
+  - SwiftMessages (7.0.1):
+    - SwiftMessages/App (= 7.0.1)
+  - SwiftMessages/App (7.0.1)
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
   - Alamofire
   - BaiduMobStatCodeless
-  - EFFoundation
-  - EFNavigationBar
+  - EFNavigationBar (>= 5.1.4)
   - JGProgressHUD
   - Kingfisher
   - KMPlaceholderTextView
@@ -60,12 +59,13 @@ DEPENDENCIES:
   - YLGIFImage
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - BaiduMobStatCodeless
+  https://github.com/CocoaPods/Specs.git:
     - DeviceKit
     - EFFoundation
     - EFNavigationBar
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - Alamofire
+    - BaiduMobStatCodeless
     - JGProgressHUD
     - Kingfisher
     - KMPlaceholderTextView
@@ -74,7 +74,6 @@ SPEC REPOS:
     - NJKWebViewProgress
     - R.swift
     - R.swift.Library
-    - ReachabilitySwift
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -82,34 +81,31 @@ SPEC REPOS:
     - SnapKit
     - SVProgressHUD
     - SwiftMessages
-    - SwiftyAttributes
     - YLGIFImage
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  BaiduMobStatCodeless: d88efbc97e63d6cc5312d0ddf15b5e9f401e7364
-  DeviceKit: 72d36709552d4b3582abd76a53949148acad9811
-  EFFoundation: 8f64bd994266b22e4e8d9c360a142d559aa10532
-  EFNavigationBar: 5f8845a3be575eb6cfa8bc0a0e63b60aa6f5bf17
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  BaiduMobStatCodeless: a892f5eb0854731ddecf4e334f962f13846d20ee
+  DeviceKit: ee5d2ec3bc8ad3847f9f0f202de0be09448707e1
+  EFFoundation: cbda6c8d19891efa1dae71b2cfeaaa9636347fe3
+  EFNavigationBar: eb79ec2e82b91648ea44c70363012bd97611c375
   JGProgressHUD: 62658b14e72cccf179efc7a13bcb54d30b92fc22
-  Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
+  Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   LFRoundProgressView: c4a404354fb9989ec4bc6ad2b3cde834f983d72b
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
+  SDWebImage: 609192dcf3898c910a2848032372ead951e66364
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftMessages: a952f7a9103d9aeab93730a2861d2d8fcdd8758f
-  SwiftyAttributes: e3e13891ddac3c62b3d7798d5c3969cea88e62bb
+  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: f5f5fa9a6a87119ba3e96fb60ede9bdf10b2e20d
+PODFILE CHECKSUM: a90bc61ac02b9c2481b26c58e467954994997743
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.1
